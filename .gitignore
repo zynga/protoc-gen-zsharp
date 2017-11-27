@@ -256,3 +256,5 @@ bazel-genfiles
 bazel-out
 bazel-plugin
 bazel-testlogs
+runtime/.dotnet
+runtime/tools

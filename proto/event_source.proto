@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+option java_package = "com.zynga.protobuf";
+option java_outer_classname = "EventSource";
+option csharp_namespace = "Zynga.Protobuf.EventSource";
+
+enum EventAction 
+{
+  SET = 0;
+  ADD_LIST = 1;
+  REMOVE_LIST = 2;
+  ADD_MAP = 3;
+  REMOVE_MAP = 4;
+  CLEAR = 5;
+  SNAPSHOT = 6;
+}
+
+message EventContent {
+    oneof data {
+        int32   i32 = 1;
+        string  string_data = 2;
+        bytes   byte_data = 3;
+    }
+}
+
+message EventData {
+    repeated int32 fields = 1;
+    repeated EventAction actions = 2;
+    repeated EventContent data = 3;
+}

@@ -48,6 +48,8 @@
 #include "src/lib/csharp_helpers.h"
 #include "src/lib/csharp_message.h"
 #include "src/lib/csharp_names.h"
+#include "src/lib/generated/event_plugin.pb.h"
+
 
 using google::protobuf::internal::scoped_ptr;
 
@@ -264,6 +266,18 @@ void MessageGenerator::Generate(io::Printer* printer) {
   printer->Outdent();
   printer->Print("}\n");
   printer->Print("\n");
+}
+
+
+// ZYNGA checking to see if EventSourceOptions
+// are set!
+bool MessageGenerator::IsEventSourced() {
+  if (descriptor_ != NULL) {
+      const MessageOptions& op = descriptor_->options();
+      return op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  }
+
+  return false;
 }
 
 // Helper to work out whether we need to generate a class to hold nested types/enums.

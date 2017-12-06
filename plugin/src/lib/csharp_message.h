@@ -57,6 +57,9 @@ class MessageGenerator : public SourceGeneratorBase {
   void GenerateFrameworkMethods(io::Printer* printer);
   void Generate(io::Printer* printer);
 
+  // ZYNGA 
+  bool IsEventSourced();
+
  private:
   const Descriptor* descriptor_;
   std::vector<std::string> field_names_;

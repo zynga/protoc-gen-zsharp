@@ -58,7 +58,7 @@ RepeatedEnumFieldGenerator::~RepeatedEnumFieldGenerator() {
 
 }
 
-void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer) {
+void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "private static readonly pb::FieldCodec<$type_name$> _repeated_$name$_codec\n"

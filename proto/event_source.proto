@@ -19,9 +19,17 @@ enum EventAction
 
 message EventContent {
     oneof data {
-        int32   i32 = 1;
-        string  string_data = 2;
-        bytes   byte_data = 3;
+        uint32      u32 = 1;
+        int32       i32 = 2;
+        fixed64     f64 = 3;
+        fixed32     f32 = 4;
+        sfixed64    sf64 = 5;
+        sfixed32    sf32 = 6;
+        double      r64 = 7;
+        float       r32 = 8; 
+        bool        bool_data = 9;
+        string      string_data = 10;
+        bytes       byte_data = 11;
     }
 }
 

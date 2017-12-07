@@ -65,7 +65,7 @@ WrapperFieldGenerator::WrapperFieldGenerator(const FieldDescriptor* descriptor,
 WrapperFieldGenerator::~WrapperFieldGenerator() {
 }
 
-void WrapperFieldGenerator::GenerateMembers(io::Printer* printer) {
+void WrapperFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
         variables_,
         "private static readonly pb::FieldCodec<$type_name$> _single_$name$_codec = ");
@@ -163,7 +163,7 @@ WrapperOneofFieldGenerator::WrapperOneofFieldGenerator(
 WrapperOneofFieldGenerator::~WrapperOneofFieldGenerator() {
 }
 
-void WrapperOneofFieldGenerator::GenerateMembers(io::Printer* printer) {
+void WrapperOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   // Note: deliberately _oneof_$name$_codec, not _$oneof_name$_codec... we have one codec per field.
   printer->Print(
         variables_,

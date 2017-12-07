@@ -65,7 +65,7 @@ PrimitiveFieldGenerator::PrimitiveFieldGenerator(
 PrimitiveFieldGenerator::~PrimitiveFieldGenerator() {
 }
 
-void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer) {
+void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   // TODO(jonskeet): Work out whether we want to prevent the fields from ever being
   // null, or whether we just handle it, in the cases of bytes and string.
   // (Basically, should null-handling code be in the getter or the setter?)
@@ -79,6 +79,34 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer) {
     "$access_level$ $type_name$ $property_name$ {\n"
     "  get { return $name$_; }\n"
     "  set {\n");
+  if (isEventSourced) {
+      switch (descriptor_->type()) {
+        case FieldDescriptor::TYPE_DOUBLE:
+        case FieldDescriptor::TYPE_FLOAT:
+        case FieldDescriptor::TYPE_INT64:
+        case FieldDescriptor::TYPE_UINT64:
+        case FieldDescriptor::TYPE_INT32:
+        case FieldDescriptor::TYPE_FIXED64:
+        case FieldDescriptor::TYPE_FIXED32:
+        case FieldDescriptor::TYPE_BOOL:
+        case FieldDescriptor::TYPE_STRING:
+        case FieldDescriptor::TYPE_BYTES:
+        case FieldDescriptor::TYPE_UINT32:
+        case FieldDescriptor::TYPE_SFIXED32:
+        case FieldDescriptor::TYPE_SFIXED64:
+        case FieldDescriptor::TYPE_SINT32:
+        case FieldDescriptor::TYPE_SINT64:
+        printer->Print(
+            variables_,
+            "AddEvent($number$, EventAction.SET, value);\n");
+        break;
+        // return "long";
+      default:
+        GOOGLE_LOG(FATAL)<< "Unknown field type.";
+        // return "";
+      }
+  }
+
   if (is_value_type) {
     printer->Print(
       variables_,
@@ -174,7 +202,7 @@ PrimitiveOneofFieldGenerator::PrimitiveOneofFieldGenerator(
 PrimitiveOneofFieldGenerator::~PrimitiveOneofFieldGenerator() {
 }
 
-void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer) {
+void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(
@@ -182,6 +210,9 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer) {
     "$access_level$ $type_name$ $property_name$ {\n"
     "  get { return $has_property_check$ ? ($type_name$) $oneof_name$_ : $default_value$; }\n"
     "  set {\n");
+    // ZYNGA: We check and see if we are event sourced
+    // if we are then we can add an event to this object
+    
     if (is_value_type) {
       printer->Print(
         variables_,

@@ -62,7 +62,7 @@ MessageFieldGenerator::~MessageFieldGenerator() {
 
 }
 
-void MessageFieldGenerator::GenerateMembers(io::Printer* printer) {
+void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "private $type_name$ $name$_;\n");
@@ -159,7 +159,7 @@ MessageOneofFieldGenerator::~MessageOneofFieldGenerator() {
 
 }
 
-void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer) {
+void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(

@@ -54,7 +54,7 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   virtual void GenerateCloningCode(io::Printer* printer) = 0;
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateCodecCode(io::Printer* printer);
-  virtual void GenerateMembers(io::Printer* printer) = 0;
+  virtual void GenerateMembers(io::Printer* printer, bool isEventSource) = 0;
   virtual void GenerateMergingCode(io::Printer* printer) = 0;
   virtual void GenerateParsingCode(io::Printer* printer) = 0;
   virtual void GenerateSerializationCode(io::Printer* printer) = 0;

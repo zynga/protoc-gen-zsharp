@@ -58,7 +58,7 @@ RepeatedPrimitiveFieldGenerator::~RepeatedPrimitiveFieldGenerator() {
 
 }
 
-void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer) {
+void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "private static readonly pb::FieldCodec<$type_name$> _repeated_$name$_codec\n"

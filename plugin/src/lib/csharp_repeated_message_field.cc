@@ -59,7 +59,7 @@ RepeatedMessageFieldGenerator::~RepeatedMessageFieldGenerator() {
 
 }
 
-void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer) {
+void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "private static readonly pb::FieldCodec<$type_name$> _repeated_$name$_codec\n"

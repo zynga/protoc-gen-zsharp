@@ -187,7 +187,8 @@ void MessageGenerator::Generate(io::Printer* printer) {
       "index", SimpleItoa(fieldDescriptor->number()));
     scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(fieldDescriptor));
-    generator->GenerateMembers(printer);
+        
+    generator->GenerateMembers(printer, IsEventSourced());
     printer->Print("\n");
   }
 
@@ -276,7 +277,6 @@ bool MessageGenerator::IsEventSourced() {
       const MessageOptions& op = descriptor_->options();
       return op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
   }
-
   return false;
 }
 

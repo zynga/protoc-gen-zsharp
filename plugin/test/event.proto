@@ -7,11 +7,15 @@ option java_generic_services = false;
 option java_package = "com.vsco.proto.events";
 option java_outer_classname = "ProtoEvent";
 
+import "event_plugin.proto";
+
 message Event{
   // unique event identifier
   string eventId = 1;
+
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
   
-  message EventBody {
+/*  message EventBody {
     oneof body{
       BodyA bodyA = 1;
       BodyB bodyB = 2;
@@ -91,8 +95,10 @@ message Event{
   message BodyO {
     string data = 1;
   }
-
+*/
   message BodyP {
+      option (com.zynga.runtime.protobuf.event_sourced) = true;
+
     bytes data = 1;
-  }
+  } 
 }

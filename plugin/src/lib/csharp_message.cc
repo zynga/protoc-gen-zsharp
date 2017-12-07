@@ -118,7 +118,17 @@ void MessageGenerator::Generate(io::Printer* printer) {
   
   printer->Print(
     vars,
-    "$access_level$ sealed partial class $class_name$ : pb::IMessage<$class_name$> {\n");
+    "$access_level$ sealed partial class $class_name$ :");
+
+    if (IsEventSourced()) {
+      printer->Print(
+      vars,
+      " zpr::EventRegistry,");  
+    }
+
+    printer->Print(
+    vars,
+    " pb::IMessage<$class_name$> {\n");
   printer->Indent();
 
   // All static fields and properties

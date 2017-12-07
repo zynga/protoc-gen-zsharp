@@ -98,7 +98,7 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
         case FieldDescriptor::TYPE_SINT64:
         printer->Print(
             variables_,
-            "AddEvent($number$, EventAction.SET, value);\n");
+            "    AddEvent($number$, EventAction.SET, value);\n");
         break;
         // return "long";
       default:

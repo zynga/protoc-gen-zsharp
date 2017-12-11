@@ -274,6 +274,39 @@ void MessageGenerator::Generate(io::Printer* printer) {
                    "\n");
   }
 
+
+
+  // ZYNGA: GENERATED EVENT SOURCED METHODS FOR APPLYING EVENT ROOT! ?
+  if (IsEventSourced()) {
+    printer->Print(
+      vars,
+      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, int startIndex = 0) {\n"
+      "  for(int index = startIndex; index < root.Events.Count; ++index) {\n"
+      "    var e = root.Events[index];\n"
+      "    switch (e.Field) {\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+       printer->Print(
+        "      case $field_number$: {\n",
+        "field_number", SimpleItoa(fieldDescriptor->number()));
+        scoped_ptr<FieldGeneratorBase> generator(
+        CreateFieldGeneratorInternal(fieldDescriptor));
+        
+        generator->GenerateEventSource(printer);
+        printer->Print("      }\n");
+        printer->Print("      break;\n");
+    }
+    printer->Print(
+      vars,
+      "    }\n"
+      "  }\n");
+    printer->Print(
+      vars,
+      "}\n");
+  }
+  
+
   printer->Outdent();
   printer->Print("}\n");
   printer->Print("\n");

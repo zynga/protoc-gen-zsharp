@@ -4,7 +4,7 @@ package com.zynga.runtime.protobuf;
 
 option java_package = "com.zynga.protobuf";
 option java_outer_classname = "EventSource";
-option csharp_namespace = "Zynga.Protobuf.EventSource";
+option csharp_namespace = "Zynga.Protobuf.Runtime.EventSource";
 
 enum EventAction 
 {
@@ -15,6 +15,11 @@ enum EventAction
   REMOVE_MAP = 4;
   CLEAR = 5;
   SNAPSHOT = 6;
+}
+
+message EventMapData {
+    EventContent key = 1;
+    EventContent data = 2;
 }
 
 message EventContent {
@@ -34,7 +39,11 @@ message EventContent {
 }
 
 message EventData {
-    repeated int32 fields = 1;
-    repeated EventAction actions = 2;
-    repeated EventContent data = 3;
+    int32 field = 1;
+    EventAction action = 2;
+    EventContent data = 3;
+}
+
+message EventSourceRoot {
+    repeated EventData events = 1;
 }

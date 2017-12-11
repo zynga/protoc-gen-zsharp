@@ -82,12 +82,33 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     ", $tag$);\n"
     "private readonly pbc::MapField<$key_type_name$, $value_type_name$> $name$_ = new pbc::MapField<$key_type_name$, $value_type_name$>();\n");
   WritePropertyDocComment(printer, descriptor_);
-  AddPublicMemberAttributes(printer);
-  printer->Print(
-    variables_,
-    "$access_level$ pbc::MapField<$key_type_name$, $value_type_name$> $property_name$ {\n"
-    "  get { return $name$_; }\n"
+
+  if (isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ void Add$name$($key_type_name$ key, $value_type_name$ value) {\n"
+      " AddEventMap($number$, EventAction.AddMap, key, value);\n"
+      " $name$_.Add(key, value);\n"
     "}\n");
+
+    printer->Print(
+      variables_,
+      "$access_level$ void Remove$name$($key_type_name$ key) {\n"
+      " AddEvent($number$, EventAction.RemoveMap, key);\n"
+      " $name$_.Remove(key);\n"
+    "}\n");
+  } else {
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "$access_level$ pbc::MapField<$key_type_name$, $value_type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+}
+
+void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
+
 }
 
 void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {
@@ -117,12 +138,12 @@ void MapFieldGenerator::GenerateSerializedSizeCode(io::Printer* printer) {
 void MapFieldGenerator::WriteHash(io::Printer* printer) {
   printer->Print(
     variables_,
-    "hash ^= $property_name$.GetHashCode();\n");
+    "hash ^= $name$_.GetHashCode();\n");
 }
 void MapFieldGenerator::WriteEquals(io::Printer* printer) {
   printer->Print(
     variables_,
-    "if (!$property_name$.Equals(other.$property_name$)) return false;\n");
+    "if ($name$_.Equals(other.$name$_)) return false;\n");
 }
 
 void MapFieldGenerator::WriteToString(io::Printer* printer) {

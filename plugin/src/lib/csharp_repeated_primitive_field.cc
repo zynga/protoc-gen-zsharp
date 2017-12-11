@@ -66,13 +66,40 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
   printer->Print(variables_,
     "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
   WritePropertyDocComment(printer, descriptor_);
-  AddPublicMemberAttributes(printer);
-  printer->Print(
-    variables_,
-    "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
-    "  get { return $name$_; }\n"
+  
+
+
+  // ZYNGA: We change this path that if we are event sourced we no longer use the standarder getter.
+  // we now use access functions. $AS TODO: Maybe we always do this anyways ? 
+  if (isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ void Add$name$($type_name$ value) {\n"
+      " AddEvent($number$, EventAction.AddList, value);\n"
+      " $name$_.Add(value);\n"
     "}\n");
+
+    printer->Print(
+      variables_,
+      "$access_level$ void Remove$name$($type_name$ value) {\n"
+      " AddEvent($number$, EventAction.RemoveList, value);\n"
+      " $name$_.Remove(value);\n"
+    "}\n");
+  }
+  else {
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
 }
+
+void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
+
+}
+
 
 void RepeatedPrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(

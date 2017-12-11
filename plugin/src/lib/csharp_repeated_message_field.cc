@@ -81,13 +81,35 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
     variables_,
     "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
   WritePropertyDocComment(printer, descriptor_);
-  AddPublicMemberAttributes(printer);
-  printer->Print(
-    variables_,
-    "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
-    "  get { return $name$_; }\n"
+  if (isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ void Add$name$($type_name$ value) {\n"
+      " AddEvent($number$, EventAction.AddList, value);\n"
+      " $name$_.Add(value);\n"
     "}\n");
+
+    printer->Print(
+      variables_,
+      "$access_level$ void Remove$name$($type_name$ value) {\n"
+      " AddEvent($number$, EventAction.RemoveList, value);\n"
+      " $name$_.Remove(value);\n"
+    "}\n");
+  } else {
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+  
 }
+
+void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
+
+}
+
 
 void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(

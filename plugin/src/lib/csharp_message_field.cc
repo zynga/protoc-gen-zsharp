@@ -78,6 +78,15 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     "}\n");
 }
 
+void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
+   printer->Print(variables_,
+    "        if ($name$_ is zpr::EventRegistry) {\n"
+    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root, index);\n"
+    "        } else { \n"
+    "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
+    "        } \n");
+}
+
 void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
     variables_,
@@ -166,11 +175,32 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     variables_,
     "$access_level$ $type_name$ $property_name$ {\n"
     "  get { return $has_property_check$ ? ($type_name$) $oneof_name$_ : null; }\n"
-    "  set {\n"
+    "  set {\n");
+
+    if (isEventSourced) {
+      printer->Print(
+              variables_,
+              "    AddEvent($number$, EventAction.Set, value);\n");
+    }
+
+    printer->Print(
+    variables_,
     "    $oneof_name$_ = value;\n"
     "    $oneof_name$Case_ = value == null ? $oneof_property_name$OneofCase.None : $oneof_property_name$OneofCase.$property_name$;\n"
     "  }\n"
     "}\n");
+}
+
+void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
+  printer->Print(variables_,
+    "        if ($oneof_name$_ is zpr::EventRegistry) {\n"
+    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root, index);\n"
+    "        } else { \n"
+    "          $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
+    "        } \n");
+  printer->Print(
+    variables_,
+    "        $oneof_name$Case_ = $oneof_name$_ == null ? $oneof_property_name$OneofCase.None : $oneof_property_name$OneofCase.$property_name$;\n");
 }
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {

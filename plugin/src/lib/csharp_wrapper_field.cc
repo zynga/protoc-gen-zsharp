@@ -86,6 +86,10 @@ void WrapperFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     "}\n");
 }
 
+void WrapperFieldGenerator::GenerateEventSource(io::Printer* printer) {
+
+}
+
 void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
     variables_,

@@ -2,18 +2,45 @@ syntax = "proto3";
 
 package events;
 
-option java_multiple_files = true;
-option java_generic_services = false;
-option java_package = "com.vsco.proto.events";
-option java_outer_classname = "ProtoEvent";
-
 import "event_plugin.proto";
 
-message Event{
+enum EnumTest
+{
+ VALUE = 0;
+ VALUE_TWO = 1;
+}
+
+message EventTest{
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
   // unique event identifier
   string eventId = 1;
 
-  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  // must flag internal message as event_sourced
+  message NestedMessage {
+    option (com.zynga.runtime.protobuf.event_sourced) = true;
+    int32 data = 1;
+  }
+
+  oneof testOneof{
+      string foo = 2;
+      NestedMessage internal = 3;
+  }
+
+  message EventOneofTest {
+    option (com.zynga.runtime.protobuf.event_sourced) = true;
+    oneof body{
+      string foo = 1;
+      NestedMessage internal = 2;
+    }
+  }
+
+  EnumTest test_event = 4;
+  repeated int32 Test_prim = 5;
+  repeated NestedMessage test_message = 6;
+  repeated EnumTest test_enum = 7;
+  map<string, NestedMessage> test_map = 8;
+  EventOneofTest data = 9;
+  
   
 /*  message EventBody {
     oneof body{
@@ -95,10 +122,10 @@ message Event{
   message BodyO {
     string data = 1;
   }
-*/
+
   message BodyP {
       option (com.zynga.runtime.protobuf.event_sourced) = true;
 
     bytes data = 1;
-  } 
+  } */
 }

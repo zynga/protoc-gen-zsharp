@@ -280,9 +280,11 @@ void MessageGenerator::Generate(io::Printer* printer) {
   if (IsEventSourced()) {
     printer->Print(
       vars,
-      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, int startIndex = 0) {\n"
-      "  for(int index = startIndex; index < root.Events.Count; ++index) {\n"
-      "    var e = root.Events[index];\n"
+      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, ref int startIndex = 0) {\n"
+      "  _indexRemoveCount = 0;\n"
+      "  _lastIndexRemove = int.MaxValue;\n\n"
+      "  for(startIndex < root.Events.Count; ++startIndex) {\n"
+      "    var e = root.Events[startIndex];\n"
       "    switch (e.Field) {\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -297,13 +299,29 @@ void MessageGenerator::Generate(io::Printer* printer) {
         printer->Print("      }\n");
         printer->Print("      break;\n");
     }
+
     printer->Print(
       vars,
+      "      default: \n"
+      "        return false;\n"
+      "      break;\n"
       "    }\n"
-      "  }\n");
+      "  }\n"
+      "  return true;\n");
     printer->Print(
       vars,
-      "}\n");
+      "}\n\n");
+
+
+    printer->Print(
+      vars,
+      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
+      "}\n\n");
+
+    printer->Print(
+      vars,
+      "public override zpr.EventSource.EventSourceRoot CollectEvents() {\n"
+      "}\n\n");
   }
   
 

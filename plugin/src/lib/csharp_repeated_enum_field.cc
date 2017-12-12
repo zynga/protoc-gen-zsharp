@@ -69,14 +69,14 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
   if (isEventSourced) {
     printer->Print(
       variables_,
-      "$access_level$ void Add$name$($type_name$ value) {\n"
+      "$access_level$ void Add$property_name$($type_name$ value) {\n"
       " AddEvent($number$, EventAction.AddList, value);\n"
       " $name$_.Add(value);\n"
     "}\n");
 
     printer->Print(
       variables_,
-      "$access_level$ void Remove$name$($type_name$ value) {\n"
+      "$access_level$ void Remove$property_name$($type_name$ value) {\n"
       " AddEvent($number$, EventAction.RemoveList, value);\n"
       " $name$_.Remove(value);\n"
     "}\n");
@@ -92,7 +92,13 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 }
 
 void RepeatedEnumFieldGenerator::GenerateEventSource(io::Printer* printer) {
-
+  printer->Print(
+      variables_,
+      "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
+      "          $name$_.Add(($type_name$)e.Data.U32);\n"
+      "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
+      "          $name$_.Remove(($type_name$)e.Data.U32);\n"
+      "        }\n");
 }
 
 

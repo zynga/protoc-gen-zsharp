@@ -81,7 +81,7 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
    printer->Print(variables_,
     "        if ($name$_ is zpr::EventRegistry) {\n"
-    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root, index);\n"
+    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex++);\n"
     "        } else { \n"
     "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
     "        } \n");
@@ -194,7 +194,7 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
   printer->Print(variables_,
     "        if ($oneof_name$_ is zpr::EventRegistry) {\n"
-    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root, index);\n"
+    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex++);\n"
     "        } else { \n"
     "          $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
     "        } \n");

@@ -84,15 +84,15 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
   if (isEventSourced) {
     printer->Print(
       variables_,
-      "$access_level$ void Add$name$($type_name$ value) {\n"
+      "$access_level$ void Add$property_name$($type_name$ value) {\n"
       " AddEvent($number$, EventAction.AddList, value);\n"
       " $name$_.Add(value);\n"
     "}\n");
 
     printer->Print(
       variables_,
-      "$access_level$ void Remove$name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.RemoveList, value);\n"
+      "$access_level$ void Remove$property_name$($type_name$ value) {\n"
+      " AddEvent($number$, EventAction.RemoveList, $name$_.IndexOf(value));\n"
       " $name$_.Remove(value);\n"
     "}\n");
   } else {
@@ -107,7 +107,14 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
 }
 
 void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
-
+    printer->Print(
+      variables_,
+      "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
+      "          var m = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
+      "          $name$_.Add(m);\n"
+      "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
+      "          SafeRemoveCurrentIndex($name$_, e.Data.U32);\n"
+      "        }\n");
 }
 
 

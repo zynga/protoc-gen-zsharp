@@ -348,7 +348,7 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
 }
 
 void PrimitiveOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
-       std::map<string, string> vars;
+    std::map<string, string> vars;
     vars["oneof_name"] = variables_["oneof_name"];
     vars["oneof_property_name"] = variables_["oneof_property_name"];
     vars["property_name"] = variables_["property_name"];

@@ -87,7 +87,8 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     printer->Print(
       variables_,
       "$access_level$ void Add$name$($key_type_name$ key, $value_type_name$ value) {\n"
-      " AddEventMap($number$, EventAction.AddMap, key, value);\n"
+      " AddEventMap($number$, EventAction.MapKey, key);\n"
+      " AddEventMap($number$, EventAction.MapValue, value);\n"
       " $name$_.Add(key, value);\n"
     "}\n");
 

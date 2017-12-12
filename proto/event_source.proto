@@ -15,11 +15,8 @@ enum EventAction
   REMOVE_MAP = 4;
   CLEAR = 5;
   SNAPSHOT = 6;
-}
-
-message EventMapData {
-    EventContent key = 1;
-    EventContent data = 2;
+  MAP_KEY = 7;
+  MAP_VALUE = 8;
 }
 
 message EventContent {

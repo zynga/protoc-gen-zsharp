@@ -80,8 +80,9 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
    printer->Print(variables_,
+    "        if ($name$_ == null) $name$_ = new $type_name$();\n"
     "        if ($name$_ is zpr::EventRegistry) {\n"
-    "          startIndex++;\n"
+    "          ++startIndex;\n"
     "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex);\n"
     "        } else { \n"
     "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
@@ -89,14 +90,16 @@ void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
 }
 
 
-void MessageFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void MessageFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
   vars["name"] = variables_["name"];
 
+  if (!isMap) {
+    printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
+  }
 
-  printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = byteData$name$ };\n");
 }
@@ -208,8 +211,9 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 
 void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
   printer->Print(variables_,
+    "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
     "        if ($oneof_name$_ is zpr::EventRegistry) {\n"
-    "          startIndex++;\n"
+    "          ++startIndex;\n"
     "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex);\n"
     "        } else { \n"
     "          $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
@@ -219,14 +223,17 @@ void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
     "        $oneof_name$Case_ = $oneof_name$_ == null ? $oneof_property_name$OneofCase.None : $oneof_property_name$OneofCase.$property_name$;\n");
 }
 
-void MessageOneofFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void MessageOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
   vars["name"] = variables_["name"];
 
 
-  printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
+  if (!isMap) {
+    printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
+  }
+  
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = byteData$name$ };\n");
 }

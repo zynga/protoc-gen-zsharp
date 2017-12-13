@@ -54,7 +54,7 @@ class MapFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
   virtual void GenerateEventSource(io::Printer* printer);
-  virtual void GenerateEventAdd(io::Printer* printer);
+  virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
   virtual void GenerateMergingCode(io::Printer* printer);
   virtual void GenerateParsingCode(io::Printer* printer);
   virtual void GenerateSerializationCode(io::Printer* printer);

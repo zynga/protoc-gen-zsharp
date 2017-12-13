@@ -132,20 +132,20 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
       if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$key_value$);\n");
+          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[++startIndex].Data.$key_value$);\n");
       } else {
         printer->Print(
           vars,
-          "         var realKey$name$ = root.Events[startIndex++].Data.$key_value$;\n");
+          "         var realKey$name$ = root.Events[++startIndex].Data.$key_value$;\n");
       }
       if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realValue$name$ = $value_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$data_value$);\n");
+          "         var realValue$name$ = $value_type_name$.Parser.ParseFrom(root.Events[++startIndex].Data.$data_value$);\n");
       } else {
         printer->Print(
           vars,
-          "         var realValue$name$ = root.Events[startIndex++].Data.$data_value$;\n");
+          "         var realValue$name$ = root.Events[++startIndex].Data.$data_value$;\n");
       }
       printer->Print(
           vars,
@@ -154,11 +154,11 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
       if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$key_value$);\n");
+          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[++startIndex].Data.$key_value$);\n");
       } else {
         printer->Print(
           vars,
-          "         var realKey$name$ = root.Events[startIndex++].Data.$key_value$;\n");
+          "         var realKey$name$ = root.Events[++startIndex].Data.$key_value$;\n");
       }
       printer->Print(
           vars,
@@ -166,7 +166,7 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
       printer->Print("        }\n");
 }
 
-void MapFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   const FieldDescriptor* key_descriptor =
       descriptor_->message_type()->FindFieldByName("key");
   const FieldDescriptor* value_descriptor =
@@ -188,12 +188,12 @@ void MapFieldGenerator::GenerateEventAdd(io::Printer* printer) {
   printer->Print(vars, "        if (action == zpr.EventSource.EventAction.AddMap) return null;\n");
   printer->Print(vars, "        if (action == zpr.EventSource.EventAction.MapKey) {\n");
   printer->Indent();
-  key_generator->GenerateEventAdd(printer);
+  key_generator->GenerateEventAdd(printer, true);
   printer->Outdent();
   printer->Print(vars, "        }\n");
     printer->Print(vars, "        if (action == zpr.EventSource.EventAction.MapValue) {\n");
   printer->Indent();
-  value_generator->GenerateEventAdd(printer);
+  value_generator->GenerateEventAdd(printer, true);
   printer->Outdent();
   printer->Print(vars, "        }\n");
   printer->Print(vars, "        return null;\n");

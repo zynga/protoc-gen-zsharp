@@ -111,7 +111,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) 
 }
 
 
-void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];

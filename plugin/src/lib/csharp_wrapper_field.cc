@@ -90,7 +90,7 @@ void WrapperFieldGenerator::GenerateEventSource(io::Printer* printer) {
 
 }
 
-void WrapperFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void WrapperFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
 }
 
 

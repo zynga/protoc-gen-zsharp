@@ -150,7 +150,7 @@ void PrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
     
 }
 
-void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
@@ -325,7 +325,7 @@ void PrimitiveOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
     
 }
 
-void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
   vars["name"] = variables_["name"];
   vars["data_value"] = GetEventDataType(descriptor_);

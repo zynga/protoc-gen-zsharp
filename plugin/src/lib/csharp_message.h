@@ -60,6 +60,9 @@ class MessageGenerator : public SourceGeneratorBase {
   // ZYNGA 
   bool IsEventSourced();
 
+  FieldGeneratorBase* CreateFieldGeneratorInternal(
+      const FieldDescriptor* descriptor);
+
  private:
   const Descriptor* descriptor_;
   std::vector<std::string> field_names_;
@@ -69,8 +72,7 @@ class MessageGenerator : public SourceGeneratorBase {
   void GenerateMergingMethods(io::Printer* printer);
 
   int GetFieldOrdinal(const FieldDescriptor* descriptor);
-  FieldGeneratorBase* CreateFieldGeneratorInternal(
-      const FieldDescriptor* descriptor);
+
 
   bool HasNestedGeneratedTypes();
 

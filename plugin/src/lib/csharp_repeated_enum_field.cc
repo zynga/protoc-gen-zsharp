@@ -70,14 +70,14 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     printer->Print(
       variables_,
       "$access_level$ void Add$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.AddList, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
       " $name$_.Add(value);\n"
     "}\n");
 
     printer->Print(
       variables_,
       "$access_level$ void Remove$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.RemoveList, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, value);\n"
       " $name$_.Remove(value);\n"
     "}\n");
   } 
@@ -99,6 +99,14 @@ void RepeatedEnumFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
       "          $name$_.Remove(($type_name$)e.Data.U32);\n"
       "        }\n");
+}
+
+void RepeatedEnumFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  std::map<string, string> vars;
+  vars["data_value"] = GetEventDataType(descriptor_);
+  vars["type_name"] = variables_["type_name"];
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+
 }
 
 

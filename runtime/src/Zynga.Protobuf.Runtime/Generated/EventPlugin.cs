@@ -3,10 +3,12 @@
 #pragma warning disable 1591, 0612, 3021
 #region Designer generated code
 
+using Google.Protobuf;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
+using zpr = global::Zynga.Protobuf.Runtime;
 namespace Zynga.Protobuf.EventSource {
 
   /// <summary>Holder for reflection information generated from event_plugin.proto</summary>
@@ -23,10 +25,11 @@ namespace Zynga.Protobuf.EventSource {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJldmVudF9wbHVnaW4ucHJvdG8SGmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
-            "YnVmGiBnb29nbGUvcHJvdG9idWYvZGVzY3JpcHRvci5wcm90bzo4Cg1ldmVu",
+            "YnVmGiBnb29nbGUvcHJvdG9idWYvZGVzY3JpcHRvci5wcm90bzpGCg1ldmVu",
             "dF9zb3VyY2VkEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGInn",
-            "AyABKAhCPgoSY29tLnp5bmdhLnByb3RvYnVmQgtFdmVudFNvdXJjZaoCGlp5",
-            "bmdhLlByb3RvYnVmLkV2ZW50U291cmNlYgZwcm90bzM="));
+            "AyABKAhSDGV2ZW50U291cmNlZEI+ChJjb20uenluZ2EucHJvdG9idWZCC0V2",
+            "ZW50U291cmNlqgIaWnluZ2EuUHJvdG9idWYuRXZlbnRTb3VyY2ViBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { pbr::FileDescriptor.DescriptorProtoFileDescriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

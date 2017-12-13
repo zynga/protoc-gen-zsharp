@@ -11,13 +11,23 @@ namespace Zynga.Protobuf.Runtime
 {
     public abstract class EventRegistry
     {
-        protected EventSourceRoot _root = new EventSourceRoot();
+        public List<EventData> _root = new List<EventData>();
         protected int  _indexRemoveCount = 0;
         protected int  _lastIndexRemove = int.MaxValue;
 
-        public abstract bool ApplyEvents(EventSourceRoot root, int startIndex = 0);
-        public abstract void AddEvent<T>(int fieldNumber, EventAction action, T data);
+        public abstract bool ApplyEvents(EventSourceRoot root, ref int startIndex);
+        public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
         public abstract EventSourceRoot CollectEvents();
+
+        public void AddEvent<T>(int fieldNumber, EventAction action, T data) {
+            var e = new EventData {
+                Field = fieldNumber,
+                Action = action,
+                Data = GetEventData(fieldNumber, action, data)
+            };
+
+            _root.Add(e);
+        }
 
         protected void SafeRemoveCurrentIndex<T>(IList<T> inList, int currentIndexToRemove) {
             // this is the case where we are removing the last element in the list ? 

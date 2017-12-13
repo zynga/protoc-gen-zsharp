@@ -453,6 +453,63 @@ std::string FileDescriptorToBase64(const FileDescriptor* descriptor) {
   return StringToBase64(fdp_bytes);
 }
 
+std::string GetEventDataType(const FieldDescriptor* descriptor) {
+  switch (descriptor->type()) {
+        case FieldDescriptor::TYPE_ENUM:
+         return "U32";
+        break;
+        case FieldDescriptor::TYPE_DOUBLE:
+          return "R64";
+        break;
+        case FieldDescriptor::TYPE_FLOAT:
+          return "R32";
+        break;
+        case FieldDescriptor::TYPE_INT64:
+          return "I64";
+        break;
+        case FieldDescriptor::TYPE_UINT64:
+          return "U64";
+        break;
+        case FieldDescriptor::TYPE_INT32:
+          return "I32";
+        break;
+        case FieldDescriptor::TYPE_FIXED64:
+          return "F64";
+        break;
+        case FieldDescriptor::TYPE_FIXED32:
+          return "F32";
+        break;
+        case FieldDescriptor::TYPE_BOOL:
+          return "BoolData";
+        break;
+        case FieldDescriptor::TYPE_STRING:
+          return "StringData";
+        break;
+        case FieldDescriptor::TYPE_MESSAGE:
+        case FieldDescriptor::TYPE_BYTES:
+          return "ByteData";
+        break;
+        case FieldDescriptor::TYPE_UINT32:
+          return "U32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED32:
+          return "SF32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED64:
+          return "SF64";
+        break;
+        case FieldDescriptor::TYPE_SINT32:
+          return "SI32";
+        break;
+        case FieldDescriptor::TYPE_SINT64:
+          return "SI64";
+        break;
+       default:
+         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         return "";
+    }
+}
+
 FieldGeneratorBase* CreateFieldGenerator(const FieldDescriptor* descriptor,
                                          int fieldOrdinal,
                                          const Options* options) {

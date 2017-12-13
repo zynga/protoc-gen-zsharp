@@ -101,12 +101,12 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
           if (is_value_type) { 
             printer->Print(
               variables_,
-              "    AddEvent($number$, EventAction.Set, value);\n");
+              "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
           }
           else {
             printer->Print(
               variables_,
-              "    AddEvent($number$, EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
+              "    AddEvent($number$, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
           }
         }
         
@@ -133,76 +133,29 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
 void PrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
     std::map<string, string> vars;
     vars["name"] = variables_["name"];
-    vars["data_value"] = variables_["name"];
+    vars["data_value"] = GetEventDataType(descriptor_);
     vars["type_name"] = variables_["type_name"];
-
-    switch (descriptor_->type()) {
-        case FieldDescriptor::TYPE_ENUM:
-         vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_DOUBLE:
-          vars["data_value"] = "e.Data.R64";
-        break;
-        case FieldDescriptor::TYPE_FLOAT:
-          vars["data_value"] = "e.Data.R32";
-        break;
-        case FieldDescriptor::TYPE_INT64:
-          vars["data_value"] = "e.Data.I64";
-        break;
-        case FieldDescriptor::TYPE_UINT64:
-          vars["data_value"] = "e.Data.U64";
-        break;
-        case FieldDescriptor::TYPE_INT32:
-          vars["data_value"] = "e.Data.I32";
-        break;
-        case FieldDescriptor::TYPE_FIXED64:
-          vars["data_value"] = "e.Data.F64";
-        break;
-        case FieldDescriptor::TYPE_FIXED32:
-          vars["data_value"] = "e.Data.F32";
-        break;
-        case FieldDescriptor::TYPE_BOOL:
-          vars["data_value"] = "e.Data.BoolData";
-        break;
-        case FieldDescriptor::TYPE_STRING:
-          vars["data_value"] = "e.Data.StringData";
-        break;
-        case FieldDescriptor::TYPE_BYTES:
-          vars["data_value"] = "e.Data.ByteData";
-        break;
-        case FieldDescriptor::TYPE_UINT32:
-          vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED32:
-          vars["data_value"] = "e.Data.SF32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED64:
-          vars["data_value"] = "e.Data.SF64";
-        break;
-        case FieldDescriptor::TYPE_SINT32:
-          vars["data_value"] = "e.Data.SI32";
-        break;
-        case FieldDescriptor::TYPE_SINT64:
-          vars["data_value"] = "e.Data.SI64";
-        break;
-       default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type.";
-    }
 
     if (descriptor_->type() == FieldDescriptor::TYPE_ENUM) {
       printer->Print(
         vars,
-        "        $name$_ = ($type_name$)$data_value$;\n");
+        "        $name$_ = ($type_name$)e.Data.$data_value$;\n");
     }
     else 
     {
       printer->Print(
         vars,
-        "        $name$_ = $data_value$;\n");
+        "        $name$_ = e.Data.$data_value$;\n");
     }
     
 }
 
+void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  std::map<string, string> vars;
+  vars["data_value"] = GetEventDataType(descriptor_);
+  vars["type_name"] = variables_["type_name"];
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+}
 
 void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
@@ -317,12 +270,12 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
           if (is_value_type) { 
             printer->Print(
               variables_,
-              "    AddEvent($number$, EventAction.Set, value);\n");
+              "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
           }
           else {
             printer->Print(
               variables_,
-              "    AddEvent($number$, EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
+              "    AddEvent($number$, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
           }
         }
         
@@ -352,71 +305,17 @@ void PrimitiveOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
     vars["oneof_name"] = variables_["oneof_name"];
     vars["oneof_property_name"] = variables_["oneof_property_name"];
     vars["property_name"] = variables_["property_name"];
-    vars["data_value"] = variables_["name"];
+    vars["data_value"] = GetEventDataType(descriptor_);
     vars["type_name"] = variables_["type_name"];
-
-    switch (descriptor_->type()) {
-        case FieldDescriptor::TYPE_ENUM:
-         vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_DOUBLE:
-          vars["data_value"] = "e.Data.R64";
-        break;
-        case FieldDescriptor::TYPE_FLOAT:
-          vars["data_value"] = "e.Data.R32";
-        break;
-        case FieldDescriptor::TYPE_INT64:
-          vars["data_value"] = "e.Data.I64";
-        break;
-        case FieldDescriptor::TYPE_UINT64:
-          vars["data_value"] = "e.Data.U64";
-        break;
-        case FieldDescriptor::TYPE_INT32:
-          vars["data_value"] = "e.Data.I32";
-        break;
-        case FieldDescriptor::TYPE_FIXED64:
-          vars["data_value"] = "e.Data.F64";
-        break;
-        case FieldDescriptor::TYPE_FIXED32:
-          vars["data_value"] = "e.Data.F32";
-        break;
-        case FieldDescriptor::TYPE_BOOL:
-          vars["data_value"] = "e.Data.BoolData";
-        break;
-        case FieldDescriptor::TYPE_STRING:
-          vars["data_value"] = "e.Data.StringData";
-        break;
-        case FieldDescriptor::TYPE_BYTES:
-          vars["data_value"] = "e.Data.ByteData";
-        break;
-        case FieldDescriptor::TYPE_UINT32:
-          vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED32:
-          vars["data_value"] = "e.Data.SF32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED64:
-          vars["data_value"] = "e.Data.SF64";
-        break;
-        case FieldDescriptor::TYPE_SINT32:
-          vars["data_value"] = "e.Data.SI32";
-        break;
-        case FieldDescriptor::TYPE_SINT64:
-          vars["data_value"] = "e.Data.SI64";
-        break;
-       default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type.";
-    }
-
 
     if (is_value_type) {
       printer->Print(
         vars,
-        "        $oneof_name$_ = $data_value$;\n");
+        "        $oneof_name$_ = e.Data.$data_value$;\n");
     } else {
       printer->Print(
         vars,
-        "        $oneof_name$_ = pb::ProtoPreconditions.CheckNotNull($data_value$, \"value\");\n");
+        "        $oneof_name$_ = pb::ProtoPreconditions.CheckNotNull(e.Data.$data_value$, \"value\");\n");
     }
 
     printer->Print(
@@ -425,6 +324,16 @@ void PrimitiveOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
 
     
 }
+
+void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  std::map<string, string> vars;
+  vars["name"] = variables_["name"];
+  vars["data_value"] = GetEventDataType(descriptor_);
+  vars["type_name"] = variables_["type_name"];
+
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+}
+
 
 void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {
   printer->Print(variables_,

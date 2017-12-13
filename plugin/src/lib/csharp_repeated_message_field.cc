@@ -85,14 +85,14 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
     printer->Print(
       variables_,
       "$access_level$ void Add$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.AddList, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
       " $name$_.Add(value);\n"
     "}\n");
 
     printer->Print(
       variables_,
       "$access_level$ void Remove$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.RemoveList, $name$_.IndexOf(value));\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, $name$_.IndexOf(value));\n"
       " $name$_.Remove(value);\n"
     "}\n");
   } else {
@@ -113,9 +113,20 @@ void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "          var m = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
       "          $name$_.Add(m);\n"
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
-      "          SafeRemoveCurrentIndex($name$_, e.Data.U32);\n"
+      "          SafeRemoveCurrentIndex($name$_, e.Data.I32);\n"
       "        }\n");
 }
+
+
+void RepeatedMessageFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  std::map<string, string> vars;
+  vars["data_value"] = GetEventDataType(descriptor_);
+  vars["type_name"] = variables_["type_name"];
+
+  printer->Print(vars, "        var byteData = (data as pb::IMessage)?.ToByteString();\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = byteData };\n");
+}
+
 
 
 void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {

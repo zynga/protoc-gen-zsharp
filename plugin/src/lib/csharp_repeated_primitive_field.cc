@@ -75,14 +75,14 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
     printer->Print(
       variables_,
       "$access_level$ void Add$name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.AddList, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
       " $name$_.Add(value);\n"
     "}\n");
 
     printer->Print(
       variables_,
       "$access_level$ void Remove$name$($type_name$ value) {\n"
-      " AddEvent($number$, EventAction.RemoveList, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, value);\n"
       " $name$_.Remove(value);\n"
     "}\n");
   }
@@ -99,71 +99,26 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
 void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
     std::map<string, string> vars;
     vars["name"] = variables_["name"];
-    vars["data_value"] = variables_["name"];
+    vars["data_value"] = GetEventDataType(descriptor_);
     vars["type_name"] = variables_["type_name"];
-
-    switch (descriptor_->type()) {
-        case FieldDescriptor::TYPE_ENUM:
-         vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_DOUBLE:
-          vars["data_value"] = "e.Data.R64";
-        break;
-        case FieldDescriptor::TYPE_FLOAT:
-          vars["data_value"] = "e.Data.R32";
-        break;
-        case FieldDescriptor::TYPE_INT64:
-          vars["data_value"] = "e.Data.I64";
-        break;
-        case FieldDescriptor::TYPE_UINT64:
-          vars["data_value"] = "e.Data.U64";
-        break;
-        case FieldDescriptor::TYPE_INT32:
-          vars["data_value"] = "e.Data.I32";
-        break;
-        case FieldDescriptor::TYPE_FIXED64:
-          vars["data_value"] = "e.Data.F64";
-        break;
-        case FieldDescriptor::TYPE_FIXED32:
-          vars["data_value"] = "e.Data.F32";
-        break;
-        case FieldDescriptor::TYPE_BOOL:
-          vars["data_value"] = "e.Data.BoolData";
-        break;
-        case FieldDescriptor::TYPE_STRING:
-          vars["data_value"] = "e.Data.StringData";
-        break;
-        case FieldDescriptor::TYPE_BYTES:
-          vars["data_value"] = "e.Data.ByteData";
-        break;
-        case FieldDescriptor::TYPE_UINT32:
-          vars["data_value"] = "e.Data.U32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED32:
-          vars["data_value"] = "e.Data.SF32";
-        break;
-        case FieldDescriptor::TYPE_SFIXED64:
-          vars["data_value"] = "e.Data.SF64";
-        break;
-        case FieldDescriptor::TYPE_SINT32:
-          vars["data_value"] = "e.Data.SI32";
-        break;
-        case FieldDescriptor::TYPE_SINT64:
-          vars["data_value"] = "e.Data.SI64";
-        break;
-       default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type.";
-    }
-
-
-  printer->Print(
+    printer->Print(
       vars,
       "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
-      "          $name$_.Add($data_value$);\n"
+      "          $name$_.Add(e.Data.$data_value$);\n"
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
-      "          $name$_.Remove($data_value$);\n"
+      "          $name$_.Remove(e.Data.$data_value$);\n"
       "        }\n");
 }
+
+
+void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  std::map<string, string> vars;
+  vars["data_value"] = GetEventDataType(descriptor_);
+  vars["type_name"] = variables_["type_name"];
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+}
+
+
 
 
 void RepeatedPrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {

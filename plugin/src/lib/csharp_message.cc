@@ -209,7 +209,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
     vars["original_name"] = descriptor_->oneof_decl(i)->name();
     printer->Print(
       vars,
-      "private object $name$_;\n"
+      "public object $name$_;\n"
       "/// <summary>Enum of possible cases for the \"$original_name$\" oneof.</summary>\n"
       "public enum $property_name$OneofCase {\n");
     printer->Indent();
@@ -226,7 +226,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
     // It's unclear exactly where they should go.
 	printer->Print(
 	  vars,
-	  "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
+	  "public $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
 	WriteGeneratedCodeAttributes(printer);
 	printer->Print(
 	  vars,
@@ -280,10 +280,10 @@ void MessageGenerator::Generate(io::Printer* printer) {
   if (IsEventSourced()) {
     printer->Print(
       vars,
-      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, ref int startIndex = 0) {\n"
+      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, ref int startIndex) {\n"
       "  _indexRemoveCount = 0;\n"
       "  _lastIndexRemove = int.MaxValue;\n\n"
-      "  for(startIndex < root.Events.Count; ++startIndex) {\n"
+      "  for(;startIndex < root.Events.Count; ++startIndex) {\n"
       "    var e = root.Events[startIndex];\n"
       "    switch (e.Field) {\n");
 
@@ -315,12 +315,34 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
     printer->Print(
       vars,
-      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
+      "public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
+      "    switch (fieldNumber) {\n");
+     for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+       printer->Print(
+        "      case $field_number$: {\n",
+        "field_number", SimpleItoa(fieldDescriptor->number()));
+        scoped_ptr<FieldGeneratorBase> generator(
+        CreateFieldGeneratorInternal(fieldDescriptor));
+        
+        generator->GenerateEventAdd(printer);
+        printer->Print("      }\n");
+        printer->Print("      break;\n");
+    }
+    printer->Print(
+      vars,
+      "      default: \n"
+      "        return null;\n"
+      "      break;\n"
+      "    }\n");
+      printer->Print(
+      vars,
       "}\n\n");
 
     printer->Print(
       vars,
       "public override zpr.EventSource.EventSourceRoot CollectEvents() {\n"
+      "  return null;"
       "}\n\n");
   }
   

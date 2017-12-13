@@ -84,18 +84,22 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   WritePropertyDocComment(printer, descriptor_);
 
   if (isEventSourced) {
+    //$AS FIXME: Should we be doing this as 3 events ? 
+    // in looking at the overhead of how this would work it seems that is this 
+    // is actually more memory eff than doing it as a seperate message 
     printer->Print(
       variables_,
       "$access_level$ void Add$name$($key_type_name$ key, $value_type_name$ value) {\n"
-      " AddEventMap($number$, EventAction.MapKey, key);\n"
-      " AddEventMap($number$, EventAction.MapValue, value);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.AddMap, 0);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.MapKey, key);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.MapValue, value);\n"
       " $name$_.Add(key, value);\n"
     "}\n");
 
     printer->Print(
       variables_,
       "$access_level$ void Remove$name$($key_type_name$ key) {\n"
-      " AddEvent($number$, EventAction.RemoveMap, key);\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.RemoveMap, key);\n"
       " $name$_.Remove(key);\n"
     "}\n");
   } else {
@@ -109,7 +113,90 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
 }
 
 void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
+    const FieldDescriptor* key_descriptor =
+      descriptor_->message_type()->FindFieldByName("key");
+    const FieldDescriptor* value_descriptor =
+      descriptor_->message_type()->FindFieldByName("value");
 
+    std::map<string, string> vars;
+    vars["name"] = variables_["name"];
+    vars["key_value"] = GetEventDataType(key_descriptor);
+    vars["data_value"] = GetEventDataType(value_descriptor);
+    vars["type_name"] = variables_["type_name"];
+    vars["key_type_name"] = type_name(key_descriptor);
+    vars["value_type_name"] = type_name(value_descriptor);
+
+
+  printer->Print("        if (e.Action == zpr.EventSource.EventAction.AddMap) {\n");
+      // if we are a message type then we need to decode the message to its actual value
+      if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+        printer->Print(
+          vars,
+          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$key_value$);\n");
+      } else {
+        printer->Print(
+          vars,
+          "         var realKey$name$ = root.Events[startIndex++].Data.$key_value$;\n");
+      }
+      if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+        printer->Print(
+          vars,
+          "         var realValue$name$ = $value_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$data_value$);\n");
+      } else {
+        printer->Print(
+          vars,
+          "         var realValue$name$ = root.Events[startIndex++].Data.$data_value$;\n");
+      }
+      printer->Print(
+          vars,
+          "         $name$_.Add(realKey$name$, realValue$name$);\n");
+      printer->Print("        } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {\n");
+      if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+        printer->Print(
+          vars,
+          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(root.Events[startIndex++].Data.$key_value$);\n");
+      } else {
+        printer->Print(
+          vars,
+          "         var realKey$name$ = root.Events[startIndex++].Data.$key_value$;\n");
+      }
+      printer->Print(
+          vars,
+          "         $name$_.Remove(realKey$name$);\n");
+      printer->Print("        }\n");
+}
+
+void MapFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+  const FieldDescriptor* key_descriptor =
+      descriptor_->message_type()->FindFieldByName("key");
+  const FieldDescriptor* value_descriptor =
+      descriptor_->message_type()->FindFieldByName("value");
+
+  std::map<string, string> vars;
+  vars["name"] = variables_["name"];
+  vars["key_value"] = GetEventDataType(key_descriptor);
+  vars["data_value"] = GetEventDataType(value_descriptor);
+  vars["type_name"] = variables_["type_name"];
+  vars["key_type_name"] = type_name(key_descriptor);
+  vars["value_type_name"] = type_name(value_descriptor);
+
+  scoped_ptr<FieldGeneratorBase> key_generator(
+      CreateFieldGenerator(key_descriptor, 1, this->options()));
+  scoped_ptr<FieldGeneratorBase> value_generator(
+      CreateFieldGenerator(value_descriptor, 2, this->options()));
+
+  printer->Print(vars, "        if (action == zpr.EventSource.EventAction.AddMap) return null;\n");
+  printer->Print(vars, "        if (action == zpr.EventSource.EventAction.MapKey) {\n");
+  printer->Indent();
+  key_generator->GenerateEventAdd(printer);
+  printer->Outdent();
+  printer->Print(vars, "        }\n");
+    printer->Print(vars, "        if (action == zpr.EventSource.EventAction.MapValue) {\n");
+  printer->Indent();
+  value_generator->GenerateEventAdd(printer);
+  printer->Outdent();
+  printer->Print(vars, "        }\n");
+  printer->Print(vars, "        return null;\n");
 }
 
 void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {

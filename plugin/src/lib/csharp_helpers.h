@@ -105,6 +105,8 @@ std::string StringToBase64(const std::string& input);
 
 std::string FileDescriptorToBase64(const FileDescriptor* descriptor);
 
+std::string GetEventDataType(const FieldDescriptor* descriptor);
+
 FieldGeneratorBase* CreateFieldGenerator(const FieldDescriptor* descriptor,
                                          int fieldOrdinal,
                                          const Options* options);

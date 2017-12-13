@@ -90,6 +90,10 @@ void WrapperFieldGenerator::GenerateEventSource(io::Printer* printer) {
 
 }
 
+void WrapperFieldGenerator::GenerateEventAdd(io::Printer* printer) {
+}
+
+
 void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
     variables_,

@@ -184,6 +184,13 @@ void MessageGenerator::Generate(io::Printer* printer) {
   GenerateCloningCode(printer);
   GenerateFreezingCode(printer);
 
+  // ZYNGA
+  // we add this to all files just as an easy way to know if this is a DeltaFile
+  // without having to do some sort of cast check 
+  printer->Print(
+    "public static bool IsEventSourced = $sourced$;\n\n",
+    "sourced", IsEventSourced() ? "true" : "false");
+
   // Fields/properties
   for (int i = 0; i < descriptor_->field_count(); i++) {
     const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
@@ -280,11 +287,11 @@ void MessageGenerator::Generate(io::Printer* printer) {
   if (IsEventSourced()) {
     printer->Print(
       vars,
-      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root, ref int startIndex) {\n"
+      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root) {\n"
       "  _indexRemoveCount = 0;\n"
       "  _lastIndexRemove = int.MaxValue;\n\n"
-      "  for(;startIndex < root.Events.Count; ++startIndex) {\n"
-      "    var e = root.Events[startIndex];\n"
+      "  for(int index = 0; index < root.Events.Count; ++index) {\n"
+      "    var e = root.Events[index];\n"
       "    switch (e.Field) {\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -317,7 +324,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
       vars,
       "public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
       "    switch (fieldNumber) {\n");
-     for (int i = 0; i < descriptor_->field_count(); i++) {
+    for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
        printer->Print(
         "      case $field_number$: {\n",

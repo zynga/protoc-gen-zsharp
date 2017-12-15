@@ -72,7 +72,16 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     variables_,
     "$access_level$ $type_name$ $property_name$ {\n"
     "  get { return $name$_; }\n"
-    "  set {\n"
+    "  set {\n");
+  
+  if (isEventSourced) {
+     printer->Print(
+       variables_,
+       "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
+  }
+  
+  printer->Print(
+    variables_,
     "    $name$_ = value;\n"
     "  }\n"
     "}\n");
@@ -82,8 +91,7 @@ void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
    printer->Print(variables_,
     "        if ($name$_ == null) $name$_ = new $type_name$();\n"
     "        if ($name$_ is zpr::EventRegistry) {\n"
-    "          ++startIndex;\n"
-    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex);\n"
+    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root);\n"
     "        } else { \n"
     "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
     "        } \n");
@@ -213,8 +221,7 @@ void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
   printer->Print(variables_,
     "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
     "        if ($oneof_name$_ is zpr::EventRegistry) {\n"
-    "          ++startIndex;\n"
-    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root, ref startIndex);\n"
+    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root);\n"
     "        } else { \n"
     "          $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
     "        } \n");

@@ -16,6 +16,8 @@ namespace Zynga.Protobuf.Runtime
         protected int  _lastIndexRemove = int.MaxValue;
 
         public abstract bool ApplyEvents(EventSourceRoot root);
+        public abstract bool ApplyEvent(EventContent event, int pathIndex);
+
         public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
         public abstract EventSourceRoot CollectEvents();
 

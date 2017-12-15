@@ -90,7 +90,7 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
    printer->Print(variables_,
     "        if ($name$_ == null) $name$_ = new $type_name$();\n"
-    "        if ($name$_ is zpr::EventRegistry) {\n"
+    "        if ($type_name$.IsEventSourced()) {\n"
     "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root);\n"
     "        } else { \n"
     "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
@@ -105,7 +105,7 @@ void MessageFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   vars["name"] = variables_["name"];
 
   if (!isMap) {
-    printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
+    printer->Print(vars, "        if ($type_name$.IsEventSourced()) return null;\n");
   }
 
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");

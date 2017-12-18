@@ -8,37 +8,43 @@ option csharp_namespace = "Zynga.Protobuf.Runtime.EventSource";
 
 enum EventAction 
 {
-  SET = 0;
-  ADD_LIST = 1;
-  REMOVE_LIST = 2;
-  ADD_MAP = 3;
-  REMOVE_MAP = 4;
-  CLEAR = 5;
-  SNAPSHOT = 6;
-  MAP_KEY = 7;
-  MAP_VALUE = 8;
+  SET           = 0;
+  ADD_LIST      = 1;
+  REMOVE_LIST   = 2;
+  ADD_MAP       = 3;
+  REMOVE_MAP    = 4;
+  CLEAR         = 5;
+  SNAPSHOT      = 6;
+  MAP_KEY       = 7;
+  MAP_VALUE     = 8;
+}
+
+message EventMap {
+    bytes data   = 1;
 }
 
 message EventContent {
     oneof data {
-        uint32      u32 = 1;
-        int32       i32 = 2;
-        fixed64     f64 = 3;
-        fixed32     f32 = 4;
-        sfixed64    sf64 = 5;
-        sfixed32    sf32 = 6;
-        double      r64 = 7;
-        float       r32 = 8; 
-        bool        bool_data = 9;
+        uint32      u32         = 1;
+        int32       i32         = 2;
+        fixed64     f64         = 3;
+        fixed32     f32         = 4;
+        sfixed64    sf64        = 5;
+        sfixed32    sf32        = 6;
+        double      r64         = 7;
+        float       r32         = 8;
+        bool        bool_data   = 9;
         string      string_data = 10;
-        bytes       byte_data = 11;
+        bytes       byte_data   = 11;
+        EventMap    map_data    = 12;
     }
 }
 
 message EventData {
-    int32 field = 1;
-    EventAction action = 2;
-    EventContent data = 3;
+    int32 field             = 1;
+    EventAction action      = 2;
+    EventContent data       = 3;
+    repeated int32 path     = 4;
 }
 
 message EventSourceRoot {

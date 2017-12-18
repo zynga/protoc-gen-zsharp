@@ -10,6 +10,10 @@ enum EnumTest
  VALUE_TWO = 1;
 }
 
+message TestMessage {
+    int32 data = 1;
+  }
+
 message EventTest{
   option (com.zynga.runtime.protobuf.event_sourced) = true;
   // unique event identifier
@@ -41,5 +45,6 @@ message EventTest{
   map<string, NestedMessage> test_map = 8;
   EventOneofTest data = 9;
   map<int32, string> test_map_two = 10;
+  TestMessage test_non_message = 11;
 
 }

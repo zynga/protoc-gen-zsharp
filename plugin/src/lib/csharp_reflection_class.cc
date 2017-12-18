@@ -112,6 +112,7 @@ void ReflectionClassGenerator::WriteIntroduction(io::Printer* printer) {
     "#region Designer generated code\n"
     "\n"
     "using System;\n"
+    "using System.IO;\n"
     "using Google.Protobuf;\n"
     "using pb = global::Google.Protobuf;\n"
     "using pbc = global::Google.Protobuf.Collections;\n"

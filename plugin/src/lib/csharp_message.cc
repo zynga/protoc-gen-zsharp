@@ -120,6 +120,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
     vars,
     "$access_level$ sealed partial class $class_name$ :");
 
+    //// ZYNGA
     if (IsEventSourced()) {
       printer->Print(
       vars,
@@ -280,19 +281,13 @@ void MessageGenerator::Generate(io::Printer* printer) {
                    "#endregion\n"
                    "\n");
   }
-
-
-
+  
   // ZYNGA: GENERATED EVENT SOURCED METHODS FOR APPLYING EVENT ROOT! ?
   if (IsEventSourced()) {
     printer->Print(
       vars,
-      "public override bool ApplyEvents(zpr.EventSource.EventSourceRoot root) {\n"
-      "  _indexRemoveCount = 0;\n"
-      "  _lastIndexRemove = int.MaxValue;\n\n"
-      "  for(int index = 0; index < root.Events.Count; ++index) {\n"
-      "    var e = root.Events[index];\n"
-      "    switch (e.Field) {\n");
+      "public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {\n"
+      "    switch (e.Path[pathIndex]) {\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
@@ -313,7 +308,6 @@ void MessageGenerator::Generate(io::Printer* printer) {
       "        return false;\n"
       "      break;\n"
       "    }\n"
-      "  }\n"
       "  return true;\n");
     printer->Print(
       vars,
@@ -348,9 +342,9 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
     printer->Print(
       vars,
-      "public override zpr.EventSource.EventSourceRoot CollectEvents() {\n"
-      "  return null;"
-      "}\n\n");
+      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
+      "  return;\n"
+      "}\n");
   }
   
 

@@ -42,6 +42,8 @@
 #include "src/lib/csharp_helpers.h"
 #include "src/lib/csharp_message_field.h"
 #include "src/lib/csharp_options.h"
+#include "src/lib/generated/event_plugin.pb.h"
+
 
 using namespace google::protobuf;
 
@@ -63,6 +65,9 @@ MessageFieldGenerator::~MessageFieldGenerator() {
 }
 
 void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
+  const MessageOptions& op = descriptor_->message_type()->options();
+  bool isEnternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+
   printer->Print(
     variables_,
     "private $type_name$ $name$_;\n");
@@ -75,9 +80,15 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     "  set {\n");
   
   if (isEventSourced) {
-     printer->Print(
+    printer->Print(
        variables_,
        "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
+    if (isEnternalSourced) {
+       printer->Print(
+         variables_,
+         "    value.SetRoot(_root);\n");
+    }
+       
   }
   
   printer->Print(
@@ -88,13 +99,18 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 }
 
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
-   printer->Print(variables_,
-    "        if ($name$_ == null) $name$_ = new $type_name$();\n"
-    "        if ($type_name$.IsEventSourced()) {\n"
-    "          ($name$_ as zpr::EventRegistry)?.ApplyEvents(root);\n"
-    "        } else { \n"
-    "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
-    "        } \n");
+  const MessageOptions& op = descriptor_->message_type()->options();
+  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  printer->Print(variables_,
+  "        if ($name$_ == null) $name$_ = new $type_name$();\n");
+  if (isEventSourced) {
+    printer->Print(variables_, 
+      "        ($name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n");
+  }
+  else {
+    printer->Print(variables_, 
+      "        $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+  }
 }
 
 
@@ -105,7 +121,7 @@ void MessageFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   vars["name"] = variables_["name"];
 
   if (!isMap) {
-    printer->Print(vars, "        if ($type_name$.IsEventSourced()) return null;\n");
+    printer->Print(vars, "        if ($type_name$.IsEventSourced) return null;\n");
   }
 
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");
@@ -195,6 +211,9 @@ MessageOneofFieldGenerator::~MessageOneofFieldGenerator() {
 }
 
 void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
+  const MessageOptions& op = descriptor_->message_type()->options();
+  bool isEnternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(
@@ -207,6 +226,11 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
       printer->Print(
               variables_,
               "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
+      if (isEnternalSourced) {
+        printer->Print(
+          variables_,
+          "    value.SetRoot(_root);\n");
+      }
     }
 
     printer->Print(
@@ -218,13 +242,18 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 }
 
 void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
+  const MessageOptions& op = descriptor_->message_type()->options();
+  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
   printer->Print(variables_,
-    "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
-    "        if ($oneof_name$_ is zpr::EventRegistry) {\n"
-    "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvents(root);\n"
-    "        } else { \n"
-    "          $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
-    "        } \n");
+    "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n");
+  if (isEventSourced) {
+    printer->Print(variables_,
+    "        ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n");
+  }
+  else {
+    printer->Print(variables_,
+    "        $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+  }
   printer->Print(
     variables_,
     "        $oneof_name$Case_ = $oneof_name$_ == null ? $oneof_property_name$OneofCase.None : $oneof_property_name$OneofCase.$property_name$;\n");
@@ -238,7 +267,7 @@ void MessageOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isM
 
 
   if (!isMap) {
-    printer->Print(vars, "        if (data is zpr::EventRegistry) return null;\n");
+    printer->Print(vars, "        if ($type_name$.IsEventSourced) return null;\n");
   }
   
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");

@@ -510,6 +510,124 @@ std::string GetEventDataType(const FieldDescriptor* descriptor) {
     }
 }
 
+std::string GetByteStringRead(const FieldDescriptor* descriptor) {
+  switch (descriptor->type()) {
+        case FieldDescriptor::TYPE_ENUM:
+         return "ReadEnum";
+        break;
+        case FieldDescriptor::TYPE_DOUBLE:
+          return "ReadDouble";
+        break;
+        case FieldDescriptor::TYPE_FLOAT:
+          return "ReadFloat";
+        break;
+        case FieldDescriptor::TYPE_INT64:
+          return "ReadInt64";
+        break;
+        case FieldDescriptor::TYPE_UINT64:
+          return "ReadUInt64";
+        break;
+        case FieldDescriptor::TYPE_INT32:
+          return "ReadInt32";
+        break;
+        case FieldDescriptor::TYPE_FIXED64:
+          return "ReadFixed64";
+        break;
+        case FieldDescriptor::TYPE_FIXED32:
+          return "ReadFixed32";
+        break;
+        case FieldDescriptor::TYPE_BOOL:
+          return "ReadBool";
+        break;
+        case FieldDescriptor::TYPE_STRING:
+          return "ReadString";
+        break;
+        case FieldDescriptor::TYPE_MESSAGE:
+          return "ReadMessage";
+        break;
+        case FieldDescriptor::TYPE_BYTES:
+          return "ReadBytes";
+        break;
+        case FieldDescriptor::TYPE_UINT32:
+          return "ReadUInt32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED32:
+          return "ReadSFixed32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED64:
+          return "ReadSFixed64";
+        break;
+        case FieldDescriptor::TYPE_SINT32:
+          return "ReadSInt32";
+        break;
+        case FieldDescriptor::TYPE_SINT64:
+          return "ReadSInt64";
+        break;
+       default:
+         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         return "";
+    }
+}
+
+std::string GetByteStringWrite(const FieldDescriptor* descriptor) {
+  switch (descriptor->type()) {
+        case FieldDescriptor::TYPE_ENUM:
+         return "WriteEnum";
+        break;
+        case FieldDescriptor::TYPE_DOUBLE:
+          return "WriteDouble";
+        break;
+        case FieldDescriptor::TYPE_FLOAT:
+          return "WriteFloat";
+        break;
+        case FieldDescriptor::TYPE_INT64:
+          return "WriteInt64";
+        break;
+        case FieldDescriptor::TYPE_UINT64:
+          return "WriteUInt64";
+        break;
+        case FieldDescriptor::TYPE_INT32:
+          return "WriteInt32";
+        break;
+        case FieldDescriptor::TYPE_FIXED64:
+          return "WriteFixed64";
+        break;
+        case FieldDescriptor::TYPE_FIXED32:
+          return "WriteFixed32";
+        break;
+        case FieldDescriptor::TYPE_BOOL:
+          return "WriteBool";
+        break;
+        case FieldDescriptor::TYPE_STRING:
+          return "WriteString";
+        break;
+        case FieldDescriptor::TYPE_MESSAGE:
+          return "WriteMessage";
+        break;
+        case FieldDescriptor::TYPE_BYTES:
+          return "WriteBytes";
+        break;
+        case FieldDescriptor::TYPE_UINT32:
+          return "WriteUInt32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED32:
+          return "WriteSFixed32";
+        break;
+        case FieldDescriptor::TYPE_SFIXED64:
+          return "WriteSFixed64";
+        break;
+        case FieldDescriptor::TYPE_SINT32:
+          return "WriteSInt32";
+        break;
+        case FieldDescriptor::TYPE_SINT64:
+          return "WriteSInt64";
+        break;
+       default:
+         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         return "";
+    }
+}
+
 FieldGeneratorBase* CreateFieldGenerator(const FieldDescriptor* descriptor,
                                          int fieldOrdinal,
                                          const Options* options) {

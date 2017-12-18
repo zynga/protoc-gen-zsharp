@@ -54,6 +54,7 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   virtual void GenerateCloningCode(io::Printer* printer) = 0;
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateCodecCode(io::Printer* printer);
+  /// ZYNGA
   virtual void GenerateMembers(io::Printer* printer, bool isEventSource) = 0;
   virtual void GenerateEventSource(io::Printer* printer) = 0;
   virtual void GenerateEventAdd(io::Printer* printer,  bool isMap = false) = 0;

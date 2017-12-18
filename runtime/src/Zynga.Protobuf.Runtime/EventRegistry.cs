@@ -15,21 +15,46 @@ namespace Zynga.Protobuf.Runtime
         protected int  _indexRemoveCount = 0;
         protected int  _lastIndexRemove = int.MaxValue;
 
-        public abstract bool ApplyEvents(EventSourceRoot root);
-        public abstract bool ApplyEvent(EventContent event, int pathIndex);
+        public void ApplyEvents(EventSourceRoot root) {
+            _indexRemoveCount = 0;
+            _lastIndexRemove = int.MaxValue;
 
-        public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
-        public abstract EventSourceRoot CollectEvents();
+            for(int index = 0; index < root.Events.Count; ++index) {
+                var e = root.Events[index];
+                var currentPathIndex = 0;
 
-        public void AddEvent<T>(int fieldNumber, EventAction action, T data) {
-            var e = new EventData {
-                Field = fieldNumber,
-                Action = action,
-                Data = GetEventData(fieldNumber, action, data)
-            };
-
-            _root.Add(e);
+                ApplyEvent(e, currentPathIndex);
+            }
         }
+        public abstract bool ApplyEvent(EventData e, int pathIndex);
+
+        public abstract void AddEvent<T>(int fieldNumber, EventAction action, T data);
+        public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
+
+        public void SetRoot(List<EventData> inRoot) {
+            _root = inRoot;
+        }
+
+        public void Reset() {
+            _root.Clear();
+            _indexRemoveCount = 0;
+            _lastIndexRemove = int.MaxValue;
+        }
+
+        /* 
+        
+                    var e = new EventData {
+                Field = fieldNumber,
+                Action = action
+            };
+            
+            //  Data = GetEventData(fieldNumber, action, data)
+
+            AddEventInternal(fieldNumber, e);
+
+            //_root.Add(e);
+
+         */
 
         protected void SafeRemoveCurrentIndex<T>(IList<T> inList, int currentIndexToRemove) {
             // this is the case where we are removing the last element in the list ? 

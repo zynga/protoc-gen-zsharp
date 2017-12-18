@@ -105,7 +105,10 @@ std::string StringToBase64(const std::string& input);
 
 std::string FileDescriptorToBase64(const FileDescriptor* descriptor);
 
+/// ZYNGA
 std::string GetEventDataType(const FieldDescriptor* descriptor);
+std::string GetByteStringRead(const FieldDescriptor* descriptor);
+std::string GetByteStringWrite(const FieldDescriptor* descriptor);
 
 FieldGeneratorBase* CreateFieldGenerator(const FieldDescriptor* descriptor,
                                          int fieldOrdinal,

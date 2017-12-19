@@ -88,9 +88,6 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   WritePropertyDocComment(printer, descriptor_);
 
   if (isEventSourced) {
-    //$AS FIXME: Should we be doing this as 3 events ? 
-    // in looking at the overhead of how this would work it seems that is this 
-    // is actually more memory eff than doing it as a seperate message 
     printer->Print(
       variables_,
       "$access_level$ void Add$property_name$($key_type_name$ key, $value_type_name$ value) {\n"

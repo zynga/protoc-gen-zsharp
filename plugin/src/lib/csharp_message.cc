@@ -192,6 +192,37 @@ void MessageGenerator::Generate(io::Printer* printer) {
     "public static bool IsEventSourced = $sourced$;\n\n",
     "sourced", IsEventSourced() ? "true" : "false");
 
+  if (IsEventSourced()) {
+    printer->Print("public static zpr.EventPath Path = zpr.EventPath.Empty;\n");
+    printer->Print("public class Paths {\n");
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      printer->Print("    public zpr.EventPath $field_name$Path;\n",
+      "field_name", GetFieldConstantName(fieldDescriptor),
+      "field_number", SimpleItoa(fieldDescriptor->number()));
+    }
+
+    printer->Print("\n    public Paths(zpr.EventPath _path) {\n");
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+
+      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+        printer->Print("      $field_name$Path = new $class_name$.Paths(new zpr.EventPath(_path, $field_number$));\n",
+          "class_name", GetClassName(fieldDescriptor->message_type()),
+          "field_name", GetFieldConstantName(fieldDescriptor),
+          "field_number", SimpleItoa(fieldDescriptor->number()));
+        
+      } else {
+        printer->Print("      $field_name$Path = new zpr.EventPath(_path, $field_number$);\n",
+          "field_name", GetFieldConstantName(fieldDescriptor),
+          "field_number", SimpleItoa(fieldDescriptor->number()));
+      }
+      
+    }
+    printer->Print("    }\n");
+    printer->Print("}\n");
+  }
+  
   // Fields/properties
   for (int i = 0; i < descriptor_->field_count(); i++) {
     const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
@@ -342,8 +373,14 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
     printer->Print(
       vars,
-      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
-      "  return;\n"
+      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+    }
+
+    printer->Print(
+      vars,
       "}\n");
   }
   

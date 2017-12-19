@@ -12,6 +12,12 @@ enum EnumTest
 
 message TestMessage {
     int32 data = 1;
+}
+
+// must flag internal message as event_sourced
+  message TestTwoMessage {
+    option (com.zynga.runtime.protobuf.event_sourced) = true;
+    int32 data = 1;
   }
 
 message EventTest{
@@ -23,6 +29,7 @@ message EventTest{
   message NestedMessage {
     option (com.zynga.runtime.protobuf.event_sourced) = true;
     int32 data = 1;
+    TestTwoMessage dataTwo = 2;
   }
 
   oneof testOneof{

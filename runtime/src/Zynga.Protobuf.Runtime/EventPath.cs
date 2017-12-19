@@ -14,6 +14,10 @@ namespace Zynga.Protobuf.Runtime
         public static EventPath Empty = new EventPath();
         
         public List<int> _path = new List<int>();
+
+        public EventPath() {
+            
+        }
         
         public EventPath(EventPath parent, int field) {
             _path.Clear();

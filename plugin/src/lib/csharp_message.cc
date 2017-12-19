@@ -194,20 +194,20 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
   if (IsEventSourced()) {
     printer->Print("public static zpr.EventPath Path = zpr.EventPath.Empty;\n");
-    printer->Print("public class Paths {\n");
+    printer->Print("public static class Paths {\n");
     for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      printer->Print("    public zpr.EventPath $field_name$Path;\n",
+      printer->Print("    public static zpr.EventPath $field_name$Path;\n",
       "field_name", GetFieldConstantName(fieldDescriptor),
       "field_number", SimpleItoa(fieldDescriptor->number()));
     }
 
-    printer->Print("\n    public Paths(zpr.EventPath _path) {\n");
+    printer->Print("\n    public static zpr.EventPath Path(zpr.EventPath _path) {\n");
     for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
 
-      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        printer->Print("      $field_name$Path = new $class_name$.Paths(new zpr.EventPath(_path, $field_number$));\n",
+      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE && !fieldDescriptor->is_repeated()) {
+        printer->Print("      $field_name$Path = $class_name$.Paths.Path(new zpr.EventPath(_path, $field_number$));\n",
           "class_name", GetClassName(fieldDescriptor->message_type()),
           "field_name", GetFieldConstantName(fieldDescriptor),
           "field_number", SimpleItoa(fieldDescriptor->number()));
@@ -219,7 +219,9 @@ void MessageGenerator::Generate(io::Printer* printer) {
       }
       
     }
-    printer->Print("    }\n");
+    printer->Print(
+      "      return _path;\n"
+      "    }\n");
     printer->Print("}\n");
   }
   

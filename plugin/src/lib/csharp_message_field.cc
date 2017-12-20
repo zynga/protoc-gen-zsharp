@@ -107,7 +107,7 @@ void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
   "        if ($name$_ == null) $name$_ = new $type_name$();\n");
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Action != zpr.EventSource.EventAction.Snapshot) \n"
+      "        if (e.Path.Count - 1 != pathIndex) \n"
       "          ($name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        else\n"
       "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
@@ -271,7 +271,7 @@ void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
     "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n");
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Action != zpr.EventSource.EventAction.Snapshot) \n"
+      "        if (e.Path.Count - 1 != pathIndex) \n"
       "          ($oneof_name$_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        else\n"
       "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");

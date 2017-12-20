@@ -11,7 +11,7 @@ namespace Zynga.Protobuf.Runtime
 {
     public class EventPath {
         
-        public static EventPath Empty = new EventPath();
+        public static EventPath Empty => new EventPath();
         
         public List<int> _path = new List<int>();
 

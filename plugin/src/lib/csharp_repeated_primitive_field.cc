@@ -118,6 +118,12 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, boo
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
 }
 
+void RepeatedPrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+}
+
 
 
 

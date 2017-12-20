@@ -157,6 +157,14 @@ void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap)
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
 }
 
+
+void PrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+}
+
+
 void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
     variables_,
@@ -333,6 +341,13 @@ void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool i
 
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
 }
+
+void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+}
+
 
 
 void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {

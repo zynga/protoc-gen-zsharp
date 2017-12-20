@@ -109,6 +109,12 @@ void RepeatedEnumFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isM
 
 }
 
+void RepeatedEnumFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+}
+
 
 void RepeatedEnumFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(

@@ -193,6 +193,21 @@ void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };\n");
 }
 
+void MapFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  const FieldDescriptor* key_descriptor =
+      descriptor_->message_type()->FindFieldByName("key");
+  const FieldDescriptor* value_descriptor =
+      descriptor_->message_type()->FindFieldByName("value");
+
+  std::map<string, string> vars;
+  vars["name"] = variables_["name"];
+
+    printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+
+}
+
 void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
       variables_,

@@ -192,36 +192,44 @@ void MessageGenerator::Generate(io::Printer* printer) {
     "public static bool IsEventSourced = $sourced$;\n\n",
     "sourced", IsEventSourced() ? "true" : "false");
 
+  
   if (IsEventSourced()) {
-    printer->Print("public static zpr.EventPath Path = zpr.EventPath.Empty;\n");
-    printer->Print("public static class Paths {\n");
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      printer->Print("    public static zpr.EventPath $field_name$Path;\n",
-      "field_name", GetFieldConstantName(fieldDescriptor),
-      "field_number", SimpleItoa(fieldDescriptor->number()));
-    }
+    printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
+    printer->Print(
+    vars, 
+    "public void SetPath($class_name$.Paths path) {\n");
+    printer->Print("  this.Path = path;\n");
+    printer->Print("}\n\n");
 
-    printer->Print("\n    public static zpr.EventPath Path(zpr.EventPath _path) {\n");
+    printer->Print(
+      "public class Paths {\n\n"
+      "    public zpr.EventPath Path = null;\n\n");
+    printer->Print("    public Paths(zpr.EventPath _path) {\n");
+    
+    printer->Print(
+      "      Path = _path;\n"
+      "    }\n");
     for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+        const MessageOptions& op = fieldDescriptor->message_type()->options();
+        isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+      }
 
-      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE && !fieldDescriptor->is_repeated()) {
-        printer->Print("      $field_name$Path = $class_name$.Paths.Path(new zpr.EventPath(_path, $field_number$));\n",
+      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE && !fieldDescriptor->is_repeated() && isFieldSourced) {
+        
+        printer->Print("    public $class_name$.Paths $field_name$Path => new $class_name$.Paths(new zpr.EventPath(Path, $field_number$));\n",
           "class_name", GetClassName(fieldDescriptor->message_type()),
           "field_name", GetFieldConstantName(fieldDescriptor),
           "field_number", SimpleItoa(fieldDescriptor->number()));
         
       } else {
-        printer->Print("      $field_name$Path = new zpr.EventPath(_path, $field_number$);\n",
+        printer->Print("    public zpr.EventPath $field_name$Path => new zpr.EventPath(Path, $field_number$);\n",
           "field_name", GetFieldConstantName(fieldDescriptor),
           "field_number", SimpleItoa(fieldDescriptor->number()));
       }
-      
     }
-    printer->Print(
-      "      return _path;\n"
-      "    }\n");
     printer->Print("}\n");
   }
   
@@ -375,14 +383,35 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
     printer->Print(
       vars,
-      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n");
+      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
+      "   var e = new zpr.EventSource.EventData {\n"
+      "     Field = fieldNumber,\n"
+      "     Action = action,\n"
+      "     Data = GetEventData(fieldNumber, action, data)\n"
+      "   };\n\n"
+      "   switch (fieldNumber) {\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      printer->Print(
+        "      case $field_number$: {\n",
+        "field_number", SimpleItoa(fieldDescriptor->number()));
+        scoped_ptr<FieldGeneratorBase> generator(
+        CreateFieldGeneratorInternal(fieldDescriptor));
+        
+        generator->GenerateEventAddEvent(printer);
+        printer->Print("      }\n");
+        printer->Print("      break;\n");
     }
-
     printer->Print(
       vars,
+      "      default: \n"
+      "        return;\n"
+      "      break;\n"
+      "    }\n");
+    printer->Print(
+      vars,
+      "    _root.Add(e);\n"
       "}\n");
   }
   

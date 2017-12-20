@@ -50,10 +50,12 @@ class RepeatedPrimitiveFieldGenerator : public FieldGeneratorBase {
 
   virtual void GenerateCloningCode(io::Printer* printer);
   virtual void GenerateFreezingCode(io::Printer* printer);
+  
   /// ZYNGA
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
   virtual void GenerateEventSource(io::Printer* printer);
   virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
+  virtual void GenerateEventAddEvent(io::Printer* printer);
   
   virtual void GenerateMergingCode(io::Printer* printer);
   virtual void GenerateParsingCode(io::Printer* printer);

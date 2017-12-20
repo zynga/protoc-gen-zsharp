@@ -127,6 +127,13 @@ void RepeatedMessageFieldGenerator::GenerateEventAdd(io::Printer* printer, bool 
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = byteData };\n");
 }
 
+void RepeatedMessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
+  printer->Print(
+    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+    "field_name", GetFieldConstantName(descriptor_));
+}
+
+
 
 
 void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {

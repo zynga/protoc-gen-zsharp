@@ -1,18 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\common.props" />
   <PropertyGroup>
-    <TargetFrameworks>net452;netcoreapp1.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;net452</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="4.19.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170810-02" />
-    <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="15.5.0-preview-20170810-02" />
-    <PackageReference Include="xunit" Version="$(XunitVersion)" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitVersion)" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="15.5.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="$(XunitVersion)" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zynga.Protobuf.Runtime\Zynga.Protobuf.Runtime.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Simple\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <DefineConstants>$(DefineConstants);NET45</DefineConstants>

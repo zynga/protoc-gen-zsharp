@@ -4,6 +4,7 @@
 #region Designer generated code
 
 using System;
+using System.IO;
 using Google.Protobuf;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;

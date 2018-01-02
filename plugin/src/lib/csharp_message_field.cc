@@ -139,12 +139,12 @@ void MessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   if (isEventSourced) {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path.Path._path);\n",
-      "field_name", GetFieldConstantName(descriptor_));
+      "field_name", GetPropertyName(descriptor_));
   }
   else {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-      "field_name", GetFieldConstantName(descriptor_));
+      "field_name", GetPropertyName(descriptor_));
   }
   
 }
@@ -306,12 +306,12 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   if (isEventSourced) {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path.Path._path);\n",
-      "field_name", GetFieldConstantName(descriptor_));
+      "field_name", GetPropertyName(descriptor_));
   }
   else {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-      "field_name", GetFieldConstantName(descriptor_));
+      "field_name", GetPropertyName(descriptor_));
   }
 }
 

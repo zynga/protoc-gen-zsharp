@@ -204,7 +204,7 @@ void MapFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
 
     printer->Print(
     "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-    "field_name", GetFieldConstantName(descriptor_));
+    "field_name", GetPropertyName(descriptor_));
 
 }
 

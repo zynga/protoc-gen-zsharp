@@ -8,7 +8,6 @@ open System.Text
 open Fake
 open Fake.DotNetCli
 open Fake.DocFxHelper
-open Fake.DotNet.Testing.XUnit2
 
 
 // Information about the project for Nuget and Assembly info files
@@ -109,16 +108,15 @@ module internal ResultHandling =
         >> Option.iter (failBuildWithMessage errorLevel)
 
 Target "RunTests" (fun _ -> 
-    let projects = 
-        match (isWindows) with 
-        | true -> !! "./src/**/*.Tests.csproj"
-        | _ -> !! "./src/**/*.Tests.csproj" // if you need to filter specs for Linux vs. Windows, do it here
+    let projects = !! "./**/*.Tests.csproj"
 
     let runSingleProject project =
-        let testDir = (Directory.GetParent project).FullName + "/bin/" + configuration + "/net452"
-        let resultsFiles = sprintf "%s_xunit.html" (fileNameWithoutExt project)
-        !! (testDir + @"\*Tests.dll") 
-            |> xUnit2 (fun p -> { p with HtmlOutputPath = Some (outputTests @@ resultsFiles) })
+        DotNetCli.RunCommand
+            (fun p -> 
+                { p with 
+                    WorkingDir = (Directory.GetParent project).FullName
+                    TimeOut = TimeSpan.FromMinutes 10. })
+                (sprintf "xunit -parallel none -teamcity -xml %s_xunit.xml" (outputTests @@ fileNameWithoutExt project)) 
 
     CreateDir outputTests
     projects |> Seq.iter (log)

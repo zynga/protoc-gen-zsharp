@@ -161,7 +161,7 @@ void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap)
 void PrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   printer->Print(
     "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-    "field_name", GetFieldConstantName(descriptor_));
+    "field_name", GetPropertyName(descriptor_));
 }
 
 
@@ -345,7 +345,7 @@ void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool i
 void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   printer->Print(
     "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-    "field_name", GetFieldConstantName(descriptor_));
+    "field_name", GetPropertyName(descriptor_));
 }
 
 

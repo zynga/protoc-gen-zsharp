@@ -221,12 +221,12 @@ void MessageGenerator::Generate(io::Printer* printer) {
         
         printer->Print("    public $class_name$.Paths $field_name$Path => new $class_name$.Paths(new zpr.EventPath(Path, $field_number$));\n",
           "class_name", GetClassName(fieldDescriptor->message_type()),
-          "field_name", GetFieldConstantName(fieldDescriptor),
+          "field_name", GetPropertyName(fieldDescriptor),
           "field_number", SimpleItoa(fieldDescriptor->number()));
         
       } else {
         printer->Print("    public zpr.EventPath $field_name$Path => new zpr.EventPath(Path, $field_number$);\n",
-          "field_name", GetFieldConstantName(fieldDescriptor),
+          "field_name", GetPropertyName(fieldDescriptor),
           "field_number", SimpleItoa(fieldDescriptor->number()));
       }
     }
@@ -413,6 +413,26 @@ void MessageGenerator::Generate(io::Printer* printer) {
       vars,
       "    _root.Add(e);\n"
       "}\n");
+
+    printer->Print(
+      vars,
+      "public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {\n"
+      "  var e = $class_name$.Parser.ParseFrom(root.Events[0].Data.ByteData);\n"
+      "  MergeFrom(e);\n"
+      "  return true;\n"
+      "}\n\n");
+
+    printer->Print(
+      vars,
+      "public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
+      "  var er = new zpr.EventSource.EventSourceRoot();\n"
+      "  var ee = new zpr.EventSource.EventData();\n"
+      "  ee.Action = zpr.EventSource.EventAction.Snapshot;\n"
+      "  ee.Data = new zpr.EventSource.EventContent();\n"
+      "  ee.Data.ByteData = this.ToByteString();\n"
+      "  er.Events.Add(ee);\n"
+      "  return er;\n"
+      "}\n\n");
   }
   
 

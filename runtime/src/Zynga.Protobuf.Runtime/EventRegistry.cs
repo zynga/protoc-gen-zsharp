@@ -26,10 +26,18 @@ namespace Zynga.Protobuf.Runtime
                 ApplyEvent(e, currentPathIndex);
             }
         }
-        public abstract bool ApplyEvent(EventData e, int pathIndex);
 
+        public abstract bool ApplyEvent(EventData e, int pathIndex);
         public abstract void AddEvent<T>(int fieldNumber, EventAction action, T data);
         public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
+        public abstract bool ApplySnapshot(EventSourceRoot root);
+        public abstract EventSourceRoot GenerateSnapshot();
+
+        public EventSourceRoot GenerateEvents() {
+            var er = new EventSourceRoot();
+            er.Events.AddRange(_root);
+            return er;
+        }
 
         public void SetRoot(List<EventData> inRoot) {
             _root = inRoot;
@@ -40,21 +48,6 @@ namespace Zynga.Protobuf.Runtime
             _indexRemoveCount = 0;
             _lastIndexRemove = int.MaxValue;
         }
-
-        /* 
-        
-                    var e = new EventData {
-                Field = fieldNumber,
-                Action = action
-            };
-            
-            //  Data = GetEventData(fieldNumber, action, data)
-
-            AddEventInternal(fieldNumber, e);
-
-            //_root.Add(e);
-
-         */
 
         protected void SafeRemoveCurrentIndex<T>(IList<T> inList, int currentIndexToRemove) {
             // this is the case where we are removing the last element in the list ? 

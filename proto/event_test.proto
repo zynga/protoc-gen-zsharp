@@ -46,7 +46,7 @@ message EventTest{
   }
 
   EnumTest test_event = 4;
-  repeated int32 Test_prim = 5;
+  repeated int32 test_prim = 5;
   repeated NestedMessage test_message = 6;
   repeated EnumTest test_enum = 7;
   map<string, NestedMessage> test_map = 8;

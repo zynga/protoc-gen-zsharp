@@ -5,6 +5,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Google.Protobuf;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
@@ -531,6 +532,12 @@ namespace Events {
      AddEvent(5, zpr.EventSource.EventAction.RemoveList, value);
      testPrim_.Remove(value);
     }
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    #if !NET35
+    public IReadOnlyList<int> TestPrim {
+      get { return testPrim_; }
+    }
+    #endif
 
     /// <summary>Field number for the "test_message" field.</summary>
     public const int TestMessageFieldNumber = 6;
@@ -545,6 +552,12 @@ namespace Events {
      AddEvent(6, zpr.EventSource.EventAction.RemoveList, testMessage_.IndexOf(value));
      testMessage_.Remove(value);
     }
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    #if !NET35
+    public IReadOnlyList<global::Events.EventTest.Types.NestedMessage> TestMessage {
+      get { return testMessage_; }
+    }
+    #endif
 
     /// <summary>Field number for the "test_enum" field.</summary>
     public const int TestEnumFieldNumber = 7;
@@ -559,6 +572,12 @@ namespace Events {
      AddEvent(7, zpr.EventSource.EventAction.RemoveList, value);
      testEnum_.Remove(value);
     }
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    #if !NET35
+    public IReadOnlyList<global::Events.EnumTest> TestEnum {
+      get { return testEnum_; }
+    }
+    #endif
 
     /// <summary>Field number for the "test_map" field.</summary>
     public const int TestMapFieldNumber = 8;
@@ -580,6 +599,12 @@ namespace Events {
      AddEvent(8, zpr.EventSource.EventAction.RemoveMap, key);
      testMap_.Remove(key);
     }
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    #if !NET35
+    public IReadOnlyDictionary<string, global::Events.EventTest.Types.NestedMessage> TestMap {
+      get { return testMap_; }
+    }
+    #endif
 
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 9;
@@ -615,6 +640,12 @@ namespace Events {
      AddEvent(10, zpr.EventSource.EventAction.RemoveMap, key);
      testMapTwo_.Remove(key);
     }
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    #if !NET35
+    public IReadOnlyDictionary<int, string> TestMapTwo {
+      get { return testMapTwo_; }
+    }
+    #endif
 
     /// <summary>Field number for the "test_non_message" field.</summary>
     public const int TestNonMessageFieldNumber = 11;

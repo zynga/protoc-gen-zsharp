@@ -108,6 +108,15 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       " AddEvent($number$, zpr.EventSource.EventAction.RemoveMap, key);\n"
       " $name$_.Remove(key);\n"
     "}\n");
+
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "#if !NET35\n"
+      "$access_level$ IReadOnlyDictionary<$key_type_name$, $value_type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+      "}\n"
+      "#endif\n");
   } else {
     AddPublicMemberAttributes(printer);
     printer->Print(

@@ -5,6 +5,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Google.Protobuf;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
@@ -41,12 +42,13 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             "dGEYAyABKAsyKC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5FdmVudENv",
             "bnRlbnRSBGRhdGESEgoEcGF0aBgEIAMoBVIEcGF0aCJQCg9FdmVudFNvdXJj",
             "ZVJvb3QSPQoGZXZlbnRzGAEgAygLMiUuY29tLnp5bmdhLnJ1bnRpbWUucHJv",
-            "dG9idWYuRXZlbnREYXRhUgZldmVudHMqhwEKC0V2ZW50QWN0aW9uEgcKA1NF",
+            "dG9idWYuRXZlbnREYXRhUgZldmVudHMqpgEKC0V2ZW50QWN0aW9uEgcKA1NF",
             "VBAAEgwKCEFERF9MSVNUEAESDwoLUkVNT1ZFX0xJU1QQAhILCgdBRERfTUFQ",
             "EAMSDgoKUkVNT1ZFX01BUBAEEgkKBUNMRUFSEAUSDAoIU05BUFNIT1QQBhIL",
-            "CgdNQVBfS0VZEAcSDQoJTUFQX1ZBTFVFEAhCRgoSY29tLnp5bmdhLnByb3Rv",
-            "YnVmQgtFdmVudFNvdXJjZaoCIlp5bmdhLlByb3RvYnVmLlJ1bnRpbWUuRXZl",
-            "bnRTb3VyY2ViBnByb3RvMw=="));
+            "CgdNQVBfS0VZEAcSDQoJTUFQX1ZBTFVFEAgSDQoJQ0xFQVJfTUFQEAkSDgoK",
+            "Q0xFQVJfTElTVBAKQkYKEmNvbS56eW5nYS5wcm90b2J1ZkILRXZlbnRTb3Vy",
+            "Y2WqAiJaeW5nYS5Qcm90b2J1Zi5SdW50aW1lLkV2ZW50U291cmNlYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zynga.Protobuf.Runtime.EventSource.EventAction), }, new pbr::GeneratedClrTypeInfo[] {
@@ -70,6 +72,8 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     [pbr::OriginalName("SNAPSHOT")] Snapshot = 6,
     [pbr::OriginalName("MAP_KEY")] MapKey = 7,
     [pbr::OriginalName("MAP_VALUE")] MapValue = 8,
+    [pbr::OriginalName("CLEAR_MAP")] ClearMap = 9,
+    [pbr::OriginalName("CLEAR_LIST")] ClearList = 10,
   }
 
   #endregion

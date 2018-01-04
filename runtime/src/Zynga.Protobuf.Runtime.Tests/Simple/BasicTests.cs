@@ -1,6 +1,8 @@
 ﻿using Xunit;
 using Xunit.Sdk;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Events;
 
 namespace Zynga.Protobuf.Runtime.Tests.Simple

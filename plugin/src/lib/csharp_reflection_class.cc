@@ -113,6 +113,7 @@ void ReflectionClassGenerator::WriteIntroduction(io::Printer* printer) {
     "\n"
     "using System;\n"
     "using System.IO;\n"
+    "using System.Collections.Generic;\n"
     "using Google.Protobuf;\n"
     "using pb = global::Google.Protobuf;\n"
     "using pbc = global::Google.Protobuf.Collections;\n"

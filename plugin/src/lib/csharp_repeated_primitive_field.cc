@@ -85,6 +85,16 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
       " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, value);\n"
       " $name$_.Remove(value);\n"
     "}\n");
+
+    // We will expose a readOnly list? 
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "#if !NET35\n"
+      "$access_level$ IReadOnlyList<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+      "}\n"
+      "#endif\n");
   }
   else {
     AddPublicMemberAttributes(printer);

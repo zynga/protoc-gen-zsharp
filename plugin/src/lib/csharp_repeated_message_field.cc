@@ -94,7 +94,18 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
       "$access_level$ void Remove$property_name$($type_name$ value) {\n"
       " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, $name$_.IndexOf(value));\n"
       " $name$_.Remove(value);\n"
-    "}\n");
+      "}\n");
+
+    // We will expose a readOnly list? 
+    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "#if !NET35\n"
+      "$access_level$ IReadOnlyList<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+      "}\n"
+      "#endif\n");
+
   } else {
     AddPublicMemberAttributes(printer);
     printer->Print(

@@ -17,6 +17,8 @@ enum EventAction
   SNAPSHOT      = 6;
   MAP_KEY       = 7;
   MAP_VALUE     = 8;
+  CLEAR_MAP     = 9;
+  CLEAR_LIST    = 10;
 }
 
 message EventMap {

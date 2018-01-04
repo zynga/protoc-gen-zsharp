@@ -32,8 +32,8 @@ namespace Events {
             "VGVzdBIYCgdldmVudElkGAEgASgJUgdldmVudElkEhIKA2ZvbxgCIAEoCUgA",
             "UgNmb28SPQoIaW50ZXJuYWwYAyABKAsyHy5ldmVudHMuRXZlbnRUZXN0Lk5l",
             "c3RlZE1lc3NhZ2VIAFIIaW50ZXJuYWwSLwoKdGVzdF9ldmVudBgEIAEoDjIQ",
-            "LmV2ZW50cy5FbnVtVGVzdFIJdGVzdEV2ZW50EhsKCVRlc3RfcHJpbRgFIAMo",
-            "BVIIVGVzdFByaW0SQgoMdGVzdF9tZXNzYWdlGAYgAygLMh8uZXZlbnRzLkV2",
+            "LmV2ZW50cy5FbnVtVGVzdFIJdGVzdEV2ZW50EhsKCXRlc3RfcHJpbRgFIAMo",
+            "BVIIdGVzdFByaW0SQgoMdGVzdF9tZXNzYWdlGAYgAygLMh8uZXZlbnRzLkV2",
             "ZW50VGVzdC5OZXN0ZWRNZXNzYWdlUgt0ZXN0TWVzc2FnZRItCgl0ZXN0X2Vu",
             "dW0YByADKA4yEC5ldmVudHMuRW51bVRlc3RSCHRlc3RFbnVtEjkKCHRlc3Rf",
             "bWFwGAggAygLMh4uZXZlbnRzLkV2ZW50VGVzdC5UZXN0TWFwRW50cnlSB3Rl",
@@ -518,7 +518,7 @@ namespace Events {
       }
     }
 
-    /// <summary>Field number for the "Test_prim" field.</summary>
+    /// <summary>Field number for the "test_prim" field.</summary>
     public const int TestPrimFieldNumber = 5;
     private static readonly pb::FieldCodec<int> _repeated_testPrim_codec
         = pb::FieldCodec.ForInt32(42);

@@ -1,6 +1,8 @@
 # protoc-gen-zsharp
 The main purpose of this project is to add support for event sourcing and other modern c# features within Protobuf targeting the c# codegen. This is a standalone c# protoc plugin that will generate code compatible with the Google.Protobuf runtime provided by google.
 
+The original C# codegen was forked from the google protobuf source (https://github.com/google/protobuf/tree/master/src/google/protobuf/compiler/csharp)
+
 # CSharp proto-gen plugin build steps
 Build instructions for protoc-gen-zsharp c++ plugin
 
@@ -14,11 +16,11 @@ Build instructions for protoc-gen-zsharp c++ plugin
 
 3.) Install protoc locally on the machine and include in your path
 
-4.) Run build_proto.sh|cmd
+4.) cd into plugin folder 
 
-5.) cd into plugin folder 
+5.) Build with ```bazel build :protoc-gen-zsharp```
 
-6.) Build with ```bazel build :protoc-gen-zsharp```
+6.) Run build_proto.sh|cmd from the root folder
 
 # Zynga.Protobuf.Runtime
 

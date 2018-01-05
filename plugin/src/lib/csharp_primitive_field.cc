@@ -254,7 +254,8 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
     "$access_level$ $type_name$ $property_name$ {\n"
     "  get { return $has_property_check$ ? ($type_name$) $oneof_name$_ : $default_value$; }\n"
     "  set {\n");
-    // ZYNGA: We check and see if we are event sourced
+    /// The following code is Copyright 2018, Zynga
+    // We check and see if we are event sourced
     // if we are then we can add an event to this object
     if (isEventSourced) {
       switch (descriptor_->type()) {
@@ -292,6 +293,7 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
         GOOGLE_LOG(FATAL)<< "Unknown field type.";
       }
     }
+    ///
     if (is_value_type) {
       printer->Print(
         variables_,

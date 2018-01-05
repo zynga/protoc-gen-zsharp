@@ -69,7 +69,8 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
   
 
 
-  // ZYNGA: We change this path that if we are event sourced we no longer use the standarder getter.
+  /// The following code is Copyright 2018, Zynga
+  // We change this path that if we are event sourced we no longer use the standarder getter.
   // we now use access functions. $AS TODO: Maybe we always do this anyways ? 
   if (isEventSourced) {
     printer->Print(
@@ -96,6 +97,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
       "}\n"
       "#endif\n");
   }
+  ///
   else {
     AddPublicMemberAttributes(printer);
     printer->Print(

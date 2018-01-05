@@ -453,6 +453,7 @@ std::string FileDescriptorToBase64(const FileDescriptor* descriptor) {
   return StringToBase64(fdp_bytes);
 }
 
+/// The following code is Copyright 2018, Zynga
 std::string GetEventDataType(const FieldDescriptor* descriptor) {
   switch (descriptor->type()) {
         case FieldDescriptor::TYPE_ENUM:
@@ -627,6 +628,7 @@ std::string GetByteStringWrite(const FieldDescriptor* descriptor) {
          return "";
     }
 }
+///
 
 FieldGeneratorBase* CreateFieldGenerator(const FieldDescriptor* descriptor,
                                          int fieldOrdinal,

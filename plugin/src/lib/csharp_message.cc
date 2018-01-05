@@ -120,12 +120,13 @@ void MessageGenerator::Generate(io::Printer* printer) {
     vars,
     "$access_level$ sealed partial class $class_name$ :");
 
-    //// ZYNGA
+    /// The following code is Copyright 2018, Zynga
     if (IsEventSourced()) {
       printer->Print(
       vars,
       " zpr::EventRegistry,");  
     }
+    ///
 
     printer->Print(
     vars,
@@ -185,7 +186,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
   GenerateCloningCode(printer);
   GenerateFreezingCode(printer);
 
-  // ZYNGA
+  /// The following code is Copyright 2018, Zynga
   // we add this to all files just as an easy way to know if this is a DeltaFile
   // without having to do some sort of cast check 
   printer->Print(
@@ -232,6 +233,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
     }
     printer->Print("}\n");
   }
+  ///
   
   // Fields/properties
   for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -322,8 +324,9 @@ void MessageGenerator::Generate(io::Printer* printer) {
                    "#endregion\n"
                    "\n");
   }
-  
-  // ZYNGA: GENERATED EVENT SOURCED METHODS FOR APPLYING EVENT ROOT! ?
+
+  /// The following code is Copyright 2018, Zynga
+  /// GENERATED EVENT SOURCED METHODS FOR APPLYING EVENT ROOT! ?
   if (IsEventSourced()) {
     printer->Print(
       vars,
@@ -434,6 +437,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
       "  return er;\n"
       "}\n\n");
   }
+  ///
   
 
   printer->Outdent();
@@ -441,8 +445,8 @@ void MessageGenerator::Generate(io::Printer* printer) {
   printer->Print("\n");
 }
 
-
-// ZYNGA checking to see if EventSourceOptions
+/// The following code is Copyright 2018, Zynga
+// checking to see if EventSourceOptions
 // are set!
 bool MessageGenerator::IsEventSourced() {
   if (descriptor_ != NULL) {
@@ -451,6 +455,7 @@ bool MessageGenerator::IsEventSourced() {
   }
   return false;
 }
+///
 
 // Helper to work out whether we need to generate a class to hold nested types/enums.
 // Only tricky because we don't want to generate map entry types.

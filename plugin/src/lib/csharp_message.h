@@ -57,8 +57,9 @@ class MessageGenerator : public SourceGeneratorBase {
   void GenerateFrameworkMethods(io::Printer* printer);
   void Generate(io::Printer* printer);
 
-  // ZYNGA 
+  /// The following code is Copyright 2018, Zynga
   bool IsEventSourced();
+  ///
 
   FieldGeneratorBase* CreateFieldGeneratorInternal(
       const FieldDescriptor* descriptor);

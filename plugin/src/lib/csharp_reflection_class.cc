@@ -119,7 +119,7 @@ void ReflectionClassGenerator::WriteIntroduction(io::Printer* printer) {
     "using pbc = global::Google.Protobuf.Collections;\n"
     "using pbr = global::Google.Protobuf.Reflection;\n"
     "using scg = global::System.Collections.Generic;\n"
-    "using zpr = global::Zynga.Protobuf.Runtime;\n", // ZYNGA: Adding in our using statements!
+    "using zpr = global::Zynga.Protobuf.Runtime;\n", /// The following code is Copyright 2018, Zynga
     "file_name", file_->name());
 
   if (!namespace_.empty()) {

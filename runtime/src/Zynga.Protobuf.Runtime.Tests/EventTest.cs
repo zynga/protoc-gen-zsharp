@@ -532,6 +532,10 @@ namespace Events {
      AddEvent(5, zpr.EventSource.EventAction.RemoveList, value);
      testPrim_.Remove(value);
     }
+    public void ClearTestPrim() {
+     AddEvent(5, zpr.EventSource.EventAction.ClearList, -1);
+     testPrim_.Clear();
+    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
     public IReadOnlyList<int> TestPrim {
@@ -552,6 +556,10 @@ namespace Events {
      AddEvent(6, zpr.EventSource.EventAction.RemoveList, testMessage_.IndexOf(value));
      testMessage_.Remove(value);
     }
+    public void ClearTestMessage() {
+     AddEvent(6, zpr.EventSource.EventAction.ClearList, -1);
+     testMessage_.Clear();
+    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
     public IReadOnlyList<global::Events.EventTest.Types.NestedMessage> TestMessage {
@@ -571,6 +579,10 @@ namespace Events {
     public void RemoveTestEnum(global::Events.EnumTest value) {
      AddEvent(7, zpr.EventSource.EventAction.RemoveList, value);
      testEnum_.Remove(value);
+    }
+    public void ClearTestEnum() {
+     AddEvent(7, zpr.EventSource.EventAction.ClearList, -1);
+     testEnum_.Clear();
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
@@ -598,6 +610,10 @@ namespace Events {
     public void RemoveTestMap(string key) {
      AddEvent(8, zpr.EventSource.EventAction.RemoveMap, key);
      testMap_.Remove(key);
+    }
+    public void ClearTestMap() {
+     AddEvent(8, zpr.EventSource.EventAction.ClearMap, -1);
+     testMap_.Clear();
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
@@ -639,6 +655,10 @@ namespace Events {
     public void RemoveTestMapTwo(int key) {
      AddEvent(10, zpr.EventSource.EventAction.RemoveMap, key);
      testMapTwo_.Remove(key);
+    }
+    public void ClearTestMapTwo() {
+     AddEvent(10, zpr.EventSource.EventAction.ClearMap, -1);
+     testMapTwo_.Clear();
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
@@ -1468,6 +1488,8 @@ namespace Events {
               testPrim_.Add(e.Data.I32);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
               testPrim_.Remove(e.Data.I32);
+            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
+              testPrim_.Clear();
             }
           }
           break;
@@ -1477,6 +1499,8 @@ namespace Events {
               testMessage_.Add(m);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
               SafeRemoveCurrentIndex(testMessage_, e.Data.I32);
+            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
+              testMessage_.Clear();
             }
           }
           break;
@@ -1485,6 +1509,8 @@ namespace Events {
               testEnum_.Add((global::Events.EnumTest)e.Data.U32);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
               testEnum_.Remove((global::Events.EnumTest)e.Data.U32);
+            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
+              testEnum_.Clear();
             }
           }
           break;
@@ -1498,6 +1524,8 @@ namespace Events {
              var keyStream = e.Data.MapData.Data.CreateCodedInput();
              var realKeytestMap = keyStream.ReadString();
              testMap_.Remove(realKeytestMap);
+            } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
+             testMap_.Clear();
             }
           }
           break;
@@ -1520,6 +1548,8 @@ namespace Events {
              var keyStream = e.Data.MapData.Data.CreateCodedInput();
              var realKeytestMapTwo = keyStream.ReadInt32();
              testMapTwo_.Remove(realKeytestMapTwo);
+            } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
+             testMapTwo_.Clear();
             }
           }
           break;

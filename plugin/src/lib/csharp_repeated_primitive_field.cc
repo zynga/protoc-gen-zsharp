@@ -87,6 +87,13 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
       " $name$_.Remove(value);\n"
     "}\n");
 
+    printer->Print(
+      variables_,
+      "$access_level$ void Clear$property_name$() {\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
+      " $name$_.Clear();\n"
+    "}\n");
+
     // We will expose a readOnly list? 
     AddPublicMemberAttributes(printer);
     printer->Print(
@@ -119,6 +126,8 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) 
       "          $name$_.Add(e.Data.$data_value$);\n"
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
       "          $name$_.Remove(e.Data.$data_value$);\n"
+      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
+      "          $name$_.Clear();\n"
       "        }\n");
 }
 

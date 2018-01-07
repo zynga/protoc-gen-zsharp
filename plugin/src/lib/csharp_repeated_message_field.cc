@@ -95,6 +95,13 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
       " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, $name$_.IndexOf(value));\n"
       " $name$_.Remove(value);\n"
       "}\n");
+    
+    printer->Print(
+      variables_,
+      "$access_level$ void Clear$property_name$() {\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
+      " $name$_.Clear();\n"
+    "}\n");
 
     // We will expose a readOnly list? 
     AddPublicMemberAttributes(printer);
@@ -125,6 +132,8 @@ void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "          $name$_.Add(m);\n"
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
       "          SafeRemoveCurrentIndex($name$_, e.Data.I32);\n"
+      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
+      "          $name$_.Clear();\n"
       "        }\n");
 }
 

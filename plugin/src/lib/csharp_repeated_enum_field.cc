@@ -81,6 +81,13 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
       " $name$_.Remove(value);\n"
     "}\n");
 
+    printer->Print(
+      variables_,
+      "$access_level$ void Clear$property_name$() {\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
+      " $name$_.Clear();\n"
+    "}\n");
+
     // We will expose a readOnly list? 
     AddPublicMemberAttributes(printer);
     printer->Print(
@@ -108,6 +115,8 @@ void RepeatedEnumFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "          $name$_.Add(($type_name$)e.Data.U32);\n"
       "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
       "          $name$_.Remove(($type_name$)e.Data.U32);\n"
+      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
+      "          $name$_.Clear();\n"
       "        }\n");
 }
 

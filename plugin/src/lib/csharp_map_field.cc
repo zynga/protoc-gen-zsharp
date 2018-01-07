@@ -109,6 +109,13 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       " $name$_.Remove(key);\n"
     "}\n");
 
+    printer->Print(
+      variables_,
+      "$access_level$ void Clear$property_name$() {\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.ClearMap, -1);\n"
+      " $name$_.Clear();\n"
+    "}\n");
+
     AddPublicMemberAttributes(printer);
     printer->Print(
       variables_,
@@ -183,6 +190,10 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
       printer->Print(
           vars,
           "         $name$_.Remove(realKey$name$);\n");
+      printer->Print("        } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {\n");
+      printer->Print(
+          vars,
+          "         $name$_.Clear();\n");
       printer->Print("        }\n");
 }
 

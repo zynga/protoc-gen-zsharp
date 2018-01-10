@@ -11,3 +11,7 @@ import "google/protobuf/descriptor.proto";
 extend google.protobuf.MessageOptions {
 	bool event_sourced = 62345;
 }
+
+extend google.protobuf.FieldOptions {
+  bool exclude_checksum = 62345;
+}

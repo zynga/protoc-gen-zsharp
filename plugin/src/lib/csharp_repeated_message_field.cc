@@ -153,7 +153,9 @@ void RepeatedMessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) 
     "field_name", GetPropertyName(descriptor_));
 }
 
-
+void RepeatedMessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
 
 
 void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {

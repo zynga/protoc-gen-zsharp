@@ -97,7 +97,9 @@ void WrapperFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
 
 }
 
-
+void WrapperFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
 
 
 void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer) {

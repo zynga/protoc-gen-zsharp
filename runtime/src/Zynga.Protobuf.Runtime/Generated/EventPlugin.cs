@@ -30,9 +30,10 @@ namespace Zynga.Protobuf.EventSource {
             "ChJldmVudF9wbHVnaW4ucHJvdG8SGmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
             "YnVmGiBnb29nbGUvcHJvdG9idWYvZGVzY3JpcHRvci5wcm90bzpGCg1ldmVu",
             "dF9zb3VyY2VkEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGInn",
-            "AyABKAhSDGV2ZW50U291cmNlZEI+ChJjb20uenluZ2EucHJvdG9idWZCC0V2",
-            "ZW50U291cmNlqgIaWnluZ2EuUHJvdG9idWYuRXZlbnRTb3VyY2ViBnByb3Rv",
-            "Mw=="));
+            "AyABKAhSDGV2ZW50U291cmNlZDpKChBleGNsdWRlX2NoZWNrc3VtEh0uZ29v",
+            "Z2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxiJ5wMgASgIUg9leGNsdWRlQ2hl",
+            "Y2tzdW1CPgoSY29tLnp5bmdhLnByb3RvYnVmQgtFdmVudFNvdXJjZaoCGlp5",
+            "bmdhLlByb3RvYnVmLkV2ZW50U291cmNlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { pbr::FileDescriptor.DescriptorProtoFileDescriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

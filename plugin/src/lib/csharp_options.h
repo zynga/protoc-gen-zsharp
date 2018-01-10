@@ -49,7 +49,8 @@ struct Options {
       base_namespace(""),
       base_namespace_specified(false),
       internal_access(false),
-      modern_csharp(false) {
+      modern_csharp(false),
+      generate_checksum(false) {
   }
   // Extension of the generated file. Defaults to ".cs"
   string file_extension;
@@ -76,6 +77,11 @@ struct Options {
   // Whether the generated classes should have accessibility level of "internal".
   // Defaults to false that generates "public" classes.
   bool modern_csharp;
+
+  // Wether or not we should allow for a checksum function to be generate on messages.
+  // This allows for a more unified path that GetHashCode and has some extra features
+  // Defaults to False
+  bool generate_checksum;
 };
 
 }  // namespace csharp

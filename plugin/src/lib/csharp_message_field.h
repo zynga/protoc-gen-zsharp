@@ -59,6 +59,7 @@ class MessageFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateEventSource(io::Printer* printer);
   virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
   virtual void GenerateEventAddEvent(io::Printer* printer);
+  virtual void GenerateCheckSum(io::Printer* printer);
   ///
 
   virtual void GenerateMergingCode(io::Printer* printer);
@@ -88,6 +89,7 @@ class MessageOneofFieldGenerator : public MessageFieldGenerator {
   virtual void GenerateEventSource(io::Printer* printer);
   virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
   virtual void GenerateEventAddEvent(io::Printer* printer);
+  virtual void GenerateCheckSum(io::Printer* printer);
   ///
   
   virtual void WriteToString(io::Printer* printer);

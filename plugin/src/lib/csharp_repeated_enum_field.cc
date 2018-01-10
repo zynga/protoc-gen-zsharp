@@ -134,6 +134,9 @@ void RepeatedEnumFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
+void RepeatedEnumFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
 
 void RepeatedEnumFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(

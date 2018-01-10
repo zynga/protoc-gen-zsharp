@@ -149,6 +149,10 @@ void MessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   
 }
 
+void MessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
+
 
 void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
@@ -313,6 +317,10 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
       "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
       "field_name", GetPropertyName(descriptor_));
   }
+}
+
+void MessageOneofFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
 }
 
 

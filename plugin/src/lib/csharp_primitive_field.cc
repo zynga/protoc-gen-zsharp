@@ -164,6 +164,10 @@ void PrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
+void PrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
+
 
 void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
@@ -350,6 +354,9 @@ void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
+void PrimitiveOneofFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
 
 
 void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {

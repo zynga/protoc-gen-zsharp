@@ -50,6 +50,7 @@ class SourceGeneratorBase {
   virtual ~SourceGeneratorBase();
 
   std::string class_access_level();
+  bool generate_checksum();
   const Options* options();
 
   // Write any attributes used to decorate generated function members (methods and properties).

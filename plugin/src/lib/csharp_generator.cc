@@ -87,6 +87,8 @@ bool Generator::Generate(
       cli_options.internal_access = true;
     } else if (options[i].first == "modern_csharp") {
       cli_options.modern_csharp = true;
+    } else if (options[i].first == "checksum") {
+      cli_options.generate_checksum = true;
     } else {
       *error = "Unknown generator option: " + options[i].first;
       return false;

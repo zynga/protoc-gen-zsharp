@@ -65,6 +65,10 @@ std::string SourceGeneratorBase::class_access_level() {
   return (IsDescriptorProto(descriptor_) || this->options()->internal_access) ? "internal" : "public";
 }
 
+bool SourceGeneratorBase::generate_checksum() {
+ return this->options()->generate_checksum;
+}
+
 const Options* SourceGeneratorBase::options() {
   return this->options_;
 }

@@ -145,7 +145,9 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer
     "field_name", GetPropertyName(descriptor_));
 }
 
-
+void RepeatedPrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+}
 
 
 void RepeatedPrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {

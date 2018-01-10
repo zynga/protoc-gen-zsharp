@@ -228,6 +228,12 @@ void MapFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
 
 }
 
+void MapFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+
+
+}
+
 void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
       variables_,

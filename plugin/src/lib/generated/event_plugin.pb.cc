@@ -78,7 +78,7 @@ void TableStruct::InitDefaultsImpl() {
     62345, 8, false, false);
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     ::google::protobuf::FieldOptions::internal_default_instance(),
-    62345, 8, false, false);
+    62346, 8, false, false);
 }
 
 void InitDefaults() {
@@ -93,7 +93,7 @@ void AddDescriptorsImpl() {
       "protobuf\032 google/protobuf/descriptor.pro"
       "to:8\n\revent_sourced\022\037.google.protobuf.Me"
       "ssageOptions\030\211\347\003 \001(\010:9\n\020exclude_checksum"
-      "\022\035.google.protobuf.FieldOptions\030\211\347\003 \001(\010B"
+      "\022\035.google.protobuf.FieldOptions\030\212\347\003 \001(\010B"
       ">\n\022com.zynga.protobufB\013EventSource\252\002\032Zyn"
       "ga.Protobuf.EventSourceb\006proto3"
   };

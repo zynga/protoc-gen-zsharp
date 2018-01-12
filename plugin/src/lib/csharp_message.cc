@@ -589,7 +589,7 @@ void MessageGenerator::GenerateFrameworkMethods(io::Printer* printer) {
 
   // lets check and see if we should generate checksums
   if (generate_checksum()) {
-    WriteGeneratedCodeAttributes(printer);
+    //WriteGeneratedCodeAttributes(printer);
 	  printer->Print(
         "public void GetChecksum(BinaryWriter inWriter) {\n");
     printer->Indent();

@@ -155,6 +155,12 @@ void RepeatedMessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) 
 
 void RepeatedMessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
   if (checksum_exclude()) return;
+  // we need to iterate over the lists
+  printer->Print(
+      variables_,
+      "foreach (var item in $name$_) {\n"
+      "    item.GetChecksum(inWriter);\n"
+      "}\n");
 }
 
 

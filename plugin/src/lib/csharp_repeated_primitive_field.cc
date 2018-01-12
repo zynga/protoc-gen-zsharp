@@ -147,6 +147,12 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer
 
 void RepeatedPrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
   if (checksum_exclude()) return;
+   // we need to iterate over the lists
+  printer->Print(
+      variables_,
+      "foreach (var item in $name$_) {\n"
+      "    inWriter.Write((int)item);\n"
+      "}\n");
 }
 
 

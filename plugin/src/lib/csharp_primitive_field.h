@@ -93,7 +93,6 @@ class PrimitiveOneofFieldGenerator : public PrimitiveFieldGenerator {
   virtual void GenerateEventSource(io::Printer* printer);
   virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
   virtual void GenerateEventAddEvent(io::Printer* printer);
-  virtual void GenerateCheckSum(io::Printer* printer);
   ///
 
   virtual void WriteToString(io::Printer* printer);

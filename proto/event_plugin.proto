@@ -13,5 +13,5 @@ extend google.protobuf.MessageOptions {
 }
 
 extend google.protobuf.FieldOptions {
-  bool exclude_checksum = 62345;
+  bool exclude_checksum = 62346;
 }

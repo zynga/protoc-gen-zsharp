@@ -12,7 +12,7 @@ using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
 using zpr = global::Zynga.Protobuf.Runtime;
-namespace Events {
+namespace Com.Zynga.Runtime.Protobuf {
 
   /// <summary>Holder for reflection information generated from event_test.proto</summary>
   public static partial class EventTestReflection {
@@ -27,38 +27,45 @@ namespace Events {
     static EventTestReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBldmVudF90ZXN0LnByb3RvEgZldmVudHMaEmV2ZW50X3BsdWdpbi5wcm90",
-            "byIhCgtUZXN0TWVzc2FnZRISCgRkYXRhGAEgASgFUgRkYXRhIioKDlRlc3RU",
-            "d29NZXNzYWdlEhIKBGRhdGEYASABKAVSBGRhdGE6BMi4HgEirQcKCUV2ZW50",
-            "VGVzdBIYCgdldmVudElkGAEgASgJUgdldmVudElkEhIKA2ZvbxgCIAEoCUgA",
-            "UgNmb28SPQoIaW50ZXJuYWwYAyABKAsyHy5ldmVudHMuRXZlbnRUZXN0Lk5l",
-            "c3RlZE1lc3NhZ2VIAFIIaW50ZXJuYWwSLwoKdGVzdF9ldmVudBgEIAEoDjIQ",
-            "LmV2ZW50cy5FbnVtVGVzdFIJdGVzdEV2ZW50EhsKCXRlc3RfcHJpbRgFIAMo",
-            "BVIIdGVzdFByaW0SQgoMdGVzdF9tZXNzYWdlGAYgAygLMh8uZXZlbnRzLkV2",
-            "ZW50VGVzdC5OZXN0ZWRNZXNzYWdlUgt0ZXN0TWVzc2FnZRItCgl0ZXN0X2Vu",
-            "dW0YByADKA4yEC5ldmVudHMuRW51bVRlc3RSCHRlc3RFbnVtEjkKCHRlc3Rf",
-            "bWFwGAggAygLMh4uZXZlbnRzLkV2ZW50VGVzdC5UZXN0TWFwRW50cnlSB3Rl",
-            "c3RNYXASNAoEZGF0YRgJIAEoCzIgLmV2ZW50cy5FdmVudFRlc3QuRXZlbnRP",
-            "bmVvZlRlc3RSBGRhdGESQwoMdGVzdF9tYXBfdHdvGAogAygLMiEuZXZlbnRz",
-            "LkV2ZW50VGVzdC5UZXN0TWFwVHdvRW50cnlSCnRlc3RNYXBUd28SPQoQdGVz",
-            "dF9ub25fbWVzc2FnZRgLIAEoCzITLmV2ZW50cy5UZXN0TWVzc2FnZVIOdGVz",
-            "dE5vbk1lc3NhZ2UaWwoNTmVzdGVkTWVzc2FnZRISCgRkYXRhGAEgASgFUgRk",
-            "YXRhEjAKB2RhdGFUd28YAiABKAsyFi5ldmVudHMuVGVzdFR3b01lc3NhZ2VS",
-            "B2RhdGFUd286BMi4HgEacQoORXZlbnRPbmVvZlRlc3QSEgoDZm9vGAEgASgJ",
-            "SABSA2ZvbxI9CghpbnRlcm5hbBgCIAEoCzIfLmV2ZW50cy5FdmVudFRlc3Qu",
-            "TmVzdGVkTWVzc2FnZUgAUghpbnRlcm5hbDoEyLgeAUIGCgRib2R5GlsKDFRl",
-            "c3RNYXBFbnRyeRIQCgNrZXkYASABKAlSA2tleRI1CgV2YWx1ZRgCIAEoCzIf",
-            "LmV2ZW50cy5FdmVudFRlc3QuTmVzdGVkTWVzc2FnZVIFdmFsdWU6AjgBGj0K",
-            "D1Rlc3RNYXBUd29FbnRyeRIQCgNrZXkYASABKAVSA2tleRIUCgV2YWx1ZRgC",
-            "IAEoCVIFdmFsdWU6AjgBOgTIuB4BQgsKCXRlc3RPbmVvZiokCghFbnVtVGVz",
-            "dBIJCgVWQUxVRRAAEg0KCVZBTFVFX1RXTxABYgZwcm90bzM="));
+            "ChBldmVudF90ZXN0LnByb3RvEhpjb20uenluZ2EucnVudGltZS5wcm90b2J1",
+            "ZhoSZXZlbnRfcGx1Z2luLnByb3RvIiEKC1Rlc3RNZXNzYWdlEhIKBGRhdGEY",
+            "ASABKAVSBGRhdGEiKgoOVGVzdFR3b01lc3NhZ2USEgoEZGF0YRgBIAEoBVIE",
+            "ZGF0YToEyLgeASLHCQoJRXZlbnRUZXN0EhgKB2V2ZW50SWQYASABKAlSB2V2",
+            "ZW50SWQSEgoDZm9vGAIgASgJSABSA2ZvbxJRCghpbnRlcm5hbBgDIAEoCzIz",
+            "LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5OZXN0ZWRN",
+            "ZXNzYWdlSABSCGludGVybmFsEkMKCnRlc3RfZXZlbnQYBCABKA4yJC5jb20u",
+            "enluZ2EucnVudGltZS5wcm90b2J1Zi5FbnVtVGVzdFIJdGVzdEV2ZW50EhsK",
+            "CXRlc3RfcHJpbRgFIAMoBVIIdGVzdFByaW0SVgoMdGVzdF9tZXNzYWdlGAYg",
+            "AygLMjMuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5l",
+            "c3RlZE1lc3NhZ2VSC3Rlc3RNZXNzYWdlEkEKCXRlc3RfZW51bRgHIAMoDjIk",
+            "LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkVudW1UZXN0Ugh0ZXN0RW51",
+            "bRJNCgh0ZXN0X21hcBgIIAMoCzIyLmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
+            "YnVmLkV2ZW50VGVzdC5UZXN0TWFwRW50cnlSB3Rlc3RNYXASSAoEZGF0YRgJ",
+            "IAEoCzI0LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5F",
+            "dmVudE9uZW9mVGVzdFIEZGF0YRJXCgx0ZXN0X21hcF90d28YCiADKAsyNS5j",
+            "b20uenluZ2EucnVudGltZS5wcm90b2J1Zi5FdmVudFRlc3QuVGVzdE1hcFR3",
+            "b0VudHJ5Ugp0ZXN0TWFwVHdvElEKEHRlc3Rfbm9uX21lc3NhZ2UYCyABKAsy",
+            "Jy5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5UZXN0TWVzc2FnZVIOdGVz",
+            "dE5vbk1lc3NhZ2USOwoXdGVzdF9zdHJpbmdfbm9fY2hlY2tzdW0YDCABKAlC",
+            "BNC4HgFSFHRlc3RTdHJpbmdOb0NoZWNrc3VtGm8KDU5lc3RlZE1lc3NhZ2US",
+            "EgoEZGF0YRgBIAEoBVIEZGF0YRJECgdkYXRhVHdvGAIgASgLMiouY29tLnp5",
+            "bmdhLnJ1bnRpbWUucHJvdG9idWYuVGVzdFR3b01lc3NhZ2VSB2RhdGFUd286",
+            "BMi4HgEahQEKDkV2ZW50T25lb2ZUZXN0EhIKA2ZvbxgBIAEoCUgAUgNmb28S",
+            "UQoIaW50ZXJuYWwYAiABKAsyMy5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
+            "Zi5FdmVudFRlc3QuTmVzdGVkTWVzc2FnZUgAUghpbnRlcm5hbDoEyLgeAUIG",
+            "CgRib2R5Gm8KDFRlc3RNYXBFbnRyeRIQCgNrZXkYASABKAlSA2tleRJJCgV2",
+            "YWx1ZRgCIAEoCzIzLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50",
+            "VGVzdC5OZXN0ZWRNZXNzYWdlUgV2YWx1ZToCOAEaPQoPVGVzdE1hcFR3b0Vu",
+            "dHJ5EhAKA2tleRgBIAEoBVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToC",
+            "OAE6BMi4HgFCCwoJdGVzdE9uZW9mKiQKCEVudW1UZXN0EgkKBVZBTFVFEAAS",
+            "DQoJVkFMVUVfVFdPEAFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Events.EnumTest), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Events.TestMessage), global::Events.TestMessage.Parser, new[]{ "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Events.TestTwoMessage), global::Events.TestTwoMessage.Parser, new[]{ "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Events.EventTest), global::Events.EventTest.Parser, new[]{ "EventId", "Foo", "Internal", "TestEvent", "TestPrim", "TestMessage", "TestEnum", "TestMap", "Data", "TestMapTwo", "TestNonMessage" }, new[]{ "TestOneof" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Events.EventTest.Types.NestedMessage), global::Events.EventTest.Types.NestedMessage.Parser, new[]{ "Data", "DataTwo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Events.EventTest.Types.EventOneofTest), global::Events.EventTest.Types.EventOneofTest.Parser, new[]{ "Foo", "Internal" }, new[]{ "Body" }, null, null),
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.EnumTest), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestMessage), global::Com.Zynga.Runtime.Protobuf.TestMessage.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestTwoMessage), global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Parser, new[]{ "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest), global::Com.Zynga.Runtime.Protobuf.EventTest.Parser, new[]{ "EventId", "Foo", "Internal", "TestEvent", "TestPrim", "TestMessage", "TestEnum", "TestMap", "Data", "TestMapTwo", "TestNonMessage", "TestStringNoChecksum" }, new[]{ "TestOneof" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage), global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser, new[]{ "Data", "DataTwo" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest), global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Parser, new[]{ "Foo", "Internal" }, new[]{ "Body" }, null, null),
             null, null, })
           }));
     }
@@ -81,7 +88,7 @@ namespace Events {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Events.EventTestReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.EventTestReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -148,8 +155,8 @@ namespace Events {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void GetChecksum(BinaryWriter inWriter) {
+      if (Data != 0) inWriter.Write(Data);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -207,7 +214,7 @@ namespace Events {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Events.EventTestReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.EventTestReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -290,8 +297,8 @@ namespace Events {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void GetChecksum(BinaryWriter inWriter) {
+      if (Data != 0) inWriter.Write(Data);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -405,7 +412,7 @@ namespace Events {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Events.EventTestReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.EventTestReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -431,6 +438,7 @@ namespace Events {
       Data = other.data_ != null ? other.Data.Clone() : null;
       testMapTwo_ = other.testMapTwo_.Clone();
       TestNonMessage = other.testNonMessage_ != null ? other.TestNonMessage.Clone() : null;
+      testStringNoChecksum_ = other.testStringNoChecksum_;
       switch (other.TestOneofCase) {
         case TestOneofOneofCase.Foo:
           Foo = other.Foo;
@@ -464,15 +472,16 @@ namespace Events {
         }
         public zpr.EventPath EventIdPath => new zpr.EventPath(Path, 1);
         public zpr.EventPath FooPath => new zpr.EventPath(Path, 2);
-        public global::Events.EventTest.Types.NestedMessage.Paths InternalPath => new global::Events.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(Path, 3));
+        public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths InternalPath => new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(Path, 3));
         public zpr.EventPath TestEventPath => new zpr.EventPath(Path, 4);
         public zpr.EventPath TestPrimPath => new zpr.EventPath(Path, 5);
         public zpr.EventPath TestMessagePath => new zpr.EventPath(Path, 6);
         public zpr.EventPath TestEnumPath => new zpr.EventPath(Path, 7);
         public zpr.EventPath TestMapPath => new zpr.EventPath(Path, 8);
-        public global::Events.EventTest.Types.EventOneofTest.Paths DataPath => new global::Events.EventTest.Types.EventOneofTest.Paths(new zpr.EventPath(Path, 9));
+        public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Paths DataPath => new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Paths(new zpr.EventPath(Path, 9));
         public zpr.EventPath TestMapTwoPath => new zpr.EventPath(Path, 10);
         public zpr.EventPath TestNonMessagePath => new zpr.EventPath(Path, 11);
+        public zpr.EventPath TestStringNoChecksumPath => new zpr.EventPath(Path, 12);
     }
     /// <summary>Field number for the "eventId" field.</summary>
     public const int EventIdFieldNumber = 1;
@@ -504,11 +513,11 @@ namespace Events {
     /// <summary>Field number for the "internal" field.</summary>
     public const int InternalFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Events.EventTest.Types.NestedMessage Internal {
-      get { return testOneofCase_ == TestOneofOneofCase.Internal ? (global::Events.EventTest.Types.NestedMessage) testOneof_ : null; }
+    public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
+      get { return testOneofCase_ == TestOneofOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_ : null; }
       set {
         value.SetRoot(_root);
-        value.SetPath(new global::Events.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(this.Path.Path, 3)));
+        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(this.Path.Path, 3)));
         AddEvent(3, zpr.EventSource.EventAction.Snapshot, value);
         testOneof_ = value;
         testOneofCase_ = value == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
@@ -517,9 +526,9 @@ namespace Events {
 
     /// <summary>Field number for the "test_event" field.</summary>
     public const int TestEventFieldNumber = 4;
-    private global::Events.EnumTest testEvent_ = 0;
+    private global::Com.Zynga.Runtime.Protobuf.EnumTest testEvent_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Events.EnumTest TestEvent {
+    public global::Com.Zynga.Runtime.Protobuf.EnumTest TestEvent {
       get { return testEvent_; }
       set {
         AddEvent(4, zpr.EventSource.EventAction.Set, value);
@@ -553,14 +562,14 @@ namespace Events {
 
     /// <summary>Field number for the "test_message" field.</summary>
     public const int TestMessageFieldNumber = 6;
-    private static readonly pb::FieldCodec<global::Events.EventTest.Types.NestedMessage> _repeated_testMessage_codec
-        = pb::FieldCodec.ForMessage(50, global::Events.EventTest.Types.NestedMessage.Parser);
-    private readonly pbc::RepeatedField<global::Events.EventTest.Types.NestedMessage> testMessage_ = new pbc::RepeatedField<global::Events.EventTest.Types.NestedMessage>();
-    public void AddTestMessage(global::Events.EventTest.Types.NestedMessage value) {
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> _repeated_testMessage_codec
+        = pb::FieldCodec.ForMessage(50, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser);
+    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>();
+    public void AddTestMessage(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
      AddEvent(6, zpr.EventSource.EventAction.AddList, value);
      testMessage_.Add(value);
     }
-    public void RemoveTestMessage(global::Events.EventTest.Types.NestedMessage value) {
+    public void RemoveTestMessage(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
      AddEvent(6, zpr.EventSource.EventAction.RemoveList, testMessage_.IndexOf(value));
      testMessage_.Remove(value);
     }
@@ -570,21 +579,21 @@ namespace Events {
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
-    public IReadOnlyList<global::Events.EventTest.Types.NestedMessage> TestMessage {
+    public IReadOnlyList<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMessage {
       get { return testMessage_; }
     }
     #endif
 
     /// <summary>Field number for the "test_enum" field.</summary>
     public const int TestEnumFieldNumber = 7;
-    private static readonly pb::FieldCodec<global::Events.EnumTest> _repeated_testEnum_codec
-        = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Events.EnumTest) x);
-    private readonly pbc::RepeatedField<global::Events.EnumTest> testEnum_ = new pbc::RepeatedField<global::Events.EnumTest>();
-    public void AddTestEnum(global::Events.EnumTest value) {
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.EnumTest> _repeated_testEnum_codec
+        = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.EnumTest) x);
+    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> testEnum_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>();
+    public void AddTestEnum(global::Com.Zynga.Runtime.Protobuf.EnumTest value) {
      AddEvent(7, zpr.EventSource.EventAction.AddList, value);
      testEnum_.Add(value);
     }
-    public void RemoveTestEnum(global::Events.EnumTest value) {
+    public void RemoveTestEnum(global::Com.Zynga.Runtime.Protobuf.EnumTest value) {
      AddEvent(7, zpr.EventSource.EventAction.RemoveList, value);
      testEnum_.Remove(value);
     }
@@ -594,17 +603,17 @@ namespace Events {
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
-    public IReadOnlyList<global::Events.EnumTest> TestEnum {
+    public IReadOnlyList<global::Com.Zynga.Runtime.Protobuf.EnumTest> TestEnum {
       get { return testEnum_; }
     }
     #endif
 
     /// <summary>Field number for the "test_map" field.</summary>
     public const int TestMapFieldNumber = 8;
-    private static readonly pbc::MapField<string, global::Events.EventTest.Types.NestedMessage>.Codec _map_testMap_codec
-        = new pbc::MapField<string, global::Events.EventTest.Types.NestedMessage>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Events.EventTest.Types.NestedMessage.Parser), 66);
-    private readonly pbc::MapField<string, global::Events.EventTest.Types.NestedMessage> testMap_ = new pbc::MapField<string, global::Events.EventTest.Types.NestedMessage>();
-    public void AddTestMap(string key, global::Events.EventTest.Types.NestedMessage value) {
+    private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>.Codec _map_testMap_codec
+        = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser), 66);
+    private readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMap_ = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>();
+    public void AddTestMap(string key, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
      var mapEvent = new zpr.EventSource.EventMap();
      using (var memStream = new MemoryStream()) {;
        var dataStream = new CodedOutputStream(memStream);
@@ -625,20 +634,20 @@ namespace Events {
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     #if !NET35
-    public IReadOnlyDictionary<string, global::Events.EventTest.Types.NestedMessage> TestMap {
+    public IReadOnlyDictionary<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMap {
       get { return testMap_; }
     }
     #endif
 
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 9;
-    private global::Events.EventTest.Types.EventOneofTest data_;
+    private global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest data_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Events.EventTest.Types.EventOneofTest Data {
+    public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest Data {
       get { return data_; }
       set {
         value.SetRoot(_root);
-        value.SetPath(new global::Events.EventTest.Types.EventOneofTest.Paths(new zpr.EventPath(this.Path.Path, 9)));
+        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Paths(new zpr.EventPath(this.Path.Path, 9)));
         AddEvent(9, zpr.EventSource.EventAction.Snapshot, value);
         data_ = value;
       }
@@ -677,13 +686,25 @@ namespace Events {
 
     /// <summary>Field number for the "test_non_message" field.</summary>
     public const int TestNonMessageFieldNumber = 11;
-    private global::Events.TestMessage testNonMessage_;
+    private global::Com.Zynga.Runtime.Protobuf.TestMessage testNonMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Events.TestMessage TestNonMessage {
+    public global::Com.Zynga.Runtime.Protobuf.TestMessage TestNonMessage {
       get { return testNonMessage_; }
       set {
         AddEvent(11, zpr.EventSource.EventAction.Snapshot, value);
         testNonMessage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "test_string_no_checksum" field.</summary>
+    public const int TestStringNoChecksumFieldNumber = 12;
+    private string testStringNoChecksum_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string TestStringNoChecksum {
+      get { return testStringNoChecksum_; }
+      set {
+        AddEvent(12, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        testStringNoChecksum_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -730,6 +751,7 @@ namespace Events {
       if (!object.Equals(Data, other.Data)) return false;
       if (testMapTwo_.Equals(other.testMapTwo_)) return false;
       if (!object.Equals(TestNonMessage, other.TestNonMessage)) return false;
+      if (TestStringNoChecksum != other.TestStringNoChecksum) return false;
       if (TestOneofCase != other.TestOneofCase) return false;
       return true;
     }
@@ -748,6 +770,7 @@ namespace Events {
       if (data_ != null) hash ^= Data.GetHashCode();
       hash ^= testMapTwo_.GetHashCode();
       if (testNonMessage_ != null) hash ^= TestNonMessage.GetHashCode();
+      if (TestStringNoChecksum.Length != 0) hash ^= TestStringNoChecksum.GetHashCode();
       hash ^= (int) testOneofCase_;
       return hash;
     }
@@ -757,8 +780,30 @@ namespace Events {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void GetChecksum(BinaryWriter inWriter) {
+      if (EventId.Length != 0) inWriter.Write(EventId);
+      if (testOneofCase_ == TestOneofOneofCase.Foo) inWriter.Write(Foo);
+      if (testOneofCase_ == TestOneofOneofCase.Internal) Internal.GetChecksum(inWriter);
+      if (TestEvent != 0) inWriter.Write((int)testEvent_);
+      foreach (var item in testPrim_) {
+          inWriter.Write((int)item);
+      }
+      foreach (var item in testMessage_) {
+          item.GetChecksum(inWriter);
+      }
+      foreach (var item in testEnum_) {
+          inWriter.Write((int)item);
+      }
+      foreach (var item in testMap_) {
+          inWriter.Write(item.Key);
+          item.Value.GetChecksum(inWriter);
+      }
+      if (data_ != null) Data.GetChecksum(inWriter);
+      foreach (var item in testMapTwo_) {
+          inWriter.Write(item.Key);
+          inWriter.Write(item.Value);
+      }
+      if (testNonMessage_ != null) TestNonMessage.GetChecksum(inWriter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -792,6 +837,10 @@ namespace Events {
         output.WriteRawTag(90);
         output.WriteMessage(TestNonMessage);
       }
+      if (TestStringNoChecksum.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(TestStringNoChecksum);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -820,6 +869,9 @@ namespace Events {
       if (testNonMessage_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(TestNonMessage);
       }
+      if (TestStringNoChecksum.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TestStringNoChecksum);
+      }
       return size;
     }
 
@@ -840,16 +892,19 @@ namespace Events {
       testMap_.Add(other.testMap_);
       if (other.data_ != null) {
         if (data_ == null) {
-          data_ = new global::Events.EventTest.Types.EventOneofTest();
+          data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
         }
         Data.MergeFrom(other.Data);
       }
       testMapTwo_.Add(other.testMapTwo_);
       if (other.testNonMessage_ != null) {
         if (testNonMessage_ == null) {
-          testNonMessage_ = new global::Events.TestMessage();
+          testNonMessage_ = new global::Com.Zynga.Runtime.Protobuf.TestMessage();
         }
         TestNonMessage.MergeFrom(other.TestNonMessage);
+      }
+      if (other.TestStringNoChecksum.Length != 0) {
+        TestStringNoChecksum = other.TestStringNoChecksum;
       }
       switch (other.TestOneofCase) {
         case TestOneofOneofCase.Foo:
@@ -879,7 +934,7 @@ namespace Events {
             break;
           }
           case 26: {
-            global::Events.EventTest.Types.NestedMessage subBuilder = new global::Events.EventTest.Types.NestedMessage();
+            global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage subBuilder = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
             if (testOneofCase_ == TestOneofOneofCase.Internal) {
               subBuilder.MergeFrom(Internal);
             }
@@ -888,7 +943,7 @@ namespace Events {
             break;
           }
           case 32: {
-            testEvent_ = (global::Events.EnumTest) input.ReadEnum();
+            testEvent_ = (global::Com.Zynga.Runtime.Protobuf.EnumTest) input.ReadEnum();
             break;
           }
           case 42:
@@ -911,7 +966,7 @@ namespace Events {
           }
           case 74: {
             if (data_ == null) {
-              data_ = new global::Events.EventTest.Types.EventOneofTest();
+              data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
             }
             input.ReadMessage(data_);
             break;
@@ -922,9 +977,13 @@ namespace Events {
           }
           case 90: {
             if (testNonMessage_ == null) {
-              testNonMessage_ = new global::Events.TestMessage();
+              testNonMessage_ = new global::Com.Zynga.Runtime.Protobuf.TestMessage();
             }
             input.ReadMessage(testNonMessage_);
+            break;
+          }
+          case 98: {
+            TestStringNoChecksum = input.ReadString();
             break;
           }
         }
@@ -945,7 +1004,7 @@ namespace Events {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::Events.EventTest.Descriptor.NestedTypes[0]; }
+          get { return global::Com.Zynga.Runtime.Protobuf.EventTest.Descriptor.NestedTypes[0]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -987,7 +1046,7 @@ namespace Events {
               Path = _path;
             }
             public zpr.EventPath DataPath => new zpr.EventPath(Path, 1);
-            public global::Events.TestTwoMessage.Paths DataTwoPath => new global::Events.TestTwoMessage.Paths(new zpr.EventPath(Path, 2));
+            public global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Paths DataTwoPath => new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Paths(new zpr.EventPath(Path, 2));
         }
         /// <summary>Field number for the "data" field.</summary>
         public const int DataFieldNumber = 1;
@@ -1003,13 +1062,13 @@ namespace Events {
 
         /// <summary>Field number for the "dataTwo" field.</summary>
         public const int DataTwoFieldNumber = 2;
-        private global::Events.TestTwoMessage dataTwo_;
+        private global::Com.Zynga.Runtime.Protobuf.TestTwoMessage dataTwo_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public global::Events.TestTwoMessage DataTwo {
+        public global::Com.Zynga.Runtime.Protobuf.TestTwoMessage DataTwo {
           get { return dataTwo_; }
           set {
             value.SetRoot(_root);
-            value.SetPath(new global::Events.TestTwoMessage.Paths(new zpr.EventPath(this.Path.Path, 2)));
+            value.SetPath(new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Paths(new zpr.EventPath(this.Path.Path, 2)));
             AddEvent(2, zpr.EventSource.EventAction.Snapshot, value);
             dataTwo_ = value;
           }
@@ -1046,8 +1105,9 @@ namespace Events {
           return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void GetChecksum(BinaryWriter inWriter) {
+          if (Data != 0) inWriter.Write(Data);
+          if (dataTwo_ != null) DataTwo.GetChecksum(inWriter);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1084,7 +1144,7 @@ namespace Events {
           }
           if (other.dataTwo_ != null) {
             if (dataTwo_ == null) {
-              dataTwo_ = new global::Events.TestTwoMessage();
+              dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
             }
             DataTwo.MergeFrom(other.DataTwo);
           }
@@ -1104,7 +1164,7 @@ namespace Events {
               }
               case 18: {
                 if (dataTwo_ == null) {
-                  dataTwo_ = new global::Events.TestTwoMessage();
+                  dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
                 }
                 input.ReadMessage(dataTwo_);
                 break;
@@ -1120,11 +1180,11 @@ namespace Events {
               }
               break;
               case 2: {
-                if (dataTwo_ == null) dataTwo_ = new global::Events.TestTwoMessage();
+                if (dataTwo_ == null) dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
                 if (e.Path.Count - 1 != pathIndex) 
                   (dataTwo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
                 else
-                  dataTwo_  = global::Events.TestTwoMessage.Parser.ParseFrom(e.Data.ByteData);
+                  dataTwo_  = global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Parser.ParseFrom(e.Data.ByteData);
               }
               break;
               default: 
@@ -1198,7 +1258,7 @@ namespace Events {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::Events.EventTest.Descriptor.NestedTypes[1]; }
+          get { return global::Com.Zynga.Runtime.Protobuf.EventTest.Descriptor.NestedTypes[1]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1247,7 +1307,7 @@ namespace Events {
               Path = _path;
             }
             public zpr.EventPath FooPath => new zpr.EventPath(Path, 1);
-            public global::Events.EventTest.Types.NestedMessage.Paths InternalPath => new global::Events.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(Path, 2));
+            public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths InternalPath => new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(Path, 2));
         }
         /// <summary>Field number for the "foo" field.</summary>
         public const int FooFieldNumber = 1;
@@ -1264,11 +1324,11 @@ namespace Events {
         /// <summary>Field number for the "internal" field.</summary>
         public const int InternalFieldNumber = 2;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public global::Events.EventTest.Types.NestedMessage Internal {
-          get { return bodyCase_ == BodyOneofCase.Internal ? (global::Events.EventTest.Types.NestedMessage) body_ : null; }
+        public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
+          get { return bodyCase_ == BodyOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_ : null; }
           set {
             value.SetRoot(_root);
-            value.SetPath(new global::Events.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(this.Path.Path, 2)));
+            value.SetPath(new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(this.Path.Path, 2)));
             AddEvent(2, zpr.EventSource.EventAction.Snapshot, value);
             body_ = value;
             bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.Internal;
@@ -1327,8 +1387,9 @@ namespace Events {
           return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void GetChecksum(BinaryWriter inWriter) {
+          if (bodyCase_ == BodyOneofCase.Foo) inWriter.Write(Foo);
+          if (bodyCase_ == BodyOneofCase.Internal) Internal.GetChecksum(inWriter);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1384,7 +1445,7 @@ namespace Events {
                 break;
               }
               case 18: {
-                global::Events.EventTest.Types.NestedMessage subBuilder = new global::Events.EventTest.Types.NestedMessage();
+                global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage subBuilder = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
                 if (bodyCase_ == BodyOneofCase.Internal) {
                   subBuilder.MergeFrom(Internal);
                 }
@@ -1404,11 +1465,11 @@ namespace Events {
               }
               break;
               case 2: {
-                if (body_ == null) body_ = new global::Events.EventTest.Types.NestedMessage();
+                if (body_ == null) body_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
                 if (e.Path.Count - 1 != pathIndex) 
                   (body_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
                 else
-                  body_   = global::Events.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
+                  body_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
                 bodyCase_ = body_ == null ? BodyOneofCase.None : BodyOneofCase.Internal;
               }
               break;
@@ -1491,16 +1552,16 @@ namespace Events {
           }
           break;
           case 3: {
-            if (testOneof_ == null) testOneof_ = new global::Events.EventTest.Types.NestedMessage();
+            if (testOneof_ == null) testOneof_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
             if (e.Path.Count - 1 != pathIndex) 
               (testOneof_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
             else
-              testOneof_   = global::Events.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
+              testOneof_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
             testOneofCase_ = testOneof_ == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
           }
           break;
           case 4: {
-            testEvent_ = (global::Events.EnumTest)e.Data.U32;
+            testEvent_ = (global::Com.Zynga.Runtime.Protobuf.EnumTest)e.Data.U32;
           }
           break;
           case 5: {
@@ -1515,7 +1576,7 @@ namespace Events {
           break;
           case 6: {
             if (e.Action == zpr.EventSource.EventAction.AddList) {
-              var m = global::Events.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
+              var m = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
               testMessage_.Add(m);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
               SafeRemoveCurrentIndex(testMessage_, e.Data.I32);
@@ -1526,9 +1587,9 @@ namespace Events {
           break;
           case 7: {
             if (e.Action == zpr.EventSource.EventAction.AddList) {
-              testEnum_.Add((global::Events.EnumTest)e.Data.U32);
+              testEnum_.Add((global::Com.Zynga.Runtime.Protobuf.EnumTest)e.Data.U32);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              testEnum_.Remove((global::Events.EnumTest)e.Data.U32);
+              testEnum_.Remove((global::Com.Zynga.Runtime.Protobuf.EnumTest)e.Data.U32);
             } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
               testEnum_.Clear();
             }
@@ -1538,7 +1599,7 @@ namespace Events {
             if (e.Action == zpr.EventSource.EventAction.AddMap) {
              var keyStream = e.Data.MapData.Data.CreateCodedInput();
              var realKeytestMap = keyStream.ReadString();
-             var realValuetestMap = global::Events.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.MapData.Data);
+             var realValuetestMap = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.MapData.Data);
              testMap_.Add(realKeytestMap, realValuetestMap);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {
              var keyStream = e.Data.MapData.Data.CreateCodedInput();
@@ -1550,11 +1611,11 @@ namespace Events {
           }
           break;
           case 9: {
-            if (data_ == null) data_ = new global::Events.EventTest.Types.EventOneofTest();
+            if (data_ == null) data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
             if (e.Path.Count - 1 != pathIndex) 
               (data_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
             else
-              data_  = global::Events.EventTest.Types.EventOneofTest.Parser.ParseFrom(e.Data.ByteData);
+              data_  = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Parser.ParseFrom(e.Data.ByteData);
           }
           break;
           case 10: {
@@ -1574,8 +1635,12 @@ namespace Events {
           }
           break;
           case 11: {
-            if (testNonMessage_ == null) testNonMessage_ = new global::Events.TestMessage();
-            testNonMessage_  = global::Events.TestMessage.Parser.ParseFrom(e.Data.ByteData);
+            if (testNonMessage_ == null) testNonMessage_ = new global::Com.Zynga.Runtime.Protobuf.TestMessage();
+            testNonMessage_  = global::Com.Zynga.Runtime.Protobuf.TestMessage.Parser.ParseFrom(e.Data.ByteData);
+          }
+          break;
+          case 12: {
+            testStringNoChecksum_ = e.Data.StringData;
           }
           break;
           default: 
@@ -1635,6 +1700,10 @@ namespace Events {
             return new zpr.EventSource.EventContent() { ByteData = byteDatatestNonMessage };
           }
           break;
+          case 12: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+          }
+          break;
           default: 
             return null;
           break;
@@ -1691,6 +1760,10 @@ namespace Events {
           break;
           case 11: {
             e.Path.AddRange(this.Path.TestNonMessagePath._path);
+          }
+          break;
+          case 12: {
+            e.Path.AddRange(this.Path.TestStringNoChecksumPath._path);
           }
           break;
           default: 

@@ -151,6 +151,9 @@ void MessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
 
 void MessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
   if (checksum_exclude()) return;
+  printer->Print(
+    variables_,
+    "if ($has_property_check$) $property_name$.GetChecksum(inWriter);\n");
 }
 
 
@@ -295,11 +298,6 @@ void MessageOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isM
   vars["type_name"] = variables_["type_name"];
   vars["name"] = variables_["name"];
 
-
-  // if (!isMap) {
-  //   printer->Print(vars, "        if ($type_name$.IsEventSourced) return null;\n");
-  // }
-  
   printer->Print(vars, "        var byteData$name$ = (data as pb::IMessage)?.ToByteString();\n");
   printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = byteData$name$ };\n");
 }
@@ -318,11 +316,6 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
       "field_name", GetPropertyName(descriptor_));
   }
 }
-
-void MessageOneofFieldGenerator::GenerateCheckSum(io::Printer* printer) {
-  if (checksum_exclude()) return;
-}
-
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
   // TODO(jonskeet): We may be able to do better than this

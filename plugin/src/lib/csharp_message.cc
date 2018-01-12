@@ -591,15 +591,13 @@ void MessageGenerator::GenerateFrameworkMethods(io::Printer* printer) {
   if (generate_checksum()) {
     WriteGeneratedCodeAttributes(printer);
 	  printer->Print(
-        "public int GetChecksum() {\n"
-        "  int checksum = 1;\n");
+        "public void GetChecksum(BinaryWriter inWriter) {\n");
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
         scoped_ptr<FieldGeneratorBase> generator(
             CreateFieldGeneratorInternal(descriptor_->field(i)));
         generator->GenerateCheckSum(printer);
     }
-    printer->Print("return checksum;\n");
     printer->Outdent();
     printer->Print("}\n\n");
   }

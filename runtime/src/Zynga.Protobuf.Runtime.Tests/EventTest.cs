@@ -149,6 +149,10 @@ namespace Events {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void GetChecksum(BinaryWriter inWriter) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Data != 0) {
         output.WriteRawTag(8);
@@ -284,6 +288,10 @@ namespace Events {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void GetChecksum(BinaryWriter inWriter) {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -750,6 +758,10 @@ namespace Events {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void GetChecksum(BinaryWriter inWriter) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (EventId.Length != 0) {
         output.WriteRawTag(10);
@@ -1035,6 +1047,10 @@ namespace Events {
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void GetChecksum(BinaryWriter inWriter) {
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output) {
           if (Data != 0) {
             output.WriteRawTag(8);
@@ -1309,6 +1325,10 @@ namespace Events {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString() {
           return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void GetChecksum(BinaryWriter inWriter) {
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

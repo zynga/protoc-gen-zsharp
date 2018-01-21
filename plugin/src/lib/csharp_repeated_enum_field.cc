@@ -134,6 +134,16 @@ void RepeatedEnumFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
+void RepeatedEnumFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+
+  // we need to iterate over the lists
+  printer->Print(
+      variables_,
+      "foreach (var item in $name$_) {\n"
+      "    inWriter.Write((int)item);\n"
+      "}\n");
+}
 
 void RepeatedEnumFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(

@@ -586,6 +586,21 @@ void MessageGenerator::GenerateFrameworkMethods(io::Printer* printer) {
         "public override string ToString() {\n"
         "  return pb::JsonFormatter.ToDiagnosticString(this);\n"
         "}\n\n");
+
+  // lets check and see if we should generate checksums
+  if (generate_checksum()) {
+    //WriteGeneratedCodeAttributes(printer);
+	  printer->Print(
+        "public void GetChecksum(BinaryWriter inWriter) {\n");
+    printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+        scoped_ptr<FieldGeneratorBase> generator(
+            CreateFieldGeneratorInternal(descriptor_->field(i)));
+        generator->GenerateCheckSum(printer);
+    }
+    printer->Outdent();
+    printer->Print("}\n\n");
+  }
 }
 
 void MessageGenerator::GenerateMessageSerializationMethods(io::Printer* printer) {

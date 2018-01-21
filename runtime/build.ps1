@@ -29,16 +29,15 @@ Param(
     [string[]]$ScriptArgs
 )
 
-$FakeVersion = "5.0.0-alpha014"
+$FakeVersion = "5.0.0-beta010"
 $NBenchVersion = "1.0.1"
 $DotNetChannel = "preview";
-$DotNetVersion = "1.0.4";
-$DotNetInstallerUri = "https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1";
+$DotNetVersion = "2.0.0";
+$DotNetInstallerUri = "https://dot.net/v1/dotnet-install.ps1";
 $NugetVersion = "4.1.0";
 $NugetUrl = "https://dist.nuget.org/win-x86-commandline/v$NugetVersion/nuget.exe"
 $ProtobufVersion = "3.2.0"
 $DocfxVersion = "2.21.1"
-$XUnitVersion= "2.2.0"
 
 # Make sure tools folder exists
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -113,20 +112,6 @@ if (!(Test-Path $FakeExePath)) {
     Invoke-Expression "&`"$NugetPath`" install Fake -ExcludeVersion -Version $FakeVersion -OutputDirectory `"$ToolPath`"" | Out-Null;
     if ($LASTEXITCODE -ne 0) {
         Throw "An error occured while restoring Fake from NuGet."
-    }
-}
-
-###########################################################################
-# INSTALL Xunit
-###########################################################################
-# Make sure Xunit has been installed.
-
-$xUnitExePath = Join-Path $ToolPath "xunit.runner.console/tools/xunit.console.exe"
-if (!(Test-Path $xUnitExePath)) {
-    Write-Host "Installing xunit..."
-    Invoke-Expression "&`"$NugetPath`" install xunit.runner.console -ExcludeVersion -Version $XUnitVersion -OutputDirectory `"$ToolPath`"" | Out-Null;
-    if ($LASTEXITCODE -ne 0) {
-        Throw "An error occured while restoring xunit from NuGet."
     }
 }
 

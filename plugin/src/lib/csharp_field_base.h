@@ -54,11 +54,13 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   virtual void GenerateCloningCode(io::Printer* printer) = 0;
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateCodecCode(io::Printer* printer);
+
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateMembers(io::Printer* printer, bool isEventSource) = 0;
   virtual void GenerateEventSource(io::Printer* printer) = 0;
   virtual void GenerateEventAdd(io::Printer* printer,  bool isMap = false) = 0;
   virtual void GenerateEventAddEvent(io::Printer* printer) = 0;
+  virtual void GenerateCheckSum(io::Printer* printer) = 0;
   ///
 
   virtual void GenerateMergingCode(io::Printer* printer) = 0;
@@ -95,6 +97,10 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   std::string default_value(const FieldDescriptor* descriptor);
   std::string number();
   std::string capitalized_type_name();
+
+  /// The following code is Copyright 2018, Zynga
+  bool checksum_exclude();
+  ///
 
  private:
   void SetCommonFieldVariables(std::map<string, string>* variables);

@@ -45,6 +45,8 @@
 #include "src/lib/csharp_field_base.h"
 #include "src/lib/csharp_helpers.h"
 #include "src/lib/csharp_names.h"
+#include "src/lib/generated/event_plugin.pb.h"
+
 
 using google::protobuf::internal::scoped_ptr;
 
@@ -427,6 +429,17 @@ std::string FieldGeneratorBase::capitalized_type_name() {
       return "";
   }
 }
+
+  /// The following code is Copyright 2018, Zynga
+bool FieldGeneratorBase::checksum_exclude() {
+  if (descriptor_ != NULL) {
+      const FieldOptions& op = descriptor_->options();
+      return op.HasExtension(com::zynga::runtime::protobuf::exclude_checksum);
+  }
+
+  return false;
+}
+  ///
 
 }  // namespace csharp
 }  // namespace compiler

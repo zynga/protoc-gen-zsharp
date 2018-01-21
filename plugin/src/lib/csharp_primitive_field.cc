@@ -164,6 +164,23 @@ void PrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
+void PrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude()) return;
+
+  if (descriptor_->type() == FieldDescriptor::TYPE_ENUM)
+  {
+    printer->Print(
+        variables_,
+        "if ($has_property_check$) inWriter.Write((int)$name$_);\n");
+  }
+  else
+  {
+    printer->Print(
+        variables_,
+        "if ($has_property_check$) inWriter.Write($property_name$);\n");
+  }
+}
+
 
 void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
   printer->Print(
@@ -349,8 +366,6 @@ void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
     "field_name", GetPropertyName(descriptor_));
 }
-
-
 
 void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {
   printer->Print(variables_,

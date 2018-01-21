@@ -214,18 +214,54 @@ void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
 }
 
 void MapFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
-  const FieldDescriptor* key_descriptor =
+  printer->Print(
+      "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
+      "field_name", GetPropertyName(descriptor_));
+}
+
+void MapFieldGenerator::GenerateCheckSum(io::Printer* printer) {
+  if (checksum_exclude())
+    return;
+
+  const FieldDescriptor *key_descriptor =
       descriptor_->message_type()->FindFieldByName("key");
-  const FieldDescriptor* value_descriptor =
+  const FieldDescriptor *value_descriptor =
       descriptor_->message_type()->FindFieldByName("value");
 
-  std::map<string, string> vars;
-  vars["name"] = variables_["name"];
+  // we need to iterate over the lists
+  printer->Print(
+      variables_,
+      "foreach (var item in $name$_) {\n");
 
+  if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE)
+  {
     printer->Print(
-    "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
-    "field_name", GetPropertyName(descriptor_));
+      variables_,
+      "    item.Key.GetChecksum(inWriter);\n");
+  }
+  else
+  {
+    printer->Print(
+      variables_,
+      "    inWriter.Write(item.Key);\n");
+  }
 
+  if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE)
+  {
+    printer->Print(
+      variables_,
+      "    item.Value.GetChecksum(inWriter);\n");
+  }
+  else
+  {
+    printer->Print(
+      variables_,
+      "    inWriter.Write(item.Value);\n");
+  }
+
+  printer->Print(
+      variables_,
+      "}\n");
 }
 
 void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {

@@ -27,18 +27,22 @@ message EventMap {
 
 message EventContent {
     oneof data {
-        uint32      u32         = 1;
-        int32       i32         = 2;
-        fixed64     f64         = 3;
-        fixed32     f32         = 4;
-        sfixed64    sf64        = 5;
-        sfixed32    sf32        = 6;
-        double      r64         = 7;
-        float       r32         = 8;
+        uint32      u_32        = 1;
+        int32       i_32        = 2;
+        fixed64     f_64        = 3;
+        fixed32     f_32        = 4;
+        sfixed64    s_f_64      = 5;
+        sfixed32    s_f_32      = 6;
+        double      r_64        = 7;
+        float       r_32        = 8;
         bool        bool_data   = 9;
         string      string_data = 10;
         bytes       byte_data   = 11;
         EventMap    map_data    = 12;
+        int64       i_64        = 13;
+        uint64      u_64        = 14;
+        sint32      s_i_32      = 15;
+        sint64      s_i_64      = 16;
     }
 }
 

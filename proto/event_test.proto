@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.zynga.runtime.protobuf;
 
 import "event_plugin.proto";
+import "google/protobuf/timestamp.proto";
 
 enum EnumTest
 {
@@ -54,5 +55,6 @@ message EventTest{
   map<int32, string> test_map_two = 10;
   TestMessage test_non_message = 11;
   string test_string_no_checksum = 12 [(com.zynga.runtime.protobuf.exclude_checksum) = true];
-
+  bytes test_bytes_field = 13;
+  google.protobuf.Timestamp date = 14;
 }

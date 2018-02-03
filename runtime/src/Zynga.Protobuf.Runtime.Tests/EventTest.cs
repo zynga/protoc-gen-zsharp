@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Google.Protobuf;
+using global::Zynga.Protobuf.Runtime;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
@@ -28,43 +29,46 @@ namespace Com.Zynga.Runtime.Protobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBldmVudF90ZXN0LnByb3RvEhpjb20uenluZ2EucnVudGltZS5wcm90b2J1",
-            "ZhoSZXZlbnRfcGx1Z2luLnByb3RvIiEKC1Rlc3RNZXNzYWdlEhIKBGRhdGEY",
-            "ASABKAVSBGRhdGEiKgoOVGVzdFR3b01lc3NhZ2USEgoEZGF0YRgBIAEoBVIE",
-            "ZGF0YToEyLgeASLHCQoJRXZlbnRUZXN0EhgKB2V2ZW50SWQYASABKAlSB2V2",
-            "ZW50SWQSEgoDZm9vGAIgASgJSABSA2ZvbxJRCghpbnRlcm5hbBgDIAEoCzIz",
+            "ZhoSZXZlbnRfcGx1Z2luLnByb3RvGh9nb29nbGUvcHJvdG9idWYvdGltZXN0",
+            "YW1wLnByb3RvIiEKC1Rlc3RNZXNzYWdlEhIKBGRhdGEYASABKAVSBGRhdGEi",
+            "KgoOVGVzdFR3b01lc3NhZ2USEgoEZGF0YRgBIAEoBVIEZGF0YToEyLgeASKh",
+            "CgoJRXZlbnRUZXN0EhgKB2V2ZW50SWQYASABKAlSB2V2ZW50SWQSEgoDZm9v",
+            "GAIgASgJSABSA2ZvbxJRCghpbnRlcm5hbBgDIAEoCzIzLmNvbS56eW5nYS5y",
+            "dW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5OZXN0ZWRNZXNzYWdlSABSCGlu",
+            "dGVybmFsEkMKCnRlc3RfZXZlbnQYBCABKA4yJC5jb20uenluZ2EucnVudGlt",
+            "ZS5wcm90b2J1Zi5FbnVtVGVzdFIJdGVzdEV2ZW50EhsKCXRlc3RfcHJpbRgF",
+            "IAMoBVIIdGVzdFByaW0SVgoMdGVzdF9tZXNzYWdlGAYgAygLMjMuY29tLnp5",
+            "bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5lc3RlZE1lc3NhZ2VS",
+            "C3Rlc3RNZXNzYWdlEkEKCXRlc3RfZW51bRgHIAMoDjIkLmNvbS56eW5nYS5y",
+            "dW50aW1lLnByb3RvYnVmLkVudW1UZXN0Ugh0ZXN0RW51bRJNCgh0ZXN0X21h",
+            "cBgIIAMoCzIyLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVz",
+            "dC5UZXN0TWFwRW50cnlSB3Rlc3RNYXASSAoEZGF0YRgJIAEoCzI0LmNvbS56",
+            "eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5FdmVudE9uZW9mVGVz",
+            "dFIEZGF0YRJXCgx0ZXN0X21hcF90d28YCiADKAsyNS5jb20uenluZ2EucnVu",
+            "dGltZS5wcm90b2J1Zi5FdmVudFRlc3QuVGVzdE1hcFR3b0VudHJ5Ugp0ZXN0",
+            "TWFwVHdvElEKEHRlc3Rfbm9uX21lc3NhZ2UYCyABKAsyJy5jb20uenluZ2Eu",
+            "cnVudGltZS5wcm90b2J1Zi5UZXN0TWVzc2FnZVIOdGVzdE5vbk1lc3NhZ2US",
+            "OwoXdGVzdF9zdHJpbmdfbm9fY2hlY2tzdW0YDCABKAlCBNC4HgFSFHRlc3RT",
+            "dHJpbmdOb0NoZWNrc3VtEigKEHRlc3RfYnl0ZXNfZmllbGQYDSABKAxSDnRl",
+            "c3RCeXRlc0ZpZWxkEi4KBGRhdGUYDiABKAsyGi5nb29nbGUucHJvdG9idWYu",
+            "VGltZXN0YW1wUgRkYXRlGm8KDU5lc3RlZE1lc3NhZ2USEgoEZGF0YRgBIAEo",
+            "BVIEZGF0YRJECgdkYXRhVHdvGAIgASgLMiouY29tLnp5bmdhLnJ1bnRpbWUu",
+            "cHJvdG9idWYuVGVzdFR3b01lc3NhZ2VSB2RhdGFUd286BMi4HgEahQEKDkV2",
+            "ZW50T25lb2ZUZXN0EhIKA2ZvbxgBIAEoCUgAUgNmb28SUQoIaW50ZXJuYWwY",
+            "AiABKAsyMy5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5FdmVudFRlc3Qu",
+            "TmVzdGVkTWVzc2FnZUgAUghpbnRlcm5hbDoEyLgeAUIGCgRib2R5Gm8KDFRl",
+            "c3RNYXBFbnRyeRIQCgNrZXkYASABKAlSA2tleRJJCgV2YWx1ZRgCIAEoCzIz",
             "LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5OZXN0ZWRN",
-            "ZXNzYWdlSABSCGludGVybmFsEkMKCnRlc3RfZXZlbnQYBCABKA4yJC5jb20u",
-            "enluZ2EucnVudGltZS5wcm90b2J1Zi5FbnVtVGVzdFIJdGVzdEV2ZW50EhsK",
-            "CXRlc3RfcHJpbRgFIAMoBVIIdGVzdFByaW0SVgoMdGVzdF9tZXNzYWdlGAYg",
-            "AygLMjMuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5l",
-            "c3RlZE1lc3NhZ2VSC3Rlc3RNZXNzYWdlEkEKCXRlc3RfZW51bRgHIAMoDjIk",
-            "LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkVudW1UZXN0Ugh0ZXN0RW51",
-            "bRJNCgh0ZXN0X21hcBgIIAMoCzIyLmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
-            "YnVmLkV2ZW50VGVzdC5UZXN0TWFwRW50cnlSB3Rlc3RNYXASSAoEZGF0YRgJ",
-            "IAEoCzI0LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5F",
-            "dmVudE9uZW9mVGVzdFIEZGF0YRJXCgx0ZXN0X21hcF90d28YCiADKAsyNS5j",
-            "b20uenluZ2EucnVudGltZS5wcm90b2J1Zi5FdmVudFRlc3QuVGVzdE1hcFR3",
-            "b0VudHJ5Ugp0ZXN0TWFwVHdvElEKEHRlc3Rfbm9uX21lc3NhZ2UYCyABKAsy",
-            "Jy5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5UZXN0TWVzc2FnZVIOdGVz",
-            "dE5vbk1lc3NhZ2USOwoXdGVzdF9zdHJpbmdfbm9fY2hlY2tzdW0YDCABKAlC",
-            "BNC4HgFSFHRlc3RTdHJpbmdOb0NoZWNrc3VtGm8KDU5lc3RlZE1lc3NhZ2US",
-            "EgoEZGF0YRgBIAEoBVIEZGF0YRJECgdkYXRhVHdvGAIgASgLMiouY29tLnp5",
-            "bmdhLnJ1bnRpbWUucHJvdG9idWYuVGVzdFR3b01lc3NhZ2VSB2RhdGFUd286",
-            "BMi4HgEahQEKDkV2ZW50T25lb2ZUZXN0EhIKA2ZvbxgBIAEoCUgAUgNmb28S",
-            "UQoIaW50ZXJuYWwYAiABKAsyMy5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
-            "Zi5FdmVudFRlc3QuTmVzdGVkTWVzc2FnZUgAUghpbnRlcm5hbDoEyLgeAUIG",
-            "CgRib2R5Gm8KDFRlc3RNYXBFbnRyeRIQCgNrZXkYASABKAlSA2tleRJJCgV2",
-            "YWx1ZRgCIAEoCzIzLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50",
-            "VGVzdC5OZXN0ZWRNZXNzYWdlUgV2YWx1ZToCOAEaPQoPVGVzdE1hcFR3b0Vu",
-            "dHJ5EhAKA2tleRgBIAEoBVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToC",
-            "OAE6BMi4HgFCCwoJdGVzdE9uZW9mKiQKCEVudW1UZXN0EgkKBVZBTFVFEAAS",
-            "DQoJVkFMVUVfVFdPEAFiBnByb3RvMw=="));
+            "ZXNzYWdlUgV2YWx1ZToCOAEaPQoPVGVzdE1hcFR3b0VudHJ5EhAKA2tleRgB",
+            "IAEoBVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE6BMi4HgFCCwoJ",
+            "dGVzdE9uZW9mKiQKCEVudW1UZXN0EgkKBVZBTFVFEAASDQoJVkFMVUVfVFdP",
+            "EAFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.EnumTest), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestMessage), global::Com.Zynga.Runtime.Protobuf.TestMessage.Parser, new[]{ "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestTwoMessage), global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Parser, new[]{ "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest), global::Com.Zynga.Runtime.Protobuf.EventTest.Parser, new[]{ "EventId", "Foo", "Internal", "TestEvent", "TestPrim", "TestMessage", "TestEnum", "TestMap", "Data", "TestMapTwo", "TestNonMessage", "TestStringNoChecksum" }, new[]{ "TestOneof" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage), global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser, new[]{ "Data", "DataTwo" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest), global::Com.Zynga.Runtime.Protobuf.EventTest.Parser, new[]{ "EventId", "Foo", "Internal", "TestEvent", "TestPrim", "TestMessage", "TestEnum", "TestMap", "Data", "TestMapTwo", "TestNonMessage", "TestStringNoChecksum", "TestBytesField", "Date" }, new[]{ "TestOneof" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage), global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser, new[]{ "Data", "DataTwo" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest), global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Parser, new[]{ "Foo", "Internal" }, new[]{ "Body" }, null, null),
             null, null, })
           }));
@@ -439,6 +443,8 @@ namespace Com.Zynga.Runtime.Protobuf {
       testMapTwo_ = other.testMapTwo_.Clone();
       TestNonMessage = other.testNonMessage_ != null ? other.TestNonMessage.Clone() : null;
       testStringNoChecksum_ = other.testStringNoChecksum_;
+      testBytesField_ = other.testBytesField_;
+      Date = other.date_ != null ? other.Date.Clone() : null;
       switch (other.TestOneofCase) {
         case TestOneofOneofCase.Foo:
           Foo = other.Foo;
@@ -482,6 +488,8 @@ namespace Com.Zynga.Runtime.Protobuf {
         public zpr.EventPath TestMapTwoPath => new zpr.EventPath(Path, 10);
         public zpr.EventPath TestNonMessagePath => new zpr.EventPath(Path, 11);
         public zpr.EventPath TestStringNoChecksumPath => new zpr.EventPath(Path, 12);
+        public zpr.EventPath TestBytesFieldPath => new zpr.EventPath(Path, 13);
+        public zpr.EventPath DatePath => new zpr.EventPath(Path, 14);
     }
     /// <summary>Field number for the "eventId" field.</summary>
     public const int EventIdFieldNumber = 1;
@@ -708,6 +716,30 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "test_bytes_field" field.</summary>
+    public const int TestBytesFieldFieldNumber = 13;
+    private pb::ByteString testBytesField_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString TestBytesField {
+      get { return testBytesField_; }
+      set {
+        AddEvent(13, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        testBytesField_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "date" field.</summary>
+    public const int DateFieldNumber = 14;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp date_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp Date {
+      get { return date_; }
+      set {
+        AddEvent(14, zpr.EventSource.EventAction.Snapshot, value);
+        date_ = value;
+      }
+    }
+
     public object testOneof_;
     /// <summary>Enum of possible cases for the "testOneof" oneof.</summary>
     public enum TestOneofOneofCase {
@@ -752,6 +784,8 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (testMapTwo_.Equals(other.testMapTwo_)) return false;
       if (!object.Equals(TestNonMessage, other.TestNonMessage)) return false;
       if (TestStringNoChecksum != other.TestStringNoChecksum) return false;
+      if (TestBytesField != other.TestBytesField) return false;
+      if (!object.Equals(Date, other.Date)) return false;
       if (TestOneofCase != other.TestOneofCase) return false;
       return true;
     }
@@ -771,6 +805,8 @@ namespace Com.Zynga.Runtime.Protobuf {
       hash ^= testMapTwo_.GetHashCode();
       if (testNonMessage_ != null) hash ^= TestNonMessage.GetHashCode();
       if (TestStringNoChecksum.Length != 0) hash ^= TestStringNoChecksum.GetHashCode();
+      if (TestBytesField.Length != 0) hash ^= TestBytesField.GetHashCode();
+      if (date_ != null) hash ^= Date.GetHashCode();
       hash ^= (int) testOneofCase_;
       return hash;
     }
@@ -804,6 +840,8 @@ namespace Com.Zynga.Runtime.Protobuf {
           inWriter.Write(item.Value);
       }
       if (testNonMessage_ != null) TestNonMessage.GetChecksum(inWriter);
+      if (TestBytesField.Length != 0) inWriter.Write(testBytesField_.ToByteArray());
+      if (date_ != null) Date.GetChecksum(inWriter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -841,6 +879,14 @@ namespace Com.Zynga.Runtime.Protobuf {
         output.WriteRawTag(98);
         output.WriteString(TestStringNoChecksum);
       }
+      if (TestBytesField.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteBytes(TestBytesField);
+      }
+      if (date_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(Date);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -871,6 +917,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
       if (TestStringNoChecksum.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(TestStringNoChecksum);
+      }
+      if (TestBytesField.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TestBytesField);
+      }
+      if (date_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Date);
       }
       return size;
     }
@@ -905,6 +957,15 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
       if (other.TestStringNoChecksum.Length != 0) {
         TestStringNoChecksum = other.TestStringNoChecksum;
+      }
+      if (other.TestBytesField.Length != 0) {
+        TestBytesField = other.TestBytesField;
+      }
+      if (other.date_ != null) {
+        if (date_ == null) {
+          date_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        Date.MergeFrom(other.Date);
       }
       switch (other.TestOneofCase) {
         case TestOneofOneofCase.Foo:
@@ -984,6 +1045,17 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           case 98: {
             TestStringNoChecksum = input.ReadString();
+            break;
+          }
+          case 106: {
+            TestBytesField = input.ReadBytes();
+            break;
+          }
+          case 114: {
+            if (date_ == null) {
+              date_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(date_);
             break;
           }
         }
@@ -1643,6 +1715,15 @@ namespace Com.Zynga.Runtime.Protobuf {
             testStringNoChecksum_ = e.Data.StringData;
           }
           break;
+          case 13: {
+            testBytesField_ = e.Data.ByteData;
+          }
+          break;
+          case 14: {
+            if (date_ == null) date_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            date_  = global::Google.Protobuf.WellKnownTypes.Timestamp.Parser.ParseFrom(e.Data.ByteData);
+          }
+          break;
           default: 
             return false;
           break;
@@ -1702,6 +1783,15 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 12: {
             return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+          }
+          break;
+          case 13: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.ByteData };
+          }
+          break;
+          case 14: {
+            var byteDatadate = (data as pb::IMessage)?.ToByteString();
+            return new zpr.EventSource.EventContent() { ByteData = byteDatadate };
           }
           break;
           default: 
@@ -1764,6 +1854,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 12: {
             e.Path.AddRange(this.Path.TestStringNoChecksumPath._path);
+          }
+          break;
+          case 13: {
+            e.Path.AddRange(this.Path.TestBytesFieldPath._path);
+          }
+          break;
+          case 14: {
+            e.Path.AddRange(this.Path.DatePath._path);
           }
           break;
           default: 

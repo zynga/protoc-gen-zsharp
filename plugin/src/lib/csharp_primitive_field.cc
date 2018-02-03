@@ -173,6 +173,12 @@ void PrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
         variables_,
         "if ($has_property_check$) inWriter.Write((int)$name$_);\n");
   }
+  else if (descriptor_->type() == FieldDescriptor::TYPE_BYTES)
+  {
+    printer->Print(
+        variables_,
+        "if ($has_property_check$) inWriter.Write($name$_.ToByteArray());\n");
+  }
   else
   {
     printer->Print(

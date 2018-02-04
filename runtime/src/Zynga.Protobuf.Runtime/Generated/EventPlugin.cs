@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Google.Protobuf;
+using global::Zynga.Protobuf.Runtime;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;

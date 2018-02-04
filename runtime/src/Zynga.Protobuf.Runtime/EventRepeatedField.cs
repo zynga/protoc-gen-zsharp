@@ -77,7 +77,17 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public override bool Equals(object obj) {
-			return _internal.Equals(obj);
+			var repeatedField = obj as RepeatedField<T>;
+			if (repeatedField != null) {
+				return _internal.Equals(repeatedField);
+			}
+
+			var eventField = obj as EventRepeatedField<T>;
+			if (eventField != null) {
+				return eventField.Equals(_internal);
+			}
+
+			return false;
 		}
 
 		IEnumerator IEnumerable.GetEnumerator() {

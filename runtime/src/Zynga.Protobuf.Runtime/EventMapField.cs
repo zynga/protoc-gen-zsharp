@@ -104,7 +104,17 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public override bool Equals(object other) {
-			return _internal.Equals(other as MapField<TKey, TValue>);
+			var mapField = other as MapField<TKey, TValue>;
+			if (mapField != null) {
+				return _internal.Equals(mapField);
+			}
+
+			var eventMap = other as EventMapField<TKey, TValue>;
+			if (eventMap != null) {
+				return eventMap.Equals(_internal);
+			}
+
+			return false;
 		}
 
 		public override int GetHashCode() {

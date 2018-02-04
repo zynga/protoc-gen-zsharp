@@ -795,9 +795,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if(!testPrim_.Equals(other.testPrim_)) return false;
       if(!testMessage_.Equals(other.testMessage_)) return false;
       if(!testEnum_.Equals(other.testEnum_)) return false;
-      if (testMap_.Equals(other.testMap_)) return false;
+      if (!testMap_.Equals(other.testMap_)) return false;
       if (!object.Equals(Data, other.Data)) return false;
-      if (testMapTwo_.Equals(other.testMapTwo_)) return false;
+      if (!testMapTwo_.Equals(other.testMapTwo_)) return false;
       if (!object.Equals(TestNonMessage, other.TestNonMessage)) return false;
       if (TestStringNoChecksum != other.TestStringNoChecksum) return false;
       if (TestBytesField != other.TestBytesField) return false;

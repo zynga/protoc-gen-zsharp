@@ -213,10 +213,6 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			newBlob.MergeFrom(blob);
 			Assert.Equal(blob, newBlob);
 			Assert.Equal(newBlob, blob);
-
-			// should clear any pending events after a merge
-			blob.MergeFrom(newBlob);
-			Assert.Equal(0, blob.GenerateEvents().Events.Count);
 		}
 	}
 }

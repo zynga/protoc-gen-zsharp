@@ -488,8 +488,8 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
       if (!object.Equals(Bar, other.Bar)) return false;
       if (!object.Equals(Foo, other.Foo)) return false;
-      if (intToString_.Equals(other.intToString_)) return false;
-      if (stringToFoo_.Equals(other.stringToFoo_)) return false;
+      if (!intToString_.Equals(other.intToString_)) return false;
+      if (!stringToFoo_.Equals(other.stringToFoo_)) return false;
       if(!ilist_.Equals(other.ilist_)) return false;
       if(!slist_.Equals(other.slist_)) return false;
       if(!foolist_.Equals(other.foolist_)) return false;

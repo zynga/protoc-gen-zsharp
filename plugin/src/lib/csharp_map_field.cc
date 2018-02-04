@@ -309,7 +309,7 @@ void MapFieldGenerator::WriteHash(io::Printer* printer) {
 void MapFieldGenerator::WriteEquals(io::Printer* printer) {
   printer->Print(
     variables_,
-    "if ($name$_.Equals(other.$name$_)) return false;\n");
+    "if (!$name$_.Equals(other.$name$_)) return false;\n");
 }
 
 void MapFieldGenerator::WriteToString(io::Printer* printer) {

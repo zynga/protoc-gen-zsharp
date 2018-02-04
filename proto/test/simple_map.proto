@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+message SimpleMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  map<int32, string> test_foo = 10;
+}

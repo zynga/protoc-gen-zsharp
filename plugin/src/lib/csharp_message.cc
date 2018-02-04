@@ -179,7 +179,26 @@ void MessageGenerator::Generate(io::Printer* printer) {
   printer->Print(
     vars,
     "public $class_name$() {\n"
-    "  OnConstruction();\n"
+    "  OnConstruction();\n");
+
+  if (IsEventSourced()) {
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map()) {
+        printer->Print(
+          "  $field_name$_.SetRoot(_root);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
+        printer->Print(
+          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+          "property_name", GetPropertyName(fieldDescriptor));;
+      }
+    }
+  }
+
+  printer->Print(
+    vars,
     "}\n\n"
     "partial void OnConstruction();\n\n");
 
@@ -196,10 +215,48 @@ void MessageGenerator::Generate(io::Printer* printer) {
   
   if (IsEventSourced()) {
     printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
+
+    printer->Print(
+      vars,
+      "public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {\n"
+      "  base.SetRoot(inRoot);\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map()) {
+        printer->Print(
+          "  $field_name$_.SetRoot(inRoot);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
+      }
+    }
+
+    printer->Print(
+      vars,
+      "}\n");
+    /*
+        public override void SetRoot(List<EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testFoo_.SetRoot(inRoot);
+    }
+    */
+
     printer->Print(
     vars, 
     "public void SetPath($class_name$.Paths path) {\n");
     printer->Print("  this.Path = path;\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map()) {
+        printer->Print(
+          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+          "property_name", GetPropertyName(fieldDescriptor));
+      }
+    }
+
     printer->Print("}\n\n");
 
     printer->Print(

@@ -223,7 +223,7 @@ namespace Zynga.Protobuf.Runtime {
 		private void RemoveMapEvent(TKey key) {
 			var newEvent = new EventData {
 				Action = EventAction.RemoveMap,
-				Data = _converter.GetEventData(key, default(TValue))
+				Data = _converter.GetEventData(key, default(TValue), true)
 			};
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
@@ -257,15 +257,15 @@ namespace Zynga.Protobuf.Runtime {
 		public bool ApplyEvent(EventData e) {
 			switch (e.Action) {
 				case EventAction.AddMap:
-					var addPair = _converter.GetItem(e.Data);
+					var addPair = _converter.GetItem(e);
 					_internal.Add(addPair.Key, addPair.Value);
 					return true;
 				case EventAction.RemoveMap:
-					var removePair = _converter.GetItem(e.Data);
+					var removePair = _converter.GetItem(e);
 					_internal.Remove(removePair.Key);
 					return true;
 				case EventAction.ReplaceMap:
-					var replacePair = _converter.GetItem(e.Data);
+					var replacePair = _converter.GetItem(e);
 					_internal[replacePair.Key] = replacePair.Value;
 					return true;
 				case EventAction.ClearMap:

@@ -23,14 +23,7 @@ pushd $SCRIPT_DIR/plugin
   ./build_osx.sh
 popd
 
-$protoc --proto_path=$SCRIPT_DIR/proto --plugin=protoc-gen-zsharp=$zsharp \
-  --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime/Generated $SCRIPT_DIR/proto/event_plugin.proto
-$protoc --proto_path=$SCRIPT_DIR/proto --plugin=protoc-gen-zsharp=$zsharp \
-  --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime/Generated $SCRIPT_DIR/proto/event_source.proto
-$protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
-  --zsharp_out=checksum=true:$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/event_test.proto
-$protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
-  --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/delta_test.proto
+$SCRIPT_DIR/build_proto.sh
 
 pushd $SCRIPT_DIR/runtime
   ./build.sh CreateNuget

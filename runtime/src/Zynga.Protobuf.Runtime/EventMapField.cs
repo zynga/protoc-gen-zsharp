@@ -7,15 +7,19 @@ using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
 	public class EventMapField<TKey, TValue> : IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, IEquatable<MapField<TKey, TValue>>, IDictionary, ICollection, IReadOnlyDictionary<TKey, TValue>, IReadOnlyCollection<KeyValuePair<TKey, TValue>> {
-		private readonly MapField<TKey, TValue> _internal = new MapField<TKey, TValue>();
-		private readonly List<EventData> _root;
-		private readonly EventPath _path;
+		private readonly MapField<TKey, TValue> _internal;
+		private List<EventData> _root;
+		private EventPath _path;
 		private readonly EventMapConverter<TKey, TValue> _converter;
 
-		public EventMapField(List<EventData> root, EventPath path, EventMapConverter<TKey, TValue> converter) {
-			_root = root;
-			_path = path;
+		public EventMapField(EventMapConverter<TKey, TValue> converter) {
 			_converter = converter;
+			_internal = new MapField<TKey, TValue>();
+		}
+
+		public EventMapField(EventMapConverter<TKey, TValue> converter, MapField<TKey, TValue> mapField) {
+			_converter = converter;
+			_internal = mapField;
 		}
 
 		public MapField<TKey, TValue> Clone() {
@@ -25,6 +29,12 @@ namespace Zynga.Protobuf.Runtime {
 		public void Add(TKey key, TValue value) {
 			_internal.Add(key, value);
 			AddMapEvent(key, value);
+		}
+
+		public void Add(EventMapField<TKey, TValue> other) {
+			foreach (var kv in other) {
+				_internal[kv.Key] = kv.Value;
+			}
 		}
 
 		public bool ContainsKey(TKey key) {
@@ -123,6 +133,10 @@ namespace Zynga.Protobuf.Runtime {
 
 		public bool Equals(MapField<TKey, TValue> other) {
 			return _internal.Equals(other);
+		}
+
+		public void AddEntriesFrom(CodedInputStream input, MapField<TKey, TValue>.Codec codec) {
+			_internal.AddEntriesFrom(input, codec);
 		}
 
 		public void WriteTo(CodedOutputStream output, MapField<TKey, TValue>.Codec codec) {
@@ -230,6 +244,14 @@ namespace Zynga.Protobuf.Runtime {
 			};
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
+		}
+
+		public void SetRoot(List<EventData> inRoot) {
+			_root = inRoot;
+		}
+
+		public void SetPath(EventPath path) {
+			_path = path;
 		}
 
 		public bool ApplyEvent(EventData e) {

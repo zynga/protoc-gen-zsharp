@@ -439,12 +439,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       testMessage_ = other.testMessage_.Clone();
       testEnum_ = other.testEnum_.Clone();
       testMap_ = other.testMap_.Clone();
-      Data = other.data_ != null ? other.Data.Clone() : null;
+      data_ = other.data_ != null ? other.Data.Clone() : null;
       testMapTwo_ = other.testMapTwo_.Clone();
-      TestNonMessage = other.testNonMessage_ != null ? other.TestNonMessage.Clone() : null;
+      testNonMessage_ = other.testNonMessage_ != null ? other.TestNonMessage.Clone() : null;
       testStringNoChecksum_ = other.testStringNoChecksum_;
       testBytesField_ = other.testBytesField_;
-      Date = other.date_ != null ? other.Date.Clone() : null;
+      date_ = other.date_ != null ? other.Date.Clone() : null;
       switch (other.TestOneofCase) {
         case TestOneofOneofCase.Foo:
           Foo = other.Foo;
@@ -627,13 +627,21 @@ namespace Com.Zynga.Runtime.Protobuf {
        var dataStream = new CodedOutputStream(memStream);
        dataStream.WriteString(key);
        dataStream.WriteMessage(value);
-       mapEvent.Data = ByteString.FromStream(memStream);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
      }
      AddEvent(8, zpr.EventSource.EventAction.AddMap, mapEvent);
      testMap_.Add(key, value);
     }
     public void RemoveTestMap(string key) {
-     AddEvent(8, zpr.EventSource.EventAction.RemoveMap, key);
+     var mapEvent = new zpr.EventSource.EventMap();
+     using (var memStream = new MemoryStream()) {;
+       var dataStream = new CodedOutputStream(memStream);
+       dataStream.WriteString(key);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+     }
+     AddEvent(8, zpr.EventSource.EventAction.RemoveMap, mapEvent);
      testMap_.Remove(key);
     }
     public void ClearTestMap() {
@@ -672,13 +680,21 @@ namespace Com.Zynga.Runtime.Protobuf {
        var dataStream = new CodedOutputStream(memStream);
        dataStream.WriteInt32(key);
        dataStream.WriteString(value);
-       mapEvent.Data = ByteString.FromStream(memStream);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
      }
      AddEvent(10, zpr.EventSource.EventAction.AddMap, mapEvent);
      testMapTwo_.Add(key, value);
     }
     public void RemoveTestMapTwo(int key) {
-     AddEvent(10, zpr.EventSource.EventAction.RemoveMap, key);
+     var mapEvent = new zpr.EventSource.EventMap();
+     using (var memStream = new MemoryStream()) {;
+       var dataStream = new CodedOutputStream(memStream);
+       dataStream.WriteInt32(key);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+     }
+     AddEvent(10, zpr.EventSource.EventAction.RemoveMap, mapEvent);
      testMapTwo_.Remove(key);
     }
     public void ClearTestMapTwo() {
@@ -779,9 +795,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if(!testPrim_.Equals(other.testPrim_)) return false;
       if(!testMessage_.Equals(other.testMessage_)) return false;
       if(!testEnum_.Equals(other.testEnum_)) return false;
-      if (testMap_.Equals(other.testMap_)) return false;
+      if (!testMap_.Equals(other.testMap_)) return false;
       if (!object.Equals(Data, other.Data)) return false;
-      if (testMapTwo_.Equals(other.testMapTwo_)) return false;
+      if (!testMapTwo_.Equals(other.testMapTwo_)) return false;
       if (!object.Equals(TestNonMessage, other.TestNonMessage)) return false;
       if (TestStringNoChecksum != other.TestStringNoChecksum) return false;
       if (TestBytesField != other.TestBytesField) return false;
@@ -822,7 +838,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (testOneofCase_ == TestOneofOneofCase.Internal) Internal.GetChecksum(inWriter);
       if (TestEvent != 0) inWriter.Write((int)testEvent_);
       foreach (var item in testPrim_) {
-          inWriter.Write((int)item);
+          inWriter.Write(item);
       }
       foreach (var item in testMessage_) {
           item.GetChecksum(inWriter);
@@ -1094,7 +1110,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public NestedMessage(NestedMessage other) : this() {
           data_ = other.data_;
-          DataTwo = other.dataTwo_ != null ? other.DataTwo.Clone() : null;
+          dataTwo_ = other.dataTwo_ != null ? other.DataTwo.Clone() : null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1668,14 +1684,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 8: {
+            var dataStream = e.Data.MapData.Data.CreateCodedInput();
             if (e.Action == zpr.EventSource.EventAction.AddMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeytestMap = keyStream.ReadString();
-             var realValuetestMap = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.MapData.Data);
+             var realKeytestMap = dataStream.ReadString();
+             var realValuetestMap = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
+             dataStream.ReadMessage(realValuetestMap);;
              testMap_.Add(realKeytestMap, realValuetestMap);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeytestMap = keyStream.ReadString();
+             var realKeytestMap = dataStream.ReadString();
              testMap_.Remove(realKeytestMap);
             } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
              testMap_.Clear();
@@ -1691,15 +1707,13 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 10: {
+            var dataStream = e.Data.MapData.Data.CreateCodedInput();
             if (e.Action == zpr.EventSource.EventAction.AddMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeytestMapTwo = keyStream.ReadInt32();
-             var valueStream = e.Data.MapData.Data.CreateCodedInput();
-             var realValuetestMapTwo  = valueStream.ReadString();
+             var realKeytestMapTwo = dataStream.ReadInt32();
+             var realValuetestMapTwo  = dataStream.ReadString();
              testMapTwo_.Add(realKeytestMapTwo, realValuetestMapTwo);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeytestMapTwo = keyStream.ReadInt32();
+             var realKeytestMapTwo = dataStream.ReadInt32();
              testMapTwo_.Remove(realKeytestMapTwo);
             } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
              testMapTwo_.Clear();

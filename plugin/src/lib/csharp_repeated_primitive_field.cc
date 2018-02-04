@@ -151,7 +151,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
   printer->Print(
       variables_,
       "foreach (var item in $name$_) {\n"
-      "    inWriter.Write((int)item);\n"
+      "    inWriter.Write(item);\n"
       "}\n");
 }
 

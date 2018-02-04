@@ -1,4 +1,5 @@
-﻿using Com.Zynga.Runtime.Protobuf;
+﻿using System;
+using Com.Zynga.Runtime.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Xunit;
 using Zynga.Protobuf.Runtime.EventSource;
@@ -16,18 +17,18 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.Foo.Str = "hello";
 
 			blob.AddIntToString(10, "world");
-			blob.AddStringToFoo("hello", new Foo{Long = 9, Str = "ha"});
-			
+			blob.AddStringToFoo("hello", new Foo {Long = 9, Str = "ha"});
+
 			//blob.AddFoolist(new Foo{Long = 123});
 			//blob.RemoveFoolist(0)  // This doesn't work atm
-			blob.AddFoolist(new Foo{Long = 321});
+			blob.AddFoolist(new Foo {Long = 321});
 			blob.AddFoolist(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
-			
+
 			blob.Addilist(12);
 			blob.Addilist(51);
 
 			blob.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
-			
+
 			blob.Timestamp = new Timestamp {
 				Seconds = 1234,
 				Nanos = 987
@@ -39,7 +40,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			return blob;
 		}
-		
+
 		[Fact]
 		public void CalculateSizeOfZero() {
 			var blob = new TestBlob();
@@ -56,7 +57,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		[Fact]
 		public void PopulatedFooShouldHaveCorrectSize() {
 			Assert.Equal(0, new Foo().CalculateSize());
-			Assert.Equal(2, new Foo{Long = 1}.CalculateSize());
+			Assert.Equal(2, new Foo {Long = 1}.CalculateSize());
 			Assert.Equal(4, new Foo {Str = "hi"}.CalculateSize());
 		}
 
@@ -92,7 +93,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var blob = new TestBlob();
 			blob.AddStringToFoo("", new Foo());
 			blob.AddStringToFoo("hi", new Foo());
-			blob.AddStringToFoo("bye", new Foo{Long = 300});
+			blob.AddStringToFoo("bye", new Foo {Long = 300});
 			Assert.Equal(24, blob.CalculateSize());
 		}
 
@@ -114,7 +115,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			Assert.Equal(blob, newBlob);
 		}
-		
+
 		// TODO: write paths test
 
 		private static void AssertPath(EventData eventData, int[] path) {
@@ -139,7 +140,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			var newBlob = new TestBlob();
 			newBlob.ApplyEvents(root);
-			
+
 			Assert.Equal(blob, newBlob);
 		}
 
@@ -169,6 +170,53 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			blob.Foo.Str = "asdf";
 			AssertDeltaPath(blob, new[] {2, 2});
+
+			blob.AddIntToString(0, "");
+			AssertDeltaPath(blob, new[] {3});
+
+			blob.AddIntToString(1, "asdf");
+			AssertDeltaPath(blob, new[] {3});
+
+			blob.RemoveIntToString(0);
+			AssertDeltaPath(blob, new[] {3});
+
+			blob.RemoveIntToString(1);
+			AssertDeltaPath(blob, new[] {3});
+
+			blob.AddStringToFoo("a", new Foo());
+			AssertDeltaPath(blob, new[] {4});
+
+			blob.AddStringToFoo("b", new Foo {Long = 12});
+			AssertDeltaPath(blob, new[] {4});
+
+			blob.RemoveStringToFoo("a");
+			AssertDeltaPath(blob, new[] {4});
+
+			blob.RemoveStringToFoo("b");
+			AssertDeltaPath(blob, new[] {4});
+
+			blob.Addilist(20);
+			AssertDeltaPath(blob, new[] {5});
+
+			blob.Addslist("as");
+			AssertDeltaPath(blob, new[] {6});
+
+			blob.AddFoolist(new Foo());
+			AssertDeltaPath(blob, new[] {7});
+		}
+
+		[Fact]
+		public void ShouldProduceIdenticalTestBlobWithMergeFrom() {
+			var blob = populated();
+
+			var newBlob = new TestBlob();
+			newBlob.MergeFrom(blob);
+			Assert.Equal(blob, newBlob);
+			Assert.Equal(newBlob, blob);
+
+			// should clear any pending events after a merge
+			blob.MergeFrom(newBlob);
+			Assert.Equal(0, blob.GenerateEvents().Events.Count);
 		}
 	}
 }

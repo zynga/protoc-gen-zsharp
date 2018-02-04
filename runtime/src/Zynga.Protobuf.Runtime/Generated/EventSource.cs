@@ -844,7 +844,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     public EventData(EventData other) : this() {
       field_ = other.field_;
       action_ = other.action_;
-      Data = other.data_ != null ? other.Data.Clone() : null;
+      data_ = other.data_ != null ? other.Data.Clone() : null;
       path_ = other.path_.Clone();
     }
 

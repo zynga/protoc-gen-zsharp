@@ -96,7 +96,8 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       "   var dataStream = new CodedOutputStream(memStream);\n"
       "   dataStream.$key_write_name$(key);\n"
       "   dataStream.$value_write_name$(value);\n"
-      "   mapEvent.Data = ByteString.FromStream(memStream);\n"
+      "   dataStream.Flush();\n"
+      "   mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
       " }\n"
       " AddEvent($number$, zpr.EventSource.EventAction.AddMap, mapEvent);\n"
       " $name$_.Add(key, value);\n"
@@ -105,7 +106,14 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     printer->Print(
       variables_,
       "$access_level$ void Remove$property_name$($key_type_name$ key) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.RemoveMap, key);\n"
+      " var mapEvent = new zpr.EventSource.EventMap();\n"
+      " using (var memStream = new MemoryStream()) {;\n"
+      "   var dataStream = new CodedOutputStream(memStream);\n"
+      "   dataStream.$key_write_name$(key);\n"
+      "   dataStream.Flush();\n"
+      "   mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
+      " }\n"
+      " AddEvent($number$, zpr.EventSource.EventAction.RemoveMap, mapEvent);\n"
       " $name$_.Remove(key);\n"
     "}\n");
 
@@ -150,28 +158,33 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
     vars["key_read_name"] = GetByteStringRead(key_descriptor);
     vars["value_read_name"] = GetByteStringRead(value_descriptor);
 
-
+  printer->Print(
+          vars,
+          "        var dataStream = e.Data.MapData.Data.CreateCodedInput();\n");
   printer->Print("        if (e.Action == zpr.EventSource.EventAction.AddMap) {\n");
+  
+
       // if we are a message type then we need to decode the message to its actual value
       if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(e.Data.MapData.Data);\n");
+          "         var realKey$name$ = new $key_type_name$();\n"
+          "         dataStream.ReadMessage(realKey$name$);\n");
       } else {
         printer->Print(
           vars,
-          "         var keyStream = e.Data.MapData.Data.CreateCodedInput();\n"
-          "         var realKey$name$ = keyStream.$key_read_name$();\n");
+          "         var realKey$name$ = dataStream.$key_read_name$();\n");
       }
+
       if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realValue$name$ = $value_type_name$.Parser.ParseFrom(e.Data.MapData.Data);\n");
+          "         var realValue$name$ = new $value_type_name$();\n"
+          "         dataStream.ReadMessage(realValue$name$);;\n");
       } else {
         printer->Print(
           vars,
-          "         var valueStream = e.Data.MapData.Data.CreateCodedInput();\n"
-          "         var realValue$name$  = valueStream.$value_read_name$();\n");
+          "         var realValue$name$  = dataStream.$value_read_name$();\n");
       }
       printer->Print(
           vars,
@@ -180,12 +193,12 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
       if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
         printer->Print(
           vars,
-          "         var realKey$name$ = $key_type_name$.Parser.ParseFrom(e.Data.MapData.Data);\n");
+          "         var realKey$name$ = new $key_type_name$();\n"
+          "         dataStream.ReadMessage(realKey$name$);\n");
       } else {
         printer->Print(
           vars,
-          "         var keyStream = e.Data.MapData.Data.CreateCodedInput();\n"
-          "         var realKey$name$ = keyStream.$key_read_name$();\n");
+          "         var realKey$name$ = dataStream.$key_read_name$();\n");
       }
       printer->Print(
           vars,

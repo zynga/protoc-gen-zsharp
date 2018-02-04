@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Google.Protobuf;
+using global::Zynga.Protobuf.Runtime;
 using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
@@ -112,18 +113,18 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestBlob(TestBlob other) : this() {
-      Bar = other.bar_ != null ? other.Bar.Clone() : null;
-      Foo = other.foo_ != null ? other.Foo.Clone() : null;
+      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+      foo_ = other.foo_ != null ? other.Foo.Clone() : null;
       intToString_ = other.intToString_.Clone();
       stringToFoo_ = other.stringToFoo_.Clone();
       ilist_ = other.ilist_.Clone();
       slist_ = other.slist_.Clone();
       foolist_ = other.foolist_.Clone();
-      Zam = other.zam_ != null ? other.Zam.Clone() : null;
+      zam_ = other.zam_ != null ? other.Zam.Clone() : null;
       fieldBool_ = other.fieldBool_;
-      Timestamp = other.timestamp_ != null ? other.Timestamp.Clone() : null;
-      Duration = other.duration_ != null ? other.Duration.Clone() : null;
-      AllPrims = other.allPrims_ != null ? other.AllPrims.Clone() : null;
+      timestamp_ = other.timestamp_ != null ? other.Timestamp.Clone() : null;
+      duration_ = other.duration_ != null ? other.Duration.Clone() : null;
+      allPrims_ = other.allPrims_ != null ? other.AllPrims.Clone() : null;
       switch (other.TestCase) {
         case TestOneofCase.Maybefoo:
           Maybefoo = other.Maybefoo.Clone();
@@ -213,13 +214,21 @@ namespace Com.Zynga.Runtime.Protobuf {
        var dataStream = new CodedOutputStream(memStream);
        dataStream.WriteInt32(key);
        dataStream.WriteString(value);
-       mapEvent.Data = ByteString.FromStream(memStream);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
      }
      AddEvent(3, zpr.EventSource.EventAction.AddMap, mapEvent);
      intToString_.Add(key, value);
     }
     public void RemoveIntToString(int key) {
-     AddEvent(3, zpr.EventSource.EventAction.RemoveMap, key);
+     var mapEvent = new zpr.EventSource.EventMap();
+     using (var memStream = new MemoryStream()) {;
+       var dataStream = new CodedOutputStream(memStream);
+       dataStream.WriteInt32(key);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+     }
+     AddEvent(3, zpr.EventSource.EventAction.RemoveMap, mapEvent);
      intToString_.Remove(key);
     }
     public void ClearIntToString() {
@@ -244,13 +253,21 @@ namespace Com.Zynga.Runtime.Protobuf {
        var dataStream = new CodedOutputStream(memStream);
        dataStream.WriteString(key);
        dataStream.WriteMessage(value);
-       mapEvent.Data = ByteString.FromStream(memStream);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
      }
      AddEvent(4, zpr.EventSource.EventAction.AddMap, mapEvent);
      stringToFoo_.Add(key, value);
     }
     public void RemoveStringToFoo(string key) {
-     AddEvent(4, zpr.EventSource.EventAction.RemoveMap, key);
+     var mapEvent = new zpr.EventSource.EventMap();
+     using (var memStream = new MemoryStream()) {;
+       var dataStream = new CodedOutputStream(memStream);
+       dataStream.WriteString(key);
+       dataStream.Flush();
+       mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+     }
+     AddEvent(4, zpr.EventSource.EventAction.RemoveMap, mapEvent);
      stringToFoo_.Remove(key);
     }
     public void ClearStringToFoo() {
@@ -513,6 +530,36 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    public void GetChecksum(BinaryWriter inWriter) {
+      if (bar_ != null) Bar.GetChecksum(inWriter);
+      if (foo_ != null) Foo.GetChecksum(inWriter);
+      foreach (var item in intToString_) {
+          inWriter.Write(item.Key);
+          inWriter.Write(item.Value);
+      }
+      foreach (var item in stringToFoo_) {
+          inWriter.Write(item.Key);
+          item.Value.GetChecksum(inWriter);
+      }
+      foreach (var item in ilist_) {
+          inWriter.Write(item);
+      }
+      foreach (var item in slist_) {
+          inWriter.Write(item);
+      }
+      foreach (var item in foolist_) {
+          item.GetChecksum(inWriter);
+      }
+      if (testCase_ == TestOneofCase.Maybefoo) Maybefoo.GetChecksum(inWriter);
+      if (testCase_ == TestOneofCase.Maybeint) inWriter.Write(Maybeint);
+      if (testCase_ == TestOneofCase.Maybestring) inWriter.Write(Maybestring);
+      if (zam_ != null) Zam.GetChecksum(inWriter);
+      if (FieldBool != false) inWriter.Write(FieldBool);
+      if (timestamp_ != null) Timestamp.GetChecksum(inWriter);
+      if (duration_ != null) Duration.GetChecksum(inWriter);
+      if (allPrims_ != null) AllPrims.GetChecksum(inWriter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -783,15 +830,13 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 3: {
+            var dataStream = e.Data.MapData.Data.CreateCodedInput();
             if (e.Action == zpr.EventSource.EventAction.AddMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeyintToString = keyStream.ReadInt32();
-             var valueStream = e.Data.MapData.Data.CreateCodedInput();
-             var realValueintToString  = valueStream.ReadString();
+             var realKeyintToString = dataStream.ReadInt32();
+             var realValueintToString  = dataStream.ReadString();
              intToString_.Add(realKeyintToString, realValueintToString);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeyintToString = keyStream.ReadInt32();
+             var realKeyintToString = dataStream.ReadInt32();
              intToString_.Remove(realKeyintToString);
             } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
              intToString_.Clear();
@@ -799,14 +844,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 4: {
+            var dataStream = e.Data.MapData.Data.CreateCodedInput();
             if (e.Action == zpr.EventSource.EventAction.AddMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeystringToFoo = keyStream.ReadString();
-             var realValuestringToFoo = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.MapData.Data);
+             var realKeystringToFoo = dataStream.ReadString();
+             var realValuestringToFoo = new global::Com.Zynga.Runtime.Protobuf.Foo();
+             dataStream.ReadMessage(realValuestringToFoo);;
              stringToFoo_.Add(realKeystringToFoo, realValuestringToFoo);
             } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {
-             var keyStream = e.Data.MapData.Data.CreateCodedInput();
-             var realKeystringToFoo = keyStream.ReadString();
+             var realKeystringToFoo = dataStream.ReadString();
              stringToFoo_.Remove(realKeystringToFoo);
             } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {
              stringToFoo_.Clear();
@@ -1091,7 +1136,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public Foo(Foo other) : this() {
       long_ = other.long_;
       str_ = other.str_;
-      Foo_ = other.foo_ != null ? other.Foo_.Clone() : null;
+      foo_ = other.foo_ != null ? other.Foo_.Clone() : null;
       enumero_ = other.enumero_;
       okay_ = other.okay_;
     }
@@ -1219,6 +1264,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    public void GetChecksum(BinaryWriter inWriter) {
+      if (Long != 0L) inWriter.Write(Long);
+      if (Str.Length != 0) inWriter.Write(Str);
+      if (foo_ != null) Foo_.GetChecksum(inWriter);
+      if (Enumero != 0) inWriter.Write((int)enumero_);
+      if (Okay != 0) inWriter.Write((int)okay_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1408,6 +1461,10 @@ namespace Com.Zynga.Runtime.Protobuf {
           return pb::JsonFormatter.ToDiagnosticString(this);
         }
 
+        public void GetChecksum(BinaryWriter inWriter) {
+          if (Hi != 0) inWriter.Write(Hi);
+        }
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output) {
           if (Hi != 0) {
@@ -1594,7 +1651,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Bar(Bar other) : this() {
-      Foo = other.foo_ != null ? other.Foo.Clone() : null;
+      foo_ = other.foo_ != null ? other.Foo.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1660,6 +1717,10 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    public void GetChecksum(BinaryWriter inWriter) {
+      if (foo_ != null) Foo.GetChecksum(inWriter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2089,6 +2150,24 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    public void GetChecksum(BinaryWriter inWriter) {
+      if (A != 0) inWriter.Write(A);
+      if (B != 0) inWriter.Write(B);
+      if (C != 0UL) inWriter.Write(C);
+      if (D != 0) inWriter.Write(D);
+      if (E != 0L) inWriter.Write(E);
+      if (F != 0) inWriter.Write(F);
+      if (G != 0D) inWriter.Write(G);
+      if (H != 0F) inWriter.Write(H);
+      if (I != false) inWriter.Write(I);
+      if (J.Length != 0) inWriter.Write(J);
+      if (K.Length != 0) inWriter.Write(k_.ToByteArray());
+      if (L != 0L) inWriter.Write(L);
+      if (M != 0UL) inWriter.Write(M);
+      if (N != 0) inWriter.Write(N);
+      if (O != 0L) inWriter.Write(O);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

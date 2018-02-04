@@ -115,6 +115,7 @@ void ReflectionClassGenerator::WriteIntroduction(io::Printer* printer) {
     "using System.IO;\n"
     "using System.Collections.Generic;\n"
     "using Google.Protobuf;\n"
+    "using global::Zynga.Protobuf.Runtime;\n"
     "using pb = global::Google.Protobuf;\n"
     "using pbc = global::Google.Protobuf.Collections;\n"
     "using pbr = global::Google.Protobuf.Reflection;\n"

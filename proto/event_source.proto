@@ -8,17 +8,20 @@ option csharp_namespace = "Zynga.Protobuf.Runtime.EventSource";
 
 enum EventAction 
 {
-  SET           = 0;
-  ADD_LIST      = 1;
-  REMOVE_LIST   = 2;
-  ADD_MAP       = 3;
-  REMOVE_MAP    = 4;
-  CLEAR         = 5;
-  SNAPSHOT      = 6;
-  MAP_KEY       = 7;
-  MAP_VALUE     = 8;
-  CLEAR_MAP     = 9;
-  CLEAR_LIST    = 10;
+  UNSET          = 0;
+  SET            = 1;
+  ADD_LIST       = 2;
+  REMOVE_LIST    = 3;
+  REMOVE_AT_LIST = 4;
+  REPLACE_LIST   = 5;
+  INSERT_LIST    = 6;
+  CLEAR_LIST     = 7;
+  ADD_MAP        = 8;
+  REMOVE_MAP     = 9;
+  REPLACE_MAP    = 10;
+  CLEAR_MAP      = 11;
+  CLEAR          = 12;
+  SNAPSHOT       = 13;
 }
 
 message EventMap {

@@ -45,13 +45,14 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             "dGlvbhI8CgRkYXRhGAMgASgLMiguY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9i",
             "dWYuRXZlbnRDb250ZW50UgRkYXRhEhIKBHBhdGgYBCADKAVSBHBhdGgiUAoP",
             "RXZlbnRTb3VyY2VSb290Ej0KBmV2ZW50cxgBIAMoCzIlLmNvbS56eW5nYS5y",
-            "dW50aW1lLnByb3RvYnVmLkV2ZW50RGF0YVIGZXZlbnRzKqYBCgtFdmVudEFj",
-            "dGlvbhIHCgNTRVQQABIMCghBRERfTElTVBABEg8KC1JFTU9WRV9MSVNUEAIS",
-            "CwoHQUREX01BUBADEg4KClJFTU9WRV9NQVAQBBIJCgVDTEVBUhAFEgwKCFNO",
-            "QVBTSE9UEAYSCwoHTUFQX0tFWRAHEg0KCU1BUF9WQUxVRRAIEg0KCUNMRUFS",
-            "X01BUBAJEg4KCkNMRUFSX0xJU1QQCkJGChJjb20uenluZ2EucHJvdG9idWZC",
-            "C0V2ZW50U291cmNlqgIiWnluZ2EuUHJvdG9idWYuUnVudGltZS5FdmVudFNv",
-            "dXJjZWIGcHJvdG8z"));
+            "dW50aW1lLnByb3RvYnVmLkV2ZW50RGF0YVIGZXZlbnRzKt0BCgtFdmVudEFj",
+            "dGlvbhIJCgVVTlNFVBAAEgcKA1NFVBABEgwKCEFERF9MSVNUEAISDwoLUkVN",
+            "T1ZFX0xJU1QQAxISCg5SRU1PVkVfQVRfTElTVBAEEhAKDFJFUExBQ0VfTElT",
+            "VBAFEg8KC0lOU0VSVF9MSVNUEAYSDgoKQ0xFQVJfTElTVBAHEgsKB0FERF9N",
+            "QVAQCBIOCgpSRU1PVkVfTUFQEAkSDwoLUkVQTEFDRV9NQVAQChINCglDTEVB",
+            "Ul9NQVAQCxIJCgVDTEVBUhAMEgwKCFNOQVBTSE9UEA1CRgoSY29tLnp5bmdh",
+            "LnByb3RvYnVmQgtFdmVudFNvdXJjZaoCIlp5bmdhLlByb3RvYnVmLlJ1bnRp",
+            "bWUuRXZlbnRTb3VyY2ViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zynga.Protobuf.Runtime.EventSource.EventAction), }, new pbr::GeneratedClrTypeInfo[] {
@@ -66,17 +67,20 @@ namespace Zynga.Protobuf.Runtime.EventSource {
   }
   #region Enums
   public enum EventAction {
-    [pbr::OriginalName("SET")] Set = 0,
-    [pbr::OriginalName("ADD_LIST")] AddList = 1,
-    [pbr::OriginalName("REMOVE_LIST")] RemoveList = 2,
-    [pbr::OriginalName("ADD_MAP")] AddMap = 3,
-    [pbr::OriginalName("REMOVE_MAP")] RemoveMap = 4,
-    [pbr::OriginalName("CLEAR")] Clear = 5,
-    [pbr::OriginalName("SNAPSHOT")] Snapshot = 6,
-    [pbr::OriginalName("MAP_KEY")] MapKey = 7,
-    [pbr::OriginalName("MAP_VALUE")] MapValue = 8,
-    [pbr::OriginalName("CLEAR_MAP")] ClearMap = 9,
-    [pbr::OriginalName("CLEAR_LIST")] ClearList = 10,
+    [pbr::OriginalName("UNSET")] Unset = 0,
+    [pbr::OriginalName("SET")] Set = 1,
+    [pbr::OriginalName("ADD_LIST")] AddList = 2,
+    [pbr::OriginalName("REMOVE_LIST")] RemoveList = 3,
+    [pbr::OriginalName("REMOVE_AT_LIST")] RemoveAtList = 4,
+    [pbr::OriginalName("REPLACE_LIST")] ReplaceList = 5,
+    [pbr::OriginalName("INSERT_LIST")] InsertList = 6,
+    [pbr::OriginalName("CLEAR_LIST")] ClearList = 7,
+    [pbr::OriginalName("ADD_MAP")] AddMap = 8,
+    [pbr::OriginalName("REMOVE_MAP")] RemoveMap = 9,
+    [pbr::OriginalName("REPLACE_MAP")] ReplaceMap = 10,
+    [pbr::OriginalName("CLEAR_MAP")] ClearMap = 11,
+    [pbr::OriginalName("CLEAR")] Clear = 12,
+    [pbr::OriginalName("SNAPSHOT")] Snapshot = 13,
   }
 
   #endregion

@@ -532,36 +532,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
-    public void GetChecksum(BinaryWriter inWriter) {
-      if (bar_ != null) Bar.GetChecksum(inWriter);
-      if (foo_ != null) Foo.GetChecksum(inWriter);
-      foreach (var item in intToString_) {
-          inWriter.Write(item.Key);
-          inWriter.Write(item.Value);
-      }
-      foreach (var item in stringToFoo_) {
-          inWriter.Write(item.Key);
-          item.Value.GetChecksum(inWriter);
-      }
-      foreach (var item in ilist_) {
-          inWriter.Write(item);
-      }
-      foreach (var item in slist_) {
-          inWriter.Write(item);
-      }
-      foreach (var item in foolist_) {
-          item.GetChecksum(inWriter);
-      }
-      if (testCase_ == TestOneofCase.Maybefoo) Maybefoo.GetChecksum(inWriter);
-      if (testCase_ == TestOneofCase.Maybeint) inWriter.Write(Maybeint);
-      if (testCase_ == TestOneofCase.Maybestring) inWriter.Write(Maybestring);
-      if (zam_ != null) Zam.GetChecksum(inWriter);
-      if (FieldBool != false) inWriter.Write(FieldBool);
-      if (timestamp_ != null) Timestamp.GetChecksum(inWriter);
-      if (duration_ != null) Duration.GetChecksum(inWriter);
-      if (allPrims_ != null) AllPrims.GetChecksum(inWriter);
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (bar_ != null) {
@@ -1266,14 +1236,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       return pb::JsonFormatter.ToDiagnosticString(this);
     }
 
-    public void GetChecksum(BinaryWriter inWriter) {
-      if (Long != 0L) inWriter.Write(Long);
-      if (Str.Length != 0) inWriter.Write(Str);
-      if (foo_ != null) Foo_.GetChecksum(inWriter);
-      if (Enumero != 0) inWriter.Write((int)enumero_);
-      if (Okay != 0) inWriter.Write((int)okay_);
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       if (Long != 0L) {
@@ -1459,10 +1421,6 @@ namespace Com.Zynga.Runtime.Protobuf {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString() {
           return pb::JsonFormatter.ToDiagnosticString(this);
-        }
-
-        public void GetChecksum(BinaryWriter inWriter) {
-          if (Hi != 0) inWriter.Write(Hi);
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1717,10 +1675,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    public void GetChecksum(BinaryWriter inWriter) {
-      if (foo_ != null) Foo.GetChecksum(inWriter);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2150,24 +2104,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override string ToString() {
       return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    public void GetChecksum(BinaryWriter inWriter) {
-      if (A != 0) inWriter.Write(A);
-      if (B != 0) inWriter.Write(B);
-      if (C != 0UL) inWriter.Write(C);
-      if (D != 0) inWriter.Write(D);
-      if (E != 0L) inWriter.Write(E);
-      if (F != 0) inWriter.Write(F);
-      if (G != 0D) inWriter.Write(G);
-      if (H != 0F) inWriter.Write(H);
-      if (I != false) inWriter.Write(I);
-      if (J.Length != 0) inWriter.Write(J);
-      if (K.Length != 0) inWriter.Write(k_.ToByteArray());
-      if (L != 0L) inWriter.Write(L);
-      if (M != 0UL) inWriter.Write(M);
-      if (N != 0) inWriter.Write(N);
-      if (O != 0L) inWriter.Write(O);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

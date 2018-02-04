@@ -126,10 +126,20 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		}
 
 		private static void AssertDeltaPath(TestBlob blob, int[] path) {
-			EventSourceRoot root = blob.GenerateEvents();
-			Assert.Equal(1, root.Events.Count);
+			EventSourceRoot root = AssertGenerated(blob);
 			AssertPath(root.Events[0], path);
 			blob.Reset();
+		}
+
+		private static EventSourceRoot AssertGenerated(TestBlob blob) {
+			EventSourceRoot root = blob.GenerateEvents();
+			Assert.Equal(1, root.Events.Count);
+			return root;
+		}
+
+		private static void AssertNotGenerated(TestBlob blob) {
+			EventSourceRoot root = blob.GenerateEvents();
+			Assert.Equal(0, root.Events.Count);
 		}
 
 		[Fact]
@@ -213,6 +223,18 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			newBlob.MergeFrom(blob);
 			Assert.Equal(blob, newBlob);
 			Assert.Equal(newBlob, blob);
+		}
+
+		[Fact]
+		public void ShouldNotGenerateDeltasForNoOpsOnMaps() {
+			/*
+			var blob = new TestBlob();
+			blob.AddIntToString(0, "a");
+			AssertGenerated(blob);
+
+			blob.AddIntToString(0, "a");
+			AssertNotGenerated(blob);
+			*/
 		}
 	}
 }

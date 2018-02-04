@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message TestBlob {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  Bar                bar           = 1;
+  Foo                foo           = 2;
+  map<int32, string> int_to_string = 3;
+  map<string, Foo>   string_to_foo = 4;
+  repeated int32     ilist         = 5;
+  repeated string    slist         = 6;
+  repeated Foo       foolist       = 7;
+
+  oneof test {
+    Foo maybefoo = 8;
+    int32 maybeint = 9;
+    string maybestring = 10;
+  }
+
+  Foo.Zam zam = 11;
+  bool field_bool = 12;
+
+  google.protobuf.Timestamp timestamp = 13;
+  google.protobuf.Duration duration = 14;
+
+  AllPrimitives all_prims = 15;
+}
+
+message Foo {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int64  long = 1;
+  string str  = 2;
+  Foo foo = 3;
+  message Zam {
+    int32 hi = 1;
+  }
+
+  Enumero enumero = 4;
+  ok okay = 5;
+  enum ok {
+    HI = 0;
+  }
+}
+
+enum Enumero {
+  EMPTY = 0;
+  SOMETHING = 1;
+  HALP = 2;
+}
+
+message Bar {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  Foo foo = 1;
+}
+
+message AllPrimitives {
+  option (com.zynga.runtime.protobuf.event_sourced) = true; 
+
+  uint32      a = 1;
+  int32       b = 2;
+  fixed64     c = 3;
+  fixed32     d = 4;
+  sfixed64    e = 5;
+  sfixed32    f = 6;
+  double      g = 7;
+  float       h = 8;
+  bool        i = 9;
+  string      j = 10;
+  bytes       k = 11;
+  int64       l = 12;
+  uint64      m = 13;
+  sint32      n = 14;
+  sint64      o = 15;
+}

@@ -29,6 +29,8 @@ $protoc --proto_path=$SCRIPT_DIR/proto --plugin=protoc-gen-zsharp=$zsharp \
   --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime/Generated $SCRIPT_DIR/proto/event_source.proto
 $protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
   --zsharp_out=checksum=true:$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/event_test.proto
+$protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
+  --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/delta_test.proto
 
 pushd $SCRIPT_DIR/runtime
   ./build.sh CreateNuget

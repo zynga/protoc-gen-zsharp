@@ -234,12 +234,6 @@ void MessageGenerator::Generate(io::Printer* printer) {
     printer->Print(
       vars,
       "}\n");
-    /*
-        public override void SetRoot(List<EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
-    }
-    */
 
     printer->Print(
     vars, 

@@ -259,7 +259,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           return new KeyValuePair<int, string>(realKeyintToString, default(string));
         }
         else {
-          var realValueintToString  = dataStream.ReadString();
+          var realValueintToString = dataStream.ReadString();
           return new KeyValuePair<int, string>(realKeyintToString, realValueintToString);
         }
       }

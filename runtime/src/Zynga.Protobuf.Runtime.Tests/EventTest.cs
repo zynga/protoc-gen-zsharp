@@ -711,7 +711,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           return new KeyValuePair<int, string>(realKeytestMapTwo, default(string));
         }
         else {
-          var realValuetestMapTwo  = dataStream.ReadString();
+          var realValuetestMapTwo = dataStream.ReadString();
           return new KeyValuePair<int, string>(realKeytestMapTwo, realValuetestMapTwo);
         }
       }

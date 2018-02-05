@@ -29,25 +29,84 @@ namespace Com.Zynga.Runtime.Protobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChV0ZXN0L3NpbXBsZV9tYXAucHJvdG8SGmNvbS56eW5nYS5ydW50aW1lLnBy",
-            "b3RvYnVmGhJldmVudF9wbHVnaW4ucHJvdG8inAEKCVNpbXBsZU1hcBJNCgh0",
-            "ZXN0X2ZvbxgKIAMoCzIyLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlNp",
-            "bXBsZU1hcC5UZXN0Rm9vRW50cnlSB3Rlc3RGb28aOgoMVGVzdEZvb0VudHJ5",
-            "EhAKA2tleRgBIAEoBVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE6",
-            "BMi4HgFiBnByb3RvMw=="));
+            "b3RvYnVmGhJldmVudF9wbHVnaW4ucHJvdG8iIAoQU2ltcGxlTWFwTWVzc2Fn",
+            "ZRIMCgFnGAEgASgJUgFnIisKFVNpbXBsZU1hcERlbHRhTWVzc2FnZRIMCgFo",
+            "GAEgASgJUgFoOgTIuB4BIt4BChZTaW1wbGVMb25nVG9NZXNzYWdlTWFwEloK",
+            "CHRlc3RfZm9vGAogAygLMj8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYu",
+            "U2ltcGxlTG9uZ1RvTWVzc2FnZU1hcC5UZXN0Rm9vRW50cnlSB3Rlc3RGb28a",
+            "aAoMVGVzdEZvb0VudHJ5EhAKA2tleRgBIAEoA1IDa2V5EkIKBXZhbHVlGAIg",
+            "ASgLMiwuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuU2ltcGxlTWFwTWVz",
+            "c2FnZVIFdmFsdWU6AjgBIvMBChtTaW1wbGVMb25nVG9NZXNzYWdlRGVsdGFN",
+            "YXASXwoIdGVzdF9mb28YCiADKAsyRC5jb20uenluZ2EucnVudGltZS5wcm90",
+            "b2J1Zi5TaW1wbGVMb25nVG9NZXNzYWdlRGVsdGFNYXAuVGVzdEZvb0VudHJ5",
+            "Ugd0ZXN0Rm9vGm0KDFRlc3RGb29FbnRyeRIQCgNrZXkYASABKANSA2tleRJH",
+            "CgV2YWx1ZRgCIAEoCzIxLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlNp",
+            "bXBsZU1hcERlbHRhTWVzc2FnZVIFdmFsdWU6AjgBOgTIuB4BItkBChVTaW1w",
+            "bGVTdHJpbmdUb0VudW1NYXASWQoIdGVzdF9mb28YCiADKAsyPi5jb20uenlu",
+            "Z2EucnVudGltZS5wcm90b2J1Zi5TaW1wbGVTdHJpbmdUb0VudW1NYXAuVGVz",
+            "dEZvb0VudHJ5Ugd0ZXN0Rm9vGmUKDFRlc3RGb29FbnRyeRIQCgNrZXkYASAB",
+            "KAlSA2tleRI/CgV2YWx1ZRgCIAEoDjIpLmNvbS56eW5nYS5ydW50aW1lLnBy",
+            "b3RvYnVmLlNpbXBsZU1hcEVudW1SBXZhbHVlOgI4ASLpAQoaU2ltcGxlU3Ry",
+            "aW5nVG9FbnVtRGVsdGFNYXASXgoIdGVzdF9mb28YCiADKAsyQy5jb20uenlu",
+            "Z2EucnVudGltZS5wcm90b2J1Zi5TaW1wbGVTdHJpbmdUb0VudW1EZWx0YU1h",
+            "cC5UZXN0Rm9vRW50cnlSB3Rlc3RGb28aZQoMVGVzdEZvb0VudHJ5EhAKA2tl",
+            "eRgBIAEoCVIDa2V5Ej8KBXZhbHVlGAIgASgOMikuY29tLnp5bmdhLnJ1bnRp",
+            "bWUucHJvdG9idWYuU2ltcGxlTWFwRW51bVIFdmFsdWU6AjgBOgTIuB4BIrIB",
+            "ChdTaW1wbGVTdHJpbmdUb1N0cmluZ01hcBJbCgh0ZXN0X2ZvbxgKIAMoCzJA",
+            "LmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlNpbXBsZVN0cmluZ1RvU3Ry",
+            "aW5nTWFwLlRlc3RGb29FbnRyeVIHdGVzdEZvbxo6CgxUZXN0Rm9vRW50cnkS",
+            "EAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ASLC",
+            "AQocU2ltcGxlU3RyaW5nVG9TdHJpbmdEZWx0YU1hcBJgCgh0ZXN0X2ZvbxgK",
+            "IAMoCzJFLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlNpbXBsZVN0cmlu",
+            "Z1RvU3RyaW5nRGVsdGFNYXAuVGVzdEZvb0VudHJ5Ugd0ZXN0Rm9vGjoKDFRl",
+            "c3RGb29FbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIF",
+            "dmFsdWU6AjgBOgTIuB4BIq4BChVTaW1wbGVTdHJpbmdUb0xvbmdNYXASWQoI",
+            "dGVzdF9mb28YCiADKAsyPi5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5T",
+            "aW1wbGVTdHJpbmdUb0xvbmdNYXAuVGVzdEZvb0VudHJ5Ugd0ZXN0Rm9vGjoK",
+            "DFRlc3RGb29FbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEo",
+            "A1IFdmFsdWU6AjgBIr4BChpTaW1wbGVTdHJpbmdUb0xvbmdEZWx0YU1hcBJe",
+            "Cgh0ZXN0X2ZvbxgKIAMoCzJDLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVm",
+            "LlNpbXBsZVN0cmluZ1RvTG9uZ0RlbHRhTWFwLlRlc3RGb29FbnRyeVIHdGVz",
+            "dEZvbxo6CgxUZXN0Rm9vRW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFs",
+            "dWUYAiABKANSBXZhbHVlOgI4AToEyLgeASpECg1TaW1wbGVNYXBFbnVtEgkK",
+            "BVVOU0VUEAASBQoBQRABEgUKAUIQAhIFCgFDEAMSBQoBRBAEEgUKAUUQBRIF",
+            "CgFGEAZiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleMap), global::Com.Zynga.Runtime.Protobuf.SimpleMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage), global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage.Parser, new[]{ "G" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage), global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage.Parser, new[]{ "H" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleLongToMessageMap), global::Com.Zynga.Runtime.Protobuf.SimpleLongToMessageMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleLongToMessageDeltaMap), global::Com.Zynga.Runtime.Protobuf.SimpleLongToMessageDeltaMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToEnumMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToEnumMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToEnumDeltaMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToEnumDeltaMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToStringMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToStringMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToStringDeltaMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToStringDeltaMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToLongMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToLongMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringToLongDeltaMap), global::Com.Zynga.Runtime.Protobuf.SimpleStringToLongDeltaMap.Parser, new[]{ "TestFoo" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum SimpleMapEnum {
+    [pbr::OriginalName("UNSET")] Unset = 0,
+    [pbr::OriginalName("A")] A = 1,
+    [pbr::OriginalName("B")] B = 2,
+    [pbr::OriginalName("C")] C = 3,
+    [pbr::OriginalName("D")] D = 4,
+    [pbr::OriginalName("E")] E = 5,
+    [pbr::OriginalName("F")] F = 6,
+  }
+
+  #endregion
+
   #region Messages
-  public sealed partial class SimpleMap : zpr::EventRegistry, pb::IMessage<SimpleMap> {
-    private static readonly pb::MessageParser<SimpleMap> _parser = new pb::MessageParser<SimpleMap>(() => new SimpleMap());
+  public sealed partial class SimpleMapMessage : pb::IMessage<SimpleMapMessage> {
+    private static readonly pb::MessageParser<SimpleMapMessage> _parser = new pb::MessageParser<SimpleMapMessage>(() => new SimpleMapMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SimpleMap> Parser { get { return _parser; } }
+    public static pb::MessageParser<SimpleMapMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -60,37 +119,150 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleMap() {
+    public SimpleMapMessage() {
       OnConstruction();
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleMap(SimpleMap other) : this() {
-      testFoo_ = new EventMapField<int, string>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+    public SimpleMapMessage(SimpleMapMessage other) : this() {
+      g_ = other.g_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleMap Clone() {
-      return new SimpleMap(this);
+    public SimpleMapMessage Clone() {
+      return new SimpleMapMessage(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "g" field.</summary>
+    public const int GFieldNumber = 1;
+    private string g_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string G {
+      get { return g_; }
+      set {
+        g_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleMapMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleMapMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (G != other.G) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (G.Length != 0) hash ^= G.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (G.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(G);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (G.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(G);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleMapMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.G.Length != 0) {
+        G = other.G;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            G = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleMapDeltaMessage : zpr::EventRegistry, pb::IMessage<SimpleMapDeltaMessage> {
+    private static readonly pb::MessageParser<SimpleMapDeltaMessage> _parser = new pb::MessageParser<SimpleMapDeltaMessage>(() => new SimpleMapDeltaMessage());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleMapDeltaMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMapDeltaMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMapDeltaMessage(SimpleMapDeltaMessage other) : this() {
+      h_ = other.h_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMapDeltaMessage Clone() {
+      return new SimpleMapDeltaMessage(this);
     }
 
     public static bool IsEventSourced = true;
 
-    public SimpleMap.Paths Path = new SimpleMap.Paths(zpr.EventPath.Empty);
+    public SimpleMapDeltaMessage.Paths Path = new SimpleMapDeltaMessage.Paths(zpr.EventPath.Empty);
 
     public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
       base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
     }
-    public void SetPath(SimpleMap.Paths path) {
+    public void SetPath(SimpleMapDeltaMessage.Paths path) {
       this.Path = path;
-      testFoo_.SetPath(Path.TestFooPath);
     }
 
     public class Paths {
@@ -100,50 +272,204 @@ namespace Com.Zynga.Runtime.Protobuf {
         public Paths(zpr.EventPath _path) {
           Path = _path;
         }
-        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+        public zpr.EventPath HPath => new zpr.EventPath(Path, 1);
     }
+    /// <summary>Field number for the "h" field.</summary>
+    public const int HFieldNumber = 1;
+    private string h_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string H {
+      get { return h_; }
+      set {
+        AddEvent(1, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        h_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleMapDeltaMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleMapDeltaMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (H != other.H) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (H.Length != 0) hash ^= H.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (H.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(H);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (H.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(H);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleMapDeltaMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.H.Length != 0) {
+        H = other.H;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            H = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            h_ = e.Data.StringData;
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 1: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 1: {
+            e.Path.AddRange(this.Path.HPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleMapDeltaMessage.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleLongToMessageMap : pb::IMessage<SimpleLongToMessageMap> {
+    private static readonly pb::MessageParser<SimpleLongToMessageMap> _parser = new pb::MessageParser<SimpleLongToMessageMap>(() => new SimpleLongToMessageMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleLongToMessageMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageMap() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageMap(SimpleLongToMessageMap other) : this() {
+      testFoo_ = other.testFoo_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageMap Clone() {
+      return new SimpleLongToMessageMap(this);
+    }
+
+    public static bool IsEventSourced = false;
+
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
-    private static readonly pbc::MapField<int, string>.Codec _map_testFoo_codec
-        = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 82);
-    internal class TestFooMapConverter : EventMapConverter<int, string> {
-      public override zpr.EventSource.EventContent GetEventData(int key, string value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
-        using (var memStream = new MemoryStream()) {
-          var dataStream = new CodedOutputStream(memStream);
-          dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
-          dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
-        }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
-      }
-      public override KeyValuePair<int, string> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
-        var realKeytestFoo = dataStream.ReadInt32();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
-          return new KeyValuePair<int, string>(realKeytestFoo, default(string));
-        }
-        else {
-          var realValuetestFoo  = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeytestFoo, realValuetestFoo);
-        }
-      }
-    }
-    private static readonly EventMapConverter<int, string> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<int, string> testFoo_ = new EventMapField<int, string>(testFooMapConverter);
+    private static readonly pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage>.Codec _map_testFoo_codec
+        = new pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage>.Codec(pb::FieldCodec.ForInt64(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage.Parser), 82);
+    private readonly pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage> testFoo_ = new pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventMapField<int, string> TestFoo {
+    public pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapMessage> TestFoo {
       get { return testFoo_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SimpleMap);
+      return Equals(other as SimpleLongToMessageMap);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SimpleMap other) {
+    public bool Equals(SimpleLongToMessageMap other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -179,7 +505,168 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SimpleMap other) {
+    public void MergeFrom(SimpleLongToMessageMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleLongToMessageDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleLongToMessageDeltaMap> {
+    private static readonly pb::MessageParser<SimpleLongToMessageDeltaMap> _parser = new pb::MessageParser<SimpleLongToMessageDeltaMap>(() => new SimpleLongToMessageDeltaMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleLongToMessageDeltaMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageDeltaMap() {
+      OnConstruction();
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageDeltaMap(SimpleLongToMessageDeltaMap other) : this() {
+      testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, other.testFoo_.Clone());
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongToMessageDeltaMap Clone() {
+      return new SimpleLongToMessageDeltaMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleLongToMessageDeltaMap.Paths Path = new SimpleLongToMessageDeltaMap.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testFoo_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleLongToMessageDeltaMap.Paths path) {
+      this.Path = path;
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    }
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>.Codec _map_testFoo_codec
+        = new pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>.Codec(pb::FieldCodec.ForInt64(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage.Parser), 82);
+    internal class TestFooMapConverter : EventMapConverter<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> {
+      public override zpr.EventSource.EventContent GetEventData(long key, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage value, bool skipValue = false) {
+        var mapEvent = new zpr.EventSource.EventMap();
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteInt64(key);
+          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.Flush();
+          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+        }
+        return new zpr.EventSource.EventContent{MapData = mapEvent};
+      }
+      public override KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> GetItem(zpr.EventSource.EventData data) {
+        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+        var realKeytestFoo = dataStream.ReadInt64();
+        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+          return new KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(realKeytestFoo, default(global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage));
+        }
+        else {
+          var realValuetestFoo = new global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage();
+          dataStream.ReadMessage(realValuetestFoo);;
+          return new KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(realKeytestFoo, realValuetestFoo);
+        }
+      }
+    }
+    private static readonly EventMapConverter<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFooMapConverter = new TestFooMapConverter();
+    private readonly EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleLongToMessageDeltaMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleLongToMessageDeltaMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleLongToMessageDeltaMap other) {
       if (other == null) {
         return;
       }
@@ -246,7 +733,997 @@ namespace Com.Zynga.Runtime.Protobuf {
         _root.Add(e);
     }
     public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      var e = SimpleLongToMessageDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleStringToEnumMap : pb::IMessage<SimpleStringToEnumMap> {
+    private static readonly pb::MessageParser<SimpleStringToEnumMap> _parser = new pb::MessageParser<SimpleStringToEnumMap>(() => new SimpleStringToEnumMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToEnumMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumMap() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumMap(SimpleStringToEnumMap other) : this() {
+      testFoo_ = other.testFoo_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumMap Clone() {
+      return new SimpleStringToEnumMap(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForEnum(16, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum) x), 82);
+    private readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFoo_ = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToEnumMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToEnumMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToEnumMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleStringToEnumDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToEnumDeltaMap> {
+    private static readonly pb::MessageParser<SimpleStringToEnumDeltaMap> _parser = new pb::MessageParser<SimpleStringToEnumDeltaMap>(() => new SimpleStringToEnumDeltaMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToEnumDeltaMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumDeltaMap() {
+      OnConstruction();
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumDeltaMap(SimpleStringToEnumDeltaMap other) : this() {
+      testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter, other.testFoo_.Clone());
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToEnumDeltaMap Clone() {
+      return new SimpleStringToEnumDeltaMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleStringToEnumDeltaMap.Paths Path = new SimpleStringToEnumDeltaMap.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testFoo_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleStringToEnumDeltaMap.Paths path) {
+      this.Path = path;
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    }
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForEnum(16, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum) x), 82);
+    internal class TestFooMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> {
+      public override zpr.EventSource.EventContent GetEventData(string key, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum value, bool skipValue = false) {
+        var mapEvent = new zpr.EventSource.EventMap();
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteString(key);
+          if(!skipValue) dataStream.WriteEnum((int) value);
+          dataStream.Flush();
+          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+        }
+        return new zpr.EventSource.EventContent{MapData = mapEvent};
+      }
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> GetItem(zpr.EventSource.EventData data) {
+        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+        var realKeytestFoo = dataStream.ReadString();
+        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(realKeytestFoo, default(global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum));
+        }
+        else {
+          var realValuetestFoo = (global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum) dataStream.ReadEnum();
+          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(realKeytestFoo, realValuetestFoo);
+        }
+      }
+    }
+    private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFooMapConverter = new TestFooMapConverter();
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToEnumDeltaMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToEnumDeltaMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToEnumDeltaMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 10: {
+            testFoo_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 10: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 10: {
+            e.Path.AddRange(this.Path.TestFooPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleStringToEnumDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleStringToStringMap : pb::IMessage<SimpleStringToStringMap> {
+    private static readonly pb::MessageParser<SimpleStringToStringMap> _parser = new pb::MessageParser<SimpleStringToStringMap>(() => new SimpleStringToStringMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToStringMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringMap() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringMap(SimpleStringToStringMap other) : this() {
+      testFoo_ = other.testFoo_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringMap Clone() {
+      return new SimpleStringToStringMap(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, string>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 82);
+    private readonly pbc::MapField<string, string> testFoo_ = new pbc::MapField<string, string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::MapField<string, string> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToStringMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToStringMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToStringMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleStringToStringDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToStringDeltaMap> {
+    private static readonly pb::MessageParser<SimpleStringToStringDeltaMap> _parser = new pb::MessageParser<SimpleStringToStringDeltaMap>(() => new SimpleStringToStringDeltaMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToStringDeltaMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringDeltaMap() {
+      OnConstruction();
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringDeltaMap(SimpleStringToStringDeltaMap other) : this() {
+      testFoo_ = new EventMapField<string, string>(testFooMapConverter, other.testFoo_.Clone());
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToStringDeltaMap Clone() {
+      return new SimpleStringToStringDeltaMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleStringToStringDeltaMap.Paths Path = new SimpleStringToStringDeltaMap.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testFoo_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleStringToStringDeltaMap.Paths path) {
+      this.Path = path;
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    }
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, string>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 82);
+    internal class TestFooMapConverter : EventMapConverter<string, string> {
+      public override zpr.EventSource.EventContent GetEventData(string key, string value, bool skipValue = false) {
+        var mapEvent = new zpr.EventSource.EventMap();
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteString(key);
+          if(!skipValue) dataStream.WriteString(value);
+          dataStream.Flush();
+          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+        }
+        return new zpr.EventSource.EventContent{MapData = mapEvent};
+      }
+      public override KeyValuePair<string, string> GetItem(zpr.EventSource.EventData data) {
+        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+        var realKeytestFoo = dataStream.ReadString();
+        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+          return new KeyValuePair<string, string>(realKeytestFoo, default(string));
+        }
+        else {
+          var realValuetestFoo = dataStream.ReadString();
+          return new KeyValuePair<string, string>(realKeytestFoo, realValuetestFoo);
+        }
+      }
+    }
+    private static readonly EventMapConverter<string, string> testFooMapConverter = new TestFooMapConverter();
+    private readonly EventMapField<string, string> testFoo_ = new EventMapField<string, string>(testFooMapConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<string, string> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToStringDeltaMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToStringDeltaMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToStringDeltaMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 10: {
+            testFoo_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 10: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 10: {
+            e.Path.AddRange(this.Path.TestFooPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleStringToStringDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleStringToLongMap : pb::IMessage<SimpleStringToLongMap> {
+    private static readonly pb::MessageParser<SimpleStringToLongMap> _parser = new pb::MessageParser<SimpleStringToLongMap>(() => new SimpleStringToLongMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToLongMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongMap() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongMap(SimpleStringToLongMap other) : this() {
+      testFoo_ = other.testFoo_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongMap Clone() {
+      return new SimpleStringToLongMap(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, long>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, long>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForInt64(16), 82);
+    private readonly pbc::MapField<string, long> testFoo_ = new pbc::MapField<string, long>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::MapField<string, long> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToLongMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToLongMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToLongMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleStringToLongDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToLongDeltaMap> {
+    private static readonly pb::MessageParser<SimpleStringToLongDeltaMap> _parser = new pb::MessageParser<SimpleStringToLongDeltaMap>(() => new SimpleStringToLongDeltaMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringToLongDeltaMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleMapReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongDeltaMap() {
+      OnConstruction();
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongDeltaMap(SimpleStringToLongDeltaMap other) : this() {
+      testFoo_ = new EventMapField<string, long>(testFooMapConverter, other.testFoo_.Clone());
+      testFoo_.SetRoot(_root);
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringToLongDeltaMap Clone() {
+      return new SimpleStringToLongDeltaMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleStringToLongDeltaMap.Paths Path = new SimpleStringToLongDeltaMap.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testFoo_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleStringToLongDeltaMap.Paths path) {
+      this.Path = path;
+      testFoo_.SetPath(Path.TestFooPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    }
+    /// <summary>Field number for the "test_foo" field.</summary>
+    public const int TestFooFieldNumber = 10;
+    private static readonly pbc::MapField<string, long>.Codec _map_testFoo_codec
+        = new pbc::MapField<string, long>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForInt64(16), 82);
+    internal class TestFooMapConverter : EventMapConverter<string, long> {
+      public override zpr.EventSource.EventContent GetEventData(string key, long value, bool skipValue = false) {
+        var mapEvent = new zpr.EventSource.EventMap();
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteString(key);
+          if(!skipValue) dataStream.WriteInt64(value);
+          dataStream.Flush();
+          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+        }
+        return new zpr.EventSource.EventContent{MapData = mapEvent};
+      }
+      public override KeyValuePair<string, long> GetItem(zpr.EventSource.EventData data) {
+        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+        var realKeytestFoo = dataStream.ReadString();
+        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+          return new KeyValuePair<string, long>(realKeytestFoo, default(long));
+        }
+        else {
+          var realValuetestFoo = dataStream.ReadInt64();
+          return new KeyValuePair<string, long>(realKeytestFoo, realValuetestFoo);
+        }
+      }
+    }
+    private static readonly EventMapConverter<string, long> testFooMapConverter = new TestFooMapConverter();
+    private readonly EventMapField<string, long> testFoo_ = new EventMapField<string, long>(testFooMapConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<string, long> TestFoo {
+      get { return testFoo_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleStringToLongDeltaMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleStringToLongDeltaMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!testFoo_.Equals(other.testFoo_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testFoo_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testFoo_.WriteTo(output, _map_testFoo_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testFoo_.CalculateSize(_map_testFoo_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleStringToLongDeltaMap other) {
+      if (other == null) {
+        return;
+      }
+      testFoo_.Add(other.testFoo_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 82: {
+            testFoo_.AddEntriesFrom(input, _map_testFoo_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 10: {
+            testFoo_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 10: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 10: {
+            e.Path.AddRange(this.Path.TestFooPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleStringToLongDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
       MergeFrom(e);
       return true;
     }

@@ -95,8 +95,21 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       "    var mapEvent = new zpr.EventSource.EventMap();\n"
       "    using (var memStream = new MemoryStream()) {\n"
       "      var dataStream = new CodedOutputStream(memStream);\n"
-      "      dataStream.$key_write_name$(key);\n"
-      "      if(!skipValue) dataStream.$value_write_name$(value);\n"
+      "      dataStream.$key_write_name$(key);\n");
+
+    if (value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
+      printer->Print(
+        variables_,
+        "      if(!skipValue) dataStream.$value_write_name$((int) value);\n");
+    }
+    else {
+      printer->Print(
+        variables_,
+        "      if(!skipValue) dataStream.$value_write_name$(value);\n");
+    }
+
+    printer->Print(
+      variables_,
       "      dataStream.Flush();\n"
       "      mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
       "    }\n"
@@ -129,10 +142,16 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
         variables_,
         "      var realValue$name$ = new $value_type_name$();\n"
         "      dataStream.ReadMessage(realValue$name$);;\n");
-    } else {
+    }
+    else if(value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
       printer->Print(
         variables_,
-        "      var realValue$name$  = dataStream.$value_read_name$();\n");
+        "      var realValue$name$ = ($value_type_name$) dataStream.$value_read_name$();\n");
+    }
+    else {
+      printer->Print(
+        variables_,
+        "      var realValue$name$ = dataStream.$value_read_name$();\n");
     }
     printer->Print(
       variables_,

@@ -4,8 +4,61 @@ package com.zynga.runtime.protobuf;
 
 import "event_plugin.proto";
 
-message SimpleList {
+enum SimpleListEnum {
+  UNSET = 0;
+  A = 1;
+  B = 2;
+  C = 3;
+  D = 4;
+  E = 5;
+  F = 6;
+}
+
+message SimpleListMessage {
+  string g = 1;
+}
+
+message SimpleListDeltaMessage {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  string h = 1;
+}
+
+message SimpleStringList {
+  repeated string test_bar = 11;
+}
+
+message SimpleDeltaStringList {
   option (com.zynga.runtime.protobuf.event_sourced) = true;
 
   repeated string test_bar = 11;
+}
+
+message SimpleLongList {
+  repeated int64 test_bar = 11;
+}
+
+message SimpleDeltaLongList {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  repeated int64 test_bar = 11;
+}
+
+message SimpleEnumList {
+  repeated SimpleListEnum test_bar = 11;
+}
+
+message SimpleDeltaEnumList {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  repeated SimpleListEnum test_bar = 11;
+}
+
+message SimpleMessageList {
+  repeated SimpleListMessage test_bar = 11;
+}
+
+message SimpleDeltaMessageList {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  repeated SimpleListDeltaMessage test_bar = 11;
 }

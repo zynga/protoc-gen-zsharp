@@ -5,13 +5,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 	public static class EventTestHelper {
 		public static EventSourceRoot AssertGenerated(EventRegistry blob) {
 			EventSourceRoot root = blob.GenerateEvents();
-			Assert.Equal(1, root.Events.Count);
+			Assert.Single(root.Events);
 			return root;
 		}
 
 		public static void AssertNotGenerated(EventRegistry blob) {
 			EventSourceRoot root = blob.GenerateEvents();
-			Assert.Equal(0, root.Events.Count);
+			Assert.Empty(root.Events);
 		}
 		
 		public static void AssertPath(EventData eventData, int[] path) {

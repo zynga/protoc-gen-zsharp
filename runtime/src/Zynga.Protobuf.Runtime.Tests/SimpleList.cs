@@ -29,22 +29,60 @@ namespace Com.Zynga.Runtime.Protobuf {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChZ0ZXN0L3NpbXBsZV9saXN0LnByb3RvEhpjb20uenluZ2EucnVudGltZS5w",
-            "cm90b2J1ZhoSZXZlbnRfcGx1Z2luLnByb3RvIi0KClNpbXBsZUxpc3QSGQoI",
-            "dGVzdF9iYXIYCyADKAlSB3Rlc3RCYXI6BMi4HgFiBnByb3RvMw=="));
+            "cm90b2J1ZhoSZXZlbnRfcGx1Z2luLnByb3RvIiEKEVNpbXBsZUxpc3RNZXNz",
+            "YWdlEgwKAWcYASABKAlSAWciLAoWU2ltcGxlTGlzdERlbHRhTWVzc2FnZRIM",
+            "CgFoGAEgASgJUgFoOgTIuB4BIi0KEFNpbXBsZVN0cmluZ0xpc3QSGQoIdGVz",
+            "dF9iYXIYCyADKAlSB3Rlc3RCYXIiOAoVU2ltcGxlRGVsdGFTdHJpbmdMaXN0",
+            "EhkKCHRlc3RfYmFyGAsgAygJUgd0ZXN0QmFyOgTIuB4BIisKDlNpbXBsZUxv",
+            "bmdMaXN0EhkKCHRlc3RfYmFyGAsgAygDUgd0ZXN0QmFyIjYKE1NpbXBsZURl",
+            "bHRhTG9uZ0xpc3QSGQoIdGVzdF9iYXIYCyADKANSB3Rlc3RCYXI6BMi4HgEi",
+            "VwoOU2ltcGxlRW51bUxpc3QSRQoIdGVzdF9iYXIYCyADKA4yKi5jb20uenlu",
+            "Z2EucnVudGltZS5wcm90b2J1Zi5TaW1wbGVMaXN0RW51bVIHdGVzdEJhciJi",
+            "ChNTaW1wbGVEZWx0YUVudW1MaXN0EkUKCHRlc3RfYmFyGAsgAygOMiouY29t",
+            "Lnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuU2ltcGxlTGlzdEVudW1SB3Rlc3RC",
+            "YXI6BMi4HgEiXQoRU2ltcGxlTWVzc2FnZUxpc3QSSAoIdGVzdF9iYXIYCyAD",
+            "KAsyLS5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5TaW1wbGVMaXN0TWVz",
+            "c2FnZVIHdGVzdEJhciJtChZTaW1wbGVEZWx0YU1lc3NhZ2VMaXN0Ek0KCHRl",
+            "c3RfYmFyGAsgAygLMjIuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuU2lt",
+            "cGxlTGlzdERlbHRhTWVzc2FnZVIHdGVzdEJhcjoEyLgeASpFCg5TaW1wbGVM",
+            "aXN0RW51bRIJCgVVTlNFVBAAEgUKAUEQARIFCgFCEAISBQoBQxADEgUKAUQQ",
+            "BBIFCgFFEAUSBQoBRhAGYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleList), global::Com.Zynga.Runtime.Protobuf.SimpleList.Parser, new[]{ "TestBar" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.SimpleListEnum), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleListMessage), global::Com.Zynga.Runtime.Protobuf.SimpleListMessage.Parser, new[]{ "G" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage), global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage.Parser, new[]{ "H" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleStringList), global::Com.Zynga.Runtime.Protobuf.SimpleStringList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleDeltaStringList), global::Com.Zynga.Runtime.Protobuf.SimpleDeltaStringList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleLongList), global::Com.Zynga.Runtime.Protobuf.SimpleLongList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleDeltaLongList), global::Com.Zynga.Runtime.Protobuf.SimpleDeltaLongList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleEnumList), global::Com.Zynga.Runtime.Protobuf.SimpleEnumList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleDeltaEnumList), global::Com.Zynga.Runtime.Protobuf.SimpleDeltaEnumList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleMessageList), global::Com.Zynga.Runtime.Protobuf.SimpleMessageList.Parser, new[]{ "TestBar" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.SimpleDeltaMessageList), global::Com.Zynga.Runtime.Protobuf.SimpleDeltaMessageList.Parser, new[]{ "TestBar" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum SimpleListEnum {
+    [pbr::OriginalName("UNSET")] Unset = 0,
+    [pbr::OriginalName("A")] A = 1,
+    [pbr::OriginalName("B")] B = 2,
+    [pbr::OriginalName("C")] C = 3,
+    [pbr::OriginalName("D")] D = 4,
+    [pbr::OriginalName("E")] E = 5,
+    [pbr::OriginalName("F")] F = 6,
+  }
+
+  #endregion
+
   #region Messages
-  public sealed partial class SimpleList : zpr::EventRegistry, pb::IMessage<SimpleList> {
-    private static readonly pb::MessageParser<SimpleList> _parser = new pb::MessageParser<SimpleList>(() => new SimpleList());
+  public sealed partial class SimpleListMessage : pb::IMessage<SimpleListMessage> {
+    private static readonly pb::MessageParser<SimpleListMessage> _parser = new pb::MessageParser<SimpleListMessage>(() => new SimpleListMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SimpleList> Parser { get { return _parser; } }
+    public static pb::MessageParser<SimpleListMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -57,37 +95,150 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleList() {
+    public SimpleListMessage() {
       OnConstruction();
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleList(SimpleList other) : this() {
-      testBar_ = new EventRepeatedField<string>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+    public SimpleListMessage(SimpleListMessage other) : this() {
+      g_ = other.g_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SimpleList Clone() {
-      return new SimpleList(this);
+    public SimpleListMessage Clone() {
+      return new SimpleListMessage(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "g" field.</summary>
+    public const int GFieldNumber = 1;
+    private string g_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string G {
+      get { return g_; }
+      set {
+        g_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleListMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleListMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (G != other.G) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (G.Length != 0) hash ^= G.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (G.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(G);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (G.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(G);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleListMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.G.Length != 0) {
+        G = other.G;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            G = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleListDeltaMessage : zpr::EventRegistry, pb::IMessage<SimpleListDeltaMessage> {
+    private static readonly pb::MessageParser<SimpleListDeltaMessage> _parser = new pb::MessageParser<SimpleListDeltaMessage>(() => new SimpleListDeltaMessage());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleListDeltaMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleListDeltaMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleListDeltaMessage(SimpleListDeltaMessage other) : this() {
+      h_ = other.h_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleListDeltaMessage Clone() {
+      return new SimpleListDeltaMessage(this);
     }
 
     public static bool IsEventSourced = true;
 
-    public SimpleList.Paths Path = new SimpleList.Paths(zpr.EventPath.Empty);
+    public SimpleListDeltaMessage.Paths Path = new SimpleListDeltaMessage.Paths(zpr.EventPath.Empty);
 
     public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
       base.SetRoot(inRoot);
-      testBar_.SetRoot(inRoot);
     }
-    public void SetPath(SimpleList.Paths path) {
+    public void SetPath(SimpleListDeltaMessage.Paths path) {
       this.Path = path;
-      testBar_.SetPath(Path.TestBarPath);
     }
 
     public class Paths {
@@ -97,34 +248,204 @@ namespace Com.Zynga.Runtime.Protobuf {
         public Paths(zpr.EventPath _path) {
           Path = _path;
         }
-        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+        public zpr.EventPath HPath => new zpr.EventPath(Path, 1);
     }
+    /// <summary>Field number for the "h" field.</summary>
+    public const int HFieldNumber = 1;
+    private string h_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string H {
+      get { return h_; }
+      set {
+        AddEvent(1, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        h_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleListDeltaMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleListDeltaMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (H != other.H) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (H.Length != 0) hash ^= H.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (H.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(H);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (H.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(H);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleListDeltaMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.H.Length != 0) {
+        H = other.H;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            H = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            h_ = e.Data.StringData;
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 1: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 1: {
+            e.Path.AddRange(this.Path.HPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleListDeltaMessage.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleStringList : pb::IMessage<SimpleStringList> {
+    private static readonly pb::MessageParser<SimpleStringList> _parser = new pb::MessageParser<SimpleStringList>(() => new SimpleStringList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleStringList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringList(SimpleStringList other) : this() {
+      testBar_ = other.testBar_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleStringList Clone() {
+      return new SimpleStringList(this);
+    }
+
+    public static bool IsEventSourced = false;
+
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
     private static readonly pb::FieldCodec<string> _repeated_testBar_codec
         = pb::FieldCodec.ForString(90);
-    public class TestBarDataConverter: EventDataConverter<string> {
-      public override zpr.EventSource.EventContent GetEventData(string data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-      }
-      public override string GetItem(zpr.EventSource.EventContent data) {
-        return data.StringData;
-      }
-    }
-    private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<string> testBar_ = new EventRepeatedField<string>(testBarDataConverter);
+    private readonly pbc::RepeatedField<string> testBar_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventRepeatedField<string> TestBar {
+    public pbc::RepeatedField<string> TestBar {
       get { return testBar_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SimpleList);
+      return Equals(other as SimpleStringList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SimpleList other) {
+    public bool Equals(SimpleStringList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -160,7 +481,151 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SimpleList other) {
+    public void MergeFrom(SimpleStringList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleDeltaStringList : zpr::EventRegistry, pb::IMessage<SimpleDeltaStringList> {
+    private static readonly pb::MessageParser<SimpleDeltaStringList> _parser = new pb::MessageParser<SimpleDeltaStringList>(() => new SimpleDeltaStringList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleDeltaStringList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaStringList() {
+      OnConstruction();
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaStringList(SimpleDeltaStringList other) : this() {
+      testBar_ = new EventRepeatedField<string>(testBarDataConverter, other.TestBar.Clone());
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaStringList Clone() {
+      return new SimpleDeltaStringList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleDeltaStringList.Paths Path = new SimpleDeltaStringList.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testBar_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleDeltaStringList.Paths path) {
+      this.Path = path;
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    }
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<string> _repeated_testBar_codec
+        = pb::FieldCodec.ForString(90);
+    public class TestBarDataConverter: EventDataConverter<string> {
+      public override zpr.EventSource.EventContent GetEventData(string data) {
+        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+      }
+      public override string GetItem(zpr.EventSource.EventContent data) {
+        return data.StringData;
+      }
+    }
+    private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
+    private readonly EventRepeatedField<string> testBar_ = new EventRepeatedField<string>(testBarDataConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<string> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleDeltaStringList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleDeltaStringList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleDeltaStringList other) {
       if (other == null) {
         return;
       }
@@ -227,7 +692,955 @@ namespace Com.Zynga.Runtime.Protobuf {
         _root.Add(e);
     }
     public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleList.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      var e = SimpleDeltaStringList.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleLongList : pb::IMessage<SimpleLongList> {
+    private static readonly pb::MessageParser<SimpleLongList> _parser = new pb::MessageParser<SimpleLongList>(() => new SimpleLongList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleLongList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongList(SimpleLongList other) : this() {
+      testBar_ = other.testBar_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleLongList Clone() {
+      return new SimpleLongList(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<long> _repeated_testBar_codec
+        = pb::FieldCodec.ForInt64(90);
+    private readonly pbc::RepeatedField<long> testBar_ = new pbc::RepeatedField<long>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<long> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleLongList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleLongList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleLongList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90:
+          case 88: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleDeltaLongList : zpr::EventRegistry, pb::IMessage<SimpleDeltaLongList> {
+    private static readonly pb::MessageParser<SimpleDeltaLongList> _parser = new pb::MessageParser<SimpleDeltaLongList>(() => new SimpleDeltaLongList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleDeltaLongList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaLongList() {
+      OnConstruction();
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaLongList(SimpleDeltaLongList other) : this() {
+      testBar_ = new EventRepeatedField<long>(testBarDataConverter, other.TestBar.Clone());
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaLongList Clone() {
+      return new SimpleDeltaLongList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleDeltaLongList.Paths Path = new SimpleDeltaLongList.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testBar_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleDeltaLongList.Paths path) {
+      this.Path = path;
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    }
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<long> _repeated_testBar_codec
+        = pb::FieldCodec.ForInt64(90);
+    public class TestBarDataConverter: EventDataConverter<long> {
+      public override zpr.EventSource.EventContent GetEventData(long data) {
+        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
+      }
+      public override long GetItem(zpr.EventSource.EventContent data) {
+        return data.I64;
+      }
+    }
+    private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
+    private readonly EventRepeatedField<long> testBar_ = new EventRepeatedField<long>(testBarDataConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<long> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleDeltaLongList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleDeltaLongList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleDeltaLongList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90:
+          case 88: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 11: {
+            testBar_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 11: {
+            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 11: {
+            e.Path.AddRange(this.Path.TestBarPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleDeltaLongList.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleEnumList : pb::IMessage<SimpleEnumList> {
+    private static readonly pb::MessageParser<SimpleEnumList> _parser = new pb::MessageParser<SimpleEnumList>(() => new SimpleEnumList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleEnumList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleEnumList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleEnumList(SimpleEnumList other) : this() {
+      testBar_ = other.testBar_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleEnumList Clone() {
+      return new SimpleEnumList(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> _repeated_testBar_codec
+        = pb::FieldCodec.ForEnum(90, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleListEnum) x);
+    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> testBar_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleEnumList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleEnumList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleEnumList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90:
+          case 88: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleDeltaEnumList : zpr::EventRegistry, pb::IMessage<SimpleDeltaEnumList> {
+    private static readonly pb::MessageParser<SimpleDeltaEnumList> _parser = new pb::MessageParser<SimpleDeltaEnumList>(() => new SimpleDeltaEnumList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleDeltaEnumList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaEnumList() {
+      OnConstruction();
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaEnumList(SimpleDeltaEnumList other) : this() {
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter, other.TestBar.Clone());
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaEnumList Clone() {
+      return new SimpleDeltaEnumList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleDeltaEnumList.Paths Path = new SimpleDeltaEnumList.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testBar_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleDeltaEnumList.Paths path) {
+      this.Path = path;
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    }
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> _repeated_testBar_codec
+        = pb::FieldCodec.ForEnum(90, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleListEnum) x);
+    public class TestBarDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.SimpleListEnum data) {
+        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.SimpleListEnum GetItem(zpr.EventSource.EventContent data) {
+        return (global::Com.Zynga.Runtime.Protobuf.SimpleListEnum) data.U32;
+      }
+    }
+    private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleDeltaEnumList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleDeltaEnumList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleDeltaEnumList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90:
+          case 88: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 11: {
+            testBar_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 11: {
+            return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 11: {
+            e.Path.AddRange(this.Path.TestBarPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleDeltaEnumList.Parser.ParseFrom(root.Events[0].Data.ByteData);
+      MergeFrom(e);
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var ee = new zpr.EventSource.EventData();
+      ee.Action = zpr.EventSource.EventAction.Snapshot;
+      ee.Data = new zpr.EventSource.EventContent();
+      ee.Data.ByteData = this.ToByteString();
+      er.Events.Add(ee);
+      return er;
+    }
+
+  }
+
+  public sealed partial class SimpleMessageList : pb::IMessage<SimpleMessageList> {
+    private static readonly pb::MessageParser<SimpleMessageList> _parser = new pb::MessageParser<SimpleMessageList>(() => new SimpleMessageList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleMessageList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMessageList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMessageList(SimpleMessageList other) : this() {
+      testBar_ = other.testBar_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleMessageList Clone() {
+      return new SimpleMessageList(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListMessage> _repeated_testBar_codec
+        = pb::FieldCodec.ForMessage(90, global::Com.Zynga.Runtime.Protobuf.SimpleListMessage.Parser);
+    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListMessage> testBar_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListMessage>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListMessage> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleMessageList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleMessageList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleMessageList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SimpleDeltaMessageList : zpr::EventRegistry, pb::IMessage<SimpleDeltaMessageList> {
+    private static readonly pb::MessageParser<SimpleDeltaMessageList> _parser = new pb::MessageParser<SimpleDeltaMessageList>(() => new SimpleDeltaMessageList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SimpleDeltaMessageList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.SimpleListReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaMessageList() {
+      OnConstruction();
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaMessageList(SimpleDeltaMessageList other) : this() {
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone());
+      testBar_.SetRoot(_root);
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SimpleDeltaMessageList Clone() {
+      return new SimpleDeltaMessageList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public SimpleDeltaMessageList.Paths Path = new SimpleDeltaMessageList.Paths(zpr.EventPath.Empty);
+
+    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+      base.SetRoot(inRoot);
+      testBar_.SetRoot(inRoot);
+    }
+    public void SetPath(SimpleDeltaMessageList.Paths path) {
+      this.Path = path;
+      testBar_.SetPath(Path.TestBarPath);
+    }
+
+    public class Paths {
+
+        public zpr.EventPath Path = null;
+
+        public Paths(zpr.EventPath _path) {
+          Path = _path;
+        }
+        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    }
+    /// <summary>Field number for the "test_bar" field.</summary>
+    public const int TestBarFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> _repeated_testBar_codec
+        = pb::FieldCodec.ForMessage(90, global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage.Parser);
+    public class TestBarDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage.Parser.ParseFrom(data.ByteData);
+      }
+    }
+    private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> TestBar {
+      get { return testBar_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SimpleDeltaMessageList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SimpleDeltaMessageList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!testBar_.Equals(other.testBar_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= testBar_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      testBar_.WriteTo(output, _repeated_testBar_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += testBar_.CalculateSize(_repeated_testBar_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SimpleDeltaMessageList other) {
+      if (other == null) {
+        return;
+      }
+      testBar_.Add(other.testBar_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 90: {
+            testBar_.AddEntriesFrom(input, _repeated_testBar_codec);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        switch (e.Path[pathIndex]) {
+          case 11: {
+            testBar_.ApplyEvent(e);
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+        switch (fieldNumber) {
+          case 11: {
+            var byteData = (data as pb::IMessage)?.ToByteString();
+            return new zpr.EventSource.EventContent() { ByteData = byteData };
+          }
+          break;
+          default: 
+            return null;
+          break;
+        }
+    }
+
+    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+       var e = new zpr.EventSource.EventData {
+         Field = fieldNumber,
+         Action = action,
+         Data = GetEventData(fieldNumber, action, data)
+       };
+
+       switch (fieldNumber) {
+          case 11: {
+            e.Path.AddRange(this.Path.TestBarPath._path);
+          }
+          break;
+          default: 
+            return;
+          break;
+        }
+        _root.Add(e);
+    }
+    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+      var e = SimpleDeltaMessageList.Parser.ParseFrom(root.Events[0].Data.ByteData);
       MergeFrom(e);
       return true;
     }

@@ -249,7 +249,7 @@ void PrimitiveFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$descriptor_name$\", $has_property_check$, $property_name$, writer);\n");
 }
 
-void PrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer) {
+void PrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$name$_ = other.$name$_;\n");
 }
@@ -384,7 +384,7 @@ void PrimitiveOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
       "$property_name$ = input.Read$capitalized_type_name$();\n");
 }
 
-void PrimitiveOneofFieldGenerator::GenerateCloningCode(io::Printer* printer) {
+void PrimitiveOneofFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$property_name$ = other.$property_name$;\n");
 }

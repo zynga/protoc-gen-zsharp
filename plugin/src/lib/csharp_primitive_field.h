@@ -53,7 +53,7 @@ class PrimitiveFieldGenerator : public FieldGeneratorBase {
   ~PrimitiveFieldGenerator();
 
   virtual void GenerateCodecCode(io::Printer* printer);
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
   virtual void GenerateEventSource(io::Printer* printer);
@@ -86,7 +86,7 @@ class PrimitiveOneofFieldGenerator : public PrimitiveFieldGenerator {
                                const Options *options);
   ~PrimitiveOneofFieldGenerator();
 
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
 
   /// The following code is Copyright 2018, Zynga

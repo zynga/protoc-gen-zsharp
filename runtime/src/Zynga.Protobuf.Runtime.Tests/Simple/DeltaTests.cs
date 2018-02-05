@@ -1,8 +1,7 @@
-﻿using System;
-using Com.Zynga.Runtime.Protobuf;
+﻿using Com.Zynga.Runtime.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Xunit;
-using Zynga.Protobuf.Runtime.EventSource;
+using static Zynga.Protobuf.Runtime.Tests.Simple.EventTestHelper;
 
 namespace Zynga.Protobuf.Runtime.Tests.Simple {
 	public class DeltaTests {
@@ -16,16 +15,16 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.Foo.Long = 12;
 			blob.Foo.Str = "hello";
 
-			blob.AddIntToString(10, "world");
-			blob.AddStringToFoo("hello", new Foo {Long = 9, Str = "ha"});
+			blob.IntToString.Add(10, "world");
+			blob.StringToFoo.Add("hello", new Foo {Long = 9, Str = "ha"});
 
 			//blob.AddFoolist(new Foo{Long = 123});
 			//blob.RemoveFoolist(0)  // This doesn't work atm
-			blob.AddFoolist(new Foo {Long = 321});
-			blob.AddFoolist(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.Foolist.Add(new Foo {Long = 321});
+			blob.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
 
-			blob.Addilist(12);
-			blob.Addilist(51);
+			blob.Ilist.Add(12);
+			blob.Ilist.Add(51);
 
 			blob.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
 
@@ -64,36 +63,36 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		[Fact]
 		public void ListOfMessagesShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.AddFoolist(new Foo());
-			blob.AddFoolist(new Foo());
+			blob.Foolist.Add(new Foo());
+			blob.Foolist.Add(new Foo());
 			Assert.Equal(4, blob.CalculateSize());
 		}
 
 		[Fact]
 		public void ListOfIntsShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.Addilist(0);
-			blob.Addilist(1);
-			blob.Addilist(300);
+			blob.Ilist.Add(0);
+			blob.Ilist.Add(1);
+			blob.Ilist.Add(300);
 			Assert.Equal(6, blob.CalculateSize());
 		}
 
 		[Fact]
 		public void MapOfIntToStringShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.AddIntToString(0, "");
-			blob.AddIntToString(10, "");
-			blob.AddIntToString(1, "hi");
-			blob.AddIntToString(300, "hi");
+			blob.IntToString.Add(0, "");
+			blob.IntToString.Add(10, "");
+			blob.IntToString.Add(1, "hi");
+			blob.IntToString.Add(300, "hi");
 			Assert.Equal(23, blob.CalculateSize());
 		}
 
 		[Fact]
 		public void MapOfStringToFooShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.AddStringToFoo("", new Foo());
-			blob.AddStringToFoo("hi", new Foo());
-			blob.AddStringToFoo("bye", new Foo {Long = 300});
+			blob.StringToFoo.Add("", new Foo());
+			blob.StringToFoo.Add("hi", new Foo());
+			blob.StringToFoo.Add("bye", new Foo {Long = 300});
 			Assert.Equal(24, blob.CalculateSize());
 		}
 
@@ -114,32 +113,6 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var newBlob = blob.Clone();
 
 			Assert.Equal(blob, newBlob);
-		}
-
-		// TODO: write paths test
-
-		private static void AssertPath(EventData eventData, int[] path) {
-			Assert.Equal(path.Length, eventData.Path.Count);
-			for (int i = 0; i < path.Length; i++) {
-				Assert.Equal(path[i], eventData.Path[i]);
-			}
-		}
-
-		private static void AssertDeltaPath(TestBlob blob, int[] path) {
-			EventSourceRoot root = AssertGenerated(blob);
-			AssertPath(root.Events[0], path);
-			blob.Reset();
-		}
-
-		private static EventSourceRoot AssertGenerated(TestBlob blob) {
-			EventSourceRoot root = blob.GenerateEvents();
-			Assert.Equal(1, root.Events.Count);
-			return root;
-		}
-
-		private static void AssertNotGenerated(TestBlob blob) {
-			EventSourceRoot root = blob.GenerateEvents();
-			Assert.Equal(0, root.Events.Count);
 		}
 
 		[Fact]
@@ -181,37 +154,37 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.Foo.Str = "asdf";
 			AssertDeltaPath(blob, new[] {2, 2});
 
-			blob.AddIntToString(0, "");
+			blob.IntToString.Add(0, "");
 			AssertDeltaPath(blob, new[] {3});
 
-			blob.AddIntToString(1, "asdf");
+			blob.IntToString.Add(1, "asdf");
 			AssertDeltaPath(blob, new[] {3});
 
-			blob.RemoveIntToString(0);
+			blob.IntToString.Remove(0);
 			AssertDeltaPath(blob, new[] {3});
 
-			blob.RemoveIntToString(1);
+			blob.IntToString.Remove(1);
 			AssertDeltaPath(blob, new[] {3});
 
-			blob.AddStringToFoo("a", new Foo());
+			blob.StringToFoo.Add("a", new Foo());
 			AssertDeltaPath(blob, new[] {4});
 
-			blob.AddStringToFoo("b", new Foo {Long = 12});
+			blob.StringToFoo.Add("b", new Foo {Long = 12});
 			AssertDeltaPath(blob, new[] {4});
 
-			blob.RemoveStringToFoo("a");
+			blob.StringToFoo.Remove("a");
 			AssertDeltaPath(blob, new[] {4});
 
-			blob.RemoveStringToFoo("b");
+			blob.StringToFoo.Remove("b");
 			AssertDeltaPath(blob, new[] {4});
 
-			blob.Addilist(20);
+			blob.Ilist.Add(20);
 			AssertDeltaPath(blob, new[] {5});
 
-			blob.Addslist("as");
+			blob.Slist.Add("as");
 			AssertDeltaPath(blob, new[] {6});
 
-			blob.AddFoolist(new Foo());
+			blob.Foolist.Add(new Foo());
 			AssertDeltaPath(blob, new[] {7});
 		}
 
@@ -229,10 +202,10 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldNotGenerateDeltasForNoOpsOnMaps() {
 			/*
 			var blob = new TestBlob();
-			blob.AddIntToString(0, "a");
+			blob.IntToString.Add(0, "a");
 			AssertGenerated(blob);
 
-			blob.AddIntToString(0, "a");
+			blob.IntToString.Add(0, "a");
 			AssertNotGenerated(blob);
 			*/
 		}

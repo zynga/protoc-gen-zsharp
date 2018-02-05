@@ -63,61 +63,56 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     variables_,
     "private static readonly pb::FieldCodec<$type_name$> _repeated_$name$_codec\n"
     "    = pb::FieldCodec.ForEnum($tag$, x => (int) x, x => ($type_name$) x);\n");
-  printer->Print(variables_,
-    "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
-  WritePropertyDocComment(printer, descriptor_);
-  if (isEventSourced) {
-    printer->Print(
-      variables_,
-      "$access_level$ void Add$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
-      " $name$_.Add(value);\n"
-    "}\n");
 
+  // The following code is Copyright 2018, Zynga
+  if(isEventSourced) {
+    variables_["data_value"] = GetEventDataType(descriptor_);
     printer->Print(
       variables_,
-      "$access_level$ void Remove$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, value);\n"
-      " $name$_.Remove(value);\n"
-    "}\n");
-
-    printer->Print(
-      variables_,
-      "$access_level$ void Clear$property_name$() {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
-      " $name$_.Clear();\n"
-    "}\n");
-
-    // We will expose a readOnly list? 
-    AddPublicMemberAttributes(printer);
-    printer->Print(
-      variables_,
-      "#if !NET35\n"
-      "$access_level$ IReadOnlyList<$type_name$> $property_name$ {\n"
-      "  get { return $name$_; }\n"
+      "public class $property_name$DataConverter: EventDataConverter<$type_name$> {\n"
+      "  public override zpr.EventSource.EventContent GetEventData($type_name$ data) {\n"
+      "    return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n"
+      "  }\n"
+      "  public override $type_name$ GetItem(zpr.EventSource.EventContent data) {\n"
+      "    return ($type_name$) data.U32;\n"
+      "  }\n"
       "}\n"
-      "#endif\n");
-  } 
+      "private static $property_name$DataConverter $name$DataConverter = new $property_name$DataConverter();\n"
+      );
+
+    printer->Print(
+      variables_,
+      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
+  }
   else {
-    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
+  }
+
+  WritePropertyDocComment(printer, descriptor_);
+  AddPublicMemberAttributes(printer);
+
+  if(isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ EventRepeatedField<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+  else {
     printer->Print(
       variables_,
       "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
       "  get { return $name$_; }\n"
-      "}\n");
+    "}\n");
   }
 }
 
 void RepeatedEnumFieldGenerator::GenerateEventSource(io::Printer* printer) {
-  printer->Print(
-      variables_,
-      "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
-      "          $name$_.Add(($type_name$)e.Data.U32);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
-      "          $name$_.Remove(($type_name$)e.Data.U32);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
-      "          $name$_.Clear();\n"
-      "        }\n");
+    printer->Print(
+          variables_,
+          "        $name$_.ApplyEvent(e);\n");
 }
 
 void RepeatedEnumFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
@@ -186,9 +181,17 @@ void RepeatedEnumFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$descriptor_name$\", $name$_, writer);\n");
 }
 
-void RepeatedEnumFieldGenerator::GenerateCloningCode(io::Printer* printer) {
-  printer->Print(variables_,
-    "$name$_ = other.$name$_.Clone();\n");
+void RepeatedEnumFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
+      "$name$_.SetRoot(_root);\n"
+      "$name$_.SetPath(Path.$property_name$Path);\n");
+  }
+  else {
+    printer->Print(variables_,
+      "$name$_ = other.$name$_.Clone();\n");
+  }
 }
 
 void RepeatedEnumFieldGenerator::GenerateFreezingCode(io::Printer* printer) {

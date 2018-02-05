@@ -52,7 +52,7 @@ class MessageGenerator : public SourceGeneratorBase {
   MessageGenerator(const Descriptor* descriptor, const Options* options);
   ~MessageGenerator();
 
-  void GenerateCloningCode(io::Printer* printer);
+  void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   void GenerateFreezingCode(io::Printer* printer);
   void GenerateFrameworkMethods(io::Printer* printer);
   void Generate(io::Printer* printer);

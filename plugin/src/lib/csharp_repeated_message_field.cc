@@ -77,64 +77,57 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
     single_generator->GenerateCodecCode(printer);
   }
   printer->Print(";\n");
-  printer->Print(
-    variables_,
-    "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
-  WritePropertyDocComment(printer, descriptor_);
-  if (isEventSourced) {
-    printer->Print(
-      variables_,
-      "$access_level$ void Add$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
-      " $name$_.Add(value);\n"
-    "}\n");
 
+  // The following code is Copyright 2018, Zynga
+  if(isEventSourced) {
+    variables_["data_value"] = GetEventDataType(descriptor_);
     printer->Print(
       variables_,
-      "$access_level$ void Remove$property_name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, $name$_.IndexOf(value));\n"
-      " $name$_.Remove(value);\n"
-      "}\n");
-    
-    printer->Print(
-      variables_,
-      "$access_level$ void Clear$property_name$() {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
-      " $name$_.Clear();\n"
-    "}\n");
-
-    // We will expose a readOnly list? 
-    AddPublicMemberAttributes(printer);
-    printer->Print(
-      variables_,
-      "#if !NET35\n"
-      "$access_level$ IReadOnlyList<$type_name$> $property_name$ {\n"
-      "  get { return $name$_; }\n"
+      "public class $property_name$DataConverter: EventDataConverter<$type_name$> {\n"
+      "  public override zpr.EventSource.EventContent GetEventData($type_name$ data) {\n"
+      "    var byteData = (data as pb::IMessage)?.ToByteString();\n"
+      "    return new zpr.EventSource.EventContent() { $data_value$ = byteData };\n"
+      "  }\n"
+      "  public override $type_name$ GetItem(zpr.EventSource.EventContent data) {\n"
+      "    return $type_name$.Parser.ParseFrom(data.ByteData);\n"
+      "  }\n"
       "}\n"
-      "#endif\n");
+      "private static $property_name$DataConverter $name$DataConverter = new $property_name$DataConverter();\n"
+      );
 
-  } else {
-    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
+  }
+  else {
+    printer->Print(
+      variables_,
+      "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
+  }
+
+  WritePropertyDocComment(printer, descriptor_);
+  AddPublicMemberAttributes(printer);
+
+  if(isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ EventRepeatedField<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+  else {
     printer->Print(
       variables_,
       "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
       "  get { return $name$_; }\n"
     "}\n");
   }
-  
 }
 
 void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
     printer->Print(
-      variables_,
-      "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
-      "          var m = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n"
-      "          $name$_.Add(m);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
-      "          SafeRemoveCurrentIndex($name$_, e.Data.I32);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
-      "          $name$_.Clear();\n"
-      "        }\n");
+          variables_,
+          "        $name$_.ApplyEvent(e);\n");
 }
 
 
@@ -207,9 +200,17 @@ void RepeatedMessageFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$field_name$\", $name$_, writer);\n");
 }
 
-void RepeatedMessageFieldGenerator::GenerateCloningCode(io::Printer* printer) {
-  printer->Print(variables_,
-    "$name$_ = other.$name$_.Clone();\n");
+void RepeatedMessageFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
+      "$name$_.SetRoot(_root);\n"
+      "$name$_.SetPath(Path.$property_name$Path);\n");
+  }
+  else {
+    printer->Print(variables_,
+      "$name$_ = other.$name$_.Clone();\n");
+  }
 }
 
 void RepeatedMessageFieldGenerator::GenerateFreezingCode(io::Printer* printer) {

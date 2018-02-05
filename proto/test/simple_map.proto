@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+enum SimpleMapEnum {
+  UNSET = 0;
+  A = 1;
+  B = 2;
+  C = 3;
+  D = 4;
+  E = 5;
+  F = 6;
+}
+
+message SimpleMapMessage {
+  string g = 1;
+}
+
+message SimpleMapDeltaMessage {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  string h = 1;
+}
+
+message SimpleLongToMessageMap {
+  map<int64, SimpleMapMessage> test_foo = 10;
+}
+
+message SimpleLongToMessageDeltaMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  map<int64, SimpleMapDeltaMessage> test_foo = 10;
+}
+
+message SimpleStringToEnumMap {
+  map<string, SimpleMapEnum> test_foo = 10;
+}
+
+message SimpleStringToEnumDeltaMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  map<string, SimpleMapEnum> test_foo = 10;
+}
+
+message SimpleStringToStringMap {
+  map<string, string> test_foo = 10;
+}
+
+message SimpleStringToStringDeltaMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  map<string, string> test_foo = 10;
+}
+
+message SimpleStringToLongMap {
+  map<string, int64> test_foo = 10;
+}
+
+message SimpleStringToLongDeltaMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  map<string, int64> test_foo = 10;
+}

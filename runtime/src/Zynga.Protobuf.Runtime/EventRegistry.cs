@@ -39,7 +39,7 @@ namespace Zynga.Protobuf.Runtime
             return er;
         }
 
-        public void SetRoot(List<EventData> inRoot) {
+        public virtual void SetRoot(List<EventData> inRoot) {
             _root = inRoot;
         }
 

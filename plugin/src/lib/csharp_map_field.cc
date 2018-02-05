@@ -70,9 +70,11 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   scoped_ptr<FieldGeneratorBase> value_generator(
       CreateFieldGenerator(value_descriptor, 2, this->options()));
 
-
   variables_["key_write_name"] = GetByteStringWrite(key_descriptor);
   variables_["value_write_name"] = GetByteStringWrite(value_descriptor);
+  variables_["key_read_name"] = GetByteStringRead(key_descriptor);
+  variables_["value_read_name"] = GetByteStringRead(value_descriptor);
+  variables_["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
 
   printer->Print(
     variables_,
@@ -82,58 +84,105 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   printer->Print(", ");
   value_generator->GenerateCodecCode(printer);
   printer->Print(
-    variables_,
-    ", $tag$);\n"
-    "private readonly pbc::MapField<$key_type_name$, $value_type_name$> $name$_ = new pbc::MapField<$key_type_name$, $value_type_name$>();\n");
-  WritePropertyDocComment(printer, descriptor_);
+      variables_,
+      ", $tag$);\n");
 
   if (isEventSourced) {
     printer->Print(
       variables_,
-      "$access_level$ void Add$property_name$($key_type_name$ key, $value_type_name$ value) {\n"
-      " var mapEvent = new zpr.EventSource.EventMap();\n"
-      " using (var memStream = new MemoryStream()) {;\n"
-      "   var dataStream = new CodedOutputStream(memStream);\n"
-      "   dataStream.$key_write_name$(key);\n"
-      "   dataStream.$value_write_name$(value);\n"
-      "   dataStream.Flush();\n"
-      "   mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
-      " }\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.AddMap, mapEvent);\n"
-      " $name$_.Add(key, value);\n"
-    "}\n");
+      "internal class $property_name$MapConverter : EventMapConverter<$key_type_name$, $value_type_name$> {\n"
+      "  public override zpr.EventSource.EventContent GetEventData($key_type_name$ key, $value_type_name$ value, bool skipValue = false) {\n"
+      "    var mapEvent = new zpr.EventSource.EventMap();\n"
+      "    using (var memStream = new MemoryStream()) {\n"
+      "      var dataStream = new CodedOutputStream(memStream);\n"
+      "      dataStream.$key_write_name$(key);\n");
+
+    if (value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
+      printer->Print(
+        variables_,
+        "      if(!skipValue) dataStream.$value_write_name$((int) value);\n");
+    }
+    else {
+      printer->Print(
+        variables_,
+        "      if(!skipValue) dataStream.$value_write_name$(value);\n");
+    }
 
     printer->Print(
       variables_,
-      "$access_level$ void Remove$property_name$($key_type_name$ key) {\n"
-      " var mapEvent = new zpr.EventSource.EventMap();\n"
-      " using (var memStream = new MemoryStream()) {;\n"
-      "   var dataStream = new CodedOutputStream(memStream);\n"
-      "   dataStream.$key_write_name$(key);\n"
-      "   dataStream.Flush();\n"
-      "   mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
-      " }\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.RemoveMap, mapEvent);\n"
-      " $name$_.Remove(key);\n"
-    "}\n");
+      "      dataStream.Flush();\n"
+      "      mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
+      "    }\n"
+      "    return new zpr.EventSource.EventContent{MapData = mapEvent};\n"
+      "  }\n"
+      "  public override KeyValuePair<$key_type_name$, $value_type_name$> GetItem(zpr.EventSource.EventData data) {\n"
+      "    var dataStream = data.Data.MapData.Data.CreateCodedInput();\n");
+
+    // if we are a message type then we need to decode the message to its actual value
+    if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+      printer->Print(
+        variables_,
+        "    var realKey$name$ = new $key_type_name$();\n"
+        "    dataStream.ReadMessage(realKey$name$);\n");
+    } else {
+      printer->Print(
+        variables_,
+        "    var realKey$name$ = dataStream.$key_read_name$();\n");
+    }
 
     printer->Print(
       variables_,
-      "$access_level$ void Clear$property_name$() {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.ClearMap, -1);\n"
-      " $name$_.Clear();\n"
-    "}\n");
+      "    if (data.Action == zpr.EventSource.EventAction.RemoveMap) {\n"
+      "      return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, default($value_type_name$));\n"
+      "    }\n"
+      "    else {\n");
 
-    AddPublicMemberAttributes(printer);
+    if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+      printer->Print(
+        variables_,
+        "      var realValue$name$ = new $value_type_name$();\n"
+        "      dataStream.ReadMessage(realValue$name$);;\n");
+    }
+    else if(value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
+      printer->Print(
+        variables_,
+        "      var realValue$name$ = ($value_type_name$) dataStream.$value_read_name$();\n");
+    }
+    else {
+      printer->Print(
+        variables_,
+        "      var realValue$name$ = dataStream.$value_read_name$();\n");
+    }
     printer->Print(
       variables_,
-      "#if !NET35\n"
-      "$access_level$ IReadOnlyDictionary<$key_type_name$, $value_type_name$> $property_name$ {\n"
-      "  get { return $name$_; }\n"
+      "      return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, realValue$name$);\n"
+      "    }\n"
+      "  }\n"
       "}\n"
-      "#endif\n");
-  } else {
-    AddPublicMemberAttributes(printer);
+      "private static readonly EventMapConverter<$key_type_name$, $value_type_name$> $name$MapConverter = new $property_name$MapConverter();\n");
+
+    printer->Print(
+      variables_,
+      "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter);\n");
+  }
+  else {
+    printer->Print(
+      variables_,
+      "private readonly pbc::MapField<$key_type_name$, $value_type_name$> $name$_ = new pbc::MapField<$key_type_name$, $value_type_name$>();\n");
+  }
+
+  WritePropertyDocComment(printer, descriptor_);
+
+  AddPublicMemberAttributes(printer);
+
+  if (isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ EventMapField<$key_type_name$, $value_type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+  else {
     printer->Print(
       variables_,
       "$access_level$ pbc::MapField<$key_type_name$, $value_type_name$> $property_name$ {\n"
@@ -158,56 +207,9 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
     vars["key_read_name"] = GetByteStringRead(key_descriptor);
     vars["value_read_name"] = GetByteStringRead(value_descriptor);
 
-  printer->Print(
+    printer->Print(
           vars,
-          "        var dataStream = e.Data.MapData.Data.CreateCodedInput();\n");
-  printer->Print("        if (e.Action == zpr.EventSource.EventAction.AddMap) {\n");
-  
-
-      // if we are a message type then we need to decode the message to its actual value
-      if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        printer->Print(
-          vars,
-          "         var realKey$name$ = new $key_type_name$();\n"
-          "         dataStream.ReadMessage(realKey$name$);\n");
-      } else {
-        printer->Print(
-          vars,
-          "         var realKey$name$ = dataStream.$key_read_name$();\n");
-      }
-
-      if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        printer->Print(
-          vars,
-          "         var realValue$name$ = new $value_type_name$();\n"
-          "         dataStream.ReadMessage(realValue$name$);;\n");
-      } else {
-        printer->Print(
-          vars,
-          "         var realValue$name$  = dataStream.$value_read_name$();\n");
-      }
-      printer->Print(
-          vars,
-          "         $name$_.Add(realKey$name$, realValue$name$);\n");
-      printer->Print("        } else if (e.Action == zpr.EventSource.EventAction.RemoveMap) {\n");
-      if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        printer->Print(
-          vars,
-          "         var realKey$name$ = new $key_type_name$();\n"
-          "         dataStream.ReadMessage(realKey$name$);\n");
-      } else {
-        printer->Print(
-          vars,
-          "         var realKey$name$ = dataStream.$key_read_name$();\n");
-      }
-      printer->Print(
-          vars,
-          "         $name$_.Remove(realKey$name$);\n");
-      printer->Print("        } else if (e.Action == zpr.EventSource.EventAction.ClearMap) {\n");
-      printer->Print(
-          vars,
-          "         $name$_.Clear();\n");
-      printer->Print("        }\n");
+          "        $name$_.ApplyEvent(e);\n");
 }
 
 void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
@@ -316,9 +318,31 @@ void MapFieldGenerator::WriteToString(io::Printer* printer) {
     // TODO: If we ever actually use ToString, we'll need to impleme this...
 }
 
-void MapFieldGenerator::GenerateCloningCode(io::Printer* printer) {
-  printer->Print(variables_,
-    "$name$_ = other.$name$_.Clone();\n");
+void MapFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    const FieldDescriptor* key_descriptor =
+        descriptor_->message_type()->FindFieldByName("key");
+    const FieldDescriptor* value_descriptor =
+        descriptor_->message_type()->FindFieldByName("value");
+    std::map<string, string> vars;
+      vars["name"] = variables_["name"];
+      vars["type_name"] = variables_["type_name"];
+      vars["property_name"] = variables_["property_name"];
+      vars["key_type_name"] = type_name(key_descriptor);
+      vars["value_type_name"] = type_name(value_descriptor);
+      vars["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
+
+    printer->Print(vars,
+      "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
+    printer->Print(vars,
+      "$name$_.SetRoot(_root);\n");
+    printer->Print(vars,
+      "$name$_.SetPath(Path.$property_name$Path);\n");
+  }
+  else {
+    printer->Print(variables_,
+      "$name$_ = other.$name$_.Clone();\n");
+  }
 }
 
 void MapFieldGenerator::GenerateFreezingCode(io::Printer* printer) {

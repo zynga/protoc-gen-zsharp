@@ -179,11 +179,30 @@ void MessageGenerator::Generate(io::Printer* printer) {
   printer->Print(
     vars,
     "public $class_name$() {\n"
-    "  OnConstruction();\n"
+    "  OnConstruction();\n");
+
+  if (IsEventSourced()) {
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
+        printer->Print(
+          "  $field_name$_.SetRoot(_root);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
+        printer->Print(
+          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+          "property_name", GetPropertyName(fieldDescriptor));;
+      }
+    }
+  }
+
+  printer->Print(
+    vars,
     "}\n\n"
     "partial void OnConstruction();\n\n");
 
-  GenerateCloningCode(printer);
+  GenerateCloningCode(printer, IsEventSourced());
   GenerateFreezingCode(printer);
 
   /// The following code is Copyright 2018, Zynga
@@ -196,10 +215,42 @@ void MessageGenerator::Generate(io::Printer* printer) {
   
   if (IsEventSourced()) {
     printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
+
+    printer->Print(
+      vars,
+      "public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {\n"
+      "  base.SetRoot(inRoot);\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
+        printer->Print(
+          "  $field_name$_.SetRoot(inRoot);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
+      }
+    }
+
+    printer->Print(
+      vars,
+      "}\n");
+
     printer->Print(
     vars, 
     "public void SetPath($class_name$.Paths path) {\n");
     printer->Print("  this.Path = path;\n");
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      bool isFieldSourced = false;
+      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
+        printer->Print(
+          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+          "property_name", GetPropertyName(fieldDescriptor));
+      }
+    }
+
     printer->Print("}\n\n");
 
     printer->Print(
@@ -472,7 +523,7 @@ bool MessageGenerator::HasNestedGeneratedTypes()
   return false;
 }
 
-void MessageGenerator::GenerateCloningCode(io::Printer* printer) {
+void MessageGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   std::map<string, string> vars;
   WriteGeneratedCodeAttributes(printer);
   vars["class_name"] = class_name();
@@ -485,7 +536,7 @@ void MessageGenerator::GenerateCloningCode(io::Printer* printer) {
     if (!descriptor_->field(i)->containing_oneof()) {
       scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(descriptor_->field(i)));
-      generator->GenerateCloningCode(printer);
+      generator->GenerateCloningCode(printer, isEventSourced);
     }
   }
   // Clone just the right field for each oneof
@@ -503,7 +554,7 @@ void MessageGenerator::GenerateCloningCode(io::Printer* printer) {
           vars,
           "case $property_name$OneofCase.$field_property_name$:\n");
       printer->Indent();
-      generator->GenerateCloningCode(printer);
+      generator->GenerateCloningCode(printer, IsEventSourced());
       printer->Print("break;\n");
       printer->Outdent();
     }

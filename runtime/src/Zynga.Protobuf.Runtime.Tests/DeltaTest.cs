@@ -111,6 +111,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       intToString_.SetPath(Path.IntToStringPath);
       stringToFoo_.SetRoot(_root);
       stringToFoo_.SetPath(Path.StringToFooPath);
+      ilist_.SetRoot(_root);
+      ilist_.SetPath(Path.IlistPath);
+      slist_.SetRoot(_root);
+      slist_.SetPath(Path.SlistPath);
+      foolist_.SetRoot(_root);
+      foolist_.SetPath(Path.FoolistPath);
     }
 
     partial void OnConstruction();
@@ -125,9 +131,15 @@ namespace Com.Zynga.Runtime.Protobuf {
       stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone());
       stringToFoo_.SetRoot(_root);
       stringToFoo_.SetPath(Path.StringToFooPath);
-      ilist_ = other.ilist_.Clone();
-      slist_ = other.slist_.Clone();
-      foolist_ = other.foolist_.Clone();
+      ilist_ = new EventRepeatedField<int>(ilistDataConverter, other.Ilist.Clone());
+      ilist_.SetRoot(_root);
+      ilist_.SetPath(Path.IlistPath);
+      slist_ = new EventRepeatedField<string>(slistDataConverter, other.Slist.Clone());
+      slist_.SetRoot(_root);
+      slist_.SetPath(Path.SlistPath);
+      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone());
+      foolist_.SetRoot(_root);
+      foolist_.SetPath(Path.FoolistPath);
       zam_ = other.zam_ != null ? other.Zam.Clone() : null;
       fieldBool_ = other.fieldBool_;
       timestamp_ = other.timestamp_ != null ? other.Timestamp.Clone() : null;
@@ -160,11 +172,17 @@ namespace Com.Zynga.Runtime.Protobuf {
       base.SetRoot(inRoot);
       intToString_.SetRoot(inRoot);
       stringToFoo_.SetRoot(inRoot);
+      ilist_.SetRoot(inRoot);
+      slist_.SetRoot(inRoot);
+      foolist_.SetRoot(inRoot);
     }
     public void SetPath(TestBlob.Paths path) {
       this.Path = path;
       intToString_.SetPath(Path.IntToStringPath);
       stringToFoo_.SetPath(Path.StringToFooPath);
+      ilist_.SetPath(Path.IlistPath);
+      slist_.SetPath(Path.SlistPath);
+      foolist_.SetPath(Path.FoolistPath);
     }
 
     public class Paths {
@@ -293,73 +311,59 @@ namespace Com.Zynga.Runtime.Protobuf {
     public const int IlistFieldNumber = 5;
     private static readonly pb::FieldCodec<int> _repeated_ilist_codec
         = pb::FieldCodec.ForInt32(42);
-    private readonly pbc::RepeatedField<int> ilist_ = new pbc::RepeatedField<int>();
-    public void Addilist(int value) {
-     AddEvent(5, zpr.EventSource.EventAction.AddList, value);
-     ilist_.Add(value);
+    public class IlistDataConverter: EventDataConverter<int> {
+      public override zpr.EventSource.EventContent GetEventData(int data) {
+        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
+      }
+      public override int GetItem(zpr.EventSource.EventContent data) {
+        return data.I32;
+      }
     }
-    public void Removeilist(int value) {
-     AddEvent(5, zpr.EventSource.EventAction.RemoveList, value);
-     ilist_.Remove(value);
-    }
-    public void ClearIlist() {
-     AddEvent(5, zpr.EventSource.EventAction.ClearList, -1);
-     ilist_.Clear();
-    }
+    private static IlistDataConverter ilistDataConverter = new IlistDataConverter();
+    private readonly EventRepeatedField<int> ilist_ = new EventRepeatedField<int>(ilistDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<int> Ilist {
+    public EventRepeatedField<int> Ilist {
       get { return ilist_; }
     }
-    #endif
 
     /// <summary>Field number for the "slist" field.</summary>
     public const int SlistFieldNumber = 6;
     private static readonly pb::FieldCodec<string> _repeated_slist_codec
         = pb::FieldCodec.ForString(50);
-    private readonly pbc::RepeatedField<string> slist_ = new pbc::RepeatedField<string>();
-    public void Addslist(string value) {
-     AddEvent(6, zpr.EventSource.EventAction.AddList, value);
-     slist_.Add(value);
+    public class SlistDataConverter: EventDataConverter<string> {
+      public override zpr.EventSource.EventContent GetEventData(string data) {
+        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+      }
+      public override string GetItem(zpr.EventSource.EventContent data) {
+        return data.StringData;
+      }
     }
-    public void Removeslist(string value) {
-     AddEvent(6, zpr.EventSource.EventAction.RemoveList, value);
-     slist_.Remove(value);
-    }
-    public void ClearSlist() {
-     AddEvent(6, zpr.EventSource.EventAction.ClearList, -1);
-     slist_.Clear();
-    }
+    private static SlistDataConverter slistDataConverter = new SlistDataConverter();
+    private readonly EventRepeatedField<string> slist_ = new EventRepeatedField<string>(slistDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<string> Slist {
+    public EventRepeatedField<string> Slist {
       get { return slist_; }
     }
-    #endif
 
     /// <summary>Field number for the "foolist" field.</summary>
     public const int FoolistFieldNumber = 7;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.Foo> _repeated_foolist_codec
         = pb::FieldCodec.ForMessage(58, global::Com.Zynga.Runtime.Protobuf.Foo.Parser);
-    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>();
-    public void AddFoolist(global::Com.Zynga.Runtime.Protobuf.Foo value) {
-     AddEvent(7, zpr.EventSource.EventAction.AddList, value);
-     foolist_.Add(value);
+    public class FoolistDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.Foo> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.Foo data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.Foo GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(data.ByteData);
+      }
     }
-    public void RemoveFoolist(global::Com.Zynga.Runtime.Protobuf.Foo value) {
-     AddEvent(7, zpr.EventSource.EventAction.RemoveList, foolist_.IndexOf(value));
-     foolist_.Remove(value);
-    }
-    public void ClearFoolist() {
-     AddEvent(7, zpr.EventSource.EventAction.ClearList, -1);
-     foolist_.Clear();
-    }
+    private static FoolistDataConverter foolistDataConverter = new FoolistDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<global::Com.Zynga.Runtime.Protobuf.Foo> Foolist {
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> Foolist {
       get { return foolist_; }
     }
-    #endif
 
     /// <summary>Field number for the "maybefoo" field.</summary>
     public const int MaybefooFieldNumber = 8;
@@ -816,34 +820,15 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 5: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              ilist_.Add(e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              ilist_.Remove(e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              ilist_.Clear();
-            }
+            ilist_.ApplyEvent(e);
           }
           break;
           case 6: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              slist_.Add(e.Data.StringData);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              slist_.Remove(e.Data.StringData);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              slist_.Clear();
-            }
+            slist_.ApplyEvent(e);
           }
           break;
           case 7: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              var m = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.ByteData);
-              foolist_.Add(m);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              SafeRemoveCurrentIndex(foolist_, e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              foolist_.Clear();
-            }
+            foolist_.ApplyEvent(e);
           }
           break;
           case 8: {

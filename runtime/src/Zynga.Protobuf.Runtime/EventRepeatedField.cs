@@ -9,18 +9,22 @@ namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// Wraps a repeated field to add event sourcing support
 	/// </summary>
-	public abstract class EventRepeatedField<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
-		private readonly RepeatedField<T> _internal = new RepeatedField<T>();
-		private readonly List<EventData> _root;
-		private readonly EventPath _path;
+	public class EventRepeatedField<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
+		private readonly RepeatedField<T> _internal;
+		private List<EventData> _root;
+		private EventPath _path;
 		private readonly EventDataConverter<T> _converter;
-		
-		public EventRepeatedField(List<EventData> root, EventPath path, EventDataConverter<T> converter) {
-			_root = root;
-			_path = path;
+
+		public EventRepeatedField(EventDataConverter<T> converter) {
 			_converter = converter;
+			_internal = new RepeatedField<T>();
 		}
-		
+
+		public EventRepeatedField(EventDataConverter<T> converter, RepeatedField<T> repeatedField) {
+			_converter = converter;
+			_internal = repeatedField;
+		}
+
 		public RepeatedField<T> Clone() {
 			return _internal.Clone();
 		}
@@ -40,6 +44,12 @@ namespace Zynga.Protobuf.Runtime {
 		public void Add(T item) {
 			_internal.Add(item);
 			AddEvent(EventAction.AddList, Count, _converter.GetEventData(item));
+		}
+
+		public void Add(EventRepeatedField<T> other) {
+			foreach (var v in other) {
+				_internal.Add(v);
+			}
 		}
 
 		public void Clear() {
@@ -175,7 +185,7 @@ namespace Zynga.Protobuf.Runtime {
 				return;
 			Remove((T) value);
 		}
-		
+
 		private void AddEvent(EventAction action) {
 			var newEvent = new EventData {
 				Action = action,
@@ -183,7 +193,7 @@ namespace Zynga.Protobuf.Runtime {
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
 		}
-		
+
 		private void AddEvent(EventAction action, int field) {
 			var newEvent = new EventData {
 				Action = action,
@@ -192,7 +202,7 @@ namespace Zynga.Protobuf.Runtime {
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
 		}
-		
+
 		private void AddEvent(EventAction action, EventContent data) {
 			var newEvent = new EventData {
 				Action = action,
@@ -201,7 +211,7 @@ namespace Zynga.Protobuf.Runtime {
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
 		}
-		
+
 		private void AddEvent(EventAction action, int field, EventContent data) {
 			var newEvent = new EventData {
 				Action = action,
@@ -210,6 +220,14 @@ namespace Zynga.Protobuf.Runtime {
 			};
 			newEvent.Path.AddRange(_path._path);
 			_root.Add(newEvent);
+		}
+
+		public void SetRoot(List<EventData> inRoot) {
+			_root = inRoot;
+		}
+
+		public void SetPath(EventPath path) {
+			_path = path;
 		}
 
 		public bool ApplyEvent(EventData e) {

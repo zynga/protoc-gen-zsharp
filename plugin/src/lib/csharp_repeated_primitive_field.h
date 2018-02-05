@@ -48,7 +48,7 @@ class RepeatedPrimitiveFieldGenerator : public FieldGeneratorBase {
   RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor, int fieldOrdinal, const Options *options);
   ~RepeatedPrimitiveFieldGenerator();
 
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateFreezingCode(io::Printer* printer);
   
   /// The following code is Copyright 2018, Zynga

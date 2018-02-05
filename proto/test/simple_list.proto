@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+message SimpleList {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  repeated string test_bar = 11;
+}

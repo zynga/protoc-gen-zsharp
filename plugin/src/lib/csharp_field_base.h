@@ -51,7 +51,7 @@ class FieldGeneratorBase : public SourceGeneratorBase {
                      const Options* options);
   ~FieldGeneratorBase();
 
-  virtual void GenerateCloningCode(io::Printer* printer) = 0;
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSource) = 0;
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateCodecCode(io::Printer* printer);
 

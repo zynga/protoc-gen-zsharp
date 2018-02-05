@@ -212,7 +212,7 @@ void MessageFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$field_name$\", has$property_name$, $name$_, writer);\n");
 }
 
-void MessageFieldGenerator::GenerateCloningCode(io::Printer* printer) {
+void MessageFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$name$_ = other.$has_property_check$ ? other.$property_name$.Clone() : null;\n");
 }
@@ -335,7 +335,7 @@ void MessageOneofFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$descriptor_name$\", $has_property_check$, $oneof_name$_, writer);\n");
 }
 
-void MessageOneofFieldGenerator::GenerateCloningCode(io::Printer* printer) {
+void MessageOneofFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$property_name$ = other.$property_name$.Clone();\n");
 }

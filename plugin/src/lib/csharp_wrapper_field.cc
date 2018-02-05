@@ -153,7 +153,7 @@ void WrapperFieldGenerator::WriteToString(io::Printer* printer) {
   // TODO: Implement if we ever actually need it...
 }
 
-void WrapperFieldGenerator::GenerateCloningCode(io::Printer* printer) {
+void WrapperFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$property_name$ = other.$property_name$;\n");
 }

@@ -75,8 +75,6 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   variables_["key_read_name"] = GetByteStringRead(key_descriptor);
   variables_["value_read_name"] = GetByteStringRead(value_descriptor);
   variables_["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
-  //variables_["property_name"] = GetPropertyName(descriptor_);
-  //"field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
 
   printer->Print(
     variables_,
@@ -301,25 +299,31 @@ void MapFieldGenerator::WriteToString(io::Printer* printer) {
     // TODO: If we ever actually use ToString, we'll need to impleme this...
 }
 
-void MapFieldGenerator::GenerateCloningCode(io::Printer* printer) {
-  const FieldDescriptor* key_descriptor =
-      descriptor_->message_type()->FindFieldByName("key");
-  const FieldDescriptor* value_descriptor =
-      descriptor_->message_type()->FindFieldByName("value");
-  std::map<string, string> vars;
-    vars["name"] = variables_["name"];
-    vars["type_name"] = variables_["type_name"];
-    vars["property_name"] = variables_["property_name"];
-    vars["key_type_name"] = type_name(key_descriptor);
-    vars["value_type_name"] = type_name(value_descriptor);
-    vars["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
+void MapFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    const FieldDescriptor* key_descriptor =
+        descriptor_->message_type()->FindFieldByName("key");
+    const FieldDescriptor* value_descriptor =
+        descriptor_->message_type()->FindFieldByName("value");
+    std::map<string, string> vars;
+      vars["name"] = variables_["name"];
+      vars["type_name"] = variables_["type_name"];
+      vars["property_name"] = variables_["property_name"];
+      vars["key_type_name"] = type_name(key_descriptor);
+      vars["value_type_name"] = type_name(value_descriptor);
+      vars["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
 
-  printer->Print(vars,
-    "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
-  printer->Print(vars,
-    "$name$_.SetRoot(_root);\n");
-  printer->Print(vars,
-    "$name$_.SetPath(Path.$property_name$Path);\n");
+    printer->Print(vars,
+      "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
+    printer->Print(vars,
+      "$name$_.SetRoot(_root);\n");
+    printer->Print(vars,
+      "$name$_.SetPath(Path.$property_name$Path);\n");
+  }
+  else {
+    printer->Print(variables_,
+      "$name$_ = other.$name$_.Clone();\n");
+  }
 }
 
 void MapFieldGenerator::GenerateFreezingCode(io::Printer* printer) {

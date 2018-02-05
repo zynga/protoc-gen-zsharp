@@ -20,11 +20,11 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			//blob.AddFoolist(new Foo{Long = 123});
 			//blob.RemoveFoolist(0)  // This doesn't work atm
-			blob.AddFoolist(new Foo {Long = 321});
-			blob.AddFoolist(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.Foolist.Add(new Foo {Long = 321});
+			blob.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
 
-			blob.Addilist(12);
-			blob.Addilist(51);
+			blob.Ilist.Add(12);
+			blob.Ilist.Add(51);
 
 			blob.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
 
@@ -63,17 +63,17 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		[Fact]
 		public void ListOfMessagesShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.AddFoolist(new Foo());
-			blob.AddFoolist(new Foo());
+			blob.Foolist.Add(new Foo());
+			blob.Foolist.Add(new Foo());
 			Assert.Equal(4, blob.CalculateSize());
 		}
 
 		[Fact]
 		public void ListOfIntsShouldHaveTheCorrectSize() {
 			var blob = new TestBlob();
-			blob.Addilist(0);
-			blob.Addilist(1);
-			blob.Addilist(300);
+			blob.Ilist.Add(0);
+			blob.Ilist.Add(1);
+			blob.Ilist.Add(300);
 			Assert.Equal(6, blob.CalculateSize());
 		}
 
@@ -178,13 +178,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.StringToFoo.Remove("b");
 			AssertDeltaPath(blob, new[] {4});
 
-			blob.Addilist(20);
+			blob.Ilist.Add(20);
 			AssertDeltaPath(blob, new[] {5});
 
-			blob.Addslist("as");
+			blob.Slist.Add("as");
 			AssertDeltaPath(blob, new[] {6});
 
-			blob.AddFoolist(new Foo());
+			blob.Foolist.Add(new Foo());
 			AssertDeltaPath(blob, new[] {7});
 		}
 

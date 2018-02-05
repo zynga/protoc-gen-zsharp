@@ -50,7 +50,7 @@ class MapFieldGenerator : public FieldGeneratorBase {
                     const Options* options);
   ~MapFieldGenerator();
 
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateFreezingCode(io::Printer* printer);
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);

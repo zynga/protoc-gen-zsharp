@@ -63,50 +63,44 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
     variables_,
     "private static readonly pb::FieldCodec<$type_name$> _repeated_$name$_codec\n"
     "    = pb::FieldCodec.For$capitalized_type_name$($tag$);\n");
-  printer->Print(variables_,
-    "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
-  WritePropertyDocComment(printer, descriptor_);
-  
 
-
-  /// The following code is Copyright 2018, Zynga
-  // We change this path that if we are event sourced we no longer use the standarder getter.
-  // we now use access functions. $AS TODO: Maybe we always do this anyways ? 
-  if (isEventSourced) {
+  // The following code is Copyright 2018, Zynga
+  if(isEventSourced) {
+    variables_["data_value"] = GetEventDataType(descriptor_);
     printer->Print(
       variables_,
-      "$access_level$ void Add$name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.AddList, value);\n"
-      " $name$_.Add(value);\n"
-    "}\n");
-
-    printer->Print(
-      variables_,
-      "$access_level$ void Remove$name$($type_name$ value) {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.RemoveList, value);\n"
-      " $name$_.Remove(value);\n"
-    "}\n");
-
-    printer->Print(
-      variables_,
-      "$access_level$ void Clear$property_name$() {\n"
-      " AddEvent($number$, zpr.EventSource.EventAction.ClearList, -1);\n"
-      " $name$_.Clear();\n"
-    "}\n");
-
-    // We will expose a readOnly list? 
-    AddPublicMemberAttributes(printer);
-    printer->Print(
-      variables_,
-      "#if !NET35\n"
-      "$access_level$ IReadOnlyList<$type_name$> $property_name$ {\n"
-      "  get { return $name$_; }\n"
+      "public class $property_name$DataConverter: EventDataConverter<$type_name$> {\n"
+      "  public override zpr.EventSource.EventContent GetEventData($type_name$ data) {\n"
+      "    return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n"
+      "  }\n"
+      "  public override $type_name$ GetItem(zpr.EventSource.EventContent data) {\n"
+      "    return data.$data_value$;\n"
+      "  }\n"
       "}\n"
-      "#endif\n");
+      "private static $property_name$DataConverter $name$DataConverter = new $property_name$DataConverter();\n"
+      );
+
+    printer->Print(
+      variables_,
+      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
   }
-  ///
   else {
-    AddPublicMemberAttributes(printer);
+    printer->Print(
+      variables_,
+      "private readonly pbc::RepeatedField<$type_name$> $name$_ = new pbc::RepeatedField<$type_name$>();\n");
+  }
+
+  WritePropertyDocComment(printer, descriptor_);
+  AddPublicMemberAttributes(printer);
+
+  if(isEventSourced) {
+    printer->Print(
+      variables_,
+      "$access_level$ EventRepeatedField<$type_name$> $property_name$ {\n"
+      "  get { return $name$_; }\n"
+    "}\n");
+  }
+  else {
     printer->Print(
       variables_,
       "$access_level$ pbc::RepeatedField<$type_name$> $property_name$ {\n"
@@ -116,21 +110,10 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
 }
 
 void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
-    std::map<string, string> vars;
-    vars["name"] = variables_["name"];
-    vars["data_value"] = GetEventDataType(descriptor_);
-    vars["type_name"] = variables_["type_name"];
     printer->Print(
-      vars,
-      "        if (e.Action == zpr.EventSource.EventAction.AddList) {\n"
-      "          $name$_.Add(e.Data.$data_value$);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {\n"
-      "          $name$_.Remove(e.Data.$data_value$);\n"
-      "        } else if (e.Action == zpr.EventSource.EventAction.ClearList) {\n"
-      "          $name$_.Clear();\n"
-      "        }\n");
+          variables_,
+          "        $name$_.ApplyEvent(e);\n");
 }
-
 
 void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   std::map<string, string> vars;
@@ -195,9 +178,17 @@ void RepeatedPrimitiveFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$descriptor_name$\", $name$_, writer);\n");
 }
 
-void RepeatedPrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer) {
-  printer->Print(variables_,
-    "$name$_ = other.$name$_.Clone();\n");
+void RepeatedPrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
+      "$name$_.SetRoot(_root);\n"
+      "$name$_.SetPath(Path.$property_name$Path);\n");
+  }
+  else {
+    printer->Print(variables_,
+      "$name$_ = other.$name$_.Clone();\n");
+  }
 }
 
 void RepeatedPrimitiveFieldGenerator::GenerateFreezingCode(io::Printer* printer) {

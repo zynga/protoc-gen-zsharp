@@ -430,6 +430,12 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventTest() {
       OnConstruction();
+      testPrim_.SetRoot(_root);
+      testPrim_.SetPath(Path.TestPrimPath);
+      testMessage_.SetRoot(_root);
+      testMessage_.SetPath(Path.TestMessagePath);
+      testEnum_.SetRoot(_root);
+      testEnum_.SetPath(Path.TestEnumPath);
       testMap_.SetRoot(_root);
       testMap_.SetPath(Path.TestMapPath);
       testMapTwo_.SetRoot(_root);
@@ -442,9 +448,15 @@ namespace Com.Zynga.Runtime.Protobuf {
     public EventTest(EventTest other) : this() {
       eventId_ = other.eventId_;
       testEvent_ = other.testEvent_;
-      testPrim_ = other.testPrim_.Clone();
-      testMessage_ = other.testMessage_.Clone();
-      testEnum_ = other.testEnum_.Clone();
+      testPrim_ = new EventRepeatedField<int>(testPrimDataConverter, other.TestPrim.Clone());
+      testPrim_.SetRoot(_root);
+      testPrim_.SetPath(Path.TestPrimPath);
+      testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, other.TestMessage.Clone());
+      testMessage_.SetRoot(_root);
+      testMessage_.SetPath(Path.TestMessagePath);
+      testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter, other.TestEnum.Clone());
+      testEnum_.SetRoot(_root);
+      testEnum_.SetPath(Path.TestEnumPath);
       testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, other.testMap_.Clone());
       testMap_.SetRoot(_root);
       testMap_.SetPath(Path.TestMapPath);
@@ -478,11 +490,17 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
       base.SetRoot(inRoot);
+      testPrim_.SetRoot(inRoot);
+      testMessage_.SetRoot(inRoot);
+      testEnum_.SetRoot(inRoot);
       testMap_.SetRoot(inRoot);
       testMapTwo_.SetRoot(inRoot);
     }
     public void SetPath(EventTest.Paths path) {
       this.Path = path;
+      testPrim_.SetPath(Path.TestPrimPath);
+      testMessage_.SetPath(Path.TestMessagePath);
+      testEnum_.SetPath(Path.TestEnumPath);
       testMap_.SetPath(Path.TestMapPath);
       testMapTwo_.SetPath(Path.TestMapTwoPath);
     }
@@ -566,73 +584,59 @@ namespace Com.Zynga.Runtime.Protobuf {
     public const int TestPrimFieldNumber = 5;
     private static readonly pb::FieldCodec<int> _repeated_testPrim_codec
         = pb::FieldCodec.ForInt32(42);
-    private readonly pbc::RepeatedField<int> testPrim_ = new pbc::RepeatedField<int>();
-    public void AddtestPrim(int value) {
-     AddEvent(5, zpr.EventSource.EventAction.AddList, value);
-     testPrim_.Add(value);
+    public class TestPrimDataConverter: EventDataConverter<int> {
+      public override zpr.EventSource.EventContent GetEventData(int data) {
+        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
+      }
+      public override int GetItem(zpr.EventSource.EventContent data) {
+        return data.I32;
+      }
     }
-    public void RemovetestPrim(int value) {
-     AddEvent(5, zpr.EventSource.EventAction.RemoveList, value);
-     testPrim_.Remove(value);
-    }
-    public void ClearTestPrim() {
-     AddEvent(5, zpr.EventSource.EventAction.ClearList, -1);
-     testPrim_.Clear();
-    }
+    private static TestPrimDataConverter testPrimDataConverter = new TestPrimDataConverter();
+    private readonly EventRepeatedField<int> testPrim_ = new EventRepeatedField<int>(testPrimDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<int> TestPrim {
+    public EventRepeatedField<int> TestPrim {
       get { return testPrim_; }
     }
-    #endif
 
     /// <summary>Field number for the "test_message" field.</summary>
     public const int TestMessageFieldNumber = 6;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> _repeated_testMessage_codec
         = pb::FieldCodec.ForMessage(50, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser);
-    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>();
-    public void AddTestMessage(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
-     AddEvent(6, zpr.EventSource.EventAction.AddList, value);
-     testMessage_.Add(value);
+    public class TestMessageDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(data.ByteData);
+      }
     }
-    public void RemoveTestMessage(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
-     AddEvent(6, zpr.EventSource.EventAction.RemoveList, testMessage_.IndexOf(value));
-     testMessage_.Remove(value);
-    }
-    public void ClearTestMessage() {
-     AddEvent(6, zpr.EventSource.EventAction.ClearList, -1);
-     testMessage_.Clear();
-    }
+    private static TestMessageDataConverter testMessageDataConverter = new TestMessageDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMessage {
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMessage {
       get { return testMessage_; }
     }
-    #endif
 
     /// <summary>Field number for the "test_enum" field.</summary>
     public const int TestEnumFieldNumber = 7;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.EnumTest> _repeated_testEnum_codec
         = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.EnumTest) x);
-    private readonly pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> testEnum_ = new pbc::RepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>();
-    public void AddTestEnum(global::Com.Zynga.Runtime.Protobuf.EnumTest value) {
-     AddEvent(7, zpr.EventSource.EventAction.AddList, value);
-     testEnum_.Add(value);
+    public class TestEnumDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.EnumTest> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.EnumTest data) {
+        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.EnumTest GetItem(zpr.EventSource.EventContent data) {
+        return (global::Com.Zynga.Runtime.Protobuf.EnumTest) data.U32;
+      }
     }
-    public void RemoveTestEnum(global::Com.Zynga.Runtime.Protobuf.EnumTest value) {
-     AddEvent(7, zpr.EventSource.EventAction.RemoveList, value);
-     testEnum_.Remove(value);
-    }
-    public void ClearTestEnum() {
-     AddEvent(7, zpr.EventSource.EventAction.ClearList, -1);
-     testEnum_.Clear();
-    }
+    private static TestEnumDataConverter testEnumDataConverter = new TestEnumDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    #if !NET35
-    public IReadOnlyList<global::Com.Zynga.Runtime.Protobuf.EnumTest> TestEnum {
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> TestEnum {
       get { return testEnum_; }
     }
-    #endif
 
     /// <summary>Field number for the "test_map" field.</summary>
     public const int TestMapFieldNumber = 8;
@@ -1670,34 +1674,15 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 5: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              testPrim_.Add(e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              testPrim_.Remove(e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              testPrim_.Clear();
-            }
+            testPrim_.ApplyEvent(e);
           }
           break;
           case 6: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              var m = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
-              testMessage_.Add(m);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              SafeRemoveCurrentIndex(testMessage_, e.Data.I32);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              testMessage_.Clear();
-            }
+            testMessage_.ApplyEvent(e);
           }
           break;
           case 7: {
-            if (e.Action == zpr.EventSource.EventAction.AddList) {
-              testEnum_.Add((global::Com.Zynga.Runtime.Protobuf.EnumTest)e.Data.U32);
-            } else if (e.Action == zpr.EventSource.EventAction.RemoveList) {
-              testEnum_.Remove((global::Com.Zynga.Runtime.Protobuf.EnumTest)e.Data.U32);
-            } else if (e.Action == zpr.EventSource.EventAction.ClearList) {
-              testEnum_.Clear();
-            }
+            testEnum_.ApplyEvent(e);
           }
           break;
           case 8: {

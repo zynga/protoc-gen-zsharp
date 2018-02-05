@@ -51,7 +51,7 @@ class MessageFieldGenerator : public FieldGeneratorBase {
   ~MessageFieldGenerator();
 
   virtual void GenerateCodecCode(io::Printer* printer);
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateFreezingCode(io::Printer* printer);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
 
@@ -82,7 +82,7 @@ class MessageOneofFieldGenerator : public MessageFieldGenerator {
                              const Options *options);
   ~MessageOneofFieldGenerator();
 
-  virtual void GenerateCloningCode(io::Printer* printer);
+  virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
 
   /// The following code is Copyright 2018, Zynga

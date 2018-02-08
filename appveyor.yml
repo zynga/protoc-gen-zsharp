@@ -14,7 +14,7 @@ install:
 build_script:
 - IF "%BUILD_SYSTEM%"=="bazel" (
     cd plugin
-    ../bazel build :protoc-gen-zcharp
+    ../bazel.exe build :protoc-gen-zcharp
   )
 
   

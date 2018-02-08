@@ -14,7 +14,7 @@ install:
 build_script:
 - IF "%BUILD_SYSTEM%"=="bazel" (
     cd $APPVEYOR_BUILD_FOLDER/plugin
-    C:/Projects/bazel.exe build :protoc-gen-zsharp
+    bazel.exe build :protoc-gen-zsharp
   )
 
   

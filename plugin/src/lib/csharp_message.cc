@@ -276,8 +276,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       bool isFieldSourced = false;
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
       if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        const MessageOptions& op = fieldDescriptor->message_type()->options();
-        isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+        isFieldSourced =  IsFieldEventSourced(fieldDescriptor);
       }
 
       if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE && !fieldDescriptor->is_repeated() && isFieldSourced) {
@@ -512,6 +511,15 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 // are set!
 bool MessageGenerator::IsEventSourced() {
   return is_event_sourced;
+}
+
+bool MessageGenerator::IsFieldEventSourced(const FieldDescriptor* fieldDesc) {
+  const MessageOptions& op = fieldDesc->message_type()->options();
+  bool isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  if (IsEventSourced() && descriptor_->FindNestedTypeByName(fieldDesc->message_type()->name()) != NULL)
+    isFieldSourced = true;
+
+  return isFieldSourced;
 }
 ///
 

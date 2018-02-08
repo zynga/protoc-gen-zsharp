@@ -514,7 +514,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
         public zpr.EventPath EventIdPath => new zpr.EventPath(Path, 1);
         public zpr.EventPath FooPath => new zpr.EventPath(Path, 2);
-        public zpr.EventPath InternalPath => new zpr.EventPath(Path, 3);
+        public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths InternalPath => new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(Path, 3));
         public zpr.EventPath TestEventPath => new zpr.EventPath(Path, 4);
         public zpr.EventPath TestPrimPath => new zpr.EventPath(Path, 5);
         public zpr.EventPath TestMessagePath => new zpr.EventPath(Path, 6);
@@ -560,6 +560,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
       get { return testOneofCase_ == TestOneofOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_ : null; }
       set {
+        value.SetRoot(_root);
+        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Paths(new zpr.EventPath(this.Path.Path, 3)));
         AddEvent(3, zpr.EventSource.EventAction.Snapshot, value);
         testOneof_ = value;
         testOneofCase_ = value == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
@@ -1655,7 +1657,10 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 3: {
             if (testOneof_ == null) testOneof_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
-            testOneof_  = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
+            if (e.Path.Count - 1 != pathIndex) 
+              (testOneof_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            else
+              testOneof_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Data.ByteData);
             testOneofCase_ = testOneof_ == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
           }
           break;
@@ -1802,7 +1807,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           break;
           case 3: {
-            e.Path.AddRange(this.Path.InternalPath._path);
+            e.Path.AddRange(this.Path.InternalPath.Path._path);
           }
           break;
           case 4: {

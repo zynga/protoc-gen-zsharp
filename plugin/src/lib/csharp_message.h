@@ -59,6 +59,7 @@ class MessageGenerator : public SourceGeneratorBase {
 
   /// The following code is Copyright 2018, Zynga
   bool IsEventSourced();
+  bool IsFieldEventSourced(const FieldDescriptor* fieldDesc);
   ///
 
   FieldGeneratorBase* CreateFieldGeneratorInternal(

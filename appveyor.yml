@@ -15,5 +15,5 @@ build_script:
   - 'cd plugin'
   - '..\bazel.exe build :protoc-gen-zsharp'
   - 'cd ..\runtime'
-  - '.\build.cmd'
+  - '.\build.cmd build'
   

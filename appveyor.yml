@@ -16,3 +16,5 @@ build_script:
     cd plugin
     bazel build :protoc-gen-zcharp
   )
+
+  

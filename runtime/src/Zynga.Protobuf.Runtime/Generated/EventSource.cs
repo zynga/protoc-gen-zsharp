@@ -29,67 +29,81 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJldmVudF9zb3VyY2UucHJvdG8SGmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
-            "YnVmIh4KCEV2ZW50TWFwEhIKBGRhdGEYASABKAxSBGRhdGEiwgMKDEV2ZW50",
-            "Q29udGVudBITCgR1XzMyGAEgASgNSABSA3UzMhITCgRpXzMyGAIgASgFSABS",
-            "A2kzMhITCgRmXzY0GAMgASgGSABSA2Y2NBITCgRmXzMyGAQgASgHSABSA2Yz",
-            "MhIWCgZzX2ZfNjQYBSABKBBIAFIEc0Y2NBIWCgZzX2ZfMzIYBiABKA9IAFIE",
-            "c0YzMhITCgRyXzY0GAcgASgBSABSA3I2NBITCgRyXzMyGAggASgCSABSA3Iz",
-            "MhIdCglib29sX2RhdGEYCSABKAhIAFIIYm9vbERhdGESIQoLc3RyaW5nX2Rh",
-            "dGEYCiABKAlIAFIKc3RyaW5nRGF0YRIdCglieXRlX2RhdGEYCyABKAxIAFII",
-            "Ynl0ZURhdGESQQoIbWFwX2RhdGEYDCABKAsyJC5jb20uenluZ2EucnVudGlt",
-            "ZS5wcm90b2J1Zi5FdmVudE1hcEgAUgdtYXBEYXRhEhMKBGlfNjQYDSABKANI",
-            "AFIDaTY0EhMKBHVfNjQYDiABKARIAFIDdTY0EhYKBnNfaV8zMhgPIAEoEUgA",
-            "UgRzSTMyEhYKBnNfaV82NBgQIAEoEkgAUgRzSTY0QgYKBGRhdGEitAEKCUV2",
-            "ZW50RGF0YRIUCgVmaWVsZBgBIAEoBVIFZmllbGQSPwoGYWN0aW9uGAIgASgO",
-            "MicuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRBY3Rpb25SBmFj",
-            "dGlvbhI8CgRkYXRhGAMgASgLMiguY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9i",
-            "dWYuRXZlbnRDb250ZW50UgRkYXRhEhIKBHBhdGgYBCADKAVSBHBhdGgiUAoP",
-            "RXZlbnRTb3VyY2VSb290Ej0KBmV2ZW50cxgBIAMoCzIlLmNvbS56eW5nYS5y",
-            "dW50aW1lLnByb3RvYnVmLkV2ZW50RGF0YVIGZXZlbnRzKt0BCgtFdmVudEFj",
-            "dGlvbhIJCgVVTlNFVBAAEgcKA1NFVBABEgwKCEFERF9MSVNUEAISDwoLUkVN",
-            "T1ZFX0xJU1QQAxISCg5SRU1PVkVfQVRfTElTVBAEEhAKDFJFUExBQ0VfTElT",
-            "VBAFEg8KC0lOU0VSVF9MSVNUEAYSDgoKQ0xFQVJfTElTVBAHEgsKB0FERF9N",
-            "QVAQCBIOCgpSRU1PVkVfTUFQEAkSDwoLUkVQTEFDRV9NQVAQChINCglDTEVB",
-            "Ul9NQVAQCxIJCgVDTEVBUhAMEgwKCFNOQVBTSE9UEA1CRgoSY29tLnp5bmdh",
-            "LnByb3RvYnVmQgtFdmVudFNvdXJjZaoCIlp5bmdhLlByb3RvYnVmLlJ1bnRp",
-            "bWUuRXZlbnRTb3VyY2ViBnByb3RvMw=="));
+            "YnVmIvQBCglMaXN0RXZlbnQSRwoLbGlzdF9hY3Rpb24YASABKA4yJi5jb20u",
+            "enluZ2EucnVudGltZS5wcm90b2J1Zi5MaXN0QWN0aW9uUgpsaXN0QWN0aW9u",
+            "EhQKBWluZGV4GAIgASgFUgVpbmRleBJCCgdjb250ZW50GAMgASgLMiguY29t",
+            "Lnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRDb250ZW50Ugdjb250ZW50",
+            "EkQKCmV2ZW50X2RhdGEYBCABKAsyJS5jb20uenluZ2EucnVudGltZS5wcm90",
+            "b2J1Zi5FdmVudERhdGFSCWV2ZW50RGF0YSKzAQoITWFwRXZlbnQSRAoKbWFw",
+            "X2FjdGlvbhgBIAEoDjIlLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLk1h",
+            "cEFjdGlvblIJbWFwQWN0aW9uEhsKCWtleV92YWx1ZRgCIAEoDFIIa2V5VmFs",
+            "dWUSRAoKZXZlbnRfZGF0YRgDIAEoCzIlLmNvbS56eW5nYS5ydW50aW1lLnBy",
+            "b3RvYnVmLkV2ZW50RGF0YVIJZXZlbnREYXRhIlAKD0V2ZW50U291cmNlUm9v",
+            "dBI9CgZldmVudHMYASADKAsyJS5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
+            "Zi5FdmVudERhdGFSBmV2ZW50cyL0AQoJRXZlbnREYXRhEhIKBHBhdGgYASAD",
+            "KAVSBHBhdGgSPAoDc2V0GAIgASgLMiguY29tLnp5bmdhLnJ1bnRpbWUucHJv",
+            "dG9idWYuRXZlbnRDb250ZW50SABSA3NldBJDCgltYXBfZXZlbnQYAyABKAsy",
+            "JC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5NYXBFdmVudEgAUghtYXBF",
+            "dmVudBJGCgpsaXN0X2V2ZW50GAQgASgLMiUuY29tLnp5bmdhLnJ1bnRpbWUu",
+            "cHJvdG9idWYuTGlzdEV2ZW50SABSCWxpc3RFdmVudEIICgZhY3Rpb24i/wIK",
+            "DEV2ZW50Q29udGVudBITCgR1XzMyGAEgASgNSABSA3UzMhITCgRpXzMyGAIg",
+            "ASgFSABSA2kzMhITCgRmXzY0GAMgASgGSABSA2Y2NBITCgRmXzMyGAQgASgH",
+            "SABSA2YzMhIWCgZzX2ZfNjQYBSABKBBIAFIEc0Y2NBIWCgZzX2ZfMzIYBiAB",
+            "KA9IAFIEc0YzMhITCgRyXzY0GAcgASgBSABSA3I2NBITCgRyXzMyGAggASgC",
+            "SABSA3IzMhIdCglib29sX2RhdGEYCSABKAhIAFIIYm9vbERhdGESIQoLc3Ry",
+            "aW5nX2RhdGEYCiABKAlIAFIKc3RyaW5nRGF0YRIdCglieXRlX2RhdGEYCyAB",
+            "KAxIAFIIYnl0ZURhdGESEwoEaV82NBgMIAEoA0gAUgNpNjQSEwoEdV82NBgN",
+            "IAEoBEgAUgN1NjQSFgoGc19pXzMyGA4gASgRSABSBHNJMzISFgoGc19pXzY0",
+            "GA8gASgSSABSBHNJNjRCBgoEZGF0YSqVAQoKTGlzdEFjdGlvbhIQCgxVTktO",
+            "T1dOX0xJU1QQABIMCghBRERfTElTVBABEg8KC1JFTU9WRV9MSVNUEAISEgoO",
+            "UkVNT1ZFX0FUX0xJU1QQAxIQCgxSRVBMQUNFX0xJU1QQBBIPCgtJTlNFUlRf",
+            "TElTVBAFEg4KCkNMRUFSX0xJU1QQBhIPCgtVUERBVEVfTElTVBAHKmkKCU1h",
+            "cEFjdGlvbhIPCgtVTktOT1dOX01BUBAAEgsKB0FERF9NQVAQARIOCgpSRU1P",
+            "VkVfTUFQEAISDwoLUkVQTEFDRV9NQVAQAxINCglDTEVBUl9NQVAQBBIOCgpV",
+            "UERBVEVfTUFQEAVCRgoSY29tLnp5bmdhLnByb3RvYnVmQgtFdmVudFNvdXJj",
+            "ZaoCIlp5bmdhLlByb3RvYnVmLlJ1bnRpbWUuRXZlbnRTb3VyY2ViBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zynga.Protobuf.Runtime.EventSource.EventAction), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventMap), global::Zynga.Protobuf.Runtime.EventSource.EventMap.Parser, new[]{ "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventContent), global::Zynga.Protobuf.Runtime.EventSource.EventContent.Parser, new[]{ "U32", "I32", "F64", "F32", "SF64", "SF32", "R64", "R32", "BoolData", "StringData", "ByteData", "MapData", "I64", "U64", "SI32", "SI64" }, new[]{ "Data" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventData), global::Zynga.Protobuf.Runtime.EventSource.EventData.Parser, new[]{ "Field", "Action", "Data", "Path" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot), global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot.Parser, new[]{ "Events" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zynga.Protobuf.Runtime.EventSource.ListAction), typeof(global::Zynga.Protobuf.Runtime.EventSource.MapAction), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.ListEvent), global::Zynga.Protobuf.Runtime.EventSource.ListEvent.Parser, new[]{ "ListAction", "Index", "Content", "EventData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.MapEvent), global::Zynga.Protobuf.Runtime.EventSource.MapEvent.Parser, new[]{ "MapAction", "KeyValue", "EventData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot), global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot.Parser, new[]{ "Events" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventData), global::Zynga.Protobuf.Runtime.EventSource.EventData.Parser, new[]{ "Path", "Set", "MapEvent", "ListEvent" }, new[]{ "Action" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventContent), global::Zynga.Protobuf.Runtime.EventSource.EventContent.Parser, new[]{ "U32", "I32", "F64", "F32", "SF64", "SF32", "R64", "R32", "BoolData", "StringData", "ByteData", "I64", "U64", "SI32", "SI64" }, new[]{ "Data" }, null, null)
           }));
     }
     #endregion
 
   }
   #region Enums
-  public enum EventAction {
-    [pbr::OriginalName("UNSET")] Unset = 0,
-    [pbr::OriginalName("SET")] Set = 1,
-    [pbr::OriginalName("ADD_LIST")] AddList = 2,
-    [pbr::OriginalName("REMOVE_LIST")] RemoveList = 3,
-    [pbr::OriginalName("REMOVE_AT_LIST")] RemoveAtList = 4,
-    [pbr::OriginalName("REPLACE_LIST")] ReplaceList = 5,
-    [pbr::OriginalName("INSERT_LIST")] InsertList = 6,
-    [pbr::OriginalName("CLEAR_LIST")] ClearList = 7,
-    [pbr::OriginalName("ADD_MAP")] AddMap = 8,
-    [pbr::OriginalName("REMOVE_MAP")] RemoveMap = 9,
-    [pbr::OriginalName("REPLACE_MAP")] ReplaceMap = 10,
-    [pbr::OriginalName("CLEAR_MAP")] ClearMap = 11,
-    [pbr::OriginalName("CLEAR")] Clear = 12,
-    [pbr::OriginalName("SNAPSHOT")] Snapshot = 13,
+  public enum ListAction {
+    [pbr::OriginalName("UNKNOWN_LIST")] UnknownList = 0,
+    [pbr::OriginalName("ADD_LIST")] AddList = 1,
+    [pbr::OriginalName("REMOVE_LIST")] RemoveList = 2,
+    [pbr::OriginalName("REMOVE_AT_LIST")] RemoveAtList = 3,
+    [pbr::OriginalName("REPLACE_LIST")] ReplaceList = 4,
+    [pbr::OriginalName("INSERT_LIST")] InsertList = 5,
+    [pbr::OriginalName("CLEAR_LIST")] ClearList = 6,
+    [pbr::OriginalName("UPDATE_LIST")] UpdateList = 7,
+  }
+
+  public enum MapAction {
+    [pbr::OriginalName("UNKNOWN_MAP")] UnknownMap = 0,
+    [pbr::OriginalName("ADD_MAP")] AddMap = 1,
+    [pbr::OriginalName("REMOVE_MAP")] RemoveMap = 2,
+    [pbr::OriginalName("REPLACE_MAP")] ReplaceMap = 3,
+    [pbr::OriginalName("CLEAR_MAP")] ClearMap = 4,
+    [pbr::OriginalName("UPDATE_MAP")] UpdateMap = 5,
   }
 
   #endregion
 
   #region Messages
-  public sealed partial class EventMap : pb::IMessage<EventMap> {
-    private static readonly pb::MessageParser<EventMap> _parser = new pb::MessageParser<EventMap>(() => new EventMap());
+  public sealed partial class ListEvent : pb::IMessage<ListEvent> {
+    private static readonly pb::MessageParser<ListEvent> _parser = new pb::MessageParser<ListEvent>(() => new ListEvent());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EventMap> Parser { get { return _parser; } }
+    public static pb::MessageParser<ListEvent> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -102,56 +116,101 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventMap() {
+    public ListEvent() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventMap(EventMap other) : this() {
-      data_ = other.data_;
+    public ListEvent(ListEvent other) : this() {
+      listAction_ = other.listAction_;
+      index_ = other.index_;
+      content_ = other.content_ != null ? other.Content.Clone() : null;
+      eventData_ = other.eventData_ != null ? other.EventData.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventMap Clone() {
-      return new EventMap(this);
+    public ListEvent Clone() {
+      return new ListEvent(this);
     }
 
     public static bool IsEventSourced = false;
 
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 1;
-    private pb::ByteString data_ = pb::ByteString.Empty;
+    /// <summary>Field number for the "list_action" field.</summary>
+    public const int ListActionFieldNumber = 1;
+    private global::Zynga.Protobuf.Runtime.EventSource.ListAction listAction_ = 0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString Data {
-      get { return data_; }
+    public global::Zynga.Protobuf.Runtime.EventSource.ListAction ListAction {
+      get { return listAction_; }
       set {
-        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        listAction_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "index" field.</summary>
+    public const int IndexFieldNumber = 2;
+    private int index_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Index {
+      get { return index_; }
+      set {
+        index_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "content" field.</summary>
+    public const int ContentFieldNumber = 3;
+    private global::Zynga.Protobuf.Runtime.EventSource.EventContent content_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.EventContent Content {
+      get { return content_; }
+      set {
+        content_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "event_data" field.</summary>
+    public const int EventDataFieldNumber = 4;
+    private global::Zynga.Protobuf.Runtime.EventSource.EventData eventData_;
+    /// <summary>
+    /// only used by update action
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.EventData EventData {
+      get { return eventData_; }
+      set {
+        eventData_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EventMap);
+      return Equals(other as ListEvent);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EventMap other) {
+    public bool Equals(ListEvent other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Data != other.Data) return false;
+      if (ListAction != other.ListAction) return false;
+      if (Index != other.Index) return false;
+      if (!object.Equals(Content, other.Content)) return false;
+      if (!object.Equals(EventData, other.EventData)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      if (ListAction != 0) hash ^= ListAction.GetHashCode();
+      if (Index != 0) hash ^= Index.GetHashCode();
+      if (content_ != null) hash ^= Content.GetHashCode();
+      if (eventData_ != null) hash ^= EventData.GetHashCode();
       return hash;
     }
 
@@ -162,28 +221,64 @@ namespace Zynga.Protobuf.Runtime.EventSource {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Data.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteBytes(Data);
+      if (ListAction != 0) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) ListAction);
+      }
+      if (Index != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Index);
+      }
+      if (content_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Content);
+      }
+      if (eventData_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(EventData);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Data.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      if (ListAction != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ListAction);
+      }
+      if (Index != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Index);
+      }
+      if (content_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Content);
+      }
+      if (eventData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EventData);
       }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EventMap other) {
+    public void MergeFrom(ListEvent other) {
       if (other == null) {
         return;
       }
-      if (other.Data.Length != 0) {
-        Data = other.Data;
+      if (other.ListAction != 0) {
+        ListAction = other.ListAction;
+      }
+      if (other.Index != 0) {
+        Index = other.Index;
+      }
+      if (other.content_ != null) {
+        if (content_ == null) {
+          content_ = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
+        }
+        Content.MergeFrom(other.Content);
+      }
+      if (other.eventData_ != null) {
+        if (eventData_ == null) {
+          eventData_ = new global::Zynga.Protobuf.Runtime.EventSource.EventData();
+        }
+        EventData.MergeFrom(other.EventData);
       }
     }
 
@@ -195,8 +290,575 @@ namespace Zynga.Protobuf.Runtime.EventSource {
           default:
             input.SkipLastField();
             break;
+          case 8: {
+            listAction_ = (global::Zynga.Protobuf.Runtime.EventSource.ListAction) input.ReadEnum();
+            break;
+          }
+          case 16: {
+            Index = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            if (content_ == null) {
+              content_ = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
+            }
+            input.ReadMessage(content_);
+            break;
+          }
+          case 34: {
+            if (eventData_ == null) {
+              eventData_ = new global::Zynga.Protobuf.Runtime.EventSource.EventData();
+            }
+            input.ReadMessage(eventData_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class MapEvent : pb::IMessage<MapEvent> {
+    private static readonly pb::MessageParser<MapEvent> _parser = new pb::MessageParser<MapEvent>(() => new MapEvent());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MapEvent> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapEvent() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapEvent(MapEvent other) : this() {
+      mapAction_ = other.mapAction_;
+      keyValue_ = other.keyValue_;
+      eventData_ = other.eventData_ != null ? other.EventData.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapEvent Clone() {
+      return new MapEvent(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "map_action" field.</summary>
+    public const int MapActionFieldNumber = 1;
+    private global::Zynga.Protobuf.Runtime.EventSource.MapAction mapAction_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.MapAction MapAction {
+      get { return mapAction_; }
+      set {
+        mapAction_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "key_value" field.</summary>
+    public const int KeyValueFieldNumber = 2;
+    private pb::ByteString keyValue_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString KeyValue {
+      get { return keyValue_; }
+      set {
+        keyValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "event_data" field.</summary>
+    public const int EventDataFieldNumber = 3;
+    private global::Zynga.Protobuf.Runtime.EventSource.EventData eventData_;
+    /// <summary>
+    /// only used by update action
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.EventData EventData {
+      get { return eventData_; }
+      set {
+        eventData_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MapEvent);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MapEvent other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MapAction != other.MapAction) return false;
+      if (KeyValue != other.KeyValue) return false;
+      if (!object.Equals(EventData, other.EventData)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MapAction != 0) hash ^= MapAction.GetHashCode();
+      if (KeyValue.Length != 0) hash ^= KeyValue.GetHashCode();
+      if (eventData_ != null) hash ^= EventData.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (MapAction != 0) {
+        output.WriteRawTag(8);
+        output.WriteEnum((int) MapAction);
+      }
+      if (KeyValue.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteBytes(KeyValue);
+      }
+      if (eventData_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(EventData);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (MapAction != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MapAction);
+      }
+      if (KeyValue.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(KeyValue);
+      }
+      if (eventData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EventData);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MapEvent other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MapAction != 0) {
+        MapAction = other.MapAction;
+      }
+      if (other.KeyValue.Length != 0) {
+        KeyValue = other.KeyValue;
+      }
+      if (other.eventData_ != null) {
+        if (eventData_ == null) {
+          eventData_ = new global::Zynga.Protobuf.Runtime.EventSource.EventData();
+        }
+        EventData.MergeFrom(other.EventData);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            mapAction_ = (global::Zynga.Protobuf.Runtime.EventSource.MapAction) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            KeyValue = input.ReadBytes();
+            break;
+          }
+          case 26: {
+            if (eventData_ == null) {
+              eventData_ = new global::Zynga.Protobuf.Runtime.EventSource.EventData();
+            }
+            input.ReadMessage(eventData_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EventSourceRoot : pb::IMessage<EventSourceRoot> {
+    private static readonly pb::MessageParser<EventSourceRoot> _parser = new pb::MessageParser<EventSourceRoot>(() => new EventSourceRoot());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EventSourceRoot> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventSourceRoot() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventSourceRoot(EventSourceRoot other) : this() {
+      events_ = other.events_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventSourceRoot Clone() {
+      return new EventSourceRoot(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "events" field.</summary>
+    public const int EventsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Zynga.Protobuf.Runtime.EventSource.EventData> _repeated_events_codec
+        = pb::FieldCodec.ForMessage(10, global::Zynga.Protobuf.Runtime.EventSource.EventData.Parser);
+    private readonly pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData> events_ = new pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData> Events {
+      get { return events_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EventSourceRoot);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EventSourceRoot other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!events_.Equals(other.events_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= events_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      events_.WriteTo(output, _repeated_events_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += events_.CalculateSize(_repeated_events_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EventSourceRoot other) {
+      if (other == null) {
+        return;
+      }
+      events_.Add(other.events_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
           case 10: {
-            Data = input.ReadBytes();
+            events_.AddEntriesFrom(input, _repeated_events_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EventData : pb::IMessage<EventData> {
+    private static readonly pb::MessageParser<EventData> _parser = new pb::MessageParser<EventData>(() => new EventData());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EventData> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventData() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventData(EventData other) : this() {
+      path_ = other.path_.Clone();
+      switch (other.ActionCase) {
+        case ActionOneofCase.Set:
+          Set = other.Set.Clone();
+          break;
+        case ActionOneofCase.MapEvent:
+          MapEvent = other.MapEvent.Clone();
+          break;
+        case ActionOneofCase.ListEvent:
+          ListEvent = other.ListEvent.Clone();
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventData Clone() {
+      return new EventData(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "path" field.</summary>
+    public const int PathFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_path_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> path_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> Path {
+      get { return path_; }
+    }
+
+    /// <summary>Field number for the "set" field.</summary>
+    public const int SetFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.EventContent Set {
+      get { return actionCase_ == ActionOneofCase.Set ? (global::Zynga.Protobuf.Runtime.EventSource.EventContent) action_ : null; }
+      set {
+        action_ = value;
+        actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.Set;
+      }
+    }
+
+    /// <summary>Field number for the "map_event" field.</summary>
+    public const int MapEventFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.MapEvent MapEvent {
+      get { return actionCase_ == ActionOneofCase.MapEvent ? (global::Zynga.Protobuf.Runtime.EventSource.MapEvent) action_ : null; }
+      set {
+        action_ = value;
+        actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.MapEvent;
+      }
+    }
+
+    /// <summary>Field number for the "list_event" field.</summary>
+    public const int ListEventFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.ListEvent ListEvent {
+      get { return actionCase_ == ActionOneofCase.ListEvent ? (global::Zynga.Protobuf.Runtime.EventSource.ListEvent) action_ : null; }
+      set {
+        action_ = value;
+        actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.ListEvent;
+      }
+    }
+
+    public object action_;
+    /// <summary>Enum of possible cases for the "action" oneof.</summary>
+    public enum ActionOneofCase {
+      None = 0,
+      Set = 2,
+      MapEvent = 3,
+      ListEvent = 4,
+    }
+    public ActionOneofCase actionCase_ = ActionOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActionOneofCase ActionCase {
+      get { return actionCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearAction() {
+      actionCase_ = ActionOneofCase.None;
+      action_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EventData);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EventData other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!path_.Equals(other.path_)) return false;
+      if (!object.Equals(Set, other.Set)) return false;
+      if (!object.Equals(MapEvent, other.MapEvent)) return false;
+      if (!object.Equals(ListEvent, other.ListEvent)) return false;
+      if (ActionCase != other.ActionCase) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= path_.GetHashCode();
+      if (actionCase_ == ActionOneofCase.Set) hash ^= Set.GetHashCode();
+      if (actionCase_ == ActionOneofCase.MapEvent) hash ^= MapEvent.GetHashCode();
+      if (actionCase_ == ActionOneofCase.ListEvent) hash ^= ListEvent.GetHashCode();
+      hash ^= (int) actionCase_;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      path_.WriteTo(output, _repeated_path_codec);
+      if (actionCase_ == ActionOneofCase.Set) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Set);
+      }
+      if (actionCase_ == ActionOneofCase.MapEvent) {
+        output.WriteRawTag(26);
+        output.WriteMessage(MapEvent);
+      }
+      if (actionCase_ == ActionOneofCase.ListEvent) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ListEvent);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += path_.CalculateSize(_repeated_path_codec);
+      if (actionCase_ == ActionOneofCase.Set) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Set);
+      }
+      if (actionCase_ == ActionOneofCase.MapEvent) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MapEvent);
+      }
+      if (actionCase_ == ActionOneofCase.ListEvent) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ListEvent);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EventData other) {
+      if (other == null) {
+        return;
+      }
+      path_.Add(other.path_);
+      switch (other.ActionCase) {
+        case ActionOneofCase.Set:
+          if (Set == null) {
+            Set = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
+          }
+          Set.MergeFrom(other.Set);
+          break;
+        case ActionOneofCase.MapEvent:
+          if (MapEvent == null) {
+            MapEvent = new global::Zynga.Protobuf.Runtime.EventSource.MapEvent();
+          }
+          MapEvent.MergeFrom(other.MapEvent);
+          break;
+        case ActionOneofCase.ListEvent:
+          if (ListEvent == null) {
+            ListEvent = new global::Zynga.Protobuf.Runtime.EventSource.ListEvent();
+          }
+          ListEvent.MergeFrom(other.ListEvent);
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10:
+          case 8: {
+            path_.AddEntriesFrom(input, _repeated_path_codec);
+            break;
+          }
+          case 18: {
+            global::Zynga.Protobuf.Runtime.EventSource.EventContent subBuilder = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
+            if (actionCase_ == ActionOneofCase.Set) {
+              subBuilder.MergeFrom(Set);
+            }
+            input.ReadMessage(subBuilder);
+            Set = subBuilder;
+            break;
+          }
+          case 26: {
+            global::Zynga.Protobuf.Runtime.EventSource.MapEvent subBuilder = new global::Zynga.Protobuf.Runtime.EventSource.MapEvent();
+            if (actionCase_ == ActionOneofCase.MapEvent) {
+              subBuilder.MergeFrom(MapEvent);
+            }
+            input.ReadMessage(subBuilder);
+            MapEvent = subBuilder;
+            break;
+          }
+          case 34: {
+            global::Zynga.Protobuf.Runtime.EventSource.ListEvent subBuilder = new global::Zynga.Protobuf.Runtime.EventSource.ListEvent();
+            if (actionCase_ == ActionOneofCase.ListEvent) {
+              subBuilder.MergeFrom(ListEvent);
+            }
+            input.ReadMessage(subBuilder);
+            ListEvent = subBuilder;
             break;
           }
         }
@@ -212,7 +874,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -262,9 +924,6 @@ namespace Zynga.Protobuf.Runtime.EventSource {
           break;
         case DataOneofCase.ByteData:
           ByteData = other.ByteData;
-          break;
-        case DataOneofCase.MapData:
-          MapData = other.MapData.Clone();
           break;
         case DataOneofCase.I64:
           I64 = other.I64;
@@ -410,19 +1069,8 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       }
     }
 
-    /// <summary>Field number for the "map_data" field.</summary>
-    public const int MapDataFieldNumber = 12;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Zynga.Protobuf.Runtime.EventSource.EventMap MapData {
-      get { return dataCase_ == DataOneofCase.MapData ? (global::Zynga.Protobuf.Runtime.EventSource.EventMap) data_ : null; }
-      set {
-        data_ = value;
-        dataCase_ = value == null ? DataOneofCase.None : DataOneofCase.MapData;
-      }
-    }
-
     /// <summary>Field number for the "i_64" field.</summary>
-    public const int I64FieldNumber = 13;
+    public const int I64FieldNumber = 12;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long I64 {
       get { return dataCase_ == DataOneofCase.I64 ? (long) data_ : 0L; }
@@ -433,7 +1081,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     }
 
     /// <summary>Field number for the "u_64" field.</summary>
-    public const int U64FieldNumber = 14;
+    public const int U64FieldNumber = 13;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ulong U64 {
       get { return dataCase_ == DataOneofCase.U64 ? (ulong) data_ : 0UL; }
@@ -444,7 +1092,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     }
 
     /// <summary>Field number for the "s_i_32" field.</summary>
-    public const int SI32FieldNumber = 15;
+    public const int SI32FieldNumber = 14;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int SI32 {
       get { return dataCase_ == DataOneofCase.SI32 ? (int) data_ : 0; }
@@ -455,7 +1103,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     }
 
     /// <summary>Field number for the "s_i_64" field.</summary>
-    public const int SI64FieldNumber = 16;
+    public const int SI64FieldNumber = 15;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public long SI64 {
       get { return dataCase_ == DataOneofCase.SI64 ? (long) data_ : 0L; }
@@ -480,11 +1128,10 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       BoolData = 9,
       StringData = 10,
       ByteData = 11,
-      MapData = 12,
-      I64 = 13,
-      U64 = 14,
-      SI32 = 15,
-      SI64 = 16,
+      I64 = 12,
+      U64 = 13,
+      SI32 = 14,
+      SI64 = 15,
     }
     public DataOneofCase dataCase_ = DataOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -522,7 +1169,6 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       if (BoolData != other.BoolData) return false;
       if (StringData != other.StringData) return false;
       if (ByteData != other.ByteData) return false;
-      if (!object.Equals(MapData, other.MapData)) return false;
       if (I64 != other.I64) return false;
       if (U64 != other.U64) return false;
       if (SI32 != other.SI32) return false;
@@ -545,7 +1191,6 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       if (dataCase_ == DataOneofCase.BoolData) hash ^= BoolData.GetHashCode();
       if (dataCase_ == DataOneofCase.StringData) hash ^= StringData.GetHashCode();
       if (dataCase_ == DataOneofCase.ByteData) hash ^= ByteData.GetHashCode();
-      if (dataCase_ == DataOneofCase.MapData) hash ^= MapData.GetHashCode();
       if (dataCase_ == DataOneofCase.I64) hash ^= I64.GetHashCode();
       if (dataCase_ == DataOneofCase.U64) hash ^= U64.GetHashCode();
       if (dataCase_ == DataOneofCase.SI32) hash ^= SI32.GetHashCode();
@@ -605,24 +1250,20 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         output.WriteRawTag(90);
         output.WriteBytes(ByteData);
       }
-      if (dataCase_ == DataOneofCase.MapData) {
-        output.WriteRawTag(98);
-        output.WriteMessage(MapData);
-      }
       if (dataCase_ == DataOneofCase.I64) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(96);
         output.WriteInt64(I64);
       }
       if (dataCase_ == DataOneofCase.U64) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(104);
         output.WriteUInt64(U64);
       }
       if (dataCase_ == DataOneofCase.SI32) {
-        output.WriteRawTag(120);
+        output.WriteRawTag(112);
         output.WriteSInt32(SI32);
       }
       if (dataCase_ == DataOneofCase.SI64) {
-        output.WriteRawTag(128, 1);
+        output.WriteRawTag(120);
         output.WriteSInt64(SI64);
       }
     }
@@ -663,9 +1304,6 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       if (dataCase_ == DataOneofCase.ByteData) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(ByteData);
       }
-      if (dataCase_ == DataOneofCase.MapData) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MapData);
-      }
       if (dataCase_ == DataOneofCase.I64) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(I64);
       }
@@ -676,7 +1314,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         size += 1 + pb::CodedOutputStream.ComputeSInt32Size(SI32);
       }
       if (dataCase_ == DataOneofCase.SI64) {
-        size += 2 + pb::CodedOutputStream.ComputeSInt64Size(SI64);
+        size += 1 + pb::CodedOutputStream.ComputeSInt64Size(SI64);
       }
       return size;
     }
@@ -719,9 +1357,6 @@ namespace Zynga.Protobuf.Runtime.EventSource {
           break;
         case DataOneofCase.ByteData:
           ByteData = other.ByteData;
-          break;
-        case DataOneofCase.MapData:
-          MapData = other.MapData;
           break;
         case DataOneofCase.I64:
           I64 = other.I64;
@@ -791,342 +1426,20 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             ByteData = input.ReadBytes();
             break;
           }
-          case 98: {
-            global::Zynga.Protobuf.Runtime.EventSource.EventMap subBuilder = new global::Zynga.Protobuf.Runtime.EventSource.EventMap();
-            if (dataCase_ == DataOneofCase.MapData) {
-              subBuilder.MergeFrom(MapData);
-            }
-            input.ReadMessage(subBuilder);
-            MapData = subBuilder;
-            break;
-          }
-          case 104: {
+          case 96: {
             I64 = input.ReadInt64();
             break;
           }
-          case 112: {
+          case 104: {
             U64 = input.ReadUInt64();
             break;
           }
-          case 120: {
+          case 112: {
             SI32 = input.ReadSInt32();
             break;
           }
-          case 128: {
+          case 120: {
             SI64 = input.ReadSInt64();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class EventData : pb::IMessage<EventData> {
-    private static readonly pb::MessageParser<EventData> _parser = new pb::MessageParser<EventData>(() => new EventData());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EventData> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventData() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventData(EventData other) : this() {
-      field_ = other.field_;
-      action_ = other.action_;
-      data_ = other.data_ != null ? other.Data.Clone() : null;
-      path_ = other.path_.Clone();
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventData Clone() {
-      return new EventData(this);
-    }
-
-    public static bool IsEventSourced = false;
-
-    /// <summary>Field number for the "field" field.</summary>
-    public const int FieldFieldNumber = 1;
-    private int field_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Field {
-      get { return field_; }
-      set {
-        field_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "action" field.</summary>
-    public const int ActionFieldNumber = 2;
-    private global::Zynga.Protobuf.Runtime.EventSource.EventAction action_ = 0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Zynga.Protobuf.Runtime.EventSource.EventAction Action {
-      get { return action_; }
-      set {
-        action_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 3;
-    private global::Zynga.Protobuf.Runtime.EventSource.EventContent data_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Zynga.Protobuf.Runtime.EventSource.EventContent Data {
-      get { return data_; }
-      set {
-        data_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "path" field.</summary>
-    public const int PathFieldNumber = 4;
-    private static readonly pb::FieldCodec<int> _repeated_path_codec
-        = pb::FieldCodec.ForInt32(34);
-    private readonly pbc::RepeatedField<int> path_ = new pbc::RepeatedField<int>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<int> Path {
-      get { return path_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as EventData);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EventData other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Field != other.Field) return false;
-      if (Action != other.Action) return false;
-      if (!object.Equals(Data, other.Data)) return false;
-      if(!path_.Equals(other.path_)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Field != 0) hash ^= Field.GetHashCode();
-      if (Action != 0) hash ^= Action.GetHashCode();
-      if (data_ != null) hash ^= Data.GetHashCode();
-      hash ^= path_.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Field != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Field);
-      }
-      if (Action != 0) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Action);
-      }
-      if (data_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Data);
-      }
-      path_.WriteTo(output, _repeated_path_codec);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Field != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Field);
-      }
-      if (Action != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Action);
-      }
-      if (data_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
-      }
-      size += path_.CalculateSize(_repeated_path_codec);
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EventData other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Field != 0) {
-        Field = other.Field;
-      }
-      if (other.Action != 0) {
-        Action = other.Action;
-      }
-      if (other.data_ != null) {
-        if (data_ == null) {
-          data_ = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
-        }
-        Data.MergeFrom(other.Data);
-      }
-      path_.Add(other.path_);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 8: {
-            Field = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            action_ = (global::Zynga.Protobuf.Runtime.EventSource.EventAction) input.ReadEnum();
-            break;
-          }
-          case 26: {
-            if (data_ == null) {
-              data_ = new global::Zynga.Protobuf.Runtime.EventSource.EventContent();
-            }
-            input.ReadMessage(data_);
-            break;
-          }
-          case 34:
-          case 32: {
-            path_.AddEntriesFrom(input, _repeated_path_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class EventSourceRoot : pb::IMessage<EventSourceRoot> {
-    private static readonly pb::MessageParser<EventSourceRoot> _parser = new pb::MessageParser<EventSourceRoot>(() => new EventSourceRoot());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EventSourceRoot> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventSourceRoot() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventSourceRoot(EventSourceRoot other) : this() {
-      events_ = other.events_.Clone();
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventSourceRoot Clone() {
-      return new EventSourceRoot(this);
-    }
-
-    public static bool IsEventSourced = false;
-
-    /// <summary>Field number for the "events" field.</summary>
-    public const int EventsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Zynga.Protobuf.Runtime.EventSource.EventData> _repeated_events_codec
-        = pb::FieldCodec.ForMessage(10, global::Zynga.Protobuf.Runtime.EventSource.EventData.Parser);
-    private readonly pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData> events_ = new pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Zynga.Protobuf.Runtime.EventSource.EventData> Events {
-      get { return events_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as EventSourceRoot);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EventSourceRoot other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!events_.Equals(other.events_)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= events_.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      events_.WriteTo(output, _repeated_events_codec);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += events_.CalculateSize(_repeated_events_codec);
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EventSourceRoot other) {
-      if (other == null) {
-        return;
-      }
-      events_.Add(other.events_);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 10: {
-            events_.AddEntriesFrom(input, _repeated_events_codec);
             break;
           }
         }

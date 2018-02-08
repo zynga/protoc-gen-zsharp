@@ -92,6 +92,10 @@ EnumOneofFieldGenerator::EnumOneofFieldGenerator(
 EnumOneofFieldGenerator::~EnumOneofFieldGenerator() {
 }
 
+void EnumOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
+}
+
 void EnumOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
   // TODO(jonskeet): What about if we read the default value?
   printer->Print(

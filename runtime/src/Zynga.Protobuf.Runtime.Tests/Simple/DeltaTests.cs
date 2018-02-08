@@ -119,7 +119,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void AppliedDeltasShouldEqual() {
 			var blob = populated();
 			var root = blob.GenerateEvents();
-			blob.Reset();
+			blob.ClearEvents();
 
 			var newBlob = new TestBlob();
 			newBlob.ApplyEvents(root);
@@ -137,7 +137,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.Bar = new Bar();
 			blob.Bar.Foo = new Foo();
 			Assert.Equal(2, blob.GenerateEvents().Events.Count);
-			blob.Reset();
+			blob.ClearEvents();
 
 			blob.Bar.Foo.Long = 1;
 			AssertDeltaPath(blob, new[] {1, 1, 1});

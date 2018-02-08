@@ -187,12 +187,9 @@ void MessageGenerator::Generate(io::Printer* printer) {
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
       if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
         printer->Print(
-          "  $field_name$_.SetRoot(_root);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
-        printer->Print(
-          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
+          "  $field_name$_.SetContext(Context, $field_num$);\n",
           "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
-          "property_name", GetPropertyName(fieldDescriptor));;
+          "field_num", SimpleItoa(fieldDescriptor->number()));
       }
     }
   }
@@ -214,75 +211,27 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
   
   if (IsEventSourced()) {
-    printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
+    //printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
 
     printer->Print(
       vars,
-      "public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {\n"
-      "  base.SetRoot(inRoot);\n");
+      "public override void SetParent(EventContext parent, EventPath path) {\n"
+      "  base.SetParent(parent, path);\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       bool isFieldSourced = false;
       const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
       if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
         printer->Print(
-          "  $field_name$_.SetRoot(inRoot);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false));
+          "  $field_name$_.SetContext(Context, $field_num$);\n",
+          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+          "field_num", SimpleItoa(fieldDescriptor->number()));
       }
     }
 
     printer->Print(
       vars,
       "}\n");
-
-    printer->Print(
-    vars, 
-    "public void SetPath($class_name$.Paths path) {\n");
-    printer->Print("  this.Path = path;\n");
-
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      bool isFieldSourced = false;
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
-        printer->Print(
-          "  $field_name$_.SetPath(Path.$property_name$Path);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
-          "property_name", GetPropertyName(fieldDescriptor));
-      }
-    }
-
-    printer->Print("}\n\n");
-
-    printer->Print(
-      "public class Paths {\n\n"
-      "    public zpr.EventPath Path = null;\n\n");
-    printer->Print("    public Paths(zpr.EventPath _path) {\n");
-    
-    printer->Print(
-      "      Path = _path;\n"
-      "    }\n");
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      bool isFieldSourced = false;
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-        const MessageOptions& op = fieldDescriptor->message_type()->options();
-        isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-      }
-
-      if (fieldDescriptor->type() == FieldDescriptor::TYPE_MESSAGE && !fieldDescriptor->is_repeated() && isFieldSourced) {
-        
-        printer->Print("    public $class_name$.Paths $field_name$Path => new $class_name$.Paths(new zpr.EventPath(Path, $field_number$));\n",
-          "class_name", GetClassName(fieldDescriptor->message_type()),
-          "field_name", GetPropertyName(fieldDescriptor),
-          "field_number", SimpleItoa(fieldDescriptor->number()));
-        
-      } else {
-        printer->Print("    public zpr.EventPath $field_name$Path => new zpr.EventPath(Path, $field_number$);\n",
-          "field_name", GetPropertyName(fieldDescriptor),
-          "field_number", SimpleItoa(fieldDescriptor->number()));
-      }
-    }
-    printer->Print("}\n");
   }
   ///
   
@@ -382,6 +331,10 @@ void MessageGenerator::Generate(io::Printer* printer) {
     printer->Print(
       vars,
       "public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {\n"
+      "    if (e.Path.Count == 0) {\n"
+      "      this.MergeFrom(e.Set.ByteData);\n"
+      "      return true;\n"
+      "    }\n"
       "    switch (e.Path[pathIndex]) {\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -408,83 +361,16 @@ void MessageGenerator::Generate(io::Printer* printer) {
       vars,
       "}\n\n");
 
-
     printer->Print(
       vars,
-      "public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
-      "    switch (fieldNumber) {\n");
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-       printer->Print(
-        "      case $field_number$: {\n",
-        "field_number", SimpleItoa(fieldDescriptor->number()));
-        scoped_ptr<FieldGeneratorBase> generator(
-        CreateFieldGeneratorInternal(fieldDescriptor));
-        
-        generator->GenerateEventAdd(printer);
-        printer->Print("      }\n");
-        printer->Print("      break;\n");
-    }
-    printer->Print(
-      vars,
-      "      default: \n"
-      "        return null;\n"
-      "      break;\n"
-      "    }\n");
-      printer->Print(
-      vars,
-      "}\n\n");
-
-    printer->Print(
-      vars,
-      "public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {\n"
-      "   var e = new zpr.EventSource.EventData {\n"
-      "     Field = fieldNumber,\n"
-      "     Action = action,\n"
-      "     Data = GetEventData(fieldNumber, action, data)\n"
-      "   };\n\n"
-      "   switch (fieldNumber) {\n");
-
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      printer->Print(
-        "      case $field_number$: {\n",
-        "field_number", SimpleItoa(fieldDescriptor->number()));
-        scoped_ptr<FieldGeneratorBase> generator(
-        CreateFieldGeneratorInternal(fieldDescriptor));
-        
-        generator->GenerateEventAddEvent(printer);
-        printer->Print("      }\n");
-        printer->Print("      break;\n");
-    }
-    printer->Print(
-      vars,
-      "      default: \n"
-      "        return;\n"
-      "      break;\n"
-      "    }\n");
-    printer->Print(
-      vars,
-      "    _root.Add(e);\n"
-      "}\n");
-
-    printer->Print(
-      vars,
-      "public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {\n"
-      "  var e = $class_name$.Parser.ParseFrom(root.Events[0].Data.ByteData);\n"
-      "  MergeFrom(e);\n"
-      "  return true;\n"
-      "}\n\n");
-
-    printer->Print(
-      vars,
-      "public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
+      "public zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
       "  var er = new zpr.EventSource.EventSourceRoot();\n"
-      "  var ee = new zpr.EventSource.EventData();\n"
-      "  ee.Action = zpr.EventSource.EventAction.Snapshot;\n"
-      "  ee.Data = new zpr.EventSource.EventContent();\n"
-      "  ee.Data.ByteData = this.ToByteString();\n"
-      "  er.Events.Add(ee);\n"
+      "  var setEvent = new zpr.EventSource.EventData {\n"
+      "    Set = new zpr.EventSource.EventContent {\n"
+      "      ByteData = this.ToByteString()\n"
+      "    }\n"
+      "  };\n"
+      "  er.Events.Add(setEvent);\n"
       "  return er;\n"
       "}\n\n");
   }
@@ -722,9 +608,12 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer) {
       vars["field_property_name"] = GetPropertyName(field);
       printer->Print(
         vars,
-        "case $property_name$OneofCase.$field_property_name$:\n"
-        "  $field_property_name$ = other.$field_property_name$;\n"
-        "  break;\n");
+        "case $property_name$OneofCase.$field_property_name$:\n");
+      printer->Indent();
+      scoped_ptr<FieldGeneratorBase> generator(CreateFieldGeneratorInternal(field));
+      generator->GenerateMergingCode(printer);
+      printer->Print("break;\n");
+      printer->Outdent();
     }
     printer->Outdent();
     printer->Print("}\n\n");

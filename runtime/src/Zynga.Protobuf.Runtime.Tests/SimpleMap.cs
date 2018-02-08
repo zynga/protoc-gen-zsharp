@@ -256,23 +256,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleMapDeltaMessage.Paths Path = new SimpleMapDeltaMessage.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleMapDeltaMessage.Paths path) {
-      this.Path = path;
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath HPath => new zpr.EventPath(Path, 1);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
     }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
@@ -281,7 +266,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string H {
       get { return h_; }
       set {
-        AddEvent(1, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         h_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -359,9 +344,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            h_ = e.Data.StringData;
+            h_ = e.Set.StringData;
           }
           break;
           default: 
@@ -371,49 +360,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.HPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleMapDeltaMessage.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -548,8 +502,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleLongToMessageDeltaMap() {
       OnConstruction();
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     partial void OnConstruction();
@@ -557,8 +510,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleLongToMessageDeltaMap(SimpleLongToMessageDeltaMap other) : this() {
       testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -568,46 +520,28 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleLongToMessageDeltaMap.Paths Path = new SimpleLongToMessageDeltaMap.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleLongToMessageDeltaMap.Paths path) {
-      this.Path = path;
-      testFoo_.SetPath(Path.TestFooPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>.Codec _map_testFoo_codec
         = new pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>.Codec(pb::FieldCodec.ForInt64(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage.Parser), 82);
     internal class TestFooMapConverter : EventMapConverter<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> {
-      public override zpr.EventSource.EventContent GetEventData(long key, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(long key, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt64(key);
           if(!skipValue) dataStream.WriteMessage(value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeytestFoo = dataStream.ReadInt64();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(realKeytestFoo, default(global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage));
         }
         else {
@@ -690,9 +624,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 10: {
-            testFoo_.ApplyEvent(e);
+            testFoo_.ApplyEvent(e.MapEvent);
           }
           break;
           default: 
@@ -702,49 +640,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 10: {
-            e.Path.AddRange(this.Path.TestFooPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleLongToMessageDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -879,8 +782,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToEnumDeltaMap() {
       OnConstruction();
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     partial void OnConstruction();
@@ -888,8 +790,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToEnumDeltaMap(SimpleStringToEnumDeltaMap other) : this() {
       testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -899,46 +800,28 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleStringToEnumDeltaMap.Paths Path = new SimpleStringToEnumDeltaMap.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleStringToEnumDeltaMap.Paths path) {
-      this.Path = path;
-      testFoo_.SetPath(Path.TestFooPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec _map_testFoo_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForEnum(16, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum) x), 82);
     internal class TestFooMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> {
-      public override zpr.EventSource.EventContent GetEventData(string key, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
           if(!skipValue) dataStream.WriteEnum((int) value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeytestFoo = dataStream.ReadString();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(realKeytestFoo, default(global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum));
         }
         else {
@@ -1020,9 +903,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 10: {
-            testFoo_.ApplyEvent(e);
+            testFoo_.ApplyEvent(e.MapEvent);
           }
           break;
           default: 
@@ -1032,49 +919,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 10: {
-            e.Path.AddRange(this.Path.TestFooPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleStringToEnumDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1209,8 +1061,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToStringDeltaMap() {
       OnConstruction();
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     partial void OnConstruction();
@@ -1218,8 +1069,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToStringDeltaMap(SimpleStringToStringDeltaMap other) : this() {
       testFoo_ = new EventMapField<string, string>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1229,46 +1079,28 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleStringToStringDeltaMap.Paths Path = new SimpleStringToStringDeltaMap.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleStringToStringDeltaMap.Paths path) {
-      this.Path = path;
-      testFoo_.SetPath(Path.TestFooPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, string>.Codec _map_testFoo_codec
         = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 82);
     internal class TestFooMapConverter : EventMapConverter<string, string> {
-      public override zpr.EventSource.EventContent GetEventData(string key, string value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(string key, string value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
           if(!skipValue) dataStream.WriteString(value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<string, string> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<string, string> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeytestFoo = dataStream.ReadString();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<string, string>(realKeytestFoo, default(string));
         }
         else {
@@ -1350,9 +1182,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 10: {
-            testFoo_.ApplyEvent(e);
+            testFoo_.ApplyEvent(e.MapEvent);
           }
           break;
           default: 
@@ -1362,49 +1198,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 10: {
-            e.Path.AddRange(this.Path.TestFooPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleStringToStringDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1539,8 +1340,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToLongDeltaMap() {
       OnConstruction();
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     partial void OnConstruction();
@@ -1548,8 +1348,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToLongDeltaMap(SimpleStringToLongDeltaMap other) : this() {
       testFoo_ = new EventMapField<string, long>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetRoot(_root);
-      testFoo_.SetPath(Path.TestFooPath);
+      testFoo_.SetContext(Context, 10);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1559,46 +1358,28 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleStringToLongDeltaMap.Paths Path = new SimpleStringToLongDeltaMap.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testFoo_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleStringToLongDeltaMap.Paths path) {
-      this.Path = path;
-      testFoo_.SetPath(Path.TestFooPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestFooPath => new zpr.EventPath(Path, 10);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, long>.Codec _map_testFoo_codec
         = new pbc::MapField<string, long>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForInt64(16), 82);
     internal class TestFooMapConverter : EventMapConverter<string, long> {
-      public override zpr.EventSource.EventContent GetEventData(string key, long value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(string key, long value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
           if(!skipValue) dataStream.WriteInt64(value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<string, long> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<string, long> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeytestFoo = dataStream.ReadString();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<string, long>(realKeytestFoo, default(long));
         }
         else {
@@ -1680,9 +1461,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 10: {
-            testFoo_.ApplyEvent(e);
+            testFoo_.ApplyEvent(e.MapEvent);
           }
           break;
           default: 
@@ -1692,49 +1477,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 10: {
-            e.Path.AddRange(this.Path.TestFooPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleStringToLongDeltaMap.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 

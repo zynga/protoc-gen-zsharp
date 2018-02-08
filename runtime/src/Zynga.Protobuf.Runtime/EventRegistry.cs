@@ -1,69 +1,83 @@
-﻿using Google.Protobuf;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zynga.Protobuf.Runtime.EventSource;
+﻿using Zynga.Protobuf.Runtime.EventSource;
 
-namespace Zynga.Protobuf.Runtime
-{
-    public abstract class EventRegistry
-    {
-        public List<EventData> _root = new List<EventData>();
-        protected int  _indexRemoveCount = 0;
-        protected int  _lastIndexRemove = int.MaxValue;
+namespace Zynga.Protobuf.Runtime {
+	/// <summary>
+	/// The EventRegistry is extended by protobuf messages with the event_sourced option set
+	/// </summary>
+	public abstract class EventRegistry {
+		protected readonly EventContext Context = new EventContext();
 
-        public void ApplyEvents(EventSourceRoot root) {
-            _indexRemoveCount = 0;
-            _lastIndexRemove = int.MaxValue;
+		/// <summary>
+		/// Takes a set of events and applies them to the Message
+		/// </summary>
+		/// <param name="root"></param>
+		public void ApplyEvents(EventSourceRoot root) {
+			foreach (var e in root.Events) {
+				ApplyEvent(e, 0);
+			}
+		}
 
-            for(int index = 0; index < root.Events.Count; ++index) {
-                var e = root.Events[index];
-                var currentPathIndex = 0;
+		/// <summary>
+		/// Applies a specific event with the current path index specified
+		/// </summary>
+		/// <param name="e"></param>
+		/// <param name="pathIndex"></param>
+		/// <returns>true if the event was applied</returns>
+		public abstract bool ApplyEvent(EventData e, int pathIndex);
 
-                ApplyEvent(e, currentPathIndex);
-            }
-        }
+		/// <summary>
+		/// Returns the existing set of events, this does not clear the events associated with the messages
+		/// </summary>
+		/// <returns></returns>
+		public EventSourceRoot GenerateEvents() {
+			var er = new EventSourceRoot();
+			er.Events.AddRange(Context.Events);
+			return er;
+		}
 
-        public abstract bool ApplyEvent(EventData e, int pathIndex);
-        public abstract void AddEvent<T>(int fieldNumber, EventAction action, T data);
-        public abstract EventContent GetEventData<T>(int fieldNumber, EventAction action, T data);
-        public abstract bool ApplySnapshot(EventSourceRoot root);
-        public abstract EventSourceRoot GenerateSnapshot();
+		/// <summary>
+		/// Returns the existing set of events and clears them
+		/// </summary>
+		/// <returns></returns>
+		public EventSourceRoot GetAndClearEvents() {
+			var er = GenerateEvents();
+			ClearEvents();
+			return er;
+		}
+		
+		/// <summary>
+		/// Clears the existing events that have been generated
+		/// </summary>
+		public void ClearEvents() {
+			Context.ClearEvents();
+		}
 
-        public EventSourceRoot GenerateEvents() {
-            var er = new EventSourceRoot();
-            er.Events.AddRange(_root);
-            return er;
-        }
+		/// <summary>
+		/// Used to establish a parent child relationship between a message and child message
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="path"></param>
+		public virtual void SetParent(EventContext parent, EventPath path) {
+			Context.SetParent(parent, path);
+		}
 
-        public virtual void SetRoot(List<EventData> inRoot) {
-            _root = inRoot;
-        }
+		/// <summary>
+		/// Clears the existing parent, this is typically called when a child message is replaced or a message
+		/// is removed from a list or a map.
+		/// </summary>
+		public virtual void ClearParent() {
+			Context.ClearParent();
+		}
 
-        public void Reset() {
-            _root.Clear();
-            _indexRemoveCount = 0;
-            _lastIndexRemove = int.MaxValue;
-        }
-
-        protected void SafeRemoveCurrentIndex<T>(IList<T> inList, int currentIndexToRemove) {
-            // this is the case where we are removing the last element in the list ? 
-            if (_lastIndexRemove == currentIndexToRemove) {
-                currentIndexToRemove -= 1;
-            }
-            else if (_lastIndexRemove < currentIndexToRemove) {
-                currentIndexToRemove -= _indexRemoveCount;
-            }
-
-            if (currentIndexToRemove >= inList.Count) return;
-      
-            inList.RemoveAt(currentIndexToRemove);
-
-            _lastIndexRemove = currentIndexToRemove;
-            _indexRemoveCount++;
-        } 
-    }
+		/// <summary>
+		/// Used for ListEventContext objects, which may have had their index updated by a replace or insert event
+		/// </summary>
+		/// <param name="index"></param>
+		public void TryUpdateContextIndex(int index) {
+			var listContext = Context as ListEventContext;
+			if (listContext != null) {
+				listContext.Index = index;
+			}
+		}
+	}
 }

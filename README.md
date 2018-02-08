@@ -3,6 +3,8 @@ The main purpose of this project is to add support for event sourcing and other 
 
 The original C# codegen was forked from the google protobuf source (https://github.com/google/protobuf/tree/master/src/google/protobuf/compiler/csharp)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/g42go2oy0lf7r73d/branch/master?svg=true)](https://ci.appveyor.com/project/wackoisgod/protoc-gen-zsharp/branch/master)
+
 # CSharp proto-gen plugin build steps
 Build instructions for protoc-gen-zsharp c++ plugin
 

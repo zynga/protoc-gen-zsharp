@@ -13,7 +13,8 @@ install:
 
 build_script:
 - IF "%BUILD_SYSTEM%"=="bazel" (
-    cd $APPVEYOR_BUILD_FOLDER\plugin
+    echo $APPVEYOR_BUILD_FOLDER
+    cd $APPVEYOR_BUILD_FOLDER/plugin
   )
 
   

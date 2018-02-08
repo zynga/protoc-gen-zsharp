@@ -8,7 +8,7 @@ environment:
 
 install:
 - IF "%BUILD_SYSTEM%"=="bazel" (
-    appveyor DownloadFile https://github.com/bazelbuild/bazel/releases/download/0.6.1/bazel-0.6.1-windows-x86_64.exe -FileName bazel.exe
+    appveyor DownloadFile https://github.com/bazelbuild/bazel/releases/download/0.6.1/bazel-0.6.1-windows-x86_64.exe -FileName  $APPVEYOR_BUILD_FOLDER/bazel.exe
   )
 
 build_script:

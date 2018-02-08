@@ -13,5 +13,5 @@ install:
 
 build_script:
   - 'cd plugin'
-  - '../bazel.exe build :protoc-gen-zsharp'
+  - '..\bazel.exe build :protoc-gen-zsharp'
   

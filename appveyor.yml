@@ -1,6 +1,6 @@
 branches:
   only:
-  - ci_support
+  - master
 
 environment:
   global:

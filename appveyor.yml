@@ -13,7 +13,8 @@ install:
 
 build_script:
 - IF "%BUILD_SYSTEM%"=="bazel" (
-    bazel.exe build :protoc-gen-zcharp
+    cd ./plugin
+    ../bazel.exe build :protoc-gen-zcharp
   )
 
   

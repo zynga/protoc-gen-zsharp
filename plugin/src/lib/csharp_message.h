@@ -55,7 +55,7 @@ class MessageGenerator : public SourceGeneratorBase {
   void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   void GenerateFreezingCode(io::Printer* printer);
   void GenerateFrameworkMethods(io::Printer* printer);
-  void Generate(io::Printer* printer);
+  void Generate(io::Printer* printer, bool isEventSourced = false);
 
   /// The following code is Copyright 2018, Zynga
   bool IsEventSourced();
@@ -68,6 +68,7 @@ class MessageGenerator : public SourceGeneratorBase {
   const Descriptor* descriptor_;
   std::vector<std::string> field_names_;
   std::vector<const FieldDescriptor*> fields_by_number_;
+  bool is_event_sourced;
 
   void GenerateMessageSerializationMethods(io::Printer* printer);
   void GenerateMergingMethods(io::Printer* printer);

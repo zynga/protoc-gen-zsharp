@@ -1,21 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 15.0.26124.0
-
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zynga.Protobuf.Runtime", "Zynga.Protobuf.Runtime\Zynga.Protobuf.Runtime.csproj", "{031732C3-05C2-4BE1-AC33-AEA854F7E34D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zynga.Protobuf.Runtime", "Zynga.Protobuf.Runtime\Zynga.Protobuf.Runtime.csproj", "{031732C3-05C2-4BE1-AC33-AEA854F7E34D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zynga.Protobuf.Runtime.Tests", "Zynga.Protobuf.Runtime.Tests\Zynga.Protobuf.Runtime.Tests.csproj", "{6CC03752-1E71-4FA8-8906-0498412CE70B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zynga.Protobuf.Runtime.Tests", "Zynga.Protobuf.Runtime.Tests\Zynga.Protobuf.Runtime.Tests.csproj", "{6CC03752-1E71-4FA8-8906-0498412CE70B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E350E288-2DAA-4B0A-832D-B95BC94DF03A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		..\..\proto\test\delta_test.proto = ..\..\proto\test\delta_test.proto
+		..\..\proto\test\event_test.proto = ..\..\proto\test\event_test.proto
+		..\..\proto\test\simple_list.proto = ..\..\proto\test\simple_list.proto
+		..\..\proto\test\simple_map.proto = ..\..\proto\test\simple_map.proto
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{031732C3-05C2-4BE1-AC33-AEA854F7E34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -26,5 +30,11 @@ Global
 		{6CC03752-1E71-4FA8-8906-0498412CE70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC03752-1E71-4FA8-8906-0498412CE70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC03752-1E71-4FA8-8906-0498412CE70B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DBD3C74-1CC5-4364-8B96-E164B8FE72DA}
 	EndGlobalSection
 EndGlobal

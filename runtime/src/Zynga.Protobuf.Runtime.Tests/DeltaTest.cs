@@ -1324,7 +1324,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         [pbr::OriginalName("HI")] Hi = 0,
       }
 
-      public sealed partial class Zam : pb::IMessage<Zam> {
+      public sealed partial class Zam : zpr::EventRegistry, pb::IMessage<Zam> {
         private static readonly pb::MessageParser<Zam> _parser = new pb::MessageParser<Zam>(() => new Zam());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Zam> Parser { get { return _parser; } }
@@ -1356,8 +1356,26 @@ namespace Com.Zynga.Runtime.Protobuf {
           return new Zam(this);
         }
 
-        public static bool IsEventSourced = false;
+        public static bool IsEventSourced = true;
 
+        public Zam.Paths Path = new Zam.Paths(zpr.EventPath.Empty);
+
+        public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
+          base.SetRoot(inRoot);
+        }
+        public void SetPath(Zam.Paths path) {
+          this.Path = path;
+        }
+
+        public class Paths {
+
+            public zpr.EventPath Path = null;
+
+            public Paths(zpr.EventPath _path) {
+              Path = _path;
+            }
+            public zpr.EventPath HiPath => new zpr.EventPath(Path, 1);
+        }
         /// <summary>Field number for the "hi" field.</summary>
         public const int HiFieldNumber = 1;
         private int hi_;
@@ -1365,6 +1383,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         public int Hi {
           get { return hi_; }
           set {
+            AddEvent(1, zpr.EventSource.EventAction.Set, value);
             hi_ = value;
           }
         }
@@ -1439,6 +1458,65 @@ namespace Com.Zynga.Runtime.Protobuf {
               }
             }
           }
+        }
+
+        public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            switch (e.Path[pathIndex]) {
+              case 1: {
+                hi_ = e.Data.I32;
+              }
+              break;
+              default: 
+                return false;
+              break;
+            }
+          return true;
+        }
+
+        public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+            switch (fieldNumber) {
+              case 1: {
+                return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
+              }
+              break;
+              default: 
+                return null;
+              break;
+            }
+        }
+
+        public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
+           var e = new zpr.EventSource.EventData {
+             Field = fieldNumber,
+             Action = action,
+             Data = GetEventData(fieldNumber, action, data)
+           };
+
+           switch (fieldNumber) {
+              case 1: {
+                e.Path.AddRange(this.Path.HiPath._path);
+              }
+              break;
+              default: 
+                return;
+              break;
+            }
+            _root.Add(e);
+        }
+        public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
+          var e = Zam.Parser.ParseFrom(root.Events[0].Data.ByteData);
+          MergeFrom(e);
+          return true;
+        }
+
+        public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+          var er = new zpr.EventSource.EventSourceRoot();
+          var ee = new zpr.EventSource.EventData();
+          ee.Action = zpr.EventSource.EventAction.Snapshot;
+          ee.Data = new zpr.EventSource.EventContent();
+          ee.Data.ByteData = this.ToByteString();
+          er.Events.Add(ee);
+          return er;
         }
 
       }

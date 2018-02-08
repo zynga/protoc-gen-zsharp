@@ -128,5 +128,17 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple
 
             Assert.Equal(m1.GetBuffer(), m2.GetBuffer());
         }
-    }
+
+		[Fact]
+		public void NestedMessagesShouldBeEventSourced()
+		{
+			Assert.True(EventTest.Types.NestedMessage.IsEventSourced);
+		}
+
+		[Fact]
+		public void MessagesShouldNotBeEventSourced()
+		{
+			Assert.False(Com.Zynga.Runtime.Protobuf.TestMessage.IsEventSourced);
+		}
+	}
 }

@@ -70,6 +70,9 @@ class MessageFieldGenerator : public FieldGeneratorBase {
   virtual void WriteHash(io::Printer* printer);
   virtual void WriteEquals(io::Printer* printer);
   virtual void WriteToString(io::Printer* printer);
+ protected:
+  bool IsInternalEventSourced();
+
 
  private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageFieldGenerator);

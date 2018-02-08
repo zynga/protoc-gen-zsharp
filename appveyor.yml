@@ -13,8 +13,8 @@ install:
 
 build_script:
 - IF "%BUILD_SYSTEM%"=="bazel" (
-    echo $APPVEYOR_BUILD_FOLDER
     cd $APPVEYOR_BUILD_FOLDER/plugin
+    $APPVEYOR_BUILD_FOLDER/bazel.exe build :protoc-gen-zsharp
   )
 
   

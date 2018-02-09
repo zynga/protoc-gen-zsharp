@@ -199,6 +199,10 @@ void WrapperOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     "}\n");
 }
 
+void WrapperOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
+}
+
 void WrapperOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
   printer->Print(
     variables_,

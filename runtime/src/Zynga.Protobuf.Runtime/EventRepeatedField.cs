@@ -11,18 +11,30 @@ namespace Zynga.Protobuf.Runtime {
 	/// </summary>
 	public class EventRepeatedField<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
 		private readonly RepeatedField<T> _internal;
-		private List<EventData> _root;
-		private EventPath _path;
+		private readonly bool _isMessageType;
+		private EventContext _context;
+		private int _fieldNumber;
 		private readonly EventDataConverter<T> _converter;
 
-		public EventRepeatedField(EventDataConverter<T> converter) {
+		public EventRepeatedField(EventDataConverter<T> converter, bool isMessageType = false) {
 			_converter = converter;
 			_internal = new RepeatedField<T>();
+			_isMessageType = isMessageType;
 		}
 
-		public EventRepeatedField(EventDataConverter<T> converter, RepeatedField<T> repeatedField) {
+		public EventRepeatedField(EventDataConverter<T> converter, RepeatedField<T> repeatedField, bool isMessageType = false) {
 			_converter = converter;
-			_internal = repeatedField;
+			_isMessageType = isMessageType;
+
+			if (isMessageType) {
+				_internal = new RepeatedField<T>();
+				foreach (var v in repeatedField) {
+					InternalAdd(v);
+				}
+			}
+			else {
+				_internal = repeatedField;
+			}
 		}
 
 		public RepeatedField<T> Clone() {
@@ -31,6 +43,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void AddEntriesFrom(CodedInputStream input, FieldCodec<T> codec) {
 			_internal.AddEntriesFrom(input, codec);
+			if (_isMessageType) {
+				for (int i = 0; i < _internal.Count; i++) {
+					SetParent(i, _internal[i]);
+				}
+			}
 		}
 
 		public int CalculateSize(FieldCodec<T> codec) {
@@ -42,19 +59,24 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public void Add(T item) {
-			_internal.Add(item);
-			AddEvent(EventAction.AddList, Count, _converter.GetEventData(item));
+			InternalAdd(item);
+			AddListEvent(item);
 		}
 
 		public void Add(EventRepeatedField<T> other) {
 			foreach (var v in other) {
-				_internal.Add(v);
+				if (v is IDeepCloneable<T>) {
+					InternalAdd(((IDeepCloneable<T>) v).Clone());
+				}
+				else {
+					InternalAdd(v);
+				}
 			}
 		}
 
 		public void Clear() {
-			_internal.Clear();
-			AddEvent(EventAction.ClearList);
+			InternalClear();
+			ClearListEvent();
 		}
 
 		public bool Contains(T item) {
@@ -66,9 +88,9 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public bool Remove(T item) {
-			var result = _internal.Remove(item);
+			var result = InternalRemove(item);
 			if (result) {
-				AddEvent(EventAction.RemoveList, _converter.GetEventData(item));
+				RemoveListEvent(item);
 			}
 
 			return result;
@@ -117,13 +139,13 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public void Insert(int index, T item) {
-			_internal.Insert(index, item);
-			AddEvent(EventAction.InsertList, index, _converter.GetEventData(item));
+			InternalInsert(index, item);
+			InsertListEvent(index, item);
 		}
 
 		public void RemoveAt(int index) {
-			_internal.RemoveAt(index);
-			AddEvent(EventAction.RemoveAtList, index);
+			InternalRemoveAt(index);
+			RemoveAtListEvent(index);
 		}
 
 		public override string ToString() {
@@ -133,8 +155,8 @@ namespace Zynga.Protobuf.Runtime {
 		public T this[int index] {
 			get { return _internal[index]; }
 			set {
-				_internal[index] = value;
-				AddEvent(EventAction.ReplaceList, index, _converter.GetEventData(value));
+				InternalReplaceAt(index, value);
+				ReplaceListEvent(index, value);
 			}
 		}
 
@@ -186,72 +208,155 @@ namespace Zynga.Protobuf.Runtime {
 			Remove((T) value);
 		}
 
-		private void AddEvent(EventAction action) {
-			var newEvent = new EventData {
-				Action = action,
+		private void AddListEvent(T item) {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.AddList,
+				Content = _converter.GetEventData(item)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
-		private void AddEvent(EventAction action, int field) {
-			var newEvent = new EventData {
-				Action = action,
-				Field = field
+		private void RemoveListEvent(T item) {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.RemoveList,
+				Content = _converter.GetEventData(item)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
-		private void AddEvent(EventAction action, EventContent data) {
-			var newEvent = new EventData {
-				Action = action,
-				Data = data
+		private void RemoveAtListEvent(int index) {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.RemoveAtList,
+				Index = index
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
-		private void AddEvent(EventAction action, int field, EventContent data) {
-			var newEvent = new EventData {
-				Action = action,
-				Field = field,
-				Data = data
+		private void ReplaceListEvent(int index, T item) {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.ReplaceList,
+				Index = index,
+				Content = _converter.GetEventData(item)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddListEvent(_fieldNumber, listEvent);
+		}
+		
+		private void InsertListEvent(int index, T item) {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.InsertList,
+				Index = index,
+				Content = _converter.GetEventData(item)
+			};
+			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
-		public void SetRoot(List<EventData> inRoot) {
-			_root = inRoot;
+		private void ClearListEvent() {
+			var listEvent = new ListEvent {
+				ListAction = ListAction.ClearList
+			};
+			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
-		public void SetPath(EventPath path) {
-			_path = path;
+		public void SetContext(EventContext context, int fieldNumber) {
+			_context = context;
+			_fieldNumber = fieldNumber;
 		}
 
-		public bool ApplyEvent(EventData e) {
-			switch (e.Action) {
-				case EventAction.AddList:
-					_internal.Add(_converter.GetItem(e.Data));
+		public bool ApplyEvent(ListEvent e) {
+			switch (e.ListAction) {
+				case ListAction.AddList:
+					InternalAdd(_converter.GetItem(e.Content));
 					return true;
-				case EventAction.RemoveList:
-					_internal.Remove(_converter.GetItem(e.Data));
+				case ListAction.RemoveList:
+					InternalRemove(_converter.GetItem(e.Content));
 					return true;
-				case EventAction.RemoveAtList:
-					_internal.RemoveAt(e.Field);
+				case ListAction.RemoveAtList:
+					InternalRemoveAt(e.Index);
 					return true;
-				case EventAction.ReplaceList:
-					_internal[e.Field] = _converter.GetItem(e.Data);
+				case ListAction.ReplaceList:
+					InternalReplaceAt(e.Index, _converter.GetItem(e.Content));
 					return true;
-				case EventAction.InsertList:
-					_internal.Insert(e.Field, _converter.GetItem(e.Data));
+				case ListAction.InsertList:
+					InternalInsert(e.Index, _converter.GetItem(e.Content));
 					return true;
-				case EventAction.ClearList:
-					_internal.Clear();
+				case ListAction.ClearList:
+					InternalClear();
+					return true;
+				case ListAction.UpdateList:
+					var registry = _internal[e.Index] as EventRegistry;
+					registry?.ApplyEvent(e.EventData, 0);
 					return true;
 				default:
 					return false;
+			}
+		}
+
+		private bool InternalRemove(T item) {
+			int destinationIndex = _internal.IndexOf(item);
+			if (destinationIndex != -1) {
+				InternalRemoveAt(destinationIndex);
+				return true;
+			}
+
+			return false;
+		}
+
+		private void InternalRemoveAt(int index) {
+			var removedItem = _internal[index];
+			_internal.RemoveAt(index);
+			if (_isMessageType) {
+				ClearParent(removedItem);
+				UpdateParents(index);
+			}
+		}
+
+		private void InternalAdd(T item) {
+			_internal.Add(item);
+			if (_isMessageType) SetParent(_internal.Count - 1, item);
+		}
+
+		private void InternalReplaceAt(int index, T item) {
+			var removedItem = _internal[index];
+			_internal[index] = item;
+			if (_isMessageType) {
+				ClearParent(removedItem);
+				SetParent(index, item);
+			}
+		}
+
+		private void InternalInsert(int index, T item) {
+			_internal.Insert(index, item);
+			if (_isMessageType) {
+				SetParent(index, item);
+				UpdateParents(index + 1);
+			}
+		}
+
+		private void InternalClear() {
+			if (_isMessageType) {
+				while (_internal.Count > 0) {
+					InternalRemoveAt(0);
+				}
+			}
+			else {
+				_internal.Clear();
+			}
+		}
+		
+		private static void ClearParent(T item) {
+			var registry = item as EventRegistry;
+			registry?.ClearParent();
+		}
+
+		private void SetParent(int index, T item) {
+			var registry = item as EventRegistry;
+			registry?.SetParent(new ListEventContext(_context, index, _fieldNumber), EventPath.Empty);
+		}
+
+		private void UpdateParents(int startIndex) {
+			for (int i = startIndex; i < _internal.Count; i++) {
+				var registry = _internal[i] as EventRegistry;
+				registry?.TryUpdateContextIndex(i);
 			}
 		}
 	}

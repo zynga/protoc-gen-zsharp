@@ -1,4 +1,5 @@
 ﻿using Com.Zynga.Runtime.Protobuf;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Xunit;
 using static Zynga.Protobuf.Runtime.Tests.Simple.EventTestHelper;
@@ -17,11 +18,14 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			blob.IntToString.Add(10, "world");
 			blob.StringToFoo.Add("hello", new Foo {Long = 9, Str = "ha"});
+			blob.StringToFoo["hello"].Str = "happy";
+			blob.StringToFoo["hello"].Long = 10;
 
-			//blob.AddFoolist(new Foo{Long = 123});
-			//blob.RemoveFoolist(0)  // This doesn't work atm
-			blob.Foolist.Add(new Foo {Long = 321});
+			blob.Foolist.Add(new Foo {Long = 123});
+			blob.Foolist[0].Long = 321;
 			blob.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.Foolist[1].Str = "lalala";
+			blob.Foolist[1].Long = 2;
 
 			blob.Ilist.Add(12);
 			blob.Ilist.Add(51);
@@ -119,7 +123,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void AppliedDeltasShouldEqual() {
 			var blob = populated();
 			var root = blob.GenerateEvents();
-			blob.Reset();
+			blob.ClearEvents();
 
 			var newBlob = new TestBlob();
 			newBlob.ApplyEvents(root);
@@ -137,7 +141,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.Bar = new Bar();
 			blob.Bar.Foo = new Foo();
 			Assert.Equal(2, blob.GenerateEvents().Events.Count);
-			blob.Reset();
+			blob.ClearEvents();
 
 			blob.Bar.Foo.Long = 1;
 			AssertDeltaPath(blob, new[] {1, 1, 1});
@@ -208,6 +212,98 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			blob.IntToString.Add(0, "a");
 			AssertNotGenerated(blob);
 			*/
+		}
+
+		private RecursiveMap CreateRecursiveMap(int depth) {
+			var map = new RecursiveMap();
+			if (depth > 0) {
+				map.Map[depth] = CreateRecursiveMap(depth - 1);
+			}
+
+			return map;
+		}
+
+		private void AddRecusiveMapFields(RecursiveMap map) {
+			map.Primitives = new AllPrimitives();
+			map.Primitives.A = 10;
+			map.Primitives.B = 11;
+			map.Primitives.C = 12;
+			map.Primitives.D = 13;
+			map.Primitives.E = 14;
+			map.Primitives.F = 15;
+			map.Primitives.G = 16.1;
+			map.Primitives.H = 17.2F;
+			map.Primitives.I = true;
+			map.Primitives.J = "18";
+			map.Primitives.K = ByteString.CopyFromUtf8("19");
+			map.Primitives.L = 20;
+			map.Primitives.M = 21;
+			map.Primitives.N = -22;
+			map.Primitives.O = -23;
+
+			map.Bar = new Bar();
+			map.Bar.Foo = new Foo();
+			map.Enumero = Enumero.Halp;
+
+			foreach (var m in map.Map) {
+				AddRecusiveMapFields(m.Value);
+			}
+		}
+
+		[Fact]
+		public void ShouldGenerateValidDeltasForRecursiveMap() {
+			var map = CreateRecursiveMap(10);
+			AddRecusiveMapFields(map);
+			var root = map.GetAndClearEvents();
+			var newMap = new RecursiveMap();
+			newMap.ApplyEvents(root);
+			Assert.Equal(map, newMap);
+		}
+
+		private RecursiveList CeateRecusiveList(int depth) {
+			var list = new RecursiveList();
+			if (depth > 0) {
+				list.List.Add(CeateRecusiveList(depth - 1));
+			}
+
+			return list;
+		}
+
+		private void AddRecusiveListFields(RecursiveList list) {
+			list.Primitives = new AllPrimitives();
+			list.Primitives.A = 10;
+			list.Primitives.B = 11;
+			list.Primitives.C = 12;
+			list.Primitives.D = 13;
+			list.Primitives.E = 14;
+			list.Primitives.F = 15;
+			list.Primitives.G = 16.1;
+			list.Primitives.H = 17.2F;
+			list.Primitives.I = true;
+			list.Primitives.J = "18";
+			list.Primitives.K = ByteString.CopyFromUtf8("19");
+			list.Primitives.L = 20;
+			list.Primitives.M = 21;
+			list.Primitives.N = -22;
+			list.Primitives.O = -23;
+			
+			list.Bar = new Bar();
+			list.Bar.Foo = new Foo();
+			list.Enumero = Enumero.Halp;
+
+			foreach (var l in list.List) {
+				AddRecusiveListFields(l);
+			}
+		}
+
+		[Fact]
+		public void ShouldGenerateValidDeltasForRecursiveList() {
+			var list = CeateRecusiveList(10);
+			AddRecusiveListFields(list);
+			var root = list.GetAndClearEvents();
+			var newList = new RecursiveList();
+			newList.ApplyEvents(root);
+			Assert.Equal(list, newList);
 		}
 	}
 }

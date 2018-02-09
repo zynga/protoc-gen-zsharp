@@ -8,18 +8,30 @@ using Zynga.Protobuf.Runtime.EventSource;
 namespace Zynga.Protobuf.Runtime {
 	public class EventMapField<TKey, TValue> : IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, IEquatable<MapField<TKey, TValue>>, IDictionary, ICollection, IReadOnlyDictionary<TKey, TValue>, IReadOnlyCollection<KeyValuePair<TKey, TValue>> {
 		private readonly MapField<TKey, TValue> _internal;
-		private List<EventData> _root;
-		private EventPath _path;
+		private readonly bool _isMessageType;
+		private EventContext _context;
+		private int _fieldNumber;
 		private readonly EventMapConverter<TKey, TValue> _converter;
 
-		public EventMapField(EventMapConverter<TKey, TValue> converter) {
+		public EventMapField(EventMapConverter<TKey, TValue> converter, bool isMessageType = false) {
 			_converter = converter;
 			_internal = new MapField<TKey, TValue>();
+			_isMessageType = isMessageType;
 		}
 
-		public EventMapField(EventMapConverter<TKey, TValue> converter, MapField<TKey, TValue> mapField) {
+		public EventMapField(EventMapConverter<TKey, TValue> converter, MapField<TKey, TValue> mapField, bool isMessageType = false) {
 			_converter = converter;
-			_internal = mapField;
+			_isMessageType = isMessageType;
+			
+			if (_isMessageType) {
+				_internal = new MapField<TKey, TValue>();
+				foreach (var kv in mapField) {
+					InternalAdd(kv.Key, kv.Value);
+				}
+			}
+			else {
+				_internal = mapField;
+			}
 		}
 
 		public MapField<TKey, TValue> Clone() {
@@ -27,13 +39,18 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public void Add(TKey key, TValue value) {
-			_internal.Add(key, value);
+			InternalAdd(key, value);
 			AddMapEvent(key, value);
 		}
 
 		public void Add(EventMapField<TKey, TValue> other) {
 			foreach (var kv in other) {
-				_internal[kv.Key] = kv.Value;
+				if (kv.Value is IDeepCloneable<TValue>) {
+					InternalAdd(kv.Key, ((IDeepCloneable<TValue>) kv.Value).Clone());
+				}
+				else {
+					InternalAdd(kv.Key, kv.Value);
+				}
 			}
 		}
 
@@ -42,7 +59,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public bool Remove(TKey key) {
-			var result = _internal.Remove(key);
+			var result = InternalRemove(key);
 			if (result) {
 				RemoveMapEvent(key);
 			}
@@ -57,7 +74,7 @@ namespace Zynga.Protobuf.Runtime {
 		public TValue this[TKey key] {
 			get { return _internal[key]; }
 			set {
-				_internal[key] = value;
+				InternalReplace(key, value);
 				ReplaceMapEvent(key, value);
 			}
 		}
@@ -83,7 +100,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public void Clear() {
-			_internal.Clear();
+			InternalClear();
 			ClearMapEvent();
 		}
 
@@ -137,6 +154,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void AddEntriesFrom(CodedInputStream input, MapField<TKey, TValue>.Codec codec) {
 			_internal.AddEntriesFrom(input, codec);
+			if (_isMessageType) {
+				foreach(var kv in _internal) {
+					SetParent(kv.Key, kv.Value);
+				}
+			}
 		}
 
 		public void WriteTo(CodedOutputStream output, MapField<TKey, TValue>.Codec codec) {
@@ -150,7 +172,6 @@ namespace Zynga.Protobuf.Runtime {
 		public override string ToString() {
 			return _internal.ToString();
 		}
-
 
 		void IDictionary.Add(object key, object value) {
 			this.Add((TKey) key, (TValue) value);
@@ -212,68 +233,120 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void AddMapEvent(TKey key, TValue value) {
-			var newEvent = new EventData {
-				Action = EventAction.AddMap,
-				Data = _converter.GetEventData(key, value)
+			var mapEvent = new MapEvent {
+				MapAction = MapAction.AddMap,
+				KeyValue = _converter.GetKeyValue(key, value)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddMapEvent(_fieldNumber, mapEvent);
 		}
 
 		private void RemoveMapEvent(TKey key) {
-			var newEvent = new EventData {
-				Action = EventAction.RemoveMap,
-				Data = _converter.GetEventData(key, default(TValue), true)
+			var mapEvent = new MapEvent {
+				MapAction = MapAction.RemoveMap,
+				KeyValue = _converter.GetKeyValue(key, default(TValue), true)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddMapEvent(_fieldNumber, mapEvent);
 		}
 
 		private void ReplaceMapEvent(TKey key, TValue value) {
-			var newEvent = new EventData {
-				Action = EventAction.ReplaceMap,
-				Data = _converter.GetEventData(key, value)
+			var mapEvent = new MapEvent {
+				MapAction = MapAction.ReplaceMap,
+				KeyValue = _converter.GetKeyValue(key, value)
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddMapEvent(_fieldNumber, mapEvent);
 		}
 
 		private void ClearMapEvent() {
-			var newEvent = new EventData {
-				Action = EventAction.ClearMap
+			var mapEvent = new MapEvent {
+				MapAction = MapAction.ClearMap
 			};
-			newEvent.Path.AddRange(_path._path);
-			_root.Add(newEvent);
+			_context.AddMapEvent(_fieldNumber, mapEvent);
 		}
 
-		public void SetRoot(List<EventData> inRoot) {
-			_root = inRoot;
+		public void SetContext(EventContext context, int fieldNumber) {
+			_context = context;
+			_fieldNumber = fieldNumber;
 		}
 
-		public void SetPath(EventPath path) {
-			_path = path;
-		}
-
-		public bool ApplyEvent(EventData e) {
-			switch (e.Action) {
-				case EventAction.AddMap:
-					var addPair = _converter.GetItem(e);
-					_internal.Add(addPair.Key, addPair.Value);
+		public bool ApplyEvent(MapEvent e) {
+			switch (e.MapAction) {
+				case MapAction.AddMap:
+					var addPair = _converter.GetItem(e.KeyValue);
+					InternalAdd(addPair.Key, addPair.Value);
 					return true;
-				case EventAction.RemoveMap:
-					var removePair = _converter.GetItem(e);
-					_internal.Remove(removePair.Key);
+				case MapAction.RemoveMap:
+					var removePair = _converter.GetItem(e.KeyValue, true);
+					InternalRemove(removePair.Key);
 					return true;
-				case EventAction.ReplaceMap:
-					var replacePair = _converter.GetItem(e);
-					_internal[replacePair.Key] = replacePair.Value;
+				case MapAction.ReplaceMap:
+					var replacePair = _converter.GetItem(e.KeyValue);
+					InternalReplace(replacePair.Key, replacePair.Value);
 					return true;
-				case EventAction.ClearMap:
-					_internal.Clear();
+				case MapAction.ClearMap:
+					InternalClear();
+					return true;
+				case MapAction.UpdateMap:
+					var updatePair = _converter.GetItem(e.KeyValue, true);
+					var registry = _internal[updatePair.Key] as EventRegistry;
+					registry?.ApplyEvent(e.EventData, 0);
 					return true;
 				default:
 					return false;
 			}
+		}
+
+		private void InternalAdd(TKey key, TValue value) {
+			_internal.Add(key, value);
+			if (_isMessageType) SetParent(key, value);
+		}
+
+		private bool InternalRemove(TKey key) {
+			if (!_isMessageType) {
+				return _internal.Remove(key);
+			}
+			
+			TValue value;
+			if(_internal.TryGetValue(key, out value)) {
+				ClearParent(value);
+				_internal.Remove(key);
+				return true;
+			}
+
+			return false;
+		}
+
+		private void InternalReplace(TKey key, TValue value) {
+			if (_isMessageType) {
+				TValue existingValue;
+				if(_internal.TryGetValue(key, out existingValue)) {
+					ClearParent(existingValue);
+				}
+				_internal[key] = value;
+				SetParent(key, value);
+			}
+			else {
+				_internal[key] = value;
+			}
+		}
+
+		private void InternalClear() {
+			if (_isMessageType) {
+				foreach (var kv in _internal) {
+					ClearParent(kv.Value);
+				}
+			}
+			_internal.Clear();
+		}
+		
+		private static void ClearParent(TValue item) {
+			var registry = item as EventRegistry;
+			registry?.ClearParent();
+		}
+
+		private void SetParent(TKey key, TValue value) {
+			var registry = value as EventRegistry;
+			var keyBytes = _converter.GetKeyValue(key, value, true);
+			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
 		}
 	}
 }

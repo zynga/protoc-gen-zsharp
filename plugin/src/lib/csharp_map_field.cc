@@ -91,8 +91,7 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     printer->Print(
       variables_,
       "internal class $property_name$MapConverter : EventMapConverter<$key_type_name$, $value_type_name$> {\n"
-      "  public override zpr.EventSource.EventContent GetEventData($key_type_name$ key, $value_type_name$ value, bool skipValue = false) {\n"
-      "    var mapEvent = new zpr.EventSource.EventMap();\n"
+      "  public override ByteString GetKeyValue($key_type_name$ key, $value_type_name$ value, bool skipValue = false) {\n"
       "    using (var memStream = new MemoryStream()) {\n"
       "      var dataStream = new CodedOutputStream(memStream);\n"
       "      dataStream.$key_write_name$(key);\n");
@@ -111,12 +110,11 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     printer->Print(
       variables_,
       "      dataStream.Flush();\n"
-      "      mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());\n"
+      "      return ByteString.CopyFrom(memStream.ToArray());\n"
       "    }\n"
-      "    return new zpr.EventSource.EventContent{MapData = mapEvent};\n"
       "  }\n"
-      "  public override KeyValuePair<$key_type_name$, $value_type_name$> GetItem(zpr.EventSource.EventData data) {\n"
-      "    var dataStream = data.Data.MapData.Data.CreateCodedInput();\n");
+      "  public override KeyValuePair<$key_type_name$, $value_type_name$> GetItem(ByteString data, bool skipValue = false) {\n"
+      "    var dataStream = data.CreateCodedInput();\n");
 
     // if we are a message type then we need to decode the message to its actual value
     if (key_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
@@ -132,7 +130,7 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
 
     printer->Print(
       variables_,
-      "    if (data.Action == zpr.EventSource.EventAction.RemoveMap) {\n"
+      "    if (skipValue) {\n"
       "      return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, default($value_type_name$));\n"
       "    }\n"
       "    else {\n");
@@ -161,9 +159,16 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       "}\n"
       "private static readonly EventMapConverter<$key_type_name$, $value_type_name$> $name$MapConverter = new $property_name$MapConverter();\n");
 
-    printer->Print(
-      variables_,
-      "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter);\n");
+    if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+      printer->Print(
+        variables_,
+        "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, true);\n");
+    }
+    else {
+      printer->Print(
+        variables_,
+        "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter);\n");
+    }
   }
   else {
     printer->Print(
@@ -209,7 +214,7 @@ void MapFieldGenerator::GenerateEventSource(io::Printer* printer) {
 
     printer->Print(
           vars,
-          "        $name$_.ApplyEvent(e);\n");
+          "        $name$_.ApplyEvent(e.MapEvent);\n");
 }
 
 void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
@@ -328,16 +333,22 @@ void MapFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSo
       vars["name"] = variables_["name"];
       vars["type_name"] = variables_["type_name"];
       vars["property_name"] = variables_["property_name"];
+      vars["number"] = variables_["number"];
       vars["key_type_name"] = type_name(key_descriptor);
       vars["value_type_name"] = type_name(value_descriptor);
       vars["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
 
+    if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+      printer->Print(vars,
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone(), true);\n");
+    }
+    else {
+      printer->Print(vars,
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
+    }
+
     printer->Print(vars,
-      "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
-    printer->Print(vars,
-      "$name$_.SetRoot(_root);\n");
-    printer->Print(vars,
-      "$name$_.SetPath(Path.$property_name$Path);\n");
+      "$name$_.SetContext(Context, $number$);\n");
   }
   else {
     printer->Print(variables_,

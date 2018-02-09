@@ -112,7 +112,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
 void RepeatedPrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
     printer->Print(
           variables_,
-          "        $name$_.ApplyEvent(e);\n");
+          "        $name$_.ApplyEvent(e.ListEvent);\n");
 }
 
 void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
@@ -182,8 +182,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer, 
   if(isEventSourced) {
     printer->Print(variables_,
       "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
-      "$name$_.SetRoot(_root);\n"
-      "$name$_.SetPath(Path.$property_name$Path);\n");
+      "$name$_.SetContext(Context, $number$);\n");
   }
   else {
     printer->Print(variables_,

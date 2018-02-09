@@ -20,7 +20,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			var root = AssertGenerated(map);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.AddMap, e.Action);
+			Assert.Equal(MapAction.AddMap, e.MapEvent.MapAction);
 			AssertPath(e, new[] {10});
 		}
 
@@ -31,7 +31,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			var root = AssertGenerated(map);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.ReplaceMap, e.Action);
+			Assert.Equal(MapAction.ReplaceMap, e.MapEvent.MapAction);
 			AssertPath(e, new[] {10});
 		}
 
@@ -39,13 +39,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldGenerateRemoveEvent() {
 			var map = new SimpleLongToMessageDeltaMap();
 			map.TestFoo[1] = new SimpleMapDeltaMessage {H = "hello"};
-			map.Reset(); // throw away changes
+			map.ClearEvents(); // throw away changes
 
 			map.TestFoo.Remove(1);
 
 			var root = AssertGenerated(map);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.RemoveMap, e.Action);
+			Assert.Equal(MapAction.RemoveMap, e.MapEvent.MapAction);
 			AssertPath(e, new[] {10});
 		}
 
@@ -53,13 +53,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldGenerateClearEvent() {
 			var map = new SimpleLongToMessageDeltaMap();
 			map.TestFoo[1] = new SimpleMapDeltaMessage {H = "hello"};
-			map.Reset(); // throw away changes
+			map.ClearEvents(); // throw away changes
 
 			map.TestFoo.Clear();
 
 			var root = AssertGenerated(map);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.ClearMap, e.Action);
+			Assert.Equal(MapAction.ClearMap, e.MapEvent.MapAction);
 			AssertPath(e, new[] {10});
 		}
 
@@ -173,6 +173,25 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(1, map.TestFoo["1"]);
 			Assert.Equal(5, map.TestFoo["4"]);
 			Assert.Equal(4, map.TestFoo["2"]);
+		}
+
+		[Fact]
+		public void ShouldGenerateDeltasForMessagesInMap() {
+			var map = new SimpleLongToMessageDeltaMap();
+			map.TestFoo.Add(1, new SimpleMapDeltaMessage {H = "hello"});
+			map.ClearEvents();
+
+			map.TestFoo[1].H = "world";
+
+			var root = AssertGenerated(map);
+			var e = root.Events[0];
+			Assert.Equal(EventData.ActionOneofCase.MapEvent, e.ActionCase);
+			AssertPath(e, new[] {10});
+			var me = e.MapEvent;
+			Assert.Equal(MapAction.UpdateMap, me.MapAction);
+
+			Assert.Equal(EventData.ActionOneofCase.Set, me.EventData.ActionCase);
+			AssertPath(me.EventData, new[] {1});
 		}
 	}
 }

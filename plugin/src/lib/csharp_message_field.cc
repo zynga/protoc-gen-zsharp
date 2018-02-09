@@ -82,13 +82,13 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     if (isEnternalSourced) {
        printer->Print(
          variables_,
-         "    value.SetRoot(_root);\n"
-         "    value.SetPath(new $type_name$.Paths(new zpr.EventPath(this.Path.Path, $number$)));\n");
+         "    if($name$_ != null) $name$_.ClearParent();\n"
+         "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
     }
 
     printer->Print(
        variables_,
-       "    AddEvent($number$, zpr.EventSource.EventAction.Snapshot, value);\n");
+       "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
        
   }
   
@@ -101,18 +101,18 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
   bool isEventSourced = IsInternalEventSourced();
-  printer->Print(variables_,
-  "        if ($name$_ == null) $name$_ = new $type_name$();\n");
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Path.Count - 1 != pathIndex) \n"
+      "        if (e.Path.Count - 1 != pathIndex) {\n"
+      "          if ($name$_ == null) $name$_ = new $type_name$();\n"
       "          ($name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
-      "        else\n"
-      "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        } else {\n"
+      "          $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "        }\n");
   }
   else {
     printer->Print(variables_, 
-      "        $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n");
   }
 }
 
@@ -267,13 +267,13 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
       if (isInternalSourced) {
         printer->Print(
           variables_,
-          "    value.SetRoot(_root);\n"
-          "    value.SetPath(new $type_name$.Paths(new zpr.EventPath(this.Path.Path, $number$)));\n");
+          "    if($oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
+          "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
       }
 
       printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Snapshot, value);\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
     }
 
     printer->Print(
@@ -286,18 +286,18 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 
 void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
   bool isEventSourced = IsInternalEventSourced();
-  printer->Print(variables_,
-    "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n");
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Path.Count - 1 != pathIndex) \n"
+      "        if (e.Path.Count - 1 != pathIndex) {\n"
+      "          if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
       "          ($oneof_name$_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
-      "        else\n"
-      "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        } else {\n"
+      "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "        }\n");
   }
   else {
     printer->Print(variables_,
-    "        $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+    "        $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n");
   }
   printer->Print(
     variables_,
@@ -326,6 +326,14 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
       "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
       "field_name", GetPropertyName(descriptor_));
   }
+}
+
+void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  printer->Print(variables_, 
+    "if ($property_name$ == null) {\n"
+    "  $property_name$ = new $type_name$();\n"
+    "}\n"
+    "$property_name$.MergeFrom(other.$property_name$);\n");
 }
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {

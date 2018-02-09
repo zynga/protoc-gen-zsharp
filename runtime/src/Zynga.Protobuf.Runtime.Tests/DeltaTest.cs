@@ -1126,7 +1126,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         [pbr::OriginalName("HI")] Hi = 0,
       }
 
-      public sealed partial class Zam : pb::IMessage<Zam> {
+      public sealed partial class Zam : zpr::EventRegistry, pb::IMessage<Zam> {
         private static readonly pb::MessageParser<Zam> _parser = new pb::MessageParser<Zam>(() => new Zam());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Zam> Parser { get { return _parser; } }
@@ -1158,8 +1158,11 @@ namespace Com.Zynga.Runtime.Protobuf {
           return new Zam(this);
         }
 
-        public static bool IsEventSourced = false;
+        public static bool IsEventSourced = true;
 
+        public override void SetParent(EventContext parent, EventPath path) {
+          base.SetParent(parent, path);
+        }
         /// <summary>Field number for the "hi" field.</summary>
         public const int HiFieldNumber = 1;
         private int hi_;
@@ -1167,6 +1170,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         public int Hi {
           get { return hi_; }
           set {
+            Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
             hi_ = value;
           }
         }
@@ -1241,6 +1245,34 @@ namespace Com.Zynga.Runtime.Protobuf {
               }
             }
           }
+        }
+
+        public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            if (e.Path.Count == 0) {
+              this.MergeFrom(e.Set.ByteData);
+              return true;
+            }
+            switch (e.Path[pathIndex]) {
+              case 1: {
+                hi_ = e.Set.I32;
+              }
+              break;
+              default: 
+                return false;
+              break;
+            }
+          return true;
+        }
+
+        public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+          var er = new zpr.EventSource.EventSourceRoot();
+          var setEvent = new zpr.EventSource.EventData {
+            Set = new zpr.EventSource.EventContent {
+              ByteData = this.ToByteString()
+            }
+          };
+          er.Events.Add(setEvent);
+          return er;
         }
 
       }

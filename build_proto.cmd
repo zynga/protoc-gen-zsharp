@@ -4,4 +4,3 @@ protoc --proto_path=./proto --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=checksum=true:./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/event_test.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/delta_test.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/simple_message.proto
-

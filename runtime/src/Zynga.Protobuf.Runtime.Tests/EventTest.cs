@@ -32,7 +32,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             "b3RvYnVmGhJldmVudF9wbHVnaW4ucHJvdG8aH2dvb2dsZS9wcm90b2J1Zi90",
             "aW1lc3RhbXAucHJvdG8iIQoLVGVzdE1lc3NhZ2USEgoEZGF0YRgBIAEoBVIE",
             "ZGF0YSIqCg5UZXN0VHdvTWVzc2FnZRISCgRkYXRhGAEgASgFUgRkYXRhOgTI",
-            "uB4BIqEKCglFdmVudFRlc3QSGAoHZXZlbnRJZBgBIAEoCVIHZXZlbnRJZBIS",
+            "uB4BIpsKCglFdmVudFRlc3QSGAoHZXZlbnRJZBgBIAEoCVIHZXZlbnRJZBIS",
             "CgNmb28YAiABKAlIAFIDZm9vElEKCGludGVybmFsGAMgASgLMjMuY29tLnp5",
             "bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5lc3RlZE1lc3NhZ2VI",
             "AFIIaW50ZXJuYWwSQwoKdGVzdF9ldmVudBgEIAEoDjIkLmNvbS56eW5nYS5y",
@@ -51,18 +51,18 @@ namespace Com.Zynga.Runtime.Protobuf {
             "c2FnZRI7Chd0ZXN0X3N0cmluZ19ub19jaGVja3N1bRgMIAEoCUIE0LgeAVIU",
             "dGVzdFN0cmluZ05vQ2hlY2tzdW0SKAoQdGVzdF9ieXRlc19maWVsZBgNIAEo",
             "DFIOdGVzdEJ5dGVzRmllbGQSLgoEZGF0ZRgOIAEoCzIaLmdvb2dsZS5wcm90",
-            "b2J1Zi5UaW1lc3RhbXBSBGRhdGUabwoNTmVzdGVkTWVzc2FnZRISCgRkYXRh",
+            "b2J1Zi5UaW1lc3RhbXBSBGRhdGUaaQoNTmVzdGVkTWVzc2FnZRISCgRkYXRh",
             "GAEgASgFUgRkYXRhEkQKB2RhdGFUd28YAiABKAsyKi5jb20uenluZ2EucnVu",
-            "dGltZS5wcm90b2J1Zi5UZXN0VHdvTWVzc2FnZVIHZGF0YVR3bzoEyLgeARqF",
-            "AQoORXZlbnRPbmVvZlRlc3QSEgoDZm9vGAEgASgJSABSA2ZvbxJRCghpbnRl",
-            "cm5hbBgCIAEoCzIzLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50",
-            "VGVzdC5OZXN0ZWRNZXNzYWdlSABSCGludGVybmFsOgTIuB4BQgYKBGJvZHka",
-            "bwoMVGVzdE1hcEVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EkkKBXZhbHVlGAIg",
-            "ASgLMjMuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5l",
-            "c3RlZE1lc3NhZ2VSBXZhbHVlOgI4ARo9Cg9UZXN0TWFwVHdvRW50cnkSEAoD",
-            "a2V5GAEgASgFUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4AToEyLge",
-            "AUILCgl0ZXN0T25lb2YqJAoIRW51bVRlc3QSCQoFVkFMVUUQABINCglWQUxV",
-            "RV9UV08QAWIGcHJvdG8z"));
+            "dGltZS5wcm90b2J1Zi5UZXN0VHdvTWVzc2FnZVIHZGF0YVR3bxqFAQoORXZl",
+            "bnRPbmVvZlRlc3QSEgoDZm9vGAEgASgJSABSA2ZvbxJRCghpbnRlcm5hbBgC",
+            "IAEoCzIzLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkV2ZW50VGVzdC5O",
+            "ZXN0ZWRNZXNzYWdlSABSCGludGVybmFsOgTIuB4BQgYKBGJvZHkabwoMVGVz",
+            "dE1hcEVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EkkKBXZhbHVlGAIgASgLMjMu",
+            "Y29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRUZXN0Lk5lc3RlZE1l",
+            "c3NhZ2VSBXZhbHVlOgI4ARo9Cg9UZXN0TWFwVHdvRW50cnkSEAoDa2V5GAEg",
+            "ASgFUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4AToEyLgeAUILCgl0",
+            "ZXN0T25lb2YqJAoIRW51bVRlc3QSCQoFVkFMVUUQABINCglWQUxVRV9UV08Q",
+            "AWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.EnumTest), }, new pbr::GeneratedClrTypeInfo[] {
@@ -1275,8 +1275,6 @@ namespace Com.Zynga.Runtime.Protobuf {
         public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
           get { return bodyCase_ == BodyOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_ : null; }
           set {
-            if(body_ != null) ((global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_).ClearParent();
-            value.SetParent(Context, new EventPath(Context.Path, 2));
             Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
             body_ = value;
             bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.Internal;
@@ -1420,12 +1418,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               }
               break;
               case 2: {
-                if (e.Path.Count - 1 != pathIndex) {
-                  if (body_ == null) body_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
-                  (body_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-                } else {
-                  body_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-                }
+                body_  = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
                 bodyCase_ = body_ == null ? BodyOneofCase.None : BodyOneofCase.Internal;
               }
               break;

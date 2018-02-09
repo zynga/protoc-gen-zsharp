@@ -67,7 +67,8 @@ bool CompareFieldNumbers(const FieldDescriptor* d1, const FieldDescriptor* d2) {
 MessageGenerator::MessageGenerator(const Descriptor* descriptor,
                                    const Options* options)
     : SourceGeneratorBase(descriptor->file(), options),
-      descriptor_(descriptor) {
+      descriptor_(descriptor),
+      is_event_sourced(false) {
 
   // sorted field names
   for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -81,6 +82,11 @@ MessageGenerator::MessageGenerator(const Descriptor* descriptor,
   }
   std::sort(fields_by_number_.begin(), fields_by_number_.end(),
             CompareFieldNumbers);
+
+  if (descriptor_ != NULL) {
+      const MessageOptions& op = descriptor_->options();
+      is_event_sourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  }
 }
 
 MessageGenerator::~MessageGenerator() {
@@ -108,10 +114,15 @@ void MessageGenerator::AddDeprecatedFlag(io::Printer* printer) {
   }
 }
 
-void MessageGenerator::Generate(io::Printer* printer) {
+void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
   std::map<string, string> vars;
   vars["class_name"] = class_name();
   vars["access_level"] = class_access_level();
+
+  // if this is true then we override whatever the option return might have done earlier
+  if (isEventSourced) {
+    is_event_sourced = isEventSourced;
+  }
 
   WriteMessageDocComment(printer, descriptor_);
   AddDeprecatedFlag(printer);
@@ -314,7 +325,7 @@ void MessageGenerator::Generate(io::Printer* printer) {
       if (!IsMapEntryMessage(descriptor_->nested_type(i))) {
         MessageGenerator messageGenerator(
             descriptor_->nested_type(i), this->options());
-        messageGenerator.Generate(printer);
+        messageGenerator.Generate(printer, IsEventSourced());
       }
     }
     printer->Outdent();
@@ -384,11 +395,16 @@ void MessageGenerator::Generate(io::Printer* printer) {
 // checking to see if EventSourceOptions
 // are set!
 bool MessageGenerator::IsEventSourced() {
-  if (descriptor_ != NULL) {
-      const MessageOptions& op = descriptor_->options();
-      return op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-  }
-  return false;
+  return is_event_sourced;
+}
+
+bool MessageGenerator::IsFieldEventSourced(const FieldDescriptor* fieldDesc) {
+  const MessageOptions& op = fieldDesc->message_type()->options();
+  bool isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  if (IsEventSourced() && descriptor_->FindNestedTypeByName(fieldDesc->message_type()->name()) != NULL)
+    isFieldSourced = true;
+
+  return isFieldSourced;
 }
 ///
 

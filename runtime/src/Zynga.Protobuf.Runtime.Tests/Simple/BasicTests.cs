@@ -9,7 +9,6 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void AreTheSame() {
 			var e1 = new EventTest();
 			var e2 = new EventTest();
-
 			Assert.Equal(e1.GetHashCode(), e2.GetHashCode());
 		}
 
@@ -95,6 +94,18 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			e2.GetChecksum(b2);
 
 			Assert.Equal(m1.GetBuffer(), m2.GetBuffer());
+		}
+
+		[Fact]
+		public void NestedMessagesShouldBeEventSourced()
+		{
+			Assert.True(EventTest.Types.NestedMessage.IsEventSourced);
+		}
+
+		[Fact]
+		public void MessagesShouldNotBeEventSourced()
+		{
+			Assert.False(Com.Zynga.Runtime.Protobuf.TestMessage.IsEventSourced);
 		}
 	}
 }

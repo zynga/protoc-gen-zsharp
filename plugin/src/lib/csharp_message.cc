@@ -211,8 +211,6 @@ void MessageGenerator::Generate(io::Printer* printer) {
 
   
   if (IsEventSourced()) {
-    //printer->Print(vars, "public $class_name$.Paths Path = new $class_name$.Paths(zpr.EventPath.Empty);\n\n");
-
     printer->Print(
       vars,
       "public override void SetParent(EventContext parent, EventPath path) {\n"

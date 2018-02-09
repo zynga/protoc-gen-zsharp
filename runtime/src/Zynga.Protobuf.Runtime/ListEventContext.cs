@@ -8,13 +8,15 @@ namespace Zynga.Protobuf.Runtime {
 	public class ListEventContext : EventContext {
 		private readonly EventContext _listContext;
 		private int _index;
+		private int _fieldNumber;
 
 		/// <summary>
 		/// Creates a ListEventContext Instance
 		/// </summary>
-		public ListEventContext(EventContext listContext, int index) {
+		public ListEventContext(EventContext listContext, int index, int fieldNumber) {
 			_listContext = listContext;
 			_index = index;
+			_fieldNumber = fieldNumber;
 		}
 
 		/// <summary>
@@ -32,7 +34,7 @@ namespace Zynga.Protobuf.Runtime {
 				EventData = data
 			};
 
-			_listContext.AddListEvent(_listContext.Path, le);
+			_listContext.AddListEvent(_fieldNumber, le);
 		}
 
 		/// <inheritdoc />

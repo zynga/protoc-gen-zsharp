@@ -399,11 +399,11 @@ namespace Com.Zynga.Runtime.Protobuf {
       testEvent_ = other.testEvent_;
       testPrim_ = new EventRepeatedField<int>(testPrimDataConverter, other.TestPrim.Clone());
       testPrim_.SetContext(Context, 5);
-      testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, other.TestMessage.Clone());
+      testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, other.TestMessage.Clone(), true);
       testMessage_.SetContext(Context, 6);
       testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter, other.TestEnum.Clone());
       testEnum_.SetContext(Context, 7);
-      testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, other.testMap_.Clone());
+      testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, other.testMap_.Clone(), true);
       testMap_.SetContext(Context, 8);
       data_ = other.data_ != null ? other.Data.Clone() : null;
       testMapTwo_ = new EventMapField<int, string>(testMapTwoMapConverter, other.testMapTwo_.Clone());
@@ -524,7 +524,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestMessageDataConverter testMessageDataConverter = new TestMessageDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMessage {
       get { return testMessage_; }
@@ -577,7 +577,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMapMapConverter = new TestMapMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMap {
       get { return testMap_; }

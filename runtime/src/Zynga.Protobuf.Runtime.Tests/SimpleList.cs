@@ -1284,7 +1284,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaMessageList(SimpleDeltaMessageList other) : this() {
-      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone());
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone(), true);
       testBar_.SetContext(Context, 11);
     }
 
@@ -1313,7 +1313,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> TestBar {
       get { return testBar_; }

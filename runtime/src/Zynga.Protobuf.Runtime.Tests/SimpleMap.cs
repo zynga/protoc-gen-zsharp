@@ -509,7 +509,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleLongToMessageDeltaMap(SimpleLongToMessageDeltaMap other) : this() {
-      testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, other.testFoo_.Clone());
+      testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, other.testFoo_.Clone(), true);
       testFoo_.SetContext(Context, 10);
     }
 
@@ -552,7 +552,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter);
+    private readonly EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> TestFoo {
       get { return testFoo_; }

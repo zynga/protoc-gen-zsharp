@@ -122,13 +122,13 @@ namespace Com.Zynga.Runtime.Protobuf {
       foo_ = other.foo_ != null ? other.Foo.Clone() : null;
       intToString_ = new EventMapField<int, string>(intToStringMapConverter, other.intToString_.Clone());
       intToString_.SetContext(Context, 3);
-      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone());
+      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone(), true);
       stringToFoo_.SetContext(Context, 4);
       ilist_ = new EventRepeatedField<int>(ilistDataConverter, other.Ilist.Clone());
       ilist_.SetContext(Context, 5);
       slist_ = new EventRepeatedField<string>(slistDataConverter, other.Slist.Clone());
       slist_.SetContext(Context, 6);
-      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone());
+      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone(), true);
       foolist_.SetContext(Context, 7);
       zam_ = other.zam_ != null ? other.Zam.Clone() : null;
       fieldBool_ = other.fieldBool_;
@@ -253,7 +253,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFooMapConverter = new StringToFooMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> StringToFoo {
       get { return stringToFoo_; }
@@ -311,7 +311,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static FoolistDataConverter foolistDataConverter = new FoolistDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> Foolist {
       get { return foolist_; }

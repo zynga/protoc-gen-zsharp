@@ -341,7 +341,7 @@ namespace Zynga.Protobuf.Runtime {
 		private void SetParent(TKey key, TValue value) {
 			var registry = value as EventRegistry;
 			var keyBytes = _converter.GetKeyValue(key, value, true);
-			registry?.SetParent(new MapEventContext(_context, keyBytes), EventPath.Empty);
+			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
 		}
 	}
 }

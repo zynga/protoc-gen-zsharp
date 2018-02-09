@@ -235,5 +235,24 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(new SimpleListDeltaMessage {H = "all"}, newList.TestBar[1]);
 			Assert.Equal(new SimpleListDeltaMessage {H = "worlds"}, newList.TestBar[2]);
 		}
+
+		[Fact]
+		public void ShouldGenerateDeltasForMessagesInList() {
+			var list = new SimpleDeltaMessageList();
+			list.TestBar.Add(new SimpleListDeltaMessage {H = "hello"});
+			list.ClearEvents();
+
+			list.TestBar[0].H = "world";
+
+			var root = AssertGenerated(list);
+			var e = root.Events[0];
+			Assert.Equal(EventData.ActionOneofCase.ListEvent, e.ActionCase);
+			AssertPath(e, new[] {11});
+			var le = e.ListEvent;
+			Assert.Equal(ListAction.UpdateList, le.ListAction);
+
+			Assert.Equal(EventData.ActionOneofCase.Set, le.EventData.ActionCase);
+			AssertPath(le.EventData, new[] {1});
+		}
 	}
 }

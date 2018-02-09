@@ -9,13 +9,15 @@ namespace Zynga.Protobuf.Runtime {
 	public class MapEventContext : EventContext {
 		private readonly EventContext _mapContext;
 		private readonly ByteString _key;
+		private readonly int _fieldNumber;
 
 		/// <summary>
 		/// Creates a MapContext Instance
 		/// </summary>
-		public MapEventContext(EventContext mapContext, ByteString key) {
+		public MapEventContext(EventContext mapContext, ByteString key, int fieldNumber) {
 			_mapContext = mapContext;
 			_key = key;
+			_fieldNumber = fieldNumber;
 		}
 
 		private void AddUpdateEvent(EventData data) {
@@ -25,7 +27,7 @@ namespace Zynga.Protobuf.Runtime {
 				EventData = data
 			};
 
-			_mapContext.AddMapEvent(_mapContext.Path, me);
+			_mapContext.AddMapEvent(_fieldNumber, me);
 		}
 
 		/// <inheritdoc />

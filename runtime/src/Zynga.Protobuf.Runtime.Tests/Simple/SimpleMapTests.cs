@@ -174,5 +174,24 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(5, map.TestFoo["4"]);
 			Assert.Equal(4, map.TestFoo["2"]);
 		}
+
+		[Fact]
+		public void ShouldGenerateDeltasForMessagesInMap() {
+			var map = new SimpleLongToMessageDeltaMap();
+			map.TestFoo.Add(1, new SimpleMapDeltaMessage {H = "hello"});
+			map.ClearEvents();
+
+			map.TestFoo[1].H = "world";
+
+			var root = AssertGenerated(map);
+			var e = root.Events[0];
+			Assert.Equal(EventData.ActionOneofCase.MapEvent, e.ActionCase);
+			AssertPath(e, new[] {10});
+			var me = e.MapEvent;
+			Assert.Equal(MapAction.UpdateMap, me.MapAction);
+
+			Assert.Equal(EventData.ActionOneofCase.Set, me.EventData.ActionCase);
+			AssertPath(me.EventData, new[] {1});
+		}
 	}
 }

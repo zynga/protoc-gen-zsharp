@@ -17,11 +17,14 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			blob.IntToString.Add(10, "world");
 			blob.StringToFoo.Add("hello", new Foo {Long = 9, Str = "ha"});
+			blob.StringToFoo["hello"].Str = "happy";
+			blob.StringToFoo["hello"].Long = 10;
 
-			//blob.AddFoolist(new Foo{Long = 123});
-			//blob.RemoveFoolist(0)  // This doesn't work atm
-			blob.Foolist.Add(new Foo {Long = 321});
+			blob.Foolist.Add(new Foo{Long = 123});
+			blob.Foolist[0].Long = 321;
 			blob.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.Foolist[1].Str = "lalala";
+			blob.Foolist[1].Long = 2;
 
 			blob.Ilist.Add(12);
 			blob.Ilist.Add(51);

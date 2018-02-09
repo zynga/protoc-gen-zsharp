@@ -307,7 +307,7 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void InternalAdd(T item) {
 			_internal.Add(item);
-			if (_isMessageType) SetParent(_internal.Count, item);
+			if (_isMessageType) SetParent(_internal.Count - 1, item);
 		}
 
 		private void InternalReplaceAt(int index, T item) {

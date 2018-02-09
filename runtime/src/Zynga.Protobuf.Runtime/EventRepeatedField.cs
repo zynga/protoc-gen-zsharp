@@ -65,7 +65,12 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(EventRepeatedField<T> other) {
 			foreach (var v in other) {
-				InternalAdd(v);
+				if (v is IDeepCloneable<T>) {
+					InternalAdd(((IDeepCloneable<T>) v).Clone());
+				}
+				else {
+					InternalAdd(v);
+				}
 			}
 		}
 

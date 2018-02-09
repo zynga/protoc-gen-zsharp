@@ -62,7 +62,7 @@ message Bar {
 }
 
 message AllPrimitives {
-  option (com.zynga.runtime.protobuf.event_sourced) = true; 
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
 
   uint32      a = 1;
   int32       b = 2;
@@ -79,4 +79,20 @@ message AllPrimitives {
   uint64      m = 13;
   sint32      n = 14;
   sint64      o = 15;
+}
+
+message RecursiveMap {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  map<int32, RecursiveMap> map = 1;
+  AllPrimitives primitives = 2;
+  Enumero enumero = 3;
+  Bar bar = 4;
+}
+
+message RecursiveList {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  repeated RecursiveList list = 1;
+  AllPrimitives primitives = 2;
+  Enumero enumero = 3;
+  Bar bar = 4;
 }

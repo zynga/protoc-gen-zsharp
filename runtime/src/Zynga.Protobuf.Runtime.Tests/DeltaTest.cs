@@ -65,15 +65,31 @@ namespace Com.Zynga.Runtime.Protobuf {
             "ASgPUgFmEgwKAWcYByABKAFSAWcSDAoBaBgIIAEoAlIBaBIMCgFpGAkgASgI",
             "UgFpEgwKAWoYCiABKAlSAWoSDAoBaxgLIAEoDFIBaxIMCgFsGAwgASgDUgFs",
             "EgwKAW0YDSABKARSAW0SDAoBbhgOIAEoEVIBbhIMCgFvGA8gASgSUgFvOgTI",
-            "uB4BKi0KB0VudW1lcm8SCQoFRU1QVFkQABINCglTT01FVEhJTkcQARIICgRI",
-            "QUxQEAJiBnByb3RvMw=="));
+            "uB4BIvgCCgxSZWN1cnNpdmVNYXASQwoDbWFwGAEgAygLMjEuY29tLnp5bmdh",
+            "LnJ1bnRpbWUucHJvdG9idWYuUmVjdXJzaXZlTWFwLk1hcEVudHJ5UgNtYXAS",
+            "SQoKcHJpbWl0aXZlcxgCIAEoCzIpLmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
+            "YnVmLkFsbFByaW1pdGl2ZXNSCnByaW1pdGl2ZXMSPQoHZW51bWVybxgDIAEo",
+            "DjIjLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkVudW1lcm9SB2VudW1l",
+            "cm8SMQoDYmFyGAQgASgLMh8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYu",
+            "QmFyUgNiYXIaYAoITWFwRW50cnkSEAoDa2V5GAEgASgFUgNrZXkSPgoFdmFs",
+            "dWUYAiABKAsyKC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5SZWN1cnNp",
+            "dmVNYXBSBXZhbHVlOgI4AToEyLgeASKRAgoNUmVjdXJzaXZlTGlzdBI9CgRs",
+            "aXN0GAEgAygLMikuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuUmVjdXJz",
+            "aXZlTGlzdFIEbGlzdBJJCgpwcmltaXRpdmVzGAIgASgLMikuY29tLnp5bmdh",
+            "LnJ1bnRpbWUucHJvdG9idWYuQWxsUHJpbWl0aXZlc1IKcHJpbWl0aXZlcxI9",
+            "CgdlbnVtZXJvGAMgASgOMiMuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYu",
+            "RW51bWVyb1IHZW51bWVybxIxCgNiYXIYBCABKAsyHy5jb20uenluZ2EucnVu",
+            "dGltZS5wcm90b2J1Zi5CYXJSA2JhcjoEyLgeASotCgdFbnVtZXJvEgkKBUVN",
+            "UFRZEAASDQoJU09NRVRISU5HEAESCAoESEFMUBACYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.DurationReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.Enumero), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestBlob), global::Com.Zynga.Runtime.Protobuf.TestBlob.Parser, new[]{ "Bar", "Foo", "IntToString", "StringToFoo", "Ilist", "Slist", "Foolist", "Maybefoo", "Maybeint", "Maybestring", "Zam", "FieldBool", "Timestamp", "Duration", "AllPrims" }, new[]{ "Test" }, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo), global::Com.Zynga.Runtime.Protobuf.Foo.Parser, new[]{ "Long", "Str", "Foo_", "Enumero", "Okay" }, null, new[]{ typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok) }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam), global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser, new[]{ "Hi" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Bar), global::Com.Zynga.Runtime.Protobuf.Bar.Parser, new[]{ "Foo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.AllPrimitives), global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser, new[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.AllPrimitives), global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser, new[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveMap), global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser, new[]{ "Map", "Primitives", "Enumero", "Bar" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveList), global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser, new[]{ "List", "Primitives", "Enumero", "Bar" }, null, null, null)
           }));
     }
     #endregion
@@ -2038,6 +2054,580 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 15: {
             o_ = e.Set.SI64;
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class RecursiveMap : zpr::EventRegistry, pb::IMessage<RecursiveMap> {
+    private static readonly pb::MessageParser<RecursiveMap> _parser = new pb::MessageParser<RecursiveMap>(() => new RecursiveMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RecursiveMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap() {
+      OnConstruction();
+      map_.SetContext(Context, 1);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap(RecursiveMap other) : this() {
+      map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, other.map_.Clone(), true);
+      map_.SetContext(Context, 1);
+      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      enumero_ = other.enumero_;
+      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap Clone() {
+      return new RecursiveMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      map_.SetContext(Context, 1);
+    }
+    /// <summary>Field number for the "map" field.</summary>
+    public const int MapFieldNumber = 1;
+    private static readonly pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec _map_map_codec
+        = new pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser), 10);
+    internal class MapMapConverter : EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> {
+      public override ByteString GetKeyValue(int key, global::Com.Zynga.Runtime.Protobuf.RecursiveMap value, bool skipValue = false) {
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteInt32(key);
+          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.Flush();
+          return ByteString.CopyFrom(memStream.ToArray());
+        }
+      }
+      public override KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
+        var realKeymap = dataStream.ReadInt32();
+        if (skipValue) {
+          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, default(global::Com.Zynga.Runtime.Protobuf.RecursiveMap));
+        }
+        else {
+          var realValuemap = new global::Com.Zynga.Runtime.Protobuf.RecursiveMap();
+          dataStream.ReadMessage(realValuemap);;
+          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, realValuemap);
+        }
+      }
+    }
+    private static readonly EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> mapMapConverter = new MapMapConverter();
+    private readonly EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, true);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> Map {
+      get { return map_; }
+    }
+
+    /// <summary>Field number for the "primitives" field.</summary>
+    public const int PrimitivesFieldNumber = 2;
+    private global::Com.Zynga.Runtime.Protobuf.AllPrimitives primitives_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.AllPrimitives Primitives {
+      get { return primitives_; }
+      set {
+        if(primitives_ != null) primitives_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 2));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        primitives_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enumero" field.</summary>
+    public const int EnumeroFieldNumber = 3;
+    private global::Com.Zynga.Runtime.Protobuf.Enumero enumero_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Enumero Enumero {
+      get { return enumero_; }
+      set {
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { U32 = (uint) value });
+        enumero_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bar" field.</summary>
+    public const int BarFieldNumber = 4;
+    private global::Com.Zynga.Runtime.Protobuf.Bar bar_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Bar Bar {
+      get { return bar_; }
+      set {
+        if(bar_ != null) bar_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 4));
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        bar_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RecursiveMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RecursiveMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!map_.Equals(other.map_)) return false;
+      if (!object.Equals(Primitives, other.Primitives)) return false;
+      if (Enumero != other.Enumero) return false;
+      if (!object.Equals(Bar, other.Bar)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= map_.GetHashCode();
+      if (primitives_ != null) hash ^= Primitives.GetHashCode();
+      if (Enumero != 0) hash ^= Enumero.GetHashCode();
+      if (bar_ != null) hash ^= Bar.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      map_.WriteTo(output, _map_map_codec);
+      if (primitives_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Primitives);
+      }
+      if (Enumero != 0) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Enumero);
+      }
+      if (bar_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += map_.CalculateSize(_map_map_codec);
+      if (primitives_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Primitives);
+      }
+      if (Enumero != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Enumero);
+      }
+      if (bar_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bar);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RecursiveMap other) {
+      if (other == null) {
+        return;
+      }
+      map_.Add(other.map_);
+      if (other.primitives_ != null) {
+        if (primitives_ == null) {
+          primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+        }
+        Primitives.MergeFrom(other.Primitives);
+      }
+      if (other.Enumero != 0) {
+        Enumero = other.Enumero;
+      }
+      if (other.bar_ != null) {
+        if (bar_ == null) {
+          bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+        }
+        Bar.MergeFrom(other.Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            map_.AddEntriesFrom(input, _map_map_codec);
+            break;
+          }
+          case 18: {
+            if (primitives_ == null) {
+              primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+            }
+            input.ReadMessage(primitives_);
+            break;
+          }
+          case 24: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            if (bar_ == null) {
+              bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+            }
+            input.ReadMessage(bar_);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            map_.ApplyEvent(e.MapEvent);
+          }
+          break;
+          case 2: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (primitives_ == null) primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              primitives_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          case 3: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Set.U32;
+          }
+          break;
+          case 4: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class RecursiveList : zpr::EventRegistry, pb::IMessage<RecursiveList> {
+    private static readonly pb::MessageParser<RecursiveList> _parser = new pb::MessageParser<RecursiveList>(() => new RecursiveList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RecursiveList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList() {
+      OnConstruction();
+      list_.SetContext(Context, 1);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList(RecursiveList other) : this() {
+      list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, other.List.Clone(), true);
+      list_.SetContext(Context, 1);
+      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      enumero_ = other.enumero_;
+      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList Clone() {
+      return new RecursiveList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      list_.SetContext(Context, 1);
+    }
+    /// <summary>Field number for the "list" field.</summary>
+    public const int ListFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.RecursiveList> _repeated_list_codec
+        = pb::FieldCodec.ForMessage(10, global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser);
+    public class ListDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.RecursiveList> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.RecursiveList data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.RecursiveList GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser.ParseFrom(data.ByteData);
+      }
+    }
+    private static ListDataConverter listDataConverter = new ListDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, true);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> List {
+      get { return list_; }
+    }
+
+    /// <summary>Field number for the "primitives" field.</summary>
+    public const int PrimitivesFieldNumber = 2;
+    private global::Com.Zynga.Runtime.Protobuf.AllPrimitives primitives_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.AllPrimitives Primitives {
+      get { return primitives_; }
+      set {
+        if(primitives_ != null) primitives_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 2));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        primitives_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enumero" field.</summary>
+    public const int EnumeroFieldNumber = 3;
+    private global::Com.Zynga.Runtime.Protobuf.Enumero enumero_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Enumero Enumero {
+      get { return enumero_; }
+      set {
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { U32 = (uint) value });
+        enumero_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bar" field.</summary>
+    public const int BarFieldNumber = 4;
+    private global::Com.Zynga.Runtime.Protobuf.Bar bar_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Bar Bar {
+      get { return bar_; }
+      set {
+        if(bar_ != null) bar_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 4));
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        bar_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RecursiveList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RecursiveList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!list_.Equals(other.list_)) return false;
+      if (!object.Equals(Primitives, other.Primitives)) return false;
+      if (Enumero != other.Enumero) return false;
+      if (!object.Equals(Bar, other.Bar)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= list_.GetHashCode();
+      if (primitives_ != null) hash ^= Primitives.GetHashCode();
+      if (Enumero != 0) hash ^= Enumero.GetHashCode();
+      if (bar_ != null) hash ^= Bar.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      list_.WriteTo(output, _repeated_list_codec);
+      if (primitives_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Primitives);
+      }
+      if (Enumero != 0) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Enumero);
+      }
+      if (bar_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += list_.CalculateSize(_repeated_list_codec);
+      if (primitives_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Primitives);
+      }
+      if (Enumero != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Enumero);
+      }
+      if (bar_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bar);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RecursiveList other) {
+      if (other == null) {
+        return;
+      }
+      list_.Add(other.list_);
+      if (other.primitives_ != null) {
+        if (primitives_ == null) {
+          primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+        }
+        Primitives.MergeFrom(other.Primitives);
+      }
+      if (other.Enumero != 0) {
+        Enumero = other.Enumero;
+      }
+      if (other.bar_ != null) {
+        if (bar_ == null) {
+          bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+        }
+        Bar.MergeFrom(other.Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            list_.AddEntriesFrom(input, _repeated_list_codec);
+            break;
+          }
+          case 18: {
+            if (primitives_ == null) {
+              primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+            }
+            input.ReadMessage(primitives_);
+            break;
+          }
+          case 24: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            if (bar_ == null) {
+              bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+            }
+            input.ReadMessage(bar_);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            list_.ApplyEvent(e.ListEvent);
+          }
+          break;
+          case 2: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (primitives_ == null) primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              primitives_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          case 3: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Set.U32;
+          }
+          break;
+          case 4: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           default: 

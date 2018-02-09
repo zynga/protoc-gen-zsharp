@@ -69,6 +69,7 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
   // TODO(jonskeet): Work out whether we want to prevent the fields from ever being
   // null, or whether we just handle it, in the cases of bytes and string.
   // (Basically, should null-handling code be in the getter or the setter?)
+  variables_["data_value"] = GetEventDataType(descriptor_);
   printer->Print(
     variables_,
     "private $type_name$ $name_def_message$;\n");
@@ -82,6 +83,10 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
   if (isEventSourced) {
       switch (descriptor_->type()) {
         case FieldDescriptor::TYPE_ENUM:
+          printer->Print(
+              variables_,
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = (uint) value });\n");
+          break;
         case FieldDescriptor::TYPE_DOUBLE:
         case FieldDescriptor::TYPE_FLOAT:
         case FieldDescriptor::TYPE_INT64:
@@ -101,12 +106,12 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
           if (is_value_type) { 
             printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
           }
           else {
             printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
           }
         }
         
@@ -139,13 +144,13 @@ void PrimitiveFieldGenerator::GenerateEventSource(io::Printer* printer) {
     if (descriptor_->type() == FieldDescriptor::TYPE_ENUM) {
       printer->Print(
         vars,
-        "        $name$_ = ($type_name$)e.Data.$data_value$;\n");
+        "        $name$_ = ($type_name$)e.Set.$data_value$;\n");
     }
     else 
     {
       printer->Print(
         vars,
-        "        $name$_ = e.Data.$data_value$;\n");
+        "        $name$_ = e.Set.$data_value$;\n");
     }
     
 }
@@ -270,6 +275,7 @@ PrimitiveOneofFieldGenerator::~PrimitiveOneofFieldGenerator() {
 }
 
 void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
+  variables_["data_value"] = GetEventDataType(descriptor_);
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(
@@ -302,15 +308,14 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
           if (is_value_type) { 
             printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Set, value);\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
           }
           else {
             printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, \"value\"));\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
           }
         }
-        
         break;
       default:
         GOOGLE_LOG(FATAL)<< "Unknown field type.";
@@ -344,11 +349,11 @@ void PrimitiveOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
     if (is_value_type) {
       printer->Print(
         vars,
-        "        $oneof_name$_ = e.Data.$data_value$;\n");
+        "        $oneof_name$_ = e.Set.$data_value$;\n");
     } else {
       printer->Print(
         vars,
-        "        $oneof_name$_ = pb::ProtoPreconditions.CheckNotNull(e.Data.$data_value$, \"value\");\n");
+        "        $oneof_name$_ = pb::ProtoPreconditions.CheckNotNull(e.Set.$data_value$, \"value\");\n");
     }
 
     printer->Print(
@@ -371,6 +376,10 @@ void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   printer->Print(
     "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
     "field_name", GetPropertyName(descriptor_));
+}
+
+void PrimitiveOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
 }
 
 void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {

@@ -5,7 +5,11 @@
             "includePath": [
                 "/usr/include",
                 "/usr/local/include",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "${workspaceRoot}/plugin",
+                "${workspaceRoot}/plugin/bazel-plugin/external/protobuf/src",
+                "/usr/include/c++/4.2.1",
+                "/System/Library/Frameworks/Kernel.framework/Versions/A/Headers"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -13,7 +17,9 @@
                 "path": [
                     "/usr/include",
                     "/usr/local/include",
-                    "${workspaceRoot}"
+                    "${workspaceRoot}",
+                    "${workspaceRoot}/plugin",
+                    "${workspaceRoot}/plugin/bazel-plugin/external/protobuf/src"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

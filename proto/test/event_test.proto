@@ -28,7 +28,6 @@ message EventTest{
 
   // must flag internal message as event_sourced
   message NestedMessage {
-    option (com.zynga.runtime.protobuf.event_sourced) = true;
     int32 data = 1;
     TestTwoMessage dataTwo = 2;
   }

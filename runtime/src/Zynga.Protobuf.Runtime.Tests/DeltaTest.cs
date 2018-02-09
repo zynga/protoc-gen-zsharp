@@ -65,15 +65,31 @@ namespace Com.Zynga.Runtime.Protobuf {
             "ASgPUgFmEgwKAWcYByABKAFSAWcSDAoBaBgIIAEoAlIBaBIMCgFpGAkgASgI",
             "UgFpEgwKAWoYCiABKAlSAWoSDAoBaxgLIAEoDFIBaxIMCgFsGAwgASgDUgFs",
             "EgwKAW0YDSABKARSAW0SDAoBbhgOIAEoEVIBbhIMCgFvGA8gASgSUgFvOgTI",
-            "uB4BKi0KB0VudW1lcm8SCQoFRU1QVFkQABINCglTT01FVEhJTkcQARIICgRI",
-            "QUxQEAJiBnByb3RvMw=="));
+            "uB4BIvgCCgxSZWN1cnNpdmVNYXASQwoDbWFwGAEgAygLMjEuY29tLnp5bmdh",
+            "LnJ1bnRpbWUucHJvdG9idWYuUmVjdXJzaXZlTWFwLk1hcEVudHJ5UgNtYXAS",
+            "SQoKcHJpbWl0aXZlcxgCIAEoCzIpLmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
+            "YnVmLkFsbFByaW1pdGl2ZXNSCnByaW1pdGl2ZXMSPQoHZW51bWVybxgDIAEo",
+            "DjIjLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkVudW1lcm9SB2VudW1l",
+            "cm8SMQoDYmFyGAQgASgLMh8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYu",
+            "QmFyUgNiYXIaYAoITWFwRW50cnkSEAoDa2V5GAEgASgFUgNrZXkSPgoFdmFs",
+            "dWUYAiABKAsyKC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5SZWN1cnNp",
+            "dmVNYXBSBXZhbHVlOgI4AToEyLgeASKRAgoNUmVjdXJzaXZlTGlzdBI9CgRs",
+            "aXN0GAEgAygLMikuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuUmVjdXJz",
+            "aXZlTGlzdFIEbGlzdBJJCgpwcmltaXRpdmVzGAIgASgLMikuY29tLnp5bmdh",
+            "LnJ1bnRpbWUucHJvdG9idWYuQWxsUHJpbWl0aXZlc1IKcHJpbWl0aXZlcxI9",
+            "CgdlbnVtZXJvGAMgASgOMiMuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYu",
+            "RW51bWVyb1IHZW51bWVybxIxCgNiYXIYBCABKAsyHy5jb20uenluZ2EucnVu",
+            "dGltZS5wcm90b2J1Zi5CYXJSA2JhcjoEyLgeASotCgdFbnVtZXJvEgkKBUVN",
+            "UFRZEAASDQoJU09NRVRISU5HEAESCAoESEFMUBACYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.DurationReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.Enumero), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestBlob), global::Com.Zynga.Runtime.Protobuf.TestBlob.Parser, new[]{ "Bar", "Foo", "IntToString", "StringToFoo", "Ilist", "Slist", "Foolist", "Maybefoo", "Maybeint", "Maybestring", "Zam", "FieldBool", "Timestamp", "Duration", "AllPrims" }, new[]{ "Test" }, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo), global::Com.Zynga.Runtime.Protobuf.Foo.Parser, new[]{ "Long", "Str", "Foo_", "Enumero", "Okay" }, null, new[]{ typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok) }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam), global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser, new[]{ "Hi" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Bar), global::Com.Zynga.Runtime.Protobuf.Bar.Parser, new[]{ "Foo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.AllPrimitives), global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser, new[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.AllPrimitives), global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser, new[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveMap), global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser, new[]{ "Map", "Primitives", "Enumero", "Bar" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveList), global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser, new[]{ "List", "Primitives", "Enumero", "Bar" }, null, null, null)
           }));
     }
     #endregion
@@ -107,16 +123,11 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestBlob() {
       OnConstruction();
-      intToString_.SetRoot(_root);
-      intToString_.SetPath(Path.IntToStringPath);
-      stringToFoo_.SetRoot(_root);
-      stringToFoo_.SetPath(Path.StringToFooPath);
-      ilist_.SetRoot(_root);
-      ilist_.SetPath(Path.IlistPath);
-      slist_.SetRoot(_root);
-      slist_.SetPath(Path.SlistPath);
-      foolist_.SetRoot(_root);
-      foolist_.SetPath(Path.FoolistPath);
+      intToString_.SetContext(Context, 3);
+      stringToFoo_.SetContext(Context, 4);
+      ilist_.SetContext(Context, 5);
+      slist_.SetContext(Context, 6);
+      foolist_.SetContext(Context, 7);
     }
 
     partial void OnConstruction();
@@ -126,20 +137,15 @@ namespace Com.Zynga.Runtime.Protobuf {
       bar_ = other.bar_ != null ? other.Bar.Clone() : null;
       foo_ = other.foo_ != null ? other.Foo.Clone() : null;
       intToString_ = new EventMapField<int, string>(intToStringMapConverter, other.intToString_.Clone());
-      intToString_.SetRoot(_root);
-      intToString_.SetPath(Path.IntToStringPath);
-      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone());
-      stringToFoo_.SetRoot(_root);
-      stringToFoo_.SetPath(Path.StringToFooPath);
+      intToString_.SetContext(Context, 3);
+      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone(), true);
+      stringToFoo_.SetContext(Context, 4);
       ilist_ = new EventRepeatedField<int>(ilistDataConverter, other.Ilist.Clone());
-      ilist_.SetRoot(_root);
-      ilist_.SetPath(Path.IlistPath);
+      ilist_.SetContext(Context, 5);
       slist_ = new EventRepeatedField<string>(slistDataConverter, other.Slist.Clone());
-      slist_.SetRoot(_root);
-      slist_.SetPath(Path.SlistPath);
-      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone());
-      foolist_.SetRoot(_root);
-      foolist_.SetPath(Path.FoolistPath);
+      slist_.SetContext(Context, 6);
+      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone(), true);
+      foolist_.SetContext(Context, 7);
       zam_ = other.zam_ != null ? other.Zam.Clone() : null;
       fieldBool_ = other.fieldBool_;
       timestamp_ = other.timestamp_ != null ? other.Timestamp.Clone() : null;
@@ -166,47 +172,13 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public TestBlob.Paths Path = new TestBlob.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      intToString_.SetRoot(inRoot);
-      stringToFoo_.SetRoot(inRoot);
-      ilist_.SetRoot(inRoot);
-      slist_.SetRoot(inRoot);
-      foolist_.SetRoot(inRoot);
-    }
-    public void SetPath(TestBlob.Paths path) {
-      this.Path = path;
-      intToString_.SetPath(Path.IntToStringPath);
-      stringToFoo_.SetPath(Path.StringToFooPath);
-      ilist_.SetPath(Path.IlistPath);
-      slist_.SetPath(Path.SlistPath);
-      foolist_.SetPath(Path.FoolistPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public global::Com.Zynga.Runtime.Protobuf.Bar.Paths BarPath => new global::Com.Zynga.Runtime.Protobuf.Bar.Paths(new zpr.EventPath(Path, 1));
-        public global::Com.Zynga.Runtime.Protobuf.Foo.Paths FooPath => new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(Path, 2));
-        public zpr.EventPath IntToStringPath => new zpr.EventPath(Path, 3);
-        public zpr.EventPath StringToFooPath => new zpr.EventPath(Path, 4);
-        public zpr.EventPath IlistPath => new zpr.EventPath(Path, 5);
-        public zpr.EventPath SlistPath => new zpr.EventPath(Path, 6);
-        public zpr.EventPath FoolistPath => new zpr.EventPath(Path, 7);
-        public global::Com.Zynga.Runtime.Protobuf.Foo.Paths MaybefooPath => new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(Path, 8));
-        public zpr.EventPath MaybeintPath => new zpr.EventPath(Path, 9);
-        public zpr.EventPath MaybestringPath => new zpr.EventPath(Path, 10);
-        public zpr.EventPath ZamPath => new zpr.EventPath(Path, 11);
-        public zpr.EventPath FieldBoolPath => new zpr.EventPath(Path, 12);
-        public zpr.EventPath TimestampPath => new zpr.EventPath(Path, 13);
-        public zpr.EventPath DurationPath => new zpr.EventPath(Path, 14);
-        public global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Paths AllPrimsPath => new global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Paths(new zpr.EventPath(Path, 15));
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      intToString_.SetContext(Context, 3);
+      stringToFoo_.SetContext(Context, 4);
+      ilist_.SetContext(Context, 5);
+      slist_.SetContext(Context, 6);
+      foolist_.SetContext(Context, 7);
     }
     /// <summary>Field number for the "bar" field.</summary>
     public const int BarFieldNumber = 1;
@@ -215,9 +187,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Bar Bar {
       get { return bar_; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.Bar.Paths(new zpr.EventPath(this.Path.Path, 1)));
-        AddEvent(1, zpr.EventSource.EventAction.Snapshot, value);
+        if(bar_ != null) bar_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 1));
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         bar_ = value;
       }
     }
@@ -229,9 +201,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo Foo {
       get { return foo_; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(this.Path.Path, 2)));
-        AddEvent(2, zpr.EventSource.EventAction.Snapshot, value);
+        if(foo_ != null) foo_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 2));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         foo_ = value;
       }
     }
@@ -241,21 +213,19 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_intToString_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 26);
     internal class IntToStringMapConverter : EventMapConverter<int, string> {
-      public override zpr.EventSource.EventContent GetEventData(int key, string value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
           if(!skipValue) dataStream.WriteString(value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<int, string> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeyintToString = dataStream.ReadInt32();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<int, string>(realKeyintToString, default(string));
         }
         else {
@@ -276,21 +246,19 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>.Codec _map_stringToFoo_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.Foo.Parser), 34);
     internal class StringToFooMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> {
-      public override zpr.EventSource.EventContent GetEventData(string key, global::Com.Zynga.Runtime.Protobuf.Foo value, bool skipValue = false) {
-        var mapEvent = new zpr.EventSource.EventMap();
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.Foo value, bool skipValue = false) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
           if(!skipValue) dataStream.WriteMessage(value);
           dataStream.Flush();
-          mapEvent.Data = ByteString.CopyFrom(memStream.ToArray());
+          return ByteString.CopyFrom(memStream.ToArray());
         }
-        return new zpr.EventSource.EventContent{MapData = mapEvent};
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo> GetItem(zpr.EventSource.EventData data) {
-        var dataStream = data.Data.MapData.Data.CreateCodedInput();
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
         var realKeystringToFoo = dataStream.ReadString();
-        if (data.Action == zpr.EventSource.EventAction.RemoveMap) {
+        if (skipValue) {
           return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo>(realKeystringToFoo, default(global::Com.Zynga.Runtime.Protobuf.Foo));
         }
         else {
@@ -301,7 +269,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFooMapConverter = new StringToFooMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> StringToFoo {
       get { return stringToFoo_; }
@@ -359,7 +327,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static FoolistDataConverter foolistDataConverter = new FoolistDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> Foolist {
       get { return foolist_; }
@@ -371,9 +339,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo Maybefoo {
       get { return testCase_ == TestOneofCase.Maybefoo ? (global::Com.Zynga.Runtime.Protobuf.Foo) test_ : null; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(this.Path.Path, 8)));
-        AddEvent(8, zpr.EventSource.EventAction.Snapshot, value);
+        if(test_ != null) ((global::Com.Zynga.Runtime.Protobuf.Foo) test_).ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 8));
+        Context.AddSetEvent(8, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         test_ = value;
         testCase_ = value == null ? TestOneofCase.None : TestOneofCase.Maybefoo;
       }
@@ -385,7 +353,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int Maybeint {
       get { return testCase_ == TestOneofCase.Maybeint ? (int) test_ : 0; }
       set {
-        AddEvent(9, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(9, new zpr.EventSource.EventContent { I32 = value });
         test_ = value;
         testCase_ = TestOneofCase.Maybeint;
       }
@@ -397,7 +365,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string Maybestring {
       get { return testCase_ == TestOneofCase.Maybestring ? (string) test_ : ""; }
       set {
-        AddEvent(10, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(10, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         test_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
         testCase_ = TestOneofCase.Maybestring;
       }
@@ -410,7 +378,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam Zam {
       get { return zam_; }
       set {
-        AddEvent(11, zpr.EventSource.EventAction.Snapshot, value);
+        Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         zam_ = value;
       }
     }
@@ -422,7 +390,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public bool FieldBool {
       get { return fieldBool_; }
       set {
-        AddEvent(12, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(12, new zpr.EventSource.EventContent { BoolData = value });
         fieldBool_ = value;
       }
     }
@@ -434,7 +402,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Timestamp Timestamp {
       get { return timestamp_; }
       set {
-        AddEvent(13, zpr.EventSource.EventAction.Snapshot, value);
+        Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         timestamp_ = value;
       }
     }
@@ -446,7 +414,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Duration Duration {
       get { return duration_; }
       set {
-        AddEvent(14, zpr.EventSource.EventAction.Snapshot, value);
+        Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         duration_ = value;
       }
     }
@@ -458,9 +426,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.AllPrimitives AllPrims {
       get { return allPrims_; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Paths(new zpr.EventPath(this.Path.Path, 15)));
-        AddEvent(15, zpr.EventSource.EventAction.Snapshot, value);
+        if(allPrims_ != null) allPrims_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 15));
+        Context.AddSetEvent(15, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         allPrims_ = value;
       }
     }
@@ -685,7 +653,10 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
       switch (other.TestCase) {
         case TestOneofCase.Maybefoo:
-          Maybefoo = other.Maybefoo;
+          if (Maybefoo == null) {
+            Maybefoo = new global::Com.Zynga.Runtime.Protobuf.Foo();
+          }
+          Maybefoo.MergeFrom(other.Maybefoo);
           break;
         case TestOneofCase.Maybeint:
           Maybeint = other.Maybeint;
@@ -794,87 +765,92 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
               (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           case 2: {
-            if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
               (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           case 3: {
-            intToString_.ApplyEvent(e);
+            intToString_.ApplyEvent(e.MapEvent);
           }
           break;
           case 4: {
-            stringToFoo_.ApplyEvent(e);
+            stringToFoo_.ApplyEvent(e.MapEvent);
           }
           break;
           case 5: {
-            ilist_.ApplyEvent(e);
+            ilist_.ApplyEvent(e.ListEvent);
           }
           break;
           case 6: {
-            slist_.ApplyEvent(e);
+            slist_.ApplyEvent(e.ListEvent);
           }
           break;
           case 7: {
-            foolist_.ApplyEvent(e);
+            foolist_.ApplyEvent(e.ListEvent);
           }
           break;
           case 8: {
-            if (test_ == null) test_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (test_ == null) test_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
               (test_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              test_   = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              test_   = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Set.ByteData);
+            }
             testCase_ = test_ == null ? TestOneofCase.None : TestOneofCase.Maybefoo;
           }
           break;
           case 9: {
-            test_ = e.Data.I32;
+            test_ = e.Set.I32;
             testCase_ = TestOneofCase.Maybeint;
           }
           break;
           case 10: {
-            test_ = pb::ProtoPreconditions.CheckNotNull(e.Data.StringData, "value");
+            test_ = pb::ProtoPreconditions.CheckNotNull(e.Set.StringData, "value");
             testCase_ = TestOneofCase.Maybestring;
           }
           break;
           case 11: {
-            if (zam_ == null) zam_ = new global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam();
-            zam_  = global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser.ParseFrom(e.Data.ByteData);
+            zam_  = global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser.ParseFrom(e.Set.ByteData);
           }
           break;
           case 12: {
-            fieldBool_ = e.Data.BoolData;
+            fieldBool_ = e.Set.BoolData;
           }
           break;
           case 13: {
-            if (timestamp_ == null) timestamp_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            timestamp_  = global::Google.Protobuf.WellKnownTypes.Timestamp.Parser.ParseFrom(e.Data.ByteData);
+            timestamp_  = global::Google.Protobuf.WellKnownTypes.Timestamp.Parser.ParseFrom(e.Set.ByteData);
           }
           break;
           case 14: {
-            if (duration_ == null) duration_ = new global::Google.Protobuf.WellKnownTypes.Duration();
-            duration_  = global::Google.Protobuf.WellKnownTypes.Duration.Parser.ParseFrom(e.Data.ByteData);
+            duration_  = global::Google.Protobuf.WellKnownTypes.Duration.Parser.ParseFrom(e.Set.ByteData);
           }
           break;
           case 15: {
-            if (allPrims_ == null) allPrims_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (allPrims_ == null) allPrims_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
               (allPrims_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              allPrims_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              allPrims_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           default: 
@@ -884,169 +860,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            var byteDatabar = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatabar };
-          }
-          break;
-          case 2: {
-            var byteDatafoo = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatafoo };
-          }
-          break;
-          case 3: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          case 4: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };
-          }
-          break;
-          case 5: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
-          }
-          break;
-          case 6: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          case 7: {
-            var byteData = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteData };
-          }
-          break;
-          case 8: {
-            var byteDatamaybefoo = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatamaybefoo };
-          }
-          break;
-          case 9: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
-          }
-          break;
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          case 11: {
-            var byteDatazam = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatazam };
-          }
-          break;
-          case 12: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.BoolData };
-          }
-          break;
-          case 13: {
-            var byteDatatimestamp = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatatimestamp };
-          }
-          break;
-          case 14: {
-            var byteDataduration = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDataduration };
-          }
-          break;
-          case 15: {
-            var byteDataallPrims = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDataallPrims };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.BarPath.Path._path);
-          }
-          break;
-          case 2: {
-            e.Path.AddRange(this.Path.FooPath.Path._path);
-          }
-          break;
-          case 3: {
-            e.Path.AddRange(this.Path.IntToStringPath._path);
-          }
-          break;
-          case 4: {
-            e.Path.AddRange(this.Path.StringToFooPath._path);
-          }
-          break;
-          case 5: {
-            e.Path.AddRange(this.Path.IlistPath._path);
-          }
-          break;
-          case 6: {
-            e.Path.AddRange(this.Path.SlistPath._path);
-          }
-          break;
-          case 7: {
-            e.Path.AddRange(this.Path.FoolistPath._path);
-          }
-          break;
-          case 8: {
-            e.Path.AddRange(this.Path.MaybefooPath.Path._path);
-          }
-          break;
-          case 9: {
-            e.Path.AddRange(this.Path.MaybeintPath._path);
-          }
-          break;
-          case 10: {
-            e.Path.AddRange(this.Path.MaybestringPath._path);
-          }
-          break;
-          case 11: {
-            e.Path.AddRange(this.Path.ZamPath._path);
-          }
-          break;
-          case 12: {
-            e.Path.AddRange(this.Path.FieldBoolPath._path);
-          }
-          break;
-          case 13: {
-            e.Path.AddRange(this.Path.TimestampPath._path);
-          }
-          break;
-          case 14: {
-            e.Path.AddRange(this.Path.DurationPath._path);
-          }
-          break;
-          case 15: {
-            e.Path.AddRange(this.Path.AllPrimsPath.Path._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = TestBlob.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1090,27 +911,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public Foo.Paths Path = new Foo.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-    }
-    public void SetPath(Foo.Paths path) {
-      this.Path = path;
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath LongPath => new zpr.EventPath(Path, 1);
-        public zpr.EventPath StrPath => new zpr.EventPath(Path, 2);
-        public global::Com.Zynga.Runtime.Protobuf.Foo.Paths Foo_Path => new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(Path, 3));
-        public zpr.EventPath EnumeroPath => new zpr.EventPath(Path, 4);
-        public zpr.EventPath OkayPath => new zpr.EventPath(Path, 5);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
     }
     /// <summary>Field number for the "long" field.</summary>
     public const int LongFieldNumber = 1;
@@ -1119,7 +921,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public long Long {
       get { return long_; }
       set {
-        AddEvent(1, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { I64 = value });
         long_ = value;
       }
     }
@@ -1131,7 +933,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string Str {
       get { return str_; }
       set {
-        AddEvent(2, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         str_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1143,9 +945,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo Foo_ {
       get { return foo_; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(this.Path.Path, 3)));
-        AddEvent(3, zpr.EventSource.EventAction.Snapshot, value);
+        if(foo_ != null) foo_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 3));
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         foo_ = value;
       }
     }
@@ -1157,7 +959,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Enumero Enumero {
       get { return enumero_; }
       set {
-        AddEvent(4, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { U32 = (uint) value });
         enumero_ = value;
       }
     }
@@ -1169,7 +971,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok Okay {
       get { return okay_; }
       set {
-        AddEvent(5, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(5, new zpr.EventSource.EventContent { U32 = (uint) value });
         okay_ = value;
       }
     }
@@ -1324,7 +1126,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         [pbr::OriginalName("HI")] Hi = 0,
       }
 
-      public sealed partial class Zam : pb::IMessage<Zam> {
+      public sealed partial class Zam : zpr::EventRegistry, pb::IMessage<Zam> {
         private static readonly pb::MessageParser<Zam> _parser = new pb::MessageParser<Zam>(() => new Zam());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Zam> Parser { get { return _parser; } }
@@ -1356,8 +1158,11 @@ namespace Com.Zynga.Runtime.Protobuf {
           return new Zam(this);
         }
 
-        public static bool IsEventSourced = false;
+        public static bool IsEventSourced = true;
 
+        public override void SetParent(EventContext parent, EventPath path) {
+          base.SetParent(parent, path);
+        }
         /// <summary>Field number for the "hi" field.</summary>
         public const int HiFieldNumber = 1;
         private int hi_;
@@ -1365,6 +1170,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         public int Hi {
           get { return hi_; }
           set {
+            Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
             hi_ = value;
           }
         }
@@ -1441,35 +1247,68 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
         }
 
+        public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            if (e.Path.Count == 0) {
+              this.MergeFrom(e.Set.ByteData);
+              return true;
+            }
+            switch (e.Path[pathIndex]) {
+              case 1: {
+                hi_ = e.Set.I32;
+              }
+              break;
+              default: 
+                return false;
+              break;
+            }
+          return true;
+        }
+
+        public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+          var er = new zpr.EventSource.EventSourceRoot();
+          var setEvent = new zpr.EventSource.EventData {
+            Set = new zpr.EventSource.EventContent {
+              ByteData = this.ToByteString()
+            }
+          };
+          er.Events.Add(setEvent);
+          return er;
+        }
+
       }
 
     }
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            long_ = e.Data.I64;
+            long_ = e.Set.I64;
           }
           break;
           case 2: {
-            str_ = e.Data.StringData;
+            str_ = e.Set.StringData;
           }
           break;
           case 3: {
-            if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
               (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           case 4: {
-            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Data.U32;
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Set.U32;
           }
           break;
           case 5: {
-            okay_ = (global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok)e.Data.U32;
+            okay_ = (global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok)e.Set.U32;
           }
           break;
           default: 
@@ -1479,82 +1318,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
-          }
-          break;
-          case 2: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          case 3: {
-            var byteDatafoo = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatafoo };
-          }
-          break;
-          case 4: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
-          }
-          break;
-          case 5: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.LongPath._path);
-          }
-          break;
-          case 2: {
-            e.Path.AddRange(this.Path.StrPath._path);
-          }
-          break;
-          case 3: {
-            e.Path.AddRange(this.Path.Foo_Path.Path._path);
-          }
-          break;
-          case 4: {
-            e.Path.AddRange(this.Path.EnumeroPath._path);
-          }
-          break;
-          case 5: {
-            e.Path.AddRange(this.Path.OkayPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = Foo.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1594,23 +1365,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public Bar.Paths Path = new Bar.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-    }
-    public void SetPath(Bar.Paths path) {
-      this.Path = path;
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public global::Com.Zynga.Runtime.Protobuf.Foo.Paths FooPath => new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(Path, 1));
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
     }
     /// <summary>Field number for the "foo" field.</summary>
     public const int FooFieldNumber = 1;
@@ -1619,9 +1375,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo Foo {
       get { return foo_; }
       set {
-        value.SetRoot(_root);
-        value.SetPath(new global::Com.Zynga.Runtime.Protobuf.Foo.Paths(new zpr.EventPath(this.Path.Path, 1)));
-        AddEvent(1, zpr.EventSource.EventAction.Snapshot, value);
+        if(foo_ != null) foo_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 1));
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         foo_ = value;
       }
     }
@@ -1705,13 +1461,18 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
-            if (e.Path.Count - 1 != pathIndex) 
+            if (e.Path.Count - 1 != pathIndex) {
+              if (foo_ == null) foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
               (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            else
-              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Data.ByteData);
+            } else {
+              foo_  = global::Com.Zynga.Runtime.Protobuf.Foo.Parser.ParseFrom(e.Set.ByteData);
+            }
           }
           break;
           default: 
@@ -1721,50 +1482,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            var byteDatafoo = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteDatafoo };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.FooPath.Path._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = Bar.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1818,37 +1543,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public AllPrimitives.Paths Path = new AllPrimitives.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-    }
-    public void SetPath(AllPrimitives.Paths path) {
-      this.Path = path;
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath APath => new zpr.EventPath(Path, 1);
-        public zpr.EventPath BPath => new zpr.EventPath(Path, 2);
-        public zpr.EventPath CPath => new zpr.EventPath(Path, 3);
-        public zpr.EventPath DPath => new zpr.EventPath(Path, 4);
-        public zpr.EventPath EPath => new zpr.EventPath(Path, 5);
-        public zpr.EventPath FPath => new zpr.EventPath(Path, 6);
-        public zpr.EventPath GPath => new zpr.EventPath(Path, 7);
-        public zpr.EventPath HPath => new zpr.EventPath(Path, 8);
-        public zpr.EventPath IPath => new zpr.EventPath(Path, 9);
-        public zpr.EventPath JPath => new zpr.EventPath(Path, 10);
-        public zpr.EventPath KPath => new zpr.EventPath(Path, 11);
-        public zpr.EventPath LPath => new zpr.EventPath(Path, 12);
-        public zpr.EventPath MPath => new zpr.EventPath(Path, 13);
-        public zpr.EventPath NPath => new zpr.EventPath(Path, 14);
-        public zpr.EventPath OPath => new zpr.EventPath(Path, 15);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
@@ -1857,7 +1553,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public uint A {
       get { return a_; }
       set {
-        AddEvent(1, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { U32 = value });
         a_ = value;
       }
     }
@@ -1869,7 +1565,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int B {
       get { return b_; }
       set {
-        AddEvent(2, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { I32 = value });
         b_ = value;
       }
     }
@@ -1881,7 +1577,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public ulong C {
       get { return c_; }
       set {
-        AddEvent(3, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { F64 = value });
         c_ = value;
       }
     }
@@ -1893,7 +1589,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public uint D {
       get { return d_; }
       set {
-        AddEvent(4, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { F32 = value });
         d_ = value;
       }
     }
@@ -1905,7 +1601,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public long E {
       get { return e_; }
       set {
-        AddEvent(5, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(5, new zpr.EventSource.EventContent { SF64 = value });
         e_ = value;
       }
     }
@@ -1917,7 +1613,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int F {
       get { return f_; }
       set {
-        AddEvent(6, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(6, new zpr.EventSource.EventContent { SF32 = value });
         f_ = value;
       }
     }
@@ -1929,7 +1625,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public double G {
       get { return g_; }
       set {
-        AddEvent(7, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(7, new zpr.EventSource.EventContent { R64 = value });
         g_ = value;
       }
     }
@@ -1941,7 +1637,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public float H {
       get { return h_; }
       set {
-        AddEvent(8, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(8, new zpr.EventSource.EventContent { R32 = value });
         h_ = value;
       }
     }
@@ -1953,7 +1649,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public bool I {
       get { return i_; }
       set {
-        AddEvent(9, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(9, new zpr.EventSource.EventContent { BoolData = value });
         i_ = value;
       }
     }
@@ -1965,7 +1661,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string J {
       get { return j_; }
       set {
-        AddEvent(10, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(10, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         j_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1977,7 +1673,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public pb::ByteString K {
       get { return k_; }
       set {
-        AddEvent(11, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         k_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -1989,7 +1685,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public long L {
       get { return l_; }
       set {
-        AddEvent(12, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(12, new zpr.EventSource.EventContent { I64 = value });
         l_ = value;
       }
     }
@@ -2001,7 +1697,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public ulong M {
       get { return m_; }
       set {
-        AddEvent(13, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(13, new zpr.EventSource.EventContent { U64 = value });
         m_ = value;
       }
     }
@@ -2013,7 +1709,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int N {
       get { return n_; }
       set {
-        AddEvent(14, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(14, new zpr.EventSource.EventContent { SI32 = value });
         n_ = value;
       }
     }
@@ -2025,7 +1721,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public long O {
       get { return o_; }
       set {
-        AddEvent(15, zpr.EventSource.EventAction.Set, value);
+        Context.AddSetEvent(15, new zpr.EventSource.EventContent { SI64 = value });
         o_ = value;
       }
     }
@@ -2327,65 +2023,69 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            a_ = e.Data.U32;
+            a_ = e.Set.U32;
           }
           break;
           case 2: {
-            b_ = e.Data.I32;
+            b_ = e.Set.I32;
           }
           break;
           case 3: {
-            c_ = e.Data.F64;
+            c_ = e.Set.F64;
           }
           break;
           case 4: {
-            d_ = e.Data.F32;
+            d_ = e.Set.F32;
           }
           break;
           case 5: {
-            e_ = e.Data.SF64;
+            e_ = e.Set.SF64;
           }
           break;
           case 6: {
-            f_ = e.Data.SF32;
+            f_ = e.Set.SF32;
           }
           break;
           case 7: {
-            g_ = e.Data.R64;
+            g_ = e.Set.R64;
           }
           break;
           case 8: {
-            h_ = e.Data.R32;
+            h_ = e.Set.R32;
           }
           break;
           case 9: {
-            i_ = e.Data.BoolData;
+            i_ = e.Set.BoolData;
           }
           break;
           case 10: {
-            j_ = e.Data.StringData;
+            j_ = e.Set.StringData;
           }
           break;
           case 11: {
-            k_ = e.Data.ByteData;
+            k_ = e.Set.ByteData;
           }
           break;
           case 12: {
-            l_ = e.Data.I64;
+            l_ = e.Set.I64;
           }
           break;
           case 13: {
-            m_ = e.Data.U64;
+            m_ = e.Set.U64;
           }
           break;
           case 14: {
-            n_ = e.Data.SI32;
+            n_ = e.Set.SI32;
           }
           break;
           case 15: {
-            o_ = e.Data.SI64;
+            o_ = e.Set.SI64;
           }
           break;
           default: 
@@ -2395,161 +2095,588 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
-          }
-          break;
-          case 2: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
-          }
-          break;
-          case 3: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.F64 };
-          }
-          break;
-          case 4: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.F32 };
-          }
-          break;
-          case 5: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.SF64 };
-          }
-          break;
-          case 6: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.SF32 };
-          }
-          break;
-          case 7: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.R64 };
-          }
-          break;
-          case 8: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.R32 };
-          }
-          break;
-          case 9: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.BoolData };
-          }
-          break;
-          case 10: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          case 11: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.ByteData };
-          }
-          break;
-          case 12: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
-          }
-          break;
-          case 13: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U64 };
-          }
-          break;
-          case 14: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.SI32 };
-          }
-          break;
-          case 15: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.SI64 };
-          }
-          break;
-          default: 
-            return null;
-          break;
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
         }
+      };
+      er.Events.Add(setEvent);
+      return er;
     }
 
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
+  }
 
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.APath._path);
-          }
-          break;
-          case 2: {
-            e.Path.AddRange(this.Path.BPath._path);
-          }
-          break;
-          case 3: {
-            e.Path.AddRange(this.Path.CPath._path);
-          }
-          break;
-          case 4: {
-            e.Path.AddRange(this.Path.DPath._path);
-          }
-          break;
-          case 5: {
-            e.Path.AddRange(this.Path.EPath._path);
-          }
-          break;
-          case 6: {
-            e.Path.AddRange(this.Path.FPath._path);
-          }
-          break;
-          case 7: {
-            e.Path.AddRange(this.Path.GPath._path);
-          }
-          break;
-          case 8: {
-            e.Path.AddRange(this.Path.HPath._path);
-          }
-          break;
-          case 9: {
-            e.Path.AddRange(this.Path.IPath._path);
-          }
-          break;
-          case 10: {
-            e.Path.AddRange(this.Path.JPath._path);
-          }
-          break;
-          case 11: {
-            e.Path.AddRange(this.Path.KPath._path);
-          }
-          break;
-          case 12: {
-            e.Path.AddRange(this.Path.LPath._path);
-          }
-          break;
-          case 13: {
-            e.Path.AddRange(this.Path.MPath._path);
-          }
-          break;
-          case 14: {
-            e.Path.AddRange(this.Path.NPath._path);
-          }
-          break;
-          case 15: {
-            e.Path.AddRange(this.Path.OPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
+  public sealed partial class RecursiveMap : zpr::EventRegistry, pb::IMessage<RecursiveMap> {
+    private static readonly pb::MessageParser<RecursiveMap> _parser = new pb::MessageParser<RecursiveMap>(() => new RecursiveMap());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RecursiveMap> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[4]; }
     }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = AllPrimitives.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap() {
+      OnConstruction();
+      map_.SetContext(Context, 1);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap(RecursiveMap other) : this() {
+      map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, other.map_.Clone(), true);
+      map_.SetContext(Context, 1);
+      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      enumero_ = other.enumero_;
+      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveMap Clone() {
+      return new RecursiveMap(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      map_.SetContext(Context, 1);
+    }
+    /// <summary>Field number for the "map" field.</summary>
+    public const int MapFieldNumber = 1;
+    private static readonly pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec _map_map_codec
+        = new pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser), 10);
+    internal class MapMapConverter : EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> {
+      public override ByteString GetKeyValue(int key, global::Com.Zynga.Runtime.Protobuf.RecursiveMap value, bool skipValue = false) {
+        using (var memStream = new MemoryStream()) {
+          var dataStream = new CodedOutputStream(memStream);
+          dataStream.WriteInt32(key);
+          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.Flush();
+          return ByteString.CopyFrom(memStream.ToArray());
+        }
+      }
+      public override KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> GetItem(ByteString data, bool skipValue = false) {
+        var dataStream = data.CreateCodedInput();
+        var realKeymap = dataStream.ReadInt32();
+        if (skipValue) {
+          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, default(global::Com.Zynga.Runtime.Protobuf.RecursiveMap));
+        }
+        else {
+          var realValuemap = new global::Com.Zynga.Runtime.Protobuf.RecursiveMap();
+          dataStream.ReadMessage(realValuemap);;
+          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, realValuemap);
+        }
+      }
+    }
+    private static readonly EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> mapMapConverter = new MapMapConverter();
+    private readonly EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, true);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> Map {
+      get { return map_; }
+    }
+
+    /// <summary>Field number for the "primitives" field.</summary>
+    public const int PrimitivesFieldNumber = 2;
+    private global::Com.Zynga.Runtime.Protobuf.AllPrimitives primitives_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.AllPrimitives Primitives {
+      get { return primitives_; }
+      set {
+        if(primitives_ != null) primitives_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 2));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        primitives_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enumero" field.</summary>
+    public const int EnumeroFieldNumber = 3;
+    private global::Com.Zynga.Runtime.Protobuf.Enumero enumero_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Enumero Enumero {
+      get { return enumero_; }
+      set {
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { U32 = (uint) value });
+        enumero_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bar" field.</summary>
+    public const int BarFieldNumber = 4;
+    private global::Com.Zynga.Runtime.Protobuf.Bar bar_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Bar Bar {
+      get { return bar_; }
+      set {
+        if(bar_ != null) bar_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 4));
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        bar_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RecursiveMap);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RecursiveMap other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!map_.Equals(other.map_)) return false;
+      if (!object.Equals(Primitives, other.Primitives)) return false;
+      if (Enumero != other.Enumero) return false;
+      if (!object.Equals(Bar, other.Bar)) return false;
       return true;
     }
 
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= map_.GetHashCode();
+      if (primitives_ != null) hash ^= Primitives.GetHashCode();
+      if (Enumero != 0) hash ^= Enumero.GetHashCode();
+      if (bar_ != null) hash ^= Bar.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      map_.WriteTo(output, _map_map_codec);
+      if (primitives_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Primitives);
+      }
+      if (Enumero != 0) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Enumero);
+      }
+      if (bar_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += map_.CalculateSize(_map_map_codec);
+      if (primitives_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Primitives);
+      }
+      if (Enumero != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Enumero);
+      }
+      if (bar_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bar);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RecursiveMap other) {
+      if (other == null) {
+        return;
+      }
+      map_.Add(other.map_);
+      if (other.primitives_ != null) {
+        if (primitives_ == null) {
+          primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+        }
+        Primitives.MergeFrom(other.Primitives);
+      }
+      if (other.Enumero != 0) {
+        Enumero = other.Enumero;
+      }
+      if (other.bar_ != null) {
+        if (bar_ == null) {
+          bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+        }
+        Bar.MergeFrom(other.Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            map_.AddEntriesFrom(input, _map_map_codec);
+            break;
+          }
+          case 18: {
+            if (primitives_ == null) {
+              primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+            }
+            input.ReadMessage(primitives_);
+            break;
+          }
+          case 24: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            if (bar_ == null) {
+              bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+            }
+            input.ReadMessage(bar_);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            map_.ApplyEvent(e.MapEvent);
+          }
+          break;
+          case 2: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (primitives_ == null) primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              primitives_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          case 3: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Set.U32;
+          }
+          break;
+          case 4: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class RecursiveList : zpr::EventRegistry, pb::IMessage<RecursiveList> {
+    private static readonly pb::MessageParser<RecursiveList> _parser = new pb::MessageParser<RecursiveList>(() => new RecursiveList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RecursiveList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList() {
+      OnConstruction();
+      list_.SetContext(Context, 1);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList(RecursiveList other) : this() {
+      list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, other.List.Clone(), true);
+      list_.SetContext(Context, 1);
+      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      enumero_ = other.enumero_;
+      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RecursiveList Clone() {
+      return new RecursiveList(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      list_.SetContext(Context, 1);
+    }
+    /// <summary>Field number for the "list" field.</summary>
+    public const int ListFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.RecursiveList> _repeated_list_codec
+        = pb::FieldCodec.ForMessage(10, global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser);
+    public class ListDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.RecursiveList> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.RecursiveList data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.RecursiveList GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser.ParseFrom(data.ByteData);
+      }
+    }
+    private static ListDataConverter listDataConverter = new ListDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, true);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> List {
+      get { return list_; }
+    }
+
+    /// <summary>Field number for the "primitives" field.</summary>
+    public const int PrimitivesFieldNumber = 2;
+    private global::Com.Zynga.Runtime.Protobuf.AllPrimitives primitives_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.AllPrimitives Primitives {
+      get { return primitives_; }
+      set {
+        if(primitives_ != null) primitives_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 2));
+        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        primitives_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enumero" field.</summary>
+    public const int EnumeroFieldNumber = 3;
+    private global::Com.Zynga.Runtime.Protobuf.Enumero enumero_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Enumero Enumero {
+      get { return enumero_; }
+      set {
+        Context.AddSetEvent(3, new zpr.EventSource.EventContent { U32 = (uint) value });
+        enumero_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bar" field.</summary>
+    public const int BarFieldNumber = 4;
+    private global::Com.Zynga.Runtime.Protobuf.Bar bar_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.Bar Bar {
+      get { return bar_; }
+      set {
+        if(bar_ != null) bar_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 4));
+        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        bar_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RecursiveList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RecursiveList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!list_.Equals(other.list_)) return false;
+      if (!object.Equals(Primitives, other.Primitives)) return false;
+      if (Enumero != other.Enumero) return false;
+      if (!object.Equals(Bar, other.Bar)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= list_.GetHashCode();
+      if (primitives_ != null) hash ^= Primitives.GetHashCode();
+      if (Enumero != 0) hash ^= Enumero.GetHashCode();
+      if (bar_ != null) hash ^= Bar.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      list_.WriteTo(output, _repeated_list_codec);
+      if (primitives_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Primitives);
+      }
+      if (Enumero != 0) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Enumero);
+      }
+      if (bar_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += list_.CalculateSize(_repeated_list_codec);
+      if (primitives_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Primitives);
+      }
+      if (Enumero != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Enumero);
+      }
+      if (bar_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Bar);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RecursiveList other) {
+      if (other == null) {
+        return;
+      }
+      list_.Add(other.list_);
+      if (other.primitives_ != null) {
+        if (primitives_ == null) {
+          primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+        }
+        Primitives.MergeFrom(other.Primitives);
+      }
+      if (other.Enumero != 0) {
+        Enumero = other.Enumero;
+      }
+      if (other.bar_ != null) {
+        if (bar_ == null) {
+          bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+        }
+        Bar.MergeFrom(other.Bar);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            list_.AddEntriesFrom(input, _repeated_list_codec);
+            break;
+          }
+          case 18: {
+            if (primitives_ == null) {
+              primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+            }
+            input.ReadMessage(primitives_);
+            break;
+          }
+          case 24: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero) input.ReadEnum();
+            break;
+          }
+          case 34: {
+            if (bar_ == null) {
+              bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+            }
+            input.ReadMessage(bar_);
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 1: {
+            list_.ApplyEvent(e.ListEvent);
+          }
+          break;
+          case 2: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (primitives_ == null) primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
+              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              primitives_  = global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          case 3: {
+            enumero_ = (global::Com.Zynga.Runtime.Protobuf.Enumero)e.Set.U32;
+          }
+          break;
+          case 4: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (bar_ == null) bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
+              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              bar_  = global::Com.Zynga.Runtime.Protobuf.Bar.Parser.ParseFrom(e.Set.ByteData);
+            }
+          }
+          break;
+          default: 
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 

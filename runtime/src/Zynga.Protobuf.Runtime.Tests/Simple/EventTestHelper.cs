@@ -24,7 +24,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public static void AssertDeltaPath(EventRegistry blob, int[] path) {
 			EventSourceRoot root = AssertGenerated(blob);
 			AssertPath(root.Events[0], path);
-			blob.Reset();
+			blob.ClearEvents();
 		}
 	}
 }

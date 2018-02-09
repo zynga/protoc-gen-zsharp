@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+message ParentMessage {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  int32 a = 1;
+  ChildMessage b = 2;
+}
+
+message ChildMessage {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  int64 c = 3;
+}

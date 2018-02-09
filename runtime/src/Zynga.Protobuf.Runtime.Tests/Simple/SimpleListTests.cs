@@ -22,7 +22,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.AddList, e.Action);
+			Assert.Equal(ListAction.AddList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
 		}
 
@@ -30,14 +30,14 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldGenerateRemoveEvent() {
 			var list = new SimpleDeltaStringList();
 			list.TestBar.Add("hello");
-			list.Reset(); // throw away changes
+			list.ClearEvents(); // throw away changes
 
 			list.TestBar.Remove("hello");
 			Assert.Equal(0, list.TestBar.Count);
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.RemoveList, e.Action);
+			Assert.Equal(ListAction.RemoveList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
 		}
 
@@ -46,16 +46,16 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var list = new SimpleDeltaStringList();
 			list.TestBar.Add("hello");
 			list.TestBar.Add("world");
-			list.Reset(); // throw away changes
+			list.ClearEvents(); // throw away changes
 
 			list.TestBar.RemoveAt(1);
 			Assert.Equal(1, list.TestBar.Count);
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.RemoveAtList, e.Action);
+			Assert.Equal(ListAction.RemoveAtList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
-			Assert.Equal(1, e.Field);
+			Assert.Equal(1, e.ListEvent.Index);
 		}
 
 		[Fact]
@@ -63,16 +63,16 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var list = new SimpleDeltaStringList();
 			list.TestBar.Add("hello");
 			list.TestBar.Add("world");
-			list.Reset(); // throw away changes
+			list.ClearEvents(); // throw away changes
 
 			list.TestBar[1] = "worlds";
 			Assert.Equal(2, list.TestBar.Count);
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.ReplaceList, e.Action);
+			Assert.Equal(ListAction.ReplaceList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
-			Assert.Equal(1, e.Field);
+			Assert.Equal(1, e.ListEvent.Index);
 		}
 
 		[Fact]
@@ -80,16 +80,16 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var list = new SimpleDeltaStringList();
 			list.TestBar.Add("hello");
 			list.TestBar.Add("world");
-			list.Reset(); // throw away changes
+			list.ClearEvents(); // throw away changes
 
 			list.TestBar.Insert(1, "all");
 			Assert.Equal(3, list.TestBar.Count);
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.InsertList, e.Action);
+			Assert.Equal(ListAction.InsertList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
-			Assert.Equal(1, e.Field);
+			Assert.Equal(1, e.ListEvent.Index);
 		}
 
 		[Fact]
@@ -97,14 +97,14 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var list = new SimpleDeltaStringList();
 			list.TestBar.Add("hello");
 			list.TestBar.Add("world");
-			list.Reset(); // throw away changes
+			list.ClearEvents(); // throw away changes
 
 			list.TestBar.Clear();
 			Assert.Equal(0, list.TestBar.Count);
 
 			var root = AssertGenerated(list);
 			var e = root.Events[0];
-			Assert.Equal(EventAction.ClearList, e.Action);
+			Assert.Equal(ListAction.ClearList, e.ListEvent.ListAction);
 			AssertPath(e, new[] {11});
 		}
 
@@ -234,6 +234,25 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(new SimpleListDeltaMessage {H = "hello"}, newList.TestBar[0]);
 			Assert.Equal(new SimpleListDeltaMessage {H = "all"}, newList.TestBar[1]);
 			Assert.Equal(new SimpleListDeltaMessage {H = "worlds"}, newList.TestBar[2]);
+		}
+
+		[Fact]
+		public void ShouldGenerateDeltasForMessagesInList() {
+			var list = new SimpleDeltaMessageList();
+			list.TestBar.Add(new SimpleListDeltaMessage {H = "hello"});
+			list.ClearEvents();
+
+			list.TestBar[0].H = "world";
+
+			var root = AssertGenerated(list);
+			var e = root.Events[0];
+			Assert.Equal(EventData.ActionOneofCase.ListEvent, e.ActionCase);
+			AssertPath(e, new[] {11});
+			var le = e.ListEvent;
+			Assert.Equal(ListAction.UpdateList, le.ListAction);
+
+			Assert.Equal(EventData.ActionOneofCase.Set, le.EventData.ActionCase);
+			AssertPath(le.EventData, new[] {1});
 		}
 	}
 }

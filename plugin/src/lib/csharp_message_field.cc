@@ -65,8 +65,7 @@ MessageFieldGenerator::~MessageFieldGenerator() {
 }
 
 void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEnternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  bool isEnternalSourced = IsInternalEventSourced();
 
   printer->Print(
     variables_,
@@ -83,13 +82,13 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     if (isEnternalSourced) {
        printer->Print(
          variables_,
-         "    value.SetRoot(_root);\n"
-         "    value.SetPath(new $type_name$.Paths(new zpr.EventPath(this.Path.Path, $number$)));\n");
+         "    if($name$_ != null) $name$_.ClearParent();\n"
+         "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
     }
 
     printer->Print(
        variables_,
-       "    AddEvent($number$, zpr.EventSource.EventAction.Snapshot, value);\n");
+       "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
        
   }
   
@@ -101,20 +100,19 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
 }
 
 void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-  printer->Print(variables_,
-  "        if ($name$_ == null) $name$_ = new $type_name$();\n");
+  bool isEventSourced = IsInternalEventSourced();
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Path.Count - 1 != pathIndex) \n"
+      "        if (e.Path.Count - 1 != pathIndex) {\n"
+      "          if ($name$_ == null) $name$_ = new $type_name$();\n"
       "          ($name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
-      "        else\n"
-      "          $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        } else {\n"
+      "          $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "        }\n");
   }
   else {
     printer->Print(variables_, 
-      "        $name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n");
   }
 }
 
@@ -134,8 +132,7 @@ void MessageFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
 }
 
 void MessageFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  bool isEventSourced = IsInternalEventSourced();
   if (isEventSourced) {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path.Path._path);\n",
@@ -226,6 +223,24 @@ void MessageFieldGenerator::GenerateCodecCode(io::Printer* printer) {
     "pb::FieldCodec.ForMessage($tag$, $type_name$.Parser)");
 }
 
+bool MessageFieldGenerator::IsInternalEventSourced() {
+  const MessageOptions& op = descriptor_->message_type()->options();
+  bool isInternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+
+  // we check and see if you are a nested type of the field owner if so
+  // then we can assume 
+  const Descriptor* parentObject = descriptor_->containing_type();
+  if (parentObject && parentObject->nested_type_count() != 0) {
+    const MessageOptions& parentOptions = parentObject->options();
+    if (parentOptions.HasExtension(com::zynga::runtime::protobuf::event_sourced) &&
+        parentObject->FindNestedTypeByName(descriptor_->message_type()->name()) != NULL) {
+      isInternalSourced = true; 
+    }
+  }
+
+  return isInternalSourced;
+}
+
 MessageOneofFieldGenerator::MessageOneofFieldGenerator(
     const FieldDescriptor* descriptor,
 	  int fieldOrdinal,
@@ -239,9 +254,7 @@ MessageOneofFieldGenerator::~MessageOneofFieldGenerator() {
 }
 
 void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEnternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-
+  bool isInternalSourced = IsInternalEventSourced();
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(
@@ -251,16 +264,16 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     "  set {\n");
 
     if (isEventSourced) {
-      if (isEnternalSourced) {
+      if (isInternalSourced) {
         printer->Print(
           variables_,
-          "    value.SetRoot(_root);\n"
-          "    value.SetPath(new $type_name$.Paths(new zpr.EventPath(this.Path.Path, $number$)));\n");
+          "    if($oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
+          "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
       }
 
       printer->Print(
               variables_,
-              "    AddEvent($number$, zpr.EventSource.EventAction.Snapshot, value);\n");
+              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
     }
 
     printer->Print(
@@ -272,20 +285,19 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 }
 
 void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-  printer->Print(variables_,
-    "        if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n");
+  bool isEventSourced = IsInternalEventSourced();
   if (isEventSourced) {
     printer->Print(variables_,
-      "        if (e.Path.Count - 1 != pathIndex) \n"
+      "        if (e.Path.Count - 1 != pathIndex) {\n"
+      "          if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
       "          ($oneof_name$_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
-      "        else\n"
-      "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+      "        } else {\n"
+      "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "        }\n");
   }
   else {
     printer->Print(variables_,
-    "        $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Data.ByteData);\n");
+    "        $oneof_name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n");
   }
   printer->Print(
     variables_,
@@ -303,8 +315,7 @@ void MessageOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isM
 }
 
 void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isEventSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  bool isEventSourced = IsInternalEventSourced();
   if (isEventSourced) {
     printer->Print(
       "        e.Path.AddRange(this.Path.$field_name$Path.Path._path);\n",
@@ -315,6 +326,14 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
       "        e.Path.AddRange(this.Path.$field_name$Path._path);\n",
       "field_name", GetPropertyName(descriptor_));
   }
+}
+
+void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  printer->Print(variables_, 
+    "if ($property_name$ == null) {\n"
+    "  $property_name$ = new $type_name$();\n"
+    "}\n"
+    "$property_name$.MergeFrom(other.$property_name$);\n");
 }
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {

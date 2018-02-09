@@ -70,6 +70,9 @@ class MessageFieldGenerator : public FieldGeneratorBase {
   virtual void WriteHash(io::Printer* printer);
   virtual void WriteEquals(io::Printer* printer);
   virtual void WriteToString(io::Printer* printer);
+ protected:
+  bool IsInternalEventSourced();
+
 
  private:
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(MessageFieldGenerator);
@@ -84,6 +87,7 @@ class MessageOneofFieldGenerator : public MessageFieldGenerator {
 
   virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
+  virtual void GenerateMergingCode(io::Printer* printer);
 
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateEventSource(io::Printer* printer);

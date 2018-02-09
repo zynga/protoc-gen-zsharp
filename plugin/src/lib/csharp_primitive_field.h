@@ -88,6 +88,7 @@ class PrimitiveOneofFieldGenerator : public PrimitiveFieldGenerator {
 
   virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
+  virtual void GenerateMergingCode(io::Printer* printer);
 
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateEventSource(io::Printer* printer);

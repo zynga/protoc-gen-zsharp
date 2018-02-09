@@ -97,7 +97,7 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
 
     printer->Print(
       variables_,
-      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
+      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, true);\n");
   }
   else {
     printer->Print(
@@ -127,7 +127,7 @@ void RepeatedMessageFieldGenerator::GenerateMembers(io::Printer* printer, bool i
 void RepeatedMessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
     printer->Print(
           variables_,
-          "        $name$_.ApplyEvent(e);\n");
+          "        $name$_.ApplyEvent(e.ListEvent);\n");
 }
 
 
@@ -203,9 +203,8 @@ void RepeatedMessageFieldGenerator::WriteToString(io::Printer* printer) {
 void RepeatedMessageFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   if(isEventSourced) {
     printer->Print(variables_,
-      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
-      "$name$_.SetRoot(_root);\n"
-      "$name$_.SetPath(Path.$property_name$Path);\n");
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone(), true);\n"
+      "$name$_.SetContext(Context, $number$);\n");
   }
   else {
     printer->Print(variables_,

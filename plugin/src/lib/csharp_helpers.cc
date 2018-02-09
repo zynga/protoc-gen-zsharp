@@ -506,7 +506,7 @@ std::string GetEventDataType(const FieldDescriptor* descriptor) {
           return "SI64";
         break;
        default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         GOOGLE_LOG(FATAL)<< "GetEventDataType Unknown field type." << descriptor->type();
          return "";
     }
 }
@@ -565,7 +565,7 @@ std::string GetByteStringRead(const FieldDescriptor* descriptor) {
           return "ReadSInt64";
         break;
        default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         GOOGLE_LOG(FATAL)<< "GetByteStringRead Unknown field type." << descriptor->type();
          return "";
     }
 }
@@ -624,7 +624,7 @@ std::string GetByteStringWrite(const FieldDescriptor* descriptor) {
           return "WriteSInt64";
         break;
        default:
-         GOOGLE_LOG(FATAL)<< "Unknown field type." << descriptor->type();
+         GOOGLE_LOG(FATAL)<< "GetByteStringWrite Unknown field type." << descriptor->type();
          return "";
     }
 }

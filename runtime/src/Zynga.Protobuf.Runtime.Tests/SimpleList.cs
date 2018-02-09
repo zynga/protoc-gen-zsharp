@@ -232,23 +232,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleListDeltaMessage.Paths Path = new SimpleListDeltaMessage.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleListDeltaMessage.Paths path) {
-      this.Path = path;
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath HPath => new zpr.EventPath(Path, 1);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
     }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
@@ -257,7 +242,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string H {
       get { return h_; }
       set {
-        AddEvent(1, zpr.EventSource.EventAction.Set, pb::ProtoPreconditions.CheckNotNull(value, "value"));
+        Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         h_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -335,9 +320,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 1: {
-            h_ = e.Data.StringData;
+            h_ = e.Set.StringData;
           }
           break;
           default: 
@@ -347,49 +336,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 1: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 1: {
-            e.Path.AddRange(this.Path.HPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleListDeltaMessage.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -524,8 +478,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaStringList() {
       OnConstruction();
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     partial void OnConstruction();
@@ -533,8 +486,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaStringList(SimpleDeltaStringList other) : this() {
       testBar_ = new EventRepeatedField<string>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -544,25 +496,9 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleDeltaStringList.Paths Path = new SimpleDeltaStringList.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testBar_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleDeltaStringList.Paths path) {
-      this.Path = path;
-      testBar_.SetPath(Path.TestBarPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testBar_.SetContext(Context, 11);
     }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
@@ -649,9 +585,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 11: {
-            testBar_.ApplyEvent(e);
+            testBar_.ApplyEvent(e.ListEvent);
           }
           break;
           default: 
@@ -661,49 +601,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 11: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 11: {
-            e.Path.AddRange(this.Path.TestBarPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleDeltaStringList.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -839,8 +744,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaLongList() {
       OnConstruction();
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     partial void OnConstruction();
@@ -848,8 +752,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaLongList(SimpleDeltaLongList other) : this() {
       testBar_ = new EventRepeatedField<long>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -859,25 +762,9 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleDeltaLongList.Paths Path = new SimpleDeltaLongList.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testBar_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleDeltaLongList.Paths path) {
-      this.Path = path;
-      testBar_.SetPath(Path.TestBarPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testBar_.SetContext(Context, 11);
     }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
@@ -965,9 +852,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 11: {
-            testBar_.ApplyEvent(e);
+            testBar_.ApplyEvent(e.ListEvent);
           }
           break;
           default: 
@@ -977,49 +868,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 11: {
-            return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 11: {
-            e.Path.AddRange(this.Path.TestBarPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleDeltaLongList.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1155,8 +1011,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaEnumList() {
       OnConstruction();
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     partial void OnConstruction();
@@ -1164,8 +1019,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaEnumList(SimpleDeltaEnumList other) : this() {
       testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1175,25 +1029,9 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleDeltaEnumList.Paths Path = new SimpleDeltaEnumList.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testBar_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleDeltaEnumList.Paths path) {
-      this.Path = path;
-      testBar_.SetPath(Path.TestBarPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testBar_.SetContext(Context, 11);
     }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
@@ -1281,9 +1119,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 11: {
-            testBar_.ApplyEvent(e);
+            testBar_.ApplyEvent(e.ListEvent);
           }
           break;
           default: 
@@ -1293,49 +1135,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 11: {
-            return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 11: {
-            e.Path.AddRange(this.Path.TestBarPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleDeltaEnumList.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 
@@ -1470,17 +1277,15 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaMessageList() {
       OnConstruction();
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_.SetContext(Context, 11);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaMessageList(SimpleDeltaMessageList other) : this() {
-      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetRoot(_root);
-      testBar_.SetPath(Path.TestBarPath);
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone(), true);
+      testBar_.SetContext(Context, 11);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1490,25 +1295,9 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     public static bool IsEventSourced = true;
 
-    public SimpleDeltaMessageList.Paths Path = new SimpleDeltaMessageList.Paths(zpr.EventPath.Empty);
-
-    public override void SetRoot(List<zpr.EventSource.EventData> inRoot) {
-      base.SetRoot(inRoot);
-      testBar_.SetRoot(inRoot);
-    }
-    public void SetPath(SimpleDeltaMessageList.Paths path) {
-      this.Path = path;
-      testBar_.SetPath(Path.TestBarPath);
-    }
-
-    public class Paths {
-
-        public zpr.EventPath Path = null;
-
-        public Paths(zpr.EventPath _path) {
-          Path = _path;
-        }
-        public zpr.EventPath TestBarPath => new zpr.EventPath(Path, 11);
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      testBar_.SetContext(Context, 11);
     }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
@@ -1524,7 +1313,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, true);
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> TestBar {
       get { return testBar_; }
@@ -1596,9 +1385,13 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
         switch (e.Path[pathIndex]) {
           case 11: {
-            testBar_.ApplyEvent(e);
+            testBar_.ApplyEvent(e.ListEvent);
           }
           break;
           default: 
@@ -1608,50 +1401,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public override zpr.EventSource.EventContent GetEventData<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-        switch (fieldNumber) {
-          case 11: {
-            var byteData = (data as pb::IMessage)?.ToByteString();
-            return new zpr.EventSource.EventContent() { ByteData = byteData };
-          }
-          break;
-          default: 
-            return null;
-          break;
-        }
-    }
-
-    public override void AddEvent<T>(int fieldNumber, zpr.EventSource.EventAction action, T data) {
-       var e = new zpr.EventSource.EventData {
-         Field = fieldNumber,
-         Action = action,
-         Data = GetEventData(fieldNumber, action, data)
-       };
-
-       switch (fieldNumber) {
-          case 11: {
-            e.Path.AddRange(this.Path.TestBarPath._path);
-          }
-          break;
-          default: 
-            return;
-          break;
-        }
-        _root.Add(e);
-    }
-    public override bool ApplySnapshot(zpr.EventSource.EventSourceRoot root) {
-      var e = SimpleDeltaMessageList.Parser.ParseFrom(root.Events[0].Data.ByteData);
-      MergeFrom(e);
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       var er = new zpr.EventSource.EventSourceRoot();
-      var ee = new zpr.EventSource.EventData();
-      ee.Action = zpr.EventSource.EventAction.Snapshot;
-      ee.Data = new zpr.EventSource.EventContent();
-      ee.Data.ByteData = this.ToByteString();
-      er.Events.Add(ee);
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
       return er;
     }
 

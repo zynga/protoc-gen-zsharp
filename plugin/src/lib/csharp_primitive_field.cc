@@ -83,9 +83,11 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
   if (isEventSourced) {
       switch (descriptor_->type()) {
         case FieldDescriptor::TYPE_ENUM:
+          printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
           printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = (uint) value });\n");
+          printer->Print(variables_,"    #endif\n");
           break;
         case FieldDescriptor::TYPE_DOUBLE:
         case FieldDescriptor::TYPE_FLOAT:
@@ -103,15 +105,19 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
         case FieldDescriptor::TYPE_SINT32:
         case FieldDescriptor::TYPE_SINT64:
         {
-          if (is_value_type) { 
+          if (is_value_type) {
+            printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
             printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
+            printer->Print(variables_,"    #endif\n");
           }
           else {
+            printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
             printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
+            printer->Print(variables_,"    #endif\n");
           }
         }
         
@@ -305,15 +311,19 @@ void PrimitiveOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool is
         case FieldDescriptor::TYPE_SINT32:
         case FieldDescriptor::TYPE_SINT64: 
         {
-          if (is_value_type) { 
+          if (is_value_type) {
+            printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
             printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
+            printer->Print(variables_,"    #endif\n");
           }
           else {
+            printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
             printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
+            printer->Print(variables_,"    #endif\n");
           }
         }
         break;

@@ -89,7 +89,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int A {
       get { return a_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+        #endif
         a_ = value;
       }
     }
@@ -103,7 +105,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         if(b_ != null) b_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 2));
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        #endif
         b_ = value;
       }
     }
@@ -285,7 +289,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public long C {
       get { return c_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(3, new zpr.EventSource.EventContent { I64 = value });
+        #endif
         c_ = value;
       }
     }

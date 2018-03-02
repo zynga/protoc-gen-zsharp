@@ -60,7 +60,9 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(T item) {
 			InternalAdd(item);
+			#if !DISABLE_EVENTS
 			AddListEvent(item);
+			#endif
 		}
 
 		public void Add(EventRepeatedField<T> other) {
@@ -76,7 +78,9 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Clear() {
 			InternalClear();
+			#if !DISABLE_EVENTS
 			ClearListEvent();
+			#endif
 		}
 
 		public bool Contains(T item) {
@@ -89,9 +93,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public bool Remove(T item) {
 			var result = InternalRemove(item);
+			#if !DISABLE_EVENTS
 			if (result) {
 				RemoveListEvent(item);
 			}
+			#endif
 
 			return result;
 		}
@@ -140,12 +146,16 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Insert(int index, T item) {
 			InternalInsert(index, item);
+			#if !DISABLE_EVENTS
 			InsertListEvent(index, item);
+			#endif
 		}
 
 		public void RemoveAt(int index) {
 			InternalRemoveAt(index);
+			#if !DISABLE_EVENTS
 			RemoveAtListEvent(index);
+			#endif
 		}
 
 		public override string ToString() {
@@ -156,7 +166,9 @@ namespace Zynga.Protobuf.Runtime {
 			get { return _internal[index]; }
 			set {
 				InternalReplaceAt(index, value);
+				#if !DISABLE_EVENTS
 				ReplaceListEvent(index, value);
+				#endif
 			}
 		}
 
@@ -209,6 +221,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void AddListEvent(T item) {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.AddList,
 				Content = _converter.GetEventData(item)
@@ -217,6 +230,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void RemoveListEvent(T item) {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.RemoveList,
 				Content = _converter.GetEventData(item)
@@ -225,6 +239,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void RemoveAtListEvent(int index) {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.RemoveAtList,
 				Index = index
@@ -233,6 +248,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void ReplaceListEvent(int index, T item) {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.ReplaceList,
 				Index = index,
@@ -240,8 +256,9 @@ namespace Zynga.Protobuf.Runtime {
 			};
 			_context.AddListEvent(_fieldNumber, listEvent);
 		}
-		
+
 		private void InsertListEvent(int index, T item) {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.InsertList,
 				Index = index,
@@ -251,6 +268,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void ClearListEvent() {
+			if (!_context.EventsEnabled) return;
 			var listEvent = new ListEvent {
 				ListAction = ListAction.ClearList
 			};
@@ -342,7 +360,7 @@ namespace Zynga.Protobuf.Runtime {
 				_internal.Clear();
 			}
 		}
-		
+
 		private static void ClearParent(T item) {
 			var registry = item as EventRegistry;
 			registry?.ClearParent();

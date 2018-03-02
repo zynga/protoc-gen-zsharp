@@ -11,6 +11,7 @@ namespace Zynga.Protobuf.Runtime {
 		private EventContext _parent;
 		private EventPath _path = EventPath.Empty;
 		private bool _eventsEnabled = true;
+		private readonly HashSet<EventContext> _children = new HashSet<EventContext>();
 
 		/// <summary>
 		/// Establishes a parent child relationship
@@ -19,8 +20,13 @@ namespace Zynga.Protobuf.Runtime {
 			if (_parent != null) {
 				throw new Exception("Message is already associated with another parent");
 			}
-			
+
 			_parent = parent;
+			if (parent != null) {
+				_parent.AddChild(this);
+				EventsEnabled = _parent.EventsEnabled;
+			}
+
 			_path = path;
 			// when a message is added to a parent, any delta events it currently has are no longer valid
 			_events.Clear();
@@ -30,8 +36,23 @@ namespace Zynga.Protobuf.Runtime {
 		/// Removes the parent child relationship
 		/// </summary>
 		public void ClearParent() {
+			_parent?.RemoveChild(this);
 			_parent = null;
 			_path = EventPath.Empty;
+		}
+
+		/// <summary>
+		/// Adds a reference to a child context
+		/// </summary>
+		public void AddChild(EventContext context) {
+			_children.Add(context);
+		}
+
+		/// <summary>
+		/// Removes a reference to a child context
+		/// </summary>
+		public void RemoveChild(EventContext context) {
+			_children.Remove(context);
 		}
 
 		/// <summary>
@@ -64,6 +85,10 @@ namespace Zynga.Protobuf.Runtime {
 				_eventsEnabled = value;
 				if (!_eventsEnabled) {
 					_events.Clear();
+				}
+
+				foreach (var child in _children) {
+					child.EventsEnabled = value;
 				}
 			}
 		}

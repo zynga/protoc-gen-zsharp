@@ -255,7 +255,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public int Data {
       get { return data_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+        #endif
         data_ = value;
       }
     }
@@ -448,7 +450,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string EventId {
       get { return eventId_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        #endif
         eventId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -459,7 +463,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string Foo {
       get { return testOneofCase_ == TestOneofOneofCase.Foo ? (string) testOneof_ : ""; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        #endif
         testOneof_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
         testOneofCase_ = TestOneofOneofCase.Foo;
       }
@@ -473,7 +479,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         if(testOneof_ != null) ((global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_).ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 3));
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        #endif
         testOneof_ = value;
         testOneofCase_ = value == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
       }
@@ -486,7 +494,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.EnumTest TestEvent {
       get { return testEvent_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(4, new zpr.EventSource.EventContent { U32 = (uint) value });
+        #endif
         testEvent_ = value;
       }
     }
@@ -592,7 +602,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         if(data_ != null) data_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 9));
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(9, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        #endif
         data_ = value;
       }
     }
@@ -637,7 +649,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.TestMessage TestNonMessage {
       get { return testNonMessage_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        #endif
         testNonMessage_ = value;
       }
     }
@@ -649,7 +663,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public string TestStringNoChecksum {
       get { return testStringNoChecksum_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(12, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        #endif
         testStringNoChecksum_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -661,7 +677,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public pb::ByteString TestBytesField {
       get { return testBytesField_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        #endif
         testBytesField_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
@@ -673,7 +691,9 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Timestamp Date {
       get { return date_; }
       set {
+        #if !DISABLE_EVENTS
         Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        #endif
         date_ = value;
       }
     }
@@ -1055,7 +1075,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         public int Data {
           get { return data_; }
           set {
+            #if !DISABLE_EVENTS
             Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+            #endif
             data_ = value;
           }
         }
@@ -1069,7 +1091,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           set {
             if(dataTwo_ != null) dataTwo_.ClearParent();
             value.SetParent(Context, new EventPath(Context.Path, 2));
+            #if !DISABLE_EVENTS
             Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+            #endif
             dataTwo_ = value;
           }
         }
@@ -1263,7 +1287,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         public string Foo {
           get { return bodyCase_ == BodyOneofCase.Foo ? (string) body_ : ""; }
           set {
+            #if !DISABLE_EVENTS
             Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+            #endif
             body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             bodyCase_ = BodyOneofCase.Foo;
           }
@@ -1275,7 +1301,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
           get { return bodyCase_ == BodyOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_ : null; }
           set {
+            #if !DISABLE_EVENTS
             Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+            #endif
             body_ = value;
             bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.Internal;
           }

@@ -22,7 +22,7 @@ namespace Zynga.Protobuf.Runtime {
 		public EventMapField(EventMapConverter<TKey, TValue> converter, MapField<TKey, TValue> mapField, bool isMessageType = false) {
 			_converter = converter;
 			_isMessageType = isMessageType;
-			
+
 			if (_isMessageType) {
 				_internal = new MapField<TKey, TValue>();
 				foreach (var kv in mapField) {
@@ -40,7 +40,9 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(TKey key, TValue value) {
 			InternalAdd(key, value);
+			#if !DISABLE_EVENTS
 			AddMapEvent(key, value);
+			#endif
 		}
 
 		public void Add(EventMapField<TKey, TValue> other) {
@@ -60,9 +62,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public bool Remove(TKey key) {
 			var result = InternalRemove(key);
+			#if !DISABLE_EVENTS
 			if (result) {
 				RemoveMapEvent(key);
 			}
+			#endif
 
 			return result;
 		}
@@ -75,7 +79,9 @@ namespace Zynga.Protobuf.Runtime {
 			get { return _internal[key]; }
 			set {
 				InternalReplace(key, value);
+				#if !DISABLE_EVENTS
 				ReplaceMapEvent(key, value);
+				#endif
 			}
 		}
 
@@ -101,7 +107,9 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Clear() {
 			InternalClear();
+			#if !DISABLE_EVENTS
 			ClearMapEvent();
+			#endif
 		}
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) {
@@ -233,6 +241,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void AddMapEvent(TKey key, TValue value) {
+			if (!_context.EventsEnabled) return;
 			var mapEvent = new MapEvent {
 				MapAction = MapAction.AddMap,
 				KeyValue = _converter.GetKeyValue(key, value)
@@ -241,6 +250,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void RemoveMapEvent(TKey key) {
+			if (!_context.EventsEnabled) return;
 			var mapEvent = new MapEvent {
 				MapAction = MapAction.RemoveMap,
 				KeyValue = _converter.GetKeyValue(key, default(TValue), true)
@@ -249,6 +259,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void ReplaceMapEvent(TKey key, TValue value) {
+			if (!_context.EventsEnabled) return;
 			var mapEvent = new MapEvent {
 				MapAction = MapAction.ReplaceMap,
 				KeyValue = _converter.GetKeyValue(key, value)
@@ -257,6 +268,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void ClearMapEvent() {
+			if (!_context.EventsEnabled) return;
 			var mapEvent = new MapEvent {
 				MapAction = MapAction.ClearMap
 			};
@@ -304,7 +316,7 @@ namespace Zynga.Protobuf.Runtime {
 			if (!_isMessageType) {
 				return _internal.Remove(key);
 			}
-			
+
 			TValue value;
 			if(_internal.TryGetValue(key, out value)) {
 				ClearParent(value);
@@ -337,7 +349,7 @@ namespace Zynga.Protobuf.Runtime {
 			}
 			_internal.Clear();
 		}
-		
+
 		private static void ClearParent(TValue item) {
 			var registry = item as EventRegistry;
 			registry?.ClearParent();

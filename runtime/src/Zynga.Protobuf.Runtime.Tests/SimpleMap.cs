@@ -267,7 +267,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return h_; }
       set {
         #if !DISABLE_EVENTS
+        if(h_ != value) {
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
         #endif
         h_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }

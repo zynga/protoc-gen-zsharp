@@ -90,7 +90,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return a_; }
       set {
         #if !DISABLE_EVENTS
+        if(a_ != value) {
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+        }
         #endif
         a_ = value;
       }
@@ -291,7 +293,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return c_; }
       set {
         #if !DISABLE_EVENTS
+        if(c_ != value) {
         Context.AddSetEvent(3, new zpr.EventSource.EventContent { I64 = value });
+        }
         #endif
         c_ = value;
       }

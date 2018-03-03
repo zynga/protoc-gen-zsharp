@@ -284,22 +284,29 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     printer->Print("}\n");
     // TODO: Should we put the oneof .proto comments here?
     // It's unclear exactly where they should go.
-	printer->Print(
-	  vars,
-	  "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
-	WriteGeneratedCodeAttributes(printer);
-	printer->Print(
-	  vars,
-	  "public $property_name$OneofCase $property_name$Case {\n"
-	  "  get { return $name$Case_; }\n"
-	  "}\n\n");
-	WriteGeneratedCodeAttributes(printer);
-	printer->Print(
-	  vars,
-      "public void Clear$property_name$() {\n"
-      "  $name$Case_ = $property_name$OneofCase.None;\n"
-      "  $name$_ = null;\n"
+    printer->Print(
+      vars,
+      "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
+    WriteGeneratedCodeAttributes(printer);
+    printer->Print(
+      vars,
+      "public $property_name$OneofCase $property_name$Case {\n"
+      "  get { return $name$Case_; }\n"
       "}\n\n");
+    WriteGeneratedCodeAttributes(printer);
+    printer->Print(
+      vars,
+        "public void Clear$property_name$() {\n");
+    if (IsEventSourced()) {
+      printer->Print(vars, "  throw new NotSupportedException(\"Clearing oneofs is not supported by the event system\");\n");
+    }
+    else {
+      printer->Print(
+        vars,
+          "  $name$Case_ = $property_name$OneofCase.None;\n"
+          "  $name$_ = null;\n");
+    }
+    printer->Print(vars, "}\n\n");
   }
 
   // Standard methods

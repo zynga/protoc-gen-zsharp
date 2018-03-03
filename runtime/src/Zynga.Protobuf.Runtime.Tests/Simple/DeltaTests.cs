@@ -204,14 +204,150 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 		[Fact]
 		public void ShouldNotGenerateDeltasForNoOpsOnMaps() {
-			/*
 			var blob = new TestBlob();
-			blob.IntToString.Add(0, "a");
+			blob.IntToString[0] = "a";
 			AssertGenerated(blob);
+			blob.ClearEvents();
 
-			blob.IntToString.Add(0, "a");
+			blob.IntToString[0] = "a";
 			AssertNotGenerated(blob);
-			*/
+
+			blob.IntToString[0] = "b";
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.IntToString[0] = "a";
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.IntToString.Remove(1);
+			AssertNotGenerated(blob);
+
+			blob.IntToString.Remove(0);
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.IntToString.Remove(0);
+			AssertNotGenerated(blob);
+
+			blob.StringToFoo["a"] = new Foo();
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.StringToFoo["a"] = new Foo {Long = 1};
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.StringToFoo["a"] = new Foo {Long = 1, Str = "test"};
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.StringToFoo["a"] = new Foo {Long = 1, Str = "test"};
+			AssertNotGenerated(blob);
+
+			blob.StringToFoo["a"] = new Foo();
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.StringToFoo.Remove("a");
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.StringToFoo.Remove("a");
+			AssertNotGenerated(blob);
+
+			blob.StringToFoo.Remove("b");
+			AssertNotGenerated(blob);
+		}
+
+		[Fact]
+		public void ShouldNotGenerateDeltasForNoOpsOnPrimitiveFields() {
+			var blob = new TestBlob {Foo = new Foo()};
+			blob.ClearEvents();
+
+			blob.Foo.Long = 0L;
+			AssertNotGenerated(blob);
+
+			blob.Foo.Long = 1L;
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Foo.Long = 1L;
+			AssertNotGenerated(blob);
+
+			blob.Foo.Long = 0L;
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Foo.Str = "1 long please";
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Foo.Str = "1 long please";
+			AssertNotGenerated(blob);
+
+			blob.Foo.Str = "";
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Foo.Str = "";
+			AssertNotGenerated(blob);
+		}
+
+		[Fact]
+		public void ShouldNotGenerateDeltasForNoOpsOnOneOfs() {
+			var blob = new TestBlob();
+
+			blob.Maybestring = "hello";
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Maybestring = "hello";
+			AssertNotGenerated(blob);
+
+			blob.Maybefoo = new Foo {Long = 2L};
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Maybefoo = new Foo {Long = 2L};
+			AssertNotGenerated(blob);
+
+			blob.Maybefoo = new Foo {Long = 2L, Str = "hi"};
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Maybeint = 2;
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Maybeint = 2;
+			AssertNotGenerated(blob);
+		}
+
+		[Fact]
+		public void ShouldNotGenerateDeltasForNoOpsOnLists() {
+			var blob = new TestBlob();
+
+			blob.Ilist.Add(1);
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Ilist[0] = 1;
+			AssertNotGenerated(blob);
+
+			blob.Foolist.Add(new Foo { Long = 1 });
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Foolist[0] = new Foo { Long = 1 };
+			AssertNotGenerated(blob);
+
+			blob.Slist.Add("hello");
+			AssertGenerated(blob);
+			blob.ClearEvents();
+
+			blob.Slist[0] = "hello";
+			AssertNotGenerated(blob);
 		}
 
 		private RecursiveMap CreateRecursiveMap(int depth) {

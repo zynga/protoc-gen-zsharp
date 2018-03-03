@@ -78,9 +78,14 @@ namespace Zynga.Protobuf.Runtime {
 		public TValue this[TKey key] {
 			get { return _internal[key]; }
 			set {
+				#if !DISABLE_EVENTS
+				var generateEvent = !_internal.ContainsKey(key) || !_internal[key].Equals(value);
+				#endif
 				InternalReplace(key, value);
 				#if !DISABLE_EVENTS
-				ReplaceMapEvent(key, value);
+				if (generateEvent) {
+					ReplaceMapEvent(key, value);
+				}
 				#endif
 			}
 		}

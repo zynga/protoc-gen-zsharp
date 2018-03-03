@@ -256,7 +256,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return data_; }
       set {
         #if !DISABLE_EVENTS
+        if(data_ != value) {
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+        }
         #endif
         data_ = value;
       }
@@ -452,7 +454,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return eventId_; }
       set {
         #if !DISABLE_EVENTS
+        if(eventId_ != value) {
         Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
         #endif
         eventId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
@@ -465,7 +469,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return testOneofCase_ == TestOneofOneofCase.Foo ? (string) testOneof_ : ""; }
       set {
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        if(testOneofCase_ != TestOneofOneofCase.Foo || value != (string) testOneof_) {
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
         #endif
         testOneof_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
         testOneofCase_ = TestOneofOneofCase.Foo;
@@ -478,10 +484,12 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
       get { return testOneofCase_ == TestOneofOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_ : null; }
       set {
-        if(testOneof_ != null) ((global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_).ClearParent();
+        if(testOneofCase_ == TestOneofOneofCase.Internal && testOneof_ != null) ((global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) testOneof_).ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 3));
         #if !DISABLE_EVENTS
+        if(testOneofCase_ != TestOneofOneofCase.Internal || !value.Equals(testOneof_)) {
         Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         testOneof_ = value;
         testOneofCase_ = value == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
@@ -496,7 +504,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return testEvent_; }
       set {
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(4, new zpr.EventSource.EventContent { U32 = (uint) value });
+        if(testEvent_ != value) {
+          Context.AddSetEvent(4, new zpr.EventSource.EventContent { U32 = (uint) value });
+        }
         #endif
         testEvent_ = value;
       }
@@ -665,7 +675,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return testStringNoChecksum_; }
       set {
         #if !DISABLE_EVENTS
+        if(testStringNoChecksum_ != value) {
         Context.AddSetEvent(12, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
         #endif
         testStringNoChecksum_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
@@ -679,7 +691,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return testBytesField_; }
       set {
         #if !DISABLE_EVENTS
+        if(testBytesField_ != value) {
         Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
         #endif
         testBytesField_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
@@ -714,8 +728,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void ClearTestOneof() {
-      testOneofCase_ = TestOneofOneofCase.None;
-      testOneof_ = null;
+      throw new NotSupportedException("Clearing oneofs is not supported by the event system");
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1077,7 +1090,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           get { return data_; }
           set {
             #if !DISABLE_EVENTS
+            if(data_ != value) {
             Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+            }
             #endif
             data_ = value;
           }
@@ -1290,7 +1305,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           get { return bodyCase_ == BodyOneofCase.Foo ? (string) body_ : ""; }
           set {
             #if !DISABLE_EVENTS
-            Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+            if(bodyCase_ != BodyOneofCase.Foo || value != (string) body_) {
+              Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+            }
             #endif
             body_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             bodyCase_ = BodyOneofCase.Foo;
@@ -1304,7 +1321,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           get { return bodyCase_ == BodyOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_ : null; }
           set {
             #if !DISABLE_EVENTS
+            if(bodyCase_ != BodyOneofCase.Internal || !value.Equals(body_)) {
             Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+            }
             #endif
             body_ = value;
             bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.Internal;
@@ -1326,8 +1345,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void ClearBody() {
-          bodyCase_ = BodyOneofCase.None;
-          body_ = null;
+          throw new NotSupportedException("Clearing oneofs is not supported by the event system");
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

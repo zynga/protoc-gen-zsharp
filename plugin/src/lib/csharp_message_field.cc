@@ -272,14 +272,17 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
       if (isInternalSourced) {
         printer->Print(
           variables_,
-          "    if($oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
+          "    if($oneof_name$Case_ == $oneof_property_name$OneofCase.$property_name$ && $oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
           "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
       }
+      // if (!value.Equals(test_)) {
 
       printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
+      printer->Print(variables_, "    if($oneof_name$Case_ != $oneof_property_name$OneofCase.$property_name$ || !value.Equals($oneof_name$_)) {\n");
       printer->Print(
               variables_,
               "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
+      printer->Print(variables_, "    }\n");
       printer->Print(variables_,"    #endif\n");
     }
 

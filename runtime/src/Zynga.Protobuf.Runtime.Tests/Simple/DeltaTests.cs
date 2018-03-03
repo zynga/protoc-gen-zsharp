@@ -262,8 +262,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 		[Fact]
 		public void ShouldNotGenerateDeltasForNoOpsOnPrimitiveFields() {
-			var blob = new TestBlob {Foo = new Foo()};
+			var blob = new TestBlob();
+			blob.Foo = new Foo();
+			AssertGenerated(blob);
 			blob.ClearEvents();
+
+			blob.Foo = new Foo();
+			AssertNotGenerated(blob);
 
 			blob.Foo.Long = 0L;
 			AssertNotGenerated(blob);

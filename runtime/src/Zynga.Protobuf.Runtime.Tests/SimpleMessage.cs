@@ -108,7 +108,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(b_ != null) b_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 2));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(b_)) {
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         b_ = value;
       }

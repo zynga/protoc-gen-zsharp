@@ -89,9 +89,11 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     printer->Print(
        variables_,
        "    #if !DISABLE_EVENTS\n");
+    printer->Print(variables_, "    if(value == null || !value.Equals($name$_)) {\n");
     printer->Print(
        variables_,
-       "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
+       "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
+    printer->Print(variables_, "    }\n");
     printer->Print(
        variables_,
        "    #endif\n");

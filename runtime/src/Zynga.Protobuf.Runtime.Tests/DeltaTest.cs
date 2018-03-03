@@ -193,7 +193,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(bar_ != null) bar_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 1));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(bar_)) {
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         bar_ = value;
       }
@@ -209,7 +211,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(foo_ != null) foo_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 2));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(foo_)) {
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         foo_ = value;
       }
@@ -398,7 +402,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return zam_; }
       set {
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(zam_)) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         zam_ = value;
       }
@@ -428,7 +434,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return timestamp_; }
       set {
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(timestamp_)) {
+          Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         timestamp_ = value;
       }
@@ -442,7 +450,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return duration_; }
       set {
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(duration_)) {
+          Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         duration_ = value;
       }
@@ -458,7 +468,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(allPrims_ != null) allPrims_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 15));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(15, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(allPrims_)) {
+          Context.AddSetEvent(15, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         allPrims_ = value;
       }
@@ -474,7 +486,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(testBlob_ != null) testBlob_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 16));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(16, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(testBlob_)) {
+          Context.AddSetEvent(16, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         testBlob_ = value;
       }
@@ -1034,7 +1048,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(foo_ != null) foo_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 3));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(foo_)) {
+          Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         foo_ = value;
       }
@@ -1480,7 +1496,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(foo_ != null) foo_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 1));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(foo_)) {
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         foo_ = value;
       }
@@ -2361,7 +2379,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(primitives_ != null) primitives_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 2));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(primitives_)) {
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         primitives_ = value;
       }
@@ -2393,7 +2413,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(bar_ != null) bar_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 4));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(bar_)) {
+          Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         bar_ = value;
       }
@@ -2650,7 +2672,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(primitives_ != null) primitives_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 2));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(primitives_)) {
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         primitives_ = value;
       }
@@ -2682,7 +2706,9 @@ namespace Com.Zynga.Runtime.Protobuf {
         if(bar_ != null) bar_.ClearParent();
         value.SetParent(Context, new EventPath(Context.Path, 4));
         #if !DISABLE_EVENTS
-        Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        if(value == null || !value.Equals(bar_)) {
+          Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
         #endif
         bar_ = value;
       }

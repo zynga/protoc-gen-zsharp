@@ -225,7 +225,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             }
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -233,6 +233,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -378,7 +379,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             c_ = e.Set.I64;
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -386,6 +387,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {

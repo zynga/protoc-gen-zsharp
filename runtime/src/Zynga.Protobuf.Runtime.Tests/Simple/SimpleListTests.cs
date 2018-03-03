@@ -129,7 +129,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			list.TestBar.Remove("bad");
 			list.TestBar.RemoveAt(3);
 
-			var root = list.GenerateEvents();
+			var root = list.PeekEvents();
 			var newList = new SimpleDeltaStringList();
 			newList.ApplyEvents(root);
 
@@ -161,7 +161,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			list.TestBar.Remove(4);
 			list.TestBar.RemoveAt(3);
 
-			var root = list.GenerateEvents();
+			var root = list.PeekEvents();
 			var newList = new SimpleDeltaLongList();
 			newList.ApplyEvents(root);
 
@@ -193,7 +193,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			list.TestBar.Remove(SimpleListEnum.D);
 			list.TestBar.RemoveAt(3);
 
-			var root = list.GenerateEvents();
+			var root = list.PeekEvents();
 			var newList = new SimpleDeltaEnumList();
 			newList.ApplyEvents(root);
 
@@ -225,7 +225,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			list.TestBar.Remove(new SimpleListDeltaMessage {H = "bad"});
 			list.TestBar.RemoveAt(3);
 
-			var root = list.GenerateEvents();
+			var root = list.PeekEvents();
 			var newList = new SimpleDeltaMessageList();
 			newList.ApplyEvents(root);
 

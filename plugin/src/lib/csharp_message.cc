@@ -269,7 +269,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     vars["original_name"] = descriptor_->oneof_decl(i)->name();
     printer->Print(
       vars,
-      "public object $name$_;\n"
+      "private object $name$_;\n"
       "/// <summary>Enum of possible cases for the \"$original_name$\" oneof.</summary>\n"
       "public enum $property_name$OneofCase {\n");
     printer->Indent();
@@ -286,7 +286,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     // It's unclear exactly where they should go.
 	printer->Print(
 	  vars,
-	  "public $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
+	  "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
 	WriteGeneratedCodeAttributes(printer);
 	printer->Print(
 	  vars,
@@ -361,7 +361,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 
     printer->Print(
       vars,
-      "      default: \n"
+      "      default:\n"
       "        return false;\n"
       "      break;\n"
       "    }\n"
@@ -373,6 +373,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     printer->Print(
       vars,
       "public zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
+      "  ClearEvents();\n"
       "  var er = new zpr.EventSource.EventSourceRoot();\n"
       "  var setEvent = new zpr.EventSource.EventData {\n"
       "    Set = new zpr.EventSource.EventContent {\n"

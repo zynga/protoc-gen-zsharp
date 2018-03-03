@@ -30,6 +30,8 @@ message TestBlob {
   google.protobuf.Duration duration = 14;
 
   AllPrimitives all_prims = 15;
+
+  TestBlob test_blob = 16;
 }
 
 message Foo {

@@ -18,7 +18,8 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		/// <summary>
-		/// Applies a specific event with the current path index specified
+		/// Applies a specific event with the current path index specified.
+		/// This is for internal use only.
 		/// </summary>
 		/// <param name="e"></param>
 		/// <param name="pathIndex"></param>
@@ -29,7 +30,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Returns the existing set of events, this does not clear the events associated with the messages
 		/// </summary>
 		/// <returns></returns>
-		public EventSourceRoot GenerateEvents() {
+		public EventSourceRoot PeekEvents() {
 			var er = new EventSourceRoot();
 			er.Events.AddRange(Context.Events);
 			return er;
@@ -39,12 +40,12 @@ namespace Zynga.Protobuf.Runtime {
 		/// Returns the existing set of events and clears them
 		/// </summary>
 		/// <returns></returns>
-		public EventSourceRoot GetAndClearEvents() {
-			var er = GenerateEvents();
+		public EventSourceRoot GenerateEvents() {
+			var er = PeekEvents();
 			ClearEvents();
 			return er;
 		}
-		
+
 		/// <summary>
 		/// Clears the existing events that have been generated
 		/// </summary>
@@ -53,7 +54,8 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		/// <summary>
-		/// Used to establish a parent child relationship between a message and child message
+		/// Used to establish a parent child relationship between a message and child message.
+		/// This is for internal use only.
 		/// </summary>
 		/// <param name="parent"></param>
 		/// <param name="path"></param>
@@ -63,7 +65,7 @@ namespace Zynga.Protobuf.Runtime {
 
 		/// <summary>
 		/// Clears the existing parent, this is typically called when a child message is replaced or a message
-		/// is removed from a list or a map.
+		/// is removed from a list or a map. This is for internal use only.
 		/// </summary>
 		public virtual void ClearParent() {
 			Context.ClearParent();
@@ -73,7 +75,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Used for ListEventContext objects, which may have had their index updated by a replace or insert event
 		/// </summary>
 		/// <param name="index"></param>
-		public void TryUpdateContextIndex(int index) {
+		internal void TryUpdateContextIndex(int index) {
 			var listContext = Context as ListEventContext;
 			if (listContext != null) {
 				listContext.Index = index;

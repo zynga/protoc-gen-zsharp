@@ -165,7 +165,7 @@ void PrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap)
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
-  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = data };\n");
 }
 
 
@@ -379,7 +379,7 @@ void PrimitiveOneofFieldGenerator::GenerateEventAdd(io::Printer* printer, bool i
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
 
-  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = data };\n");
 }
 
 void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {

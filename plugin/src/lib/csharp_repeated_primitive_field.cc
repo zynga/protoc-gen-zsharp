@@ -71,7 +71,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
       variables_,
       "public class $property_name$DataConverter: EventDataConverter<$type_name$> {\n"
       "  public override zpr.EventSource.EventContent GetEventData($type_name$ data) {\n"
-      "    return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n"
+      "    return new zpr.EventSource.EventContent() { $data_value$ = data };\n"
       "  }\n"
       "  public override $type_name$ GetItem(zpr.EventSource.EventContent data) {\n"
       "    return data.$data_value$;\n"
@@ -119,7 +119,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateEventAdd(io::Printer* printer, boo
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
-  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = data };\n");
 }
 
 void RepeatedPrimitiveFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {

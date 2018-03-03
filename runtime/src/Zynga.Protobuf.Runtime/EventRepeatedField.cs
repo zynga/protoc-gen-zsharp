@@ -42,9 +42,10 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public void AddEntriesFrom(CodedInputStream input, FieldCodec<T> codec) {
+			var startIndex = Count;
 			_internal.AddEntriesFrom(input, codec);
 			if (_isMessageType) {
-				for (int i = 0; i < _internal.Count; i++) {
+				for (int i = startIndex; i < _internal.Count; i++) {
 					SetParent(i, _internal[i]);
 				}
 			}

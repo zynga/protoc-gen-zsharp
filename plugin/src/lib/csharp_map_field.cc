@@ -230,7 +230,7 @@ void MapFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isMap) {
   vars["type_name"] = variables_["type_name"];
   vars["key_type_name"] = type_name(key_descriptor);
   vars["value_type_name"] = type_name(value_descriptor);
-  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.MapData };\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { MapData = data };\n");
 }
 
 void MapFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {

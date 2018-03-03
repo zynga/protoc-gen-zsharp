@@ -166,9 +166,14 @@ namespace Zynga.Protobuf.Runtime {
 		public T this[int index] {
 			get { return _internal[index]; }
 			set {
+				#if !DISABLE_EVENTS
+				var generateEvent = !value.Equals(_internal[index]);
+				#endif
 				InternalReplaceAt(index, value);
 				#if !DISABLE_EVENTS
-				ReplaceListEvent(index, value);
+				if (generateEvent) {
+					ReplaceListEvent(index, value);
+				}
 				#endif
 			}
 		}

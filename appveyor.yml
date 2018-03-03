@@ -10,6 +10,9 @@ environment:
 
 install:
 - appveyor DownloadFile https://github.com/bazelbuild/bazel/releases/download/0.10.0/bazel-0.10.0-windows-x86_64.exe -FileName bazel.exe
+- curl -SLko protoc.zip https://github.com/google/protobuf/releases/download/v3.4.0/protoc-3.4.0-win32.zip
+- 7z e protoc.zip
+- move protoc.exe C:\projects
 
 build_script:
   - 'cd plugin'

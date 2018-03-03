@@ -122,7 +122,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		[Fact]
 		public void AppliedDeltasShouldEqual() {
 			var blob = populated();
-			var root = blob.GenerateEvents();
+			var root = blob.PeekEvents();
 			blob.ClearEvents();
 
 			var newBlob = new TestBlob();
@@ -134,13 +134,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		[Fact]
 		public void ShouldProduceDeltasWithTheCorrectPaths() {
 			var emptyBlob = new TestBlob();
-			var events = emptyBlob.GenerateEvents();
+			var events = emptyBlob.PeekEvents();
 			Assert.Equal(0, events.Events.Count);
 
 			var blob = new TestBlob();
 			blob.Bar = new Bar();
 			blob.Bar.Foo = new Foo();
-			Assert.Equal(2, blob.GenerateEvents().Events.Count);
+			Assert.Equal(2, blob.PeekEvents().Events.Count);
 			blob.ClearEvents();
 
 			blob.Bar.Foo.Long = 1;
@@ -254,7 +254,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldGenerateValidDeltasForRecursiveMap() {
 			var map = CreateRecursiveMap(10);
 			AddRecusiveMapFields(map);
-			var root = map.GetAndClearEvents();
+			var root = map.GenerateEvents();
 			var newMap = new RecursiveMap();
 			newMap.ApplyEvents(root);
 			Assert.Equal(map, newMap);
@@ -286,7 +286,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			list.Primitives.M = 21;
 			list.Primitives.N = -22;
 			list.Primitives.O = -23;
-			
+
 			list.Bar = new Bar();
 			list.Bar.Foo = new Foo();
 			list.Enumero = Enumero.Halp;
@@ -300,7 +300,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		public void ShouldGenerateValidDeltasForRecursiveList() {
 			var list = CeateRecusiveList(10);
 			AddRecusiveListFields(list);
-			var root = list.GetAndClearEvents();
+			var root = list.GenerateEvents();
 			var newList = new RecursiveList();
 			newList.ApplyEvents(root);
 			Assert.Equal(list, newList);

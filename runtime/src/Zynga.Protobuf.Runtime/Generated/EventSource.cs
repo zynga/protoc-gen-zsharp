@@ -702,7 +702,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       }
     }
 
-    public object action_;
+    private object action_;
     /// <summary>Enum of possible cases for the "action" oneof.</summary>
     public enum ActionOneofCase {
       None = 0,
@@ -710,7 +710,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       MapEvent = 3,
       ListEvent = 4,
     }
-    public ActionOneofCase actionCase_ = ActionOneofCase.None;
+    private ActionOneofCase actionCase_ = ActionOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ActionOneofCase ActionCase {
       get { return actionCase_; }
@@ -1113,7 +1113,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       }
     }
 
-    public object data_;
+    private object data_;
     /// <summary>Enum of possible cases for the "data" oneof.</summary>
     public enum DataOneofCase {
       None = 0,
@@ -1133,7 +1133,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       SI32 = 14,
       SI64 = 15,
     }
-    public DataOneofCase dataCase_ = DataOneofCase.None;
+    private DataOneofCase dataCase_ = DataOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DataOneofCase DataCase {
       get { return dataCase_; }

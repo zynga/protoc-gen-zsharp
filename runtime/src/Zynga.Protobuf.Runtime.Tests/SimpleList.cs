@@ -508,7 +508,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForString(90);
     public class TestBarDataConverter: EventDataConverter<string> {
       public override zpr.EventSource.EventContent GetEventData(string data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+        return new zpr.EventSource.EventContent() { StringData = data };
       }
       public override string GetItem(zpr.EventSource.EventContent data) {
         return data.StringData;
@@ -774,7 +774,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForInt64(90);
     public class TestBarDataConverter: EventDataConverter<long> {
       public override zpr.EventSource.EventContent GetEventData(long data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I64 };
+        return new zpr.EventSource.EventContent() { I64 = data };
       }
       public override long GetItem(zpr.EventSource.EventContent data) {
         return data.I64;
@@ -1041,7 +1041,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForEnum(90, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.SimpleListEnum) x);
     public class TestBarDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> {
       public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.SimpleListEnum data) {
-        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
+        return new zpr.EventSource.EventContent() { U32 = Convert.ToUInt32(data) };
       }
       public override global::Com.Zynga.Runtime.Protobuf.SimpleListEnum GetItem(zpr.EventSource.EventContent data) {
         return (global::Com.Zynga.Runtime.Protobuf.SimpleListEnum) data.U32;

@@ -507,7 +507,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForInt32(42);
     public class TestPrimDataConverter: EventDataConverter<int> {
       public override zpr.EventSource.EventContent GetEventData(int data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
+        return new zpr.EventSource.EventContent() { I32 = data };
       }
       public override int GetItem(zpr.EventSource.EventContent data) {
         return data.I32;
@@ -546,7 +546,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Com.Zynga.Runtime.Protobuf.EnumTest) x);
     public class TestEnumDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.EnumTest> {
       public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.EnumTest data) {
-        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.U32 };
+        return new zpr.EventSource.EventContent() { U32 = Convert.ToUInt32(data) };
       }
       public override global::Com.Zynga.Runtime.Protobuf.EnumTest GetItem(zpr.EventSource.EventContent data) {
         return (global::Com.Zynga.Runtime.Protobuf.EnumTest) data.U32;
@@ -698,14 +698,14 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
 
-    public object testOneof_;
+    private object testOneof_;
     /// <summary>Enum of possible cases for the "testOneof" oneof.</summary>
     public enum TestOneofOneofCase {
       None = 0,
       Foo = 2,
       Internal = 3,
     }
-    public TestOneofOneofCase testOneofCase_ = TestOneofOneofCase.None;
+    private TestOneofOneofCase testOneofCase_ = TestOneofOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestOneofOneofCase TestOneofCase {
       get { return testOneofCase_; }
@@ -1309,14 +1309,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
         }
 
-        public object body_;
+        private object body_;
         /// <summary>Enum of possible cases for the "body" oneof.</summary>
         public enum BodyOneofCase {
           None = 0,
           Foo = 1,
           Internal = 2,
         }
-        public BodyOneofCase bodyCase_ = BodyOneofCase.None;
+        private BodyOneofCase bodyCase_ = BodyOneofCase.None;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public BodyOneofCase BodyCase {
           get { return bodyCase_; }

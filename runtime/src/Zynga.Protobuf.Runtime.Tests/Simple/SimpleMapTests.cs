@@ -80,7 +80,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			map.TestFoo.Remove(3);
 			map.TestFoo[4] = new SimpleMapDeltaMessage {H = "all"};
 
-			var root = map.GenerateEvents();
+			var root = map.PeekEvents();
 			var newMap = new SimpleLongToMessageDeltaMap();
 			newMap.ApplyEvents(root);
 
@@ -108,7 +108,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			map.TestFoo.Remove("3");
 			map.TestFoo["4"] = SimpleMapEnum.E;
 
-			var root = map.GenerateEvents();
+			var root = map.PeekEvents();
 			var newMap = new SimpleStringToEnumDeltaMap();
 			newMap.ApplyEvents(root);
 
@@ -136,7 +136,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			map.TestFoo.Remove("3");
 			map.TestFoo["4"] = "e";
 
-			var root = map.GenerateEvents();
+			var root = map.PeekEvents();
 			var newMap = new SimpleStringToStringDeltaMap();
 			newMap.ApplyEvents(root);
 
@@ -164,7 +164,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			map.TestFoo.Remove("3");
 			map.TestFoo["4"] = 5;
 
-			var root = map.GenerateEvents();
+			var root = map.PeekEvents();
 			var newMap = new SimpleStringToLongDeltaMap();
 			newMap.ApplyEvents(root);
 

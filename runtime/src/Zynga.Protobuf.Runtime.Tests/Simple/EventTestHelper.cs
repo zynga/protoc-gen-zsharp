@@ -4,13 +4,13 @@ using Zynga.Protobuf.Runtime.EventSource;
 namespace Zynga.Protobuf.Runtime.Tests.Simple {
 	public static class EventTestHelper {
 		public static EventSourceRoot AssertGenerated(EventRegistry blob) {
-			EventSourceRoot root = blob.GenerateEvents();
+			EventSourceRoot root = blob.PeekEvents();
 			Assert.Single(root.Events);
 			return root;
 		}
 
 		public static void AssertNotGenerated(EventRegistry blob) {
-			EventSourceRoot root = blob.GenerateEvents();
+			EventSourceRoot root = blob.PeekEvents();
 			Assert.Empty(root.Events);
 		}
 		

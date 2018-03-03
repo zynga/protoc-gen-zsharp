@@ -47,7 +47,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			e1.EventId = "Heool World";
 
 			var e2 = new EventTest();
-			e2.ApplyEvents(e1.GenerateEvents());
+			e2.ApplyEvents(e1.PeekEvents());
 
 			Assert.Equal(e1.GetHashCode(), e2.GetHashCode());
 		}
@@ -58,7 +58,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			e1.EventId = "Heool World";
 
 			var e2 = new EventTest();
-			e2.ApplyEvents(e1.GenerateEvents());
+			e2.ApplyEvents(e1.PeekEvents());
 
 			Assert.Equal(e1.EventId, e2.EventId);
 		}
@@ -69,7 +69,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			e1.EventId = "Heool World";
 
 			var e2 = new EventTest();
-			e2.ApplyEvents(e1.GenerateEvents());
+			e2.ApplyEvents(e1.PeekEvents());
 
 			e1.EventId = "Foo World";
 

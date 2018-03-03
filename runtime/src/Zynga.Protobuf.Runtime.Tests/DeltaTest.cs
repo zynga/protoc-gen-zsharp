@@ -285,7 +285,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForInt32(42);
     public class IlistDataConverter: EventDataConverter<int> {
       public override zpr.EventSource.EventContent GetEventData(int data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.I32 };
+        return new zpr.EventSource.EventContent() { I32 = data };
       }
       public override int GetItem(zpr.EventSource.EventContent data) {
         return data.I32;
@@ -304,7 +304,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         = pb::FieldCodec.ForString(50);
     public class SlistDataConverter: EventDataConverter<string> {
       public override zpr.EventSource.EventContent GetEventData(string data) {
-        return new zpr.EventSource.EventContent() { data_ = data, dataCase_ = zpr.EventSource.EventContent.DataOneofCase.StringData };
+        return new zpr.EventSource.EventContent() { StringData = data };
       }
       public override string GetItem(zpr.EventSource.EventContent data) {
         return data.StringData;
@@ -453,7 +453,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
 
-    public object test_;
+    private object test_;
     /// <summary>Enum of possible cases for the "test" oneof.</summary>
     public enum TestOneofCase {
       None = 0,
@@ -461,7 +461,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       Maybeint = 9,
       Maybestring = 10,
     }
-    public TestOneofCase testCase_ = TestOneofCase.None;
+    private TestOneofCase testCase_ = TestOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestOneofCase TestCase {
       get { return testCase_; }
@@ -873,7 +873,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             }
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -1289,7 +1289,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 hi_ = e.Set.I32;
               }
               break;
-              default: 
+              default:
                 return false;
               break;
             }
@@ -1343,7 +1343,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             okay_ = (global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok)e.Set.U32;
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -1509,7 +1509,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             }
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -2152,7 +2152,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             o_ = e.Set.SI64;
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -2452,7 +2452,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             }
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -2738,7 +2738,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             }
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }

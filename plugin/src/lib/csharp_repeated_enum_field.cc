@@ -71,7 +71,7 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
       variables_,
       "public class $property_name$DataConverter: EventDataConverter<$type_name$> {\n"
       "  public override zpr.EventSource.EventContent GetEventData($type_name$ data) {\n"
-      "    return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n"
+      "    return new zpr.EventSource.EventContent() { $data_value$ = Convert.ToUInt32(data) };\n"
       "  }\n"
       "  public override $type_name$ GetItem(zpr.EventSource.EventContent data) {\n"
       "    return ($type_name$) data.U32;\n"
@@ -119,7 +119,7 @@ void RepeatedEnumFieldGenerator::GenerateEventAdd(io::Printer* printer, bool isM
   std::map<string, string> vars;
   vars["data_value"] = GetEventDataType(descriptor_);
   vars["type_name"] = variables_["type_name"];
-  printer->Print(vars, "        return new zpr.EventSource.EventContent() { data_ = Convert.ToUInt32(data), dataCase_ = zpr.EventSource.EventContent.DataOneofCase.$data_value$ };\n");
+  printer->Print(vars, "        return new zpr.EventSource.EventContent() { $data_value$ = Convert.ToUInt32(data) };\n");
 
 }
 

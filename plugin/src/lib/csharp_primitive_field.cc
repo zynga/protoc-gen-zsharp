@@ -112,7 +112,7 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
             printer->Print(variables_, "    if($name$_ != value) {\n");
             printer->Print(
               variables_,
-              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
+              "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
             printer->Print(variables_, "    }\n");
             printer->Print(variables_,"    #endif\n");
           }
@@ -121,7 +121,7 @@ void PrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEvent
             printer->Print(variables_, "    if($name$_ != value) {\n");
             printer->Print(
               variables_,
-              "    Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
+              "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = pb::ProtoPreconditions.CheckNotNull(value, \"value\") });\n");
             printer->Print(variables_, "    }\n");
             printer->Print(variables_,"    #endif\n");
           }

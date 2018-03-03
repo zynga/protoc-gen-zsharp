@@ -257,7 +257,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(data_ != value) {
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
         }
         #endif
         data_ = value;
@@ -455,7 +455,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(eventId_ != value) {
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         eventId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -488,7 +488,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         value.SetParent(Context, new EventPath(Context.Path, 3));
         #if !DISABLE_EVENTS
         if(testOneofCase_ != TestOneofOneofCase.Internal || !value.Equals(testOneof_)) {
-        Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+          Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         }
         #endif
         testOneof_ = value;
@@ -676,7 +676,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(testStringNoChecksum_ != value) {
-        Context.AddSetEvent(12, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(12, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         testStringNoChecksum_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -692,7 +692,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(testBytesField_ != value) {
-        Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         testBytesField_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -1091,7 +1091,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           set {
             #if !DISABLE_EVENTS
             if(data_ != value) {
-            Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+              Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
             }
             #endif
             data_ = value;
@@ -1322,7 +1322,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           set {
             #if !DISABLE_EVENTS
             if(bodyCase_ != BodyOneofCase.Internal || !value.Equals(body_)) {
-            Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+              Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
             }
             #endif
             body_ = value;

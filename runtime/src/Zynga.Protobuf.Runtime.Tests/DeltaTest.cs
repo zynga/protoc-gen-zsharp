@@ -350,7 +350,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         value.SetParent(Context, new EventPath(Context.Path, 8));
         #if !DISABLE_EVENTS
         if(testCase_ != TestOneofCase.Maybefoo || !value.Equals(test_)) {
-        Context.AddSetEvent(8, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
         }
         #endif
         test_ = value;
@@ -413,7 +413,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(fieldBool_ != value) {
-        Context.AddSetEvent(12, new zpr.EventSource.EventContent { BoolData = value });
+          Context.AddSetEvent(12, new zpr.EventSource.EventContent { BoolData = value });
         }
         #endif
         fieldBool_ = value;
@@ -1001,7 +1001,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(long_ != value) {
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { I64 = value });
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { I64 = value });
         }
         #endif
         long_ = value;
@@ -1017,7 +1017,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(str_ != value) {
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         str_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -1268,7 +1268,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           set {
             #if !DISABLE_EVENTS
             if(hi_ != value) {
-            Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
+              Context.AddSetEvent(1, new zpr.EventSource.EventContent { I32 = value });
             }
             #endif
             hi_ = value;
@@ -1660,7 +1660,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(a_ != value) {
-        Context.AddSetEvent(1, new zpr.EventSource.EventContent { U32 = value });
+          Context.AddSetEvent(1, new zpr.EventSource.EventContent { U32 = value });
         }
         #endif
         a_ = value;
@@ -1676,7 +1676,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(b_ != value) {
-        Context.AddSetEvent(2, new zpr.EventSource.EventContent { I32 = value });
+          Context.AddSetEvent(2, new zpr.EventSource.EventContent { I32 = value });
         }
         #endif
         b_ = value;
@@ -1692,7 +1692,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(c_ != value) {
-        Context.AddSetEvent(3, new zpr.EventSource.EventContent { F64 = value });
+          Context.AddSetEvent(3, new zpr.EventSource.EventContent { F64 = value });
         }
         #endif
         c_ = value;
@@ -1708,7 +1708,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(d_ != value) {
-        Context.AddSetEvent(4, new zpr.EventSource.EventContent { F32 = value });
+          Context.AddSetEvent(4, new zpr.EventSource.EventContent { F32 = value });
         }
         #endif
         d_ = value;
@@ -1724,7 +1724,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(e_ != value) {
-        Context.AddSetEvent(5, new zpr.EventSource.EventContent { SF64 = value });
+          Context.AddSetEvent(5, new zpr.EventSource.EventContent { SF64 = value });
         }
         #endif
         e_ = value;
@@ -1740,7 +1740,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(f_ != value) {
-        Context.AddSetEvent(6, new zpr.EventSource.EventContent { SF32 = value });
+          Context.AddSetEvent(6, new zpr.EventSource.EventContent { SF32 = value });
         }
         #endif
         f_ = value;
@@ -1756,7 +1756,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(g_ != value) {
-        Context.AddSetEvent(7, new zpr.EventSource.EventContent { R64 = value });
+          Context.AddSetEvent(7, new zpr.EventSource.EventContent { R64 = value });
         }
         #endif
         g_ = value;
@@ -1772,7 +1772,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(h_ != value) {
-        Context.AddSetEvent(8, new zpr.EventSource.EventContent { R32 = value });
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { R32 = value });
         }
         #endif
         h_ = value;
@@ -1788,7 +1788,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(i_ != value) {
-        Context.AddSetEvent(9, new zpr.EventSource.EventContent { BoolData = value });
+          Context.AddSetEvent(9, new zpr.EventSource.EventContent { BoolData = value });
         }
         #endif
         i_ = value;
@@ -1804,7 +1804,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(j_ != value) {
-        Context.AddSetEvent(10, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(10, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         j_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -1820,7 +1820,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(k_ != value) {
-        Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
         }
         #endif
         k_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
@@ -1836,7 +1836,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(l_ != value) {
-        Context.AddSetEvent(12, new zpr.EventSource.EventContent { I64 = value });
+          Context.AddSetEvent(12, new zpr.EventSource.EventContent { I64 = value });
         }
         #endif
         l_ = value;
@@ -1852,7 +1852,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(m_ != value) {
-        Context.AddSetEvent(13, new zpr.EventSource.EventContent { U64 = value });
+          Context.AddSetEvent(13, new zpr.EventSource.EventContent { U64 = value });
         }
         #endif
         m_ = value;
@@ -1868,7 +1868,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(n_ != value) {
-        Context.AddSetEvent(14, new zpr.EventSource.EventContent { SI32 = value });
+          Context.AddSetEvent(14, new zpr.EventSource.EventContent { SI32 = value });
         }
         #endif
         n_ = value;
@@ -1884,7 +1884,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       set {
         #if !DISABLE_EVENTS
         if(o_ != value) {
-        Context.AddSetEvent(15, new zpr.EventSource.EventContent { SI64 = value });
+          Context.AddSetEvent(15, new zpr.EventSource.EventContent { SI64 = value });
         }
         #endif
         o_ = value;

@@ -348,7 +348,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             data_ = e.Set.I32;
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -356,6 +356,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -1216,7 +1217,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 }
               }
               break;
-              default: 
+              default:
                 return false;
               break;
             }
@@ -1224,6 +1225,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+          ClearEvents();
           var er = new zpr.EventSource.EventSourceRoot();
           var setEvent = new zpr.EventSource.EventData {
             Set = new zpr.EventSource.EventContent {
@@ -1450,7 +1452,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 bodyCase_ = body_ == null ? BodyOneofCase.None : BodyOneofCase.Internal;
               }
               break;
-              default: 
+              default:
                 return false;
               break;
             }
@@ -1458,6 +1460,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+          ClearEvents();
           var er = new zpr.EventSource.EventSourceRoot();
           var setEvent = new zpr.EventSource.EventData {
             Set = new zpr.EventSource.EventContent {
@@ -1547,7 +1550,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             date_  = global::Google.Protobuf.WellKnownTypes.Timestamp.Parser.ParseFrom(e.Set.ByteData);
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -1555,6 +1558,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {

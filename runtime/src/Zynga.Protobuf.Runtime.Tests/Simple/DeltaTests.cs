@@ -305,5 +305,18 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			newList.ApplyEvents(root);
 			Assert.Equal(list, newList);
 		}
+
+		[Fact]
+		public void EventsShouldBeClearedAfterGeneratingSnapshot() {
+			var blob = populated();
+			var snapshot = blob.GenerateSnapshot();
+			var events = blob.GenerateEvents();
+
+			var newBlob = new TestBlob();
+			newBlob.ApplyEvents(snapshot);
+			newBlob.ApplyEvents(events);
+
+			Assert.Equal(blob, newBlob);
+		}
 	}
 }

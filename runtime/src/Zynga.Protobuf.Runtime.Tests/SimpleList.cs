@@ -331,7 +331,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             h_ = e.Set.StringData;
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -339,6 +339,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -596,7 +597,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             testBar_.ApplyEvent(e.ListEvent);
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -604,6 +605,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -863,7 +865,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             testBar_.ApplyEvent(e.ListEvent);
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -871,6 +873,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -1130,7 +1133,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             testBar_.ApplyEvent(e.ListEvent);
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -1138,6 +1141,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {
@@ -1396,7 +1400,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             testBar_.ApplyEvent(e.ListEvent);
           }
           break;
-          default: 
+          default:
             return false;
           break;
         }
@@ -1404,6 +1408,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
         Set = new zpr.EventSource.EventContent {

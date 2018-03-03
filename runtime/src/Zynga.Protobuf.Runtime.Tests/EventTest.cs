@@ -1233,10 +1233,14 @@ namespace Com.Zynga.Runtime.Protobuf {
               break;
               case 2: {
                 if (e.Path.Count - 1 != pathIndex) {
-                  if (dataTwo_ == null) dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
+                  if (dataTwo_ == null) {
+                    dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
+                    dataTwo_.SetParent(Context, new EventPath(Context.Path, 2));
+                  }
                   (dataTwo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
                 } else {
                   dataTwo_  = global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Parser.ParseFrom(e.Set.ByteData);
+                  dataTwo_.SetParent(Context, new EventPath(Context.Path, 2));
                 }
               }
               break;
@@ -1519,10 +1523,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 3: {
             if (e.Path.Count - 1 != pathIndex) {
-              if (testOneof_ == null) testOneof_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
-              (testOneof_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              if (testOneof_ == null) {
+                testOneof_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
+                (testOneof_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+              }
+              (testOneof_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               testOneof_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
+              (testOneof_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
             }
             testOneofCase_ = testOneof_ == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
           }
@@ -1549,10 +1557,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 9: {
             if (e.Path.Count - 1 != pathIndex) {
-              if (data_ == null) data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
+              if (data_ == null) {
+                data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
+                data_.SetParent(Context, new EventPath(Context.Path, 9));
+              }
               (data_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               data_  = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Parser.ParseFrom(e.Set.ByteData);
+              data_.SetParent(Context, new EventPath(Context.Path, 9));
             }
           }
           break;

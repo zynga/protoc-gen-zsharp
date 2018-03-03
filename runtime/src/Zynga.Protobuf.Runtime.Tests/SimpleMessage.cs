@@ -222,10 +222,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           break;
           case 2: {
             if (e.Path.Count - 1 != pathIndex) {
-              if (b_ == null) b_ = new global::Com.Zynga.Runtime.Protobuf.ChildMessage();
+              if (b_ == null) {
+                b_ = new global::Com.Zynga.Runtime.Protobuf.ChildMessage();
+                b_.SetParent(Context, new EventPath(Context.Path, 2));
+              }
               (b_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               b_  = global::Com.Zynga.Runtime.Protobuf.ChildMessage.Parser.ParseFrom(e.Set.ByteData);
+              b_.SetParent(Context, new EventPath(Context.Path, 2));
             }
           }
           break;

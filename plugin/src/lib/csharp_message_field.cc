@@ -111,10 +111,14 @@ void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
   if (isEventSourced) {
     printer->Print(variables_,
       "        if (e.Path.Count - 1 != pathIndex) {\n"
-      "          if ($name$_ == null) $name$_ = new $type_name$();\n"
+      "          if ($name$_ == null) {\n"
+      "            $name$_ = new $type_name$();\n"
+      "            $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "          }\n"
       "          ($name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        } else {\n"
       "          $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "          $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n"
       "        }\n");
   }
   else {
@@ -301,10 +305,14 @@ void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
   if (isEventSourced) {
     printer->Print(variables_,
       "        if (e.Path.Count - 1 != pathIndex) {\n"
-      "          if ($oneof_name$_ == null) $oneof_name$_ = new $type_name$();\n"
-      "          ($oneof_name$_  as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
+      "          if ($oneof_name$_ == null) {\n"
+      "            $oneof_name$_ = new $type_name$();\n"
+      "            ($oneof_name$_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "          }\n"
+      "          ($oneof_name$_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        } else {\n"
       "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
+      "          ($oneof_name$_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, $number$));\n"
       "        }\n");
   }
   else {

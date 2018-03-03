@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+// long, string, enum, message, list, map, oneof
+
+enum Enum1 {
+  NESTED_UNSET_1 = 0;
+  NESTED_A_1 = 1;
+  NESTED_B_1 = 2;
+}
+
+enum Enum2 {
+  NESTED_UNSET_2 = 0;
+  NESTED_A_2 = 1;
+  NESTED_B_2 = 2;
+  NESTED_C_2 = 3;
+}
+
+message NestedMessage1 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int32 int_a = 1;
+}
+
+message NestedMessage2 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int32 int_a = 1;
+  int32 int_b = 2;
+}
+
+message UpgradeMessage1 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int64 long_a = 1;
+  string str_a = 2;
+  Enum1 enum_a = 3;
+  NestedMessage1 nested_a = 4;
+  repeated int32 list_a = 5;
+  map<int32, string> map_a = 6;
+
+  oneof oneof_a {
+    float float_a = 7;
+  }
+}
+
+// just re-name fields
+message UpgradeMessage2 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int64 long_b = 1;
+  string str_b = 2;
+  Enum1 enum_b = 3;
+  NestedMessage1 nested_b = 4;
+  repeated int32 list_b = 5;
+  map<int32, string> map_b = 6;
+
+  oneof oneof_b {
+    float float_b = 7;
+  }
+}
+
+// add a few fields
+message UpgradeMessage3 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int64 long_b = 1;
+  string str_b = 2;
+  Enum2 enum_b = 3;
+  NestedMessage2 nested_b = 4;
+  repeated int32 list_b = 5;
+  map<int32, string> map_b = 6;
+  int64 long_c = 8;
+
+  oneof oneof_b {
+    float float_b = 7;
+    float float_c = 9;
+  }
+}
+
+// remove a few fields
+message UpgradeMessage4 {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+
+  int64 long_b = 1;
+  Enum2 enum_b = 3;
+  NestedMessage2 nested_b = 4;
+  repeated int32 list_b = 5;
+  map<int32, string> map_b = 6;
+  int64 long_c = 8;
+
+  oneof oneof_b {
+    float float_c = 9;
+  }
+}

@@ -79,6 +79,9 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     ::google::protobuf::FieldOptions::internal_default_instance(),
     62346, 8, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    ::google::protobuf::FileOptions::internal_default_instance(),
+    62347, 8, false, false);
 }
 
 void InitDefaults() {
@@ -93,12 +96,14 @@ void AddDescriptorsImpl() {
       "protobuf\032 google/protobuf/descriptor.pro"
       "to:8\n\revent_sourced\022\037.google.protobuf.Me"
       "ssageOptions\030\211\347\003 \001(\010:9\n\020exclude_checksum"
-      "\022\035.google.protobuf.FieldOptions\030\212\347\003 \001(\010B"
-      ">\n\022com.zynga.protobufB\013EventSource\252\002\032Zyn"
-      "ga.Protobuf.EventSourceb\006proto3"
+      "\022\035.google.protobuf.FieldOptions\030\212\347\003 \001(\010:"
+      ":\n\022file_event_sourced\022\034.google.protobuf."
+      "FileOptions\030\213\347\003 \001(\010B>\n\022com.zynga.protobu"
+      "fB\013EventSource\252\002\032Zynga.Protobuf.EventSou"
+      "rceb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 271);
+      descriptor, 331);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event_plugin.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_google_2fprotobuf_2fdescriptor_2eproto::AddDescriptors();
@@ -124,6 +129,9 @@ struct StaticDescriptorInitializer {
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   exclude_checksum(kExcludeChecksumFieldNumber, false);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FileOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  file_event_sourced(kFileEventSourcedFieldNumber, false);
 
 // @@protoc_insertion_point(namespace_scope)
 

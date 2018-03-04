@@ -55,6 +55,8 @@
 #include "src/lib/csharp_repeated_message_field.h"
 #include "src/lib/csharp_repeated_primitive_field.h"
 #include "src/lib/csharp_wrapper_field.h"
+#include "src/lib/generated/event_plugin.pb.h"
+
 
 using namespace google::protobuf;
 
@@ -119,6 +121,26 @@ std::string GetFileNamespace(const FileDescriptor* descriptor) {
     return descriptor->options().csharp_namespace();
   }
   return UnderscoresToCamelCase(descriptor->package(), true, true);
+}
+
+bool HasFileEventSource(const FileDescriptor* descriptor) {
+  if (descriptor != NULL) {
+      const FileOptions& op = descriptor->options();
+      return op.HasExtension(com::zynga::runtime::protobuf::file_event_sourced);
+  }
+
+  return false;
+}
+
+bool IsGoogleMessage(const Descriptor* descriptor) {
+  // this is a hack but there is no way to exclude GoogleMessageTypes
+  // other than checking their ClassName :/
+  if (descriptor != NULL) {
+     std::string ns = GetClassName(descriptor);
+     return (ns.find("Google.Protobuf.WellKnownTypes") != std::string::npos);
+  }
+
+  return false;
 }
 
 // Returns the Pascal-cased last part of the proto file. For example,

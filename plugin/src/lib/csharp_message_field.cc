@@ -235,17 +235,22 @@ void MessageFieldGenerator::GenerateCodecCode(io::Printer* printer) {
 }
 
 bool MessageFieldGenerator::IsInternalEventSourced() {
-  const MessageOptions& op = descriptor_->message_type()->options();
-  bool isInternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+  bool isInternalSourced = !IsGoogleMessage(descriptor_->message_type()) 
+                            && HasFileEventSource(descriptor_->file());
 
-  // we check and see if you are a nested type of the field owner if so
-  // then we can assume 
-  const Descriptor* parentObject = descriptor_->containing_type();
-  if (parentObject && parentObject->nested_type_count() != 0) {
-    const MessageOptions& parentOptions = parentObject->options();
-    if (parentOptions.HasExtension(com::zynga::runtime::protobuf::event_sourced) &&
-        parentObject->FindNestedTypeByName(descriptor_->message_type()->name()) != NULL) {
-      isInternalSourced = true; 
+  if (!isInternalSourced) {
+    const MessageOptions& op = descriptor_->message_type()->options();
+    isInternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced); 
+
+    // we check and see if you are a nested type of the field owner if so
+    // then we can assume 
+    const Descriptor* parentObject = descriptor_->containing_type();
+    if (parentObject && parentObject->nested_type_count() != 0) {
+      const MessageOptions& parentOptions = parentObject->options();
+      if (parentOptions.HasExtension(com::zynga::runtime::protobuf::event_sourced) &&
+          parentObject->FindNestedTypeByName(descriptor_->message_type()->name()) != NULL) {
+        isInternalSourced = true; 
+      }
     }
   }
 

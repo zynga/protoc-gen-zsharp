@@ -84,6 +84,10 @@ std::string GetFieldConstantName(const FieldDescriptor* field);
 
 std::string GetPropertyName(const FieldDescriptor* descriptor);
 
+bool HasFileEventSource(const FileDescriptor* descriptor);
+
+bool IsGoogleMessage(const Descriptor* description);
+
 int GetFixedSize(FieldDescriptor::Type type);
 
 std::string UnderscoresToCamelCase(const std::string& input,

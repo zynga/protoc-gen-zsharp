@@ -82,8 +82,12 @@ MessageGenerator::MessageGenerator(const Descriptor* descriptor,
   }
   std::sort(fields_by_number_.begin(), fields_by_number_.end(),
             CompareFieldNumbers);
+  
+  is_event_sourced = HasFileEventSource(descriptor->file());
 
-  if (descriptor_ != NULL) {
+  // only use this override if the file level check has not been
+  // set
+  if (descriptor_ != NULL && !is_event_sourced) {
       const MessageOptions& op = descriptor_->options();
       is_event_sourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
   }
@@ -404,15 +408,6 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 // are set!
 bool MessageGenerator::IsEventSourced() {
   return is_event_sourced;
-}
-
-bool MessageGenerator::IsFieldEventSourced(const FieldDescriptor* fieldDesc) {
-  const MessageOptions& op = fieldDesc->message_type()->options();
-  bool isFieldSourced =  op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
-  if (IsEventSourced() && descriptor_->FindNestedTypeByName(fieldDesc->message_type()->name()) != NULL)
-    isFieldSourced = true;
-
-  return isFieldSourced;
 }
 ///
 

@@ -71,6 +71,10 @@ static const int kExcludeChecksumFieldNumber = 62346;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   exclude_checksum;
+static const int kFileEventSourcedFieldNumber = 62347;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FileOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  file_event_sourced;
 
 // ===================================================================
 

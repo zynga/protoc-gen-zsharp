@@ -66,21 +66,21 @@ namespace Zynga.Protobuf.Runtime {
 		/// The current path of the context object
 		/// </summary>
 		public EventPath Path {
-			get => _path;
+			get { return _path; }
 		}
 
 		/// <summary>
 		/// The current events of the context object
 		/// </summary>
 		public List<EventData> Events {
-			get => _events;
+			get { return _events; }
 		}
 
 		/// <summary>
 		/// Used to enable disable the generation of events
 		/// </summary>
 		public bool EventsEnabled {
-			get => _eventsEnabled;
+			get { return _eventsEnabled; }
 			set {
 				_eventsEnabled = value;
 				if (!_eventsEnabled) {

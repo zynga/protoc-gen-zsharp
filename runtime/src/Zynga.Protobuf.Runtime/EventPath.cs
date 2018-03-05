@@ -16,7 +16,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// The full path
 		/// </summary>
 		public List<int> Path {
-			get => _path;
+			get { return _path; }
 		}
 
 		/// <summary>

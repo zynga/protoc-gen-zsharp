@@ -23,8 +23,8 @@ namespace Zynga.Protobuf.Runtime {
 		/// The current index of the RepeatedField element
 		/// </summary>
 		public int Index {
-			get => _index;
-			set => _index = value;
+			get { return _index; }
+			set { _index = value; }
 		}
 
 		private void AddUpdateEvent(EventData data) {

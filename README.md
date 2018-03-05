@@ -32,6 +32,7 @@ message Bar {
   repeated Baz baz = 2;
 }
 
+// event sourced
 message Baz {
   int32 baz_id = 1;
 }
@@ -58,6 +59,7 @@ message Bar {
   repeated Baz baz = 2;
 }
 
+// event sourced
 message Baz {
   option (com.zynga.runtime.protobuf.event_sourced) = true;
   int32 baz_id = 1;

@@ -459,5 +459,48 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			Assert.Equal(blob, newBlob);
 		}
+
+		[Fact]
+		public void ShouldNotGenerateEventsWhenDisabled() {
+			var blob = new TestBlob();
+
+			// disable events
+			blob.EventsEnabled = false;
+
+			blob.Bar = new Bar();
+			blob.Bar.Foo = new Foo();
+			blob.Bar.Foo.Long = 10;
+			blob.Bar.Foo.Str = "world";
+			blob.Foo = new Foo();
+			blob.Foo.Long = 12;
+			blob.Foo.Str = "hello";
+
+			blob.IntToString.Add(10, "world");
+			blob.StringToFoo.Add("hello", new Foo {Long = 9, Str = "ha"});
+			blob.StringToFoo["hello"].Str = "happy";
+			blob.StringToFoo["hello"].Long = 10;
+
+			blob.Foolist.Add(new Foo {Long = 123});
+			blob.Foolist[0].Long = 321;
+			blob.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.Foolist[1].Str = "lalala";
+			blob.Foolist[1].Long = 2;
+
+			blob.Ilist.Add(12);
+			blob.Ilist.Add(51);
+
+			blob.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
+
+			blob.Timestamp = new Timestamp {
+				Seconds = 1234,
+				Nanos = 987
+			};
+			blob.Duration = new Duration {
+				Seconds = 111,
+				Nanos = 2
+			};
+
+			AssertNotGenerated(blob);
+		}
 	}
 }

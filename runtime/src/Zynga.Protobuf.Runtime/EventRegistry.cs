@@ -54,6 +54,14 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		/// <summary>
+		/// Used to enable disable the generation of events
+		/// </summary>
+		public bool EventsEnabled {
+			get => Context.EventsEnabled;
+			set { Context.EventsEnabled = value; }
+		}
+
+		/// <summary>
 		/// Used to establish a parent child relationship between a message and child message.
 		/// This is for internal use only.
 		/// </summary>

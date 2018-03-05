@@ -9,7 +9,7 @@ The original C# codegen was forked from the google protobuf source (https://gith
 
 ## Update proto files
 
-You can configure event sourcing for all messages in a single proto file or on specific messages.  *NOTE!* You must ensure that child messages of an event sourced message are also marked as event sourced.  If you do not, only the initial set of the child message will be tracked.  Any other changes to the child message will not be tracked.
+You can configure event sourcing for all messages in a single proto file or on specific messages.  **NOTE!** You must ensure that child messages of an event sourced message are also marked as event sourced.  If you do not, only the initial set of the child message will be tracked.  Any other changes to the child message will not be tracked.
 
 ```protobuf
 // enable for all messages in a file

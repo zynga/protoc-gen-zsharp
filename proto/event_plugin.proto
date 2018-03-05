@@ -15,3 +15,8 @@ extend google.protobuf.MessageOptions {
 extend google.protobuf.FieldOptions {
   bool exclude_checksum = 62346;
 }
+
+extend google.protobuf.FileOptions {
+	bool file_event_sourced = 62347;
+}
+

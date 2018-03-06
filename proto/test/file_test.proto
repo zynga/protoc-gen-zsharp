@@ -23,6 +23,7 @@ message TestBlob {
     int32 maybeint = 9;
     string maybestring = 10;
     NoEvents no_events_a = 17;
+    HasEvents has_events_a = 19;
   }
 
   Foo.Zam zam = 11;

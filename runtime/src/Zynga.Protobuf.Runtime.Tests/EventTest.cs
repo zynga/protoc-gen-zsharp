@@ -662,11 +662,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.TestMessage TestNonMessage {
       get { return testNonMessage_; }
       set {
-        #if !DISABLE_EVENTS
-        if(value == null || !value.Equals(testNonMessage_)) {
-          Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
-        }
-        #endif
         testNonMessage_ = value;
       }
     }
@@ -710,11 +705,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Timestamp Date {
       get { return date_; }
       set {
-        #if !DISABLE_EVENTS
-        if(value == null || !value.Equals(date_)) {
-          Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
-        }
-        #endif
         date_ = value;
       }
     }
@@ -1332,11 +1322,6 @@ namespace Com.Zynga.Runtime.Protobuf {
         public global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage Internal {
           get { return bodyCase_ == BodyOneofCase.Internal ? (global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage) body_ : null; }
           set {
-            #if !DISABLE_EVENTS
-            if(bodyCase_ != BodyOneofCase.Internal || !value.Equals(body_)) {
-              Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
-            }
-            #endif
             body_ = value;
             bodyCase_ = value == null ? BodyOneofCase.None : BodyOneofCase.Internal;
           }

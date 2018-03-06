@@ -401,6 +401,11 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam Zam {
       get { return zam_; }
       set {
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(zam_)) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
         zam_ = value;
       }
     }
@@ -428,6 +433,11 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Timestamp Timestamp {
       get { return timestamp_; }
       set {
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(timestamp_)) {
+          Context.AddSetEvent(13, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
         timestamp_ = value;
       }
     }
@@ -439,6 +449,11 @@ namespace Com.Zynga.Runtime.Protobuf {
     public global::Google.Protobuf.WellKnownTypes.Duration Duration {
       get { return duration_; }
       set {
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(duration_)) {
+          Context.AddSetEvent(14, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
         duration_ = value;
       }
     }

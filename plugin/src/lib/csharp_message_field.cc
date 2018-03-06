@@ -65,7 +65,7 @@ MessageFieldGenerator::~MessageFieldGenerator() {
 }
 
 void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
-  bool isInternalSourced = IsInternalEventSourced();
+  bool isEnternalSourced = IsInternalEventSourced();
 
   printer->Print(
     variables_,
@@ -79,26 +79,26 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
     "  set {\n");
   
   if (isEventSourced) {
-    if (isInternalSourced) {
+    if (isEnternalSourced) {
        printer->Print(
          variables_,
          "    if($name$_ != null) $name$_.ClearParent();\n"
          "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
-
-      printer->Print(
-        variables_,
-        "    #if !DISABLE_EVENTS\n");
-      printer->Print(variables_, "    if(value == null || !value.Equals($name$_)) {\n");
-      printer->Print(
-        variables_,
-        "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
-      printer->Print(variables_, "    }\n");
-      printer->Print(
-        variables_,
-        "    #endif\n");
     }
-  }
 
+    printer->Print(
+       variables_,
+       "    #if !DISABLE_EVENTS\n");
+    printer->Print(variables_, "    if(value == null || !value.Equals($name$_)) {\n");
+    printer->Print(
+       variables_,
+       "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
+    printer->Print(variables_, "    }\n");
+    printer->Print(
+       variables_,
+       "    #endif\n");
+  }
+  
   printer->Print(
     variables_,
     "    $name$_ = value;\n"
@@ -299,14 +299,16 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
           variables_,
           "    if($oneof_name$Case_ == $oneof_property_name$OneofCase.$property_name$ && $oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
           "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
-        printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
-        printer->Print(variables_, "    if($oneof_name$Case_ != $oneof_property_name$OneofCase.$property_name$ || !value.Equals($oneof_name$_)) {\n");
-        printer->Print(
-          variables_,
-          "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
-        printer->Print(variables_, "    }\n");
-        printer->Print(variables_,"    #endif\n");
       }
+      // if (!value.Equals(test_)) {
+
+      printer->Print(variables_, "    #if !DISABLE_EVENTS\n");
+      printer->Print(variables_, "    if($oneof_name$Case_ != $oneof_property_name$OneofCase.$property_name$ || !value.Equals($oneof_name$_)) {\n");
+      printer->Print(
+              variables_,
+              "      Context.AddSetEvent($number$, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });\n");
+      printer->Print(variables_, "    }\n");
+      printer->Print(variables_,"    #endif\n");
     }
 
     printer->Print(

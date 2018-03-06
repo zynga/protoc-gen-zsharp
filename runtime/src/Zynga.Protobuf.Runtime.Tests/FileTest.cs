@@ -414,6 +414,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     public global::Com.Zynga.Runtime.Protobuf.NoEvents NoEventsA {
       get { return testCase_ == TestOneofCase.NoEventsA ? (global::Com.Zynga.Runtime.Protobuf.NoEvents) test_ : null; }
       set {
+        #if !DISABLE_EVENTS
+        if(testCase_ != TestOneofCase.NoEventsA || !value.Equals(test_)) {
+          Context.AddSetEvent(17, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
         test_ = value;
         testCase_ = value == null ? TestOneofCase.None : TestOneofCase.NoEventsA;
       }
@@ -546,6 +551,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     public global::Com.Zynga.Runtime.Protobuf.NoEvents NoEventsB {
       get { return noEventsB_; }
       set {
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(noEventsB_)) {
+          Context.AddSetEvent(18, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
         noEventsB_ = value;
       }
     }

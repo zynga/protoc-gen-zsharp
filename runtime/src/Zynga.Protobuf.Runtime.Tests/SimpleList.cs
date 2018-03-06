@@ -340,7 +340,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
@@ -606,7 +606,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
@@ -874,7 +874,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
@@ -1142,7 +1142,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {
@@ -1409,7 +1409,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       return true;
     }
 
-    public zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
       ClearEvents();
       var er = new zpr.EventSource.EventSourceRoot();
       var setEvent = new zpr.EventSource.EventData {

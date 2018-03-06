@@ -27,6 +27,11 @@ namespace Zynga.Protobuf.Runtime {
 		public abstract bool ApplyEvent(EventData e, int pathIndex);
 
 		/// <summary>
+		/// Generates a snapshot of the state
+		/// </summary>
+		public abstract EventSourceRoot GenerateSnapshot();
+
+		/// <summary>
 		/// Returns the existing set of events, this does not clear the events associated with the messages
 		/// </summary>
 		/// <returns></returns>
@@ -34,6 +39,13 @@ namespace Zynga.Protobuf.Runtime {
 			var er = new EventSourceRoot();
 			er.Events.AddRange(Context.Events);
 			return er;
+		}
+
+		/// <summary>
+		/// Returns true if the object currently has Events
+		/// </summary>
+		public bool HasEvents {
+			get { return Context.Events.Count > 0; }
 		}
 
 		/// <summary>

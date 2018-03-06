@@ -383,7 +383,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 
     printer->Print(
       vars,
-      "public zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
+      "public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {\n"
       "  ClearEvents();\n"
       "  var er = new zpr.EventSource.EventSourceRoot();\n"
       "  var setEvent = new zpr.EventSource.EventData {\n"

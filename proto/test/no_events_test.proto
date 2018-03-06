@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+
+message NoEvents {
+  int32 a = 1;
+}
+
+message HasEvents {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  int32 a = 1;
+}

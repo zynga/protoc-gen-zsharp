@@ -5,6 +5,7 @@ package com.zynga.runtime.protobuf.file;
 import "event_plugin.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "test/no_events_test.proto";
 
 option (com.zynga.runtime.protobuf.file_event_sourced) = true;
 
@@ -21,6 +22,8 @@ message TestBlob {
     Foo maybefoo = 8;
     int32 maybeint = 9;
     string maybestring = 10;
+    NoEvents no_events_a = 17;
+    HasEvents has_events_a = 19;
   }
 
   Foo.Zam zam = 11;
@@ -32,6 +35,8 @@ message TestBlob {
   AllPrimitives all_prims = 15;
 
   TestBlob test_blob = 16;
+
+  NoEvents no_events_b = 18;
 }
 
 message Foo {

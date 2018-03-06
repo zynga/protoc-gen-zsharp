@@ -234,6 +234,7 @@ void MessageFieldGenerator::GenerateCodecCode(io::Printer* printer) {
     "pb::FieldCodec.ForMessage($tag$, $type_name$.Parser)");
 }
 
+// $AS TODO: Make this function a little less crazy!
 bool MessageFieldGenerator::IsInternalEventSourced() {
   bool isInternalSourced = !IsGoogleMessage(descriptor_->message_type()) 
                             && HasFileEventSource(descriptor_->file());
@@ -250,6 +251,19 @@ bool MessageFieldGenerator::IsInternalEventSourced() {
       if (parentOptions.HasExtension(com::zynga::runtime::protobuf::event_sourced) &&
           parentObject->FindNestedTypeByName(descriptor_->message_type()->name()) != NULL) {
         isInternalSourced = true; 
+      }
+    }
+  }
+  else {
+    // we need to check and see if the field is from this current file and if its not
+    // then we need to check its Sourced case. 
+    if (descriptor_->message_type()->file() != descriptor_->file()) {
+      isInternalSourced = !IsGoogleMessage(descriptor_->message_type()) 
+                            && HasFileEventSource(descriptor_->message_type()->file());
+
+      if (!isInternalSourced) {
+        const MessageOptions& op = descriptor_->message_type()->options();
+        isInternalSourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced); 
       }
     }
   }

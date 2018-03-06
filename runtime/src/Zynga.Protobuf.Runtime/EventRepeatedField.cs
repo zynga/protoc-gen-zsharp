@@ -77,6 +77,17 @@ namespace Zynga.Protobuf.Runtime {
 			}
 		}
 
+		public void Add(IList<T> other) {
+			foreach (var v in other) {
+				if (v is IDeepCloneable<T>) {
+					InternalAdd(((IDeepCloneable<T>) v).Clone());
+				}
+				else {
+					InternalAdd(v);
+				}
+			}
+		}
+
 		public void Clear() {
 			InternalClear();
 			#if !DISABLE_EVENTS

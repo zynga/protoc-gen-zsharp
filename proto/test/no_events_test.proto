@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+message NoEvents {
+  int32 a = 1;
+}

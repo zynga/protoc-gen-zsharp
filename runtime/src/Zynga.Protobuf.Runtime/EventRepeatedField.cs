@@ -70,9 +70,15 @@ namespace Zynga.Protobuf.Runtime {
 			foreach (var v in other) {
 				if (v is IDeepCloneable<T>) {
 					InternalAdd(((IDeepCloneable<T>) v).Clone());
+					#if !DISABLE_EVENTS
+					AddListEvent(v);
+					#endif
 				}
 				else {
 					InternalAdd(v);
+					#if !DISABLE_EVENTS
+					AddListEvent(v);
+					#endif
 				}
 			}
 		}
@@ -81,9 +87,15 @@ namespace Zynga.Protobuf.Runtime {
 			foreach (var v in other) {
 				if (v is IDeepCloneable<T>) {
 					InternalAdd(((IDeepCloneable<T>) v).Clone());
+					#if !DISABLE_EVENTS
+					AddListEvent(v);
+					#endif
 				}
 				else {
 					InternalAdd(v);
+					#if !DISABLE_EVENTS
+					AddListEvent(v);
+					#endif
 				}
 			}
 		}

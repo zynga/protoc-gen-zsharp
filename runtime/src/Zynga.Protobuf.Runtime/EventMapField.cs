@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Google.Protobuf;
 using Google.Protobuf.Collections;
 using Zynga.Protobuf.Runtime.EventSource;
@@ -49,9 +50,15 @@ namespace Zynga.Protobuf.Runtime {
 			foreach (var kv in other) {
 				if (kv.Value is IDeepCloneable<TValue>) {
 					InternalAdd(kv.Key, ((IDeepCloneable<TValue>) kv.Value).Clone());
+					#if !DISABLE_EVENTS
+					AddMapEvent(kv.Key, kv.Value);
+					#endif
 				}
 				else {
 					InternalAdd(kv.Key, kv.Value);
+					#if !DISABLE_EVENTS
+					AddMapEvent(kv.Key, kv.Value);
+					#endif
 				}
 			}
 		}
@@ -118,19 +125,29 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) {
-			throw new NotSupportedException();
+			TValue y;
+			if (this.TryGetValue(item.Key, out y))
+				return EqualityComparer<TValue>.Default.Equals(item.Value, y);
+			return false;
 		}
 
 		void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) {
-			throw new NotSupportedException();
+			foreach (var kv in array) {
+				Add(kv.Key, kv.Value);
+			}
 		}
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) {
-			throw new NotSupportedException();
+			if ((object) item.Key == null)
+				throw new ArgumentException("Key is null", nameof (item));
+			TValue node;
+			if (!TryGetValue(item.Key, out node) || !EqualityComparer<TValue>.Default.Equals(item.Value, node))
+				return false;
+			return Remove(item.Key);
 		}
 
 		public void CopyTo(Array array, int index) {
-			throw new NotSupportedException();
+			((ICollection) this.Select<KeyValuePair<TKey, TValue>, DictionaryEntry>((Func<KeyValuePair<TKey, TValue>, DictionaryEntry>) (pair => new DictionaryEntry((object) pair.Key, (object) pair.Value))).ToList<DictionaryEntry>()).CopyTo(array, index);
 		}
 
 		/// <summary>Gets the number of elements contained in the map.</summary>
@@ -195,7 +212,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		IDictionaryEnumerator IDictionary.GetEnumerator() {
-			throw new NotSupportedException();
+			return (IDictionaryEnumerator) new EventMapField<TKey, TValue>.DictionaryEnumerator(this.GetEnumerator());
 		}
 
 		void IDictionary.Remove(object key) {
@@ -364,6 +381,58 @@ namespace Zynga.Protobuf.Runtime {
 			var registry = value as EventRegistry;
 			var keyBytes = _converter.GetKeyValue(key, value, true);
 			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
+		}
+
+		private class DictionaryEnumerator : IDictionaryEnumerator, IEnumerator
+		{
+			private readonly IEnumerator<KeyValuePair<TKey, TValue>> enumerator;
+
+			internal DictionaryEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> enumerator)
+			{
+				this.enumerator = enumerator;
+			}
+
+			public bool MoveNext()
+			{
+				return this.enumerator.MoveNext();
+			}
+
+			public void Reset()
+			{
+				this.enumerator.Reset();
+			}
+
+			public object Current
+			{
+				get
+				{
+					return (object) this.Entry;
+				}
+			}
+
+			public DictionaryEntry Entry
+			{
+				get
+				{
+					return new DictionaryEntry(this.Key, this.Value);
+				}
+			}
+
+			public object Key
+			{
+				get
+				{
+					return (object) this.enumerator.Current.Key;
+				}
+			}
+
+			public object Value
+			{
+				get
+				{
+					return (object) this.enumerator.Current.Value;
+				}
+			}
 		}
 	}
 }

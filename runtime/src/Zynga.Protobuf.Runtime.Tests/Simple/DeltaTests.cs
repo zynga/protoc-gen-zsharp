@@ -555,6 +555,12 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 				// each event path should start with the number 16
 				Assert.Equal(16, e.Path[0]);
 			}
+
+			var blobB = new TestBlob();
+			blobB.ApplyEvents(snapshot);
+			blobB.ApplyEvents(events);
+
+			Assert.Equal(blob, blobB);
 		}
 	}
 }

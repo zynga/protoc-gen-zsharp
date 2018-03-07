@@ -13,4 +13,10 @@ message ParentMessage {
 message ChildMessage {
   option (com.zynga.runtime.protobuf.event_sourced) = true;
   int64 c = 3;
+  ChildChildMessage d = 4;
+}
+
+message ChildChildMessage {
+  option (com.zynga.runtime.protobuf.event_sourced) = true;
+  int64 e = 5;
 }

@@ -132,9 +132,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) {
-			foreach (var kv in array) {
-				Add(kv.Key, kv.Value);
-			}
+			_internal.ToList().CopyTo(array, arrayIndex);
 		}
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) {

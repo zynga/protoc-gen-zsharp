@@ -502,5 +502,59 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			AssertNotGenerated(blob);
 		}
+
+		[Fact]
+		public void ChangesToComplexChildMessageShouldHaveCorrectPath() {
+			var blob = populated();
+			var childBlob = populated();
+			blob.TestBlob_ = childBlob;
+
+			var snapshot = blob.GenerateSnapshot();
+
+			var blobA = new TestBlob();
+			blobA.ApplyEvents(snapshot);
+
+			Assert.Equal(blob, blobA);
+
+			blob.TestBlob_.Bar = new Bar();
+			blob.TestBlob_.Bar.Foo = new Foo();
+			blob.TestBlob_.Bar.Foo.Long = 10;
+			blob.TestBlob_.Bar.Foo.Str = "world";
+			blob.TestBlob_.Foo = new Foo();
+			blob.TestBlob_.Foo.Long = 12;
+			blob.TestBlob_.Foo.Str = "hello";
+
+			blob.TestBlob_.IntToString.Add(11, "world");
+			blob.TestBlob_.StringToFoo.Add("helloa", new Foo {Long = 9, Str = "ha"});
+			blob.TestBlob_.StringToFoo["helloa"].Str = "happy";
+			blob.TestBlob_.StringToFoo["helloa"].Long = 10;
+
+			blob.TestBlob_.Foolist.Add(new Foo {Long = 123});
+			blob.TestBlob_.Foolist[2].Long = 321;
+			blob.TestBlob_.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+			blob.TestBlob_.Foolist[3].Str = "lalala";
+			blob.TestBlob_.Foolist[3].Long = 2;
+
+			blob.TestBlob_.Ilist.Add(12);
+			blob.TestBlob_.Ilist.Add(51);
+
+			blob.TestBlob_.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
+
+			blob.TestBlob_.Timestamp = new Timestamp {
+				Seconds = 1235,
+				Nanos = 987
+			};
+			blob.TestBlob_.Duration = new Duration {
+				Seconds = 112,
+				Nanos = 2
+			};
+
+			var events = blob.GenerateEvents();
+			foreach (var e in events.Events) {
+				// TestBlob test_blob = 16;
+				// each event path should start with the number 16
+				Assert.Equal(16, e.Path[0]);
+			}
+		}
 	}
 }

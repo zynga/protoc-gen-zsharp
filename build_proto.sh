@@ -36,3 +36,5 @@ $protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
   --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/test/file_test.proto
 $protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
   --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/test/no_events_test.proto
+$protoc --proto_path=$SCRIPT_DIR/proto/ --plugin=protoc-gen-zsharp=$zsharp \
+  --zsharp_out=$SCRIPT_DIR/runtime/src/Zynga.Protobuf.Runtime.Tests $SCRIPT_DIR/proto/test/complex_test.proto

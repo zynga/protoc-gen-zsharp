@@ -9,3 +9,4 @@ protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/upgrade_test.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/file_test.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/no_events_test.proto
+protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/complex_test.proto

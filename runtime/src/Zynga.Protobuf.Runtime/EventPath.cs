@@ -10,27 +10,25 @@ namespace Zynga.Protobuf.Runtime {
 		/// </summary>
 		public static EventPath Empty => new EventPath();
 
-		private readonly List<int> _path = new List<int>();
-
 		/// <summary>
 		/// The full path
 		/// </summary>
-		public List<int> Path {
-			get { return _path; }
-		}
+		public List<int> Path { get; }
 
 		/// <summary>
 		/// Creates an empty EventPath
 		/// </summary>
-		public EventPath() { }
+		public EventPath() {
+			Path = new List<int>();
+		}
 
 		/// <summary>
 		/// Create an EventPath for the child of another message
 		/// </summary>
 		public EventPath(EventPath parent, int field) {
-			_path.Clear();
-			_path.AddRange(parent._path);
-			_path.Add(field);
+			Path = new List<int>(parent.Path.Count + 1);
+			Path.AddRange(parent.Path);
+			Path.Add(field);
 		}
 	}
 }

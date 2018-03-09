@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf.file;
+
+import "event_plugin.proto";
+
+option (com.zynga.runtime.protobuf.file_event_sourced) = true;
+
+message MessageA {
+  oneof a {
+    MessageB b = 1;
+  }
+
+  // ensure all numeric ids are in each message
+  int32 j = 2;
+  int32 k = 3;
+  int32 l = 4;
+  int32 m = 5;
+  int32 n = 6;
+  int32 o = 7;
+}
+
+message MessageB {
+  map<string,MessageC> c = 2;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 k = 3;
+  int32 l = 4;
+  int32 m = 5;
+  int32 n = 6;
+  int32 o = 7;
+}
+
+message MessageC {
+  map<string,MessageD> d = 3;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 j = 2;
+  int32 l = 4;
+  int32 m = 5;
+  int32 n = 6;
+  int32 o = 7;
+}
+
+message MessageD {
+  MessageE e = 4;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 j = 2;
+  int32 k = 3;
+  int32 m = 5;
+  int32 n = 6;
+  int32 o = 7;
+}
+
+message MessageE {
+  MessageF f = 5;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 j = 2;
+  int32 k = 3;
+  int32 l = 4;
+  int32 n = 6;
+  int32 o = 7;
+}
+
+message MessageF {
+  MessageG g = 6;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 j = 2;
+  int32 k = 3;
+  int32 l = 4;
+  int32 m = 5;
+  int32 o = 7;
+}
+
+message MessageG {
+  repeated int32 h = 7;
+
+  // ensure all numeric ids are in each message
+  int32 i = 1;
+  int32 j = 2;
+  int32 k = 3;
+  int32 l = 4;
+  int32 m = 5;
+  int32 n = 6;
+}

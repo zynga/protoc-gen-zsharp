@@ -1,4 +1,5 @@
-﻿using Zynga.Protobuf.Runtime.EventSource;
+﻿using System;
+using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
 	/// <summary>
@@ -13,7 +14,12 @@ namespace Zynga.Protobuf.Runtime {
 		/// <param name="root"></param>
 		public void ApplyEvents(EventSourceRoot root) {
 			foreach (var e in root.Events) {
-				ApplyEvent(e, 0);
+				try {
+					ApplyEvent(e, 0);
+				}
+				catch (Exception ex) {
+					throw new ApplyEventException(e, ex);
+				}
 			}
 		}
 

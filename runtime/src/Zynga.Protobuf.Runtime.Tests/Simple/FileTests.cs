@@ -193,16 +193,6 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		}
 
 		[Fact]
-		public void ShouldProduceIdenticalTestBlobWithMergeFrom() {
-			var blob = populated();
-
-			var newBlob = new TestBlob();
-			newBlob.MergeFrom(blob);
-			Assert.Equal(blob, newBlob);
-			Assert.Equal(newBlob, blob);
-		}
-
-		[Fact]
 		public void ShouldNotGenerateDeltasForNoOpsOnMaps() {
 			var blob = new TestBlob();
 			blob.IntToString[0] = "a";

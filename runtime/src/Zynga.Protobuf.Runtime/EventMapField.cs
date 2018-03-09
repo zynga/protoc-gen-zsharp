@@ -48,18 +48,10 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(EventMapField<TKey, TValue> other) {
 			foreach (var kv in other) {
-				if (kv.Value is IDeepCloneable<TValue>) {
-					InternalAdd(kv.Key, ((IDeepCloneable<TValue>) kv.Value).Clone());
-					#if !DISABLE_EVENTS
-					AddMapEvent(kv.Key, kv.Value);
-					#endif
-				}
-				else {
-					InternalAdd(kv.Key, kv.Value);
-					#if !DISABLE_EVENTS
-					AddMapEvent(kv.Key, kv.Value);
-					#endif
-				}
+				InternalAdd(kv.Key, kv.Value);
+				#if !DISABLE_EVENTS
+				AddMapEvent(kv.Key, kv.Value);
+				#endif
 			}
 		}
 

@@ -776,14 +776,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
-      Bar.SetParent(Context, new EventPath(Context.Path, 1));
+        Bar.SetParent(Context, new EventPath(Context.Path, 1));
       }
       if (other.foo_ != null) {
         if (foo_ == null) {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo.MergeFrom(other.Foo);
-      Foo.SetParent(Context, new EventPath(Context.Path, 2));
+        Foo.SetParent(Context, new EventPath(Context.Path, 2));
       }
       intToString_.Add(other.intToString_);
       stringToFoo_.Add(other.stringToFoo_);
@@ -795,7 +795,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           zam_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo.Types.Zam();
         }
         Zam.MergeFrom(other.Zam);
-      Zam.SetParent(Context, new EventPath(Context.Path, 11));
+        Zam.SetParent(Context, new EventPath(Context.Path, 11));
       }
       if (other.FieldBool != false) {
         FieldBool = other.FieldBool;
@@ -817,14 +817,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           allPrims_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         AllPrims.MergeFrom(other.AllPrims);
-      AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
+        AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
       }
       if (other.testBlob_ != null) {
         if (testBlob_ == null) {
           testBlob_ = new global::Com.Zynga.Runtime.Protobuf.File.TestBlob();
         }
         TestBlob_.MergeFrom(other.TestBlob_);
-      TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
+        TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
       }
       if (other.noEventsB_ != null) {
         if (noEventsB_ == null) {
@@ -1388,7 +1388,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo_.MergeFrom(other.Foo_);
-      Foo_.SetParent(Context, new EventPath(Context.Path, 3));
+        Foo_.SetParent(Context, new EventPath(Context.Path, 3));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -1768,7 +1768,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo.MergeFrom(other.Foo);
-      Foo.SetParent(Context, new EventPath(Context.Path, 1));
+        Foo.SetParent(Context, new EventPath(Context.Path, 1));
       }
     }
 
@@ -2714,7 +2714,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
-      Primitives.SetParent(Context, new EventPath(Context.Path, 2));
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -2724,7 +2724,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
-      Bar.SetParent(Context, new EventPath(Context.Path, 4));
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -3019,7 +3019,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
-      Primitives.SetParent(Context, new EventPath(Context.Path, 2));
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -3029,7 +3029,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
-      Bar.SetParent(Context, new EventPath(Context.Path, 4));
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 

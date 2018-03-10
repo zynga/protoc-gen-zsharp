@@ -925,7 +925,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
         }
         Data.MergeFrom(other.Data);
-      Data.SetParent(Context, new EventPath(Context.Path, 9));
+        Data.SetParent(Context, new EventPath(Context.Path, 9));
       }
       testMapTwo_.Add(other.testMapTwo_);
       if (other.testNonMessage_ != null) {
@@ -1198,7 +1198,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
             }
             DataTwo.MergeFrom(other.DataTwo);
-          DataTwo.SetParent(Context, new EventPath(Context.Path, 2));
+            DataTwo.SetParent(Context, new EventPath(Context.Path, 2));
           }
         }
 

@@ -1576,7 +1576,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           e_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageE();
         }
         E.MergeFrom(other.E);
-      E.SetParent(Context, new EventPath(Context.Path, 4));
+        E.SetParent(Context, new EventPath(Context.Path, 4));
       }
       if (other.I != 0) {
         I = other.I;
@@ -1976,7 +1976,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           f_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageF();
         }
         F.MergeFrom(other.F);
-      F.SetParent(Context, new EventPath(Context.Path, 5));
+        F.SetParent(Context, new EventPath(Context.Path, 5));
       }
       if (other.I != 0) {
         I = other.I;
@@ -2376,7 +2376,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           g_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageG();
         }
         G.MergeFrom(other.G);
-      G.SetParent(Context, new EventPath(Context.Path, 6));
+        G.SetParent(Context, new EventPath(Context.Path, 6));
       }
       if (other.I != 0) {
         I = other.I;
@@ -3079,7 +3079,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
         }
         P.MergeFrom(other.P);
-      P.SetParent(Context, new EventPath(Context.Path, 8));
+        P.SetParent(Context, new EventPath(Context.Path, 8));
       }
       if (other.T != 0) {
         T = other.T;
@@ -3368,7 +3368,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
         }
         Q.MergeFrom(other.Q);
-      Q.SetParent(Context, new EventPath(Context.Path, 9));
+        Q.SetParent(Context, new EventPath(Context.Path, 9));
       }
       if (other.S != 0) {
         S = other.S;

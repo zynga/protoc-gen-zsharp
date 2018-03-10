@@ -56,8 +56,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			AssertEventsStable(state);
 
-			s.R = "World";
-			AssertEventsStable(state);
+			AssertEventsStable(state, () => { s.R = "World"; });
 		}
 	}
 }

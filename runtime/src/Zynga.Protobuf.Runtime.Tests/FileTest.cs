@@ -776,12 +776,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 1));
       }
       if (other.foo_ != null) {
         if (foo_ == null) {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo.MergeFrom(other.Foo);
+        Foo.SetParent(Context, new EventPath(Context.Path, 2));
       }
       intToString_.Add(other.intToString_);
       stringToFoo_.Add(other.stringToFoo_);
@@ -793,6 +795,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           zam_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo.Types.Zam();
         }
         Zam.MergeFrom(other.Zam);
+        Zam.SetParent(Context, new EventPath(Context.Path, 11));
       }
       if (other.FieldBool != false) {
         FieldBool = other.FieldBool;
@@ -814,12 +817,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           allPrims_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         AllPrims.MergeFrom(other.AllPrims);
+        AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
       }
       if (other.testBlob_ != null) {
         if (testBlob_ == null) {
           testBlob_ = new global::Com.Zynga.Runtime.Protobuf.File.TestBlob();
         }
         TestBlob_.MergeFrom(other.TestBlob_);
+        TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
       }
       if (other.noEventsB_ != null) {
         if (noEventsB_ == null) {
@@ -833,6 +838,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             Maybefoo = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
           }
           Maybefoo.MergeFrom(other.Maybefoo);
+          Maybefoo.SetParent(Context, new EventPath(Context.Path, 8));
           break;
         case TestOneofCase.Maybeint:
           Maybeint = other.Maybeint;
@@ -851,6 +857,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             HasEventsA = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
           }
           HasEventsA.MergeFrom(other.HasEventsA);
+          HasEventsA.SetParent(Context, new EventPath(Context.Path, 19));
           break;
       }
 
@@ -869,6 +876,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 1));
             break;
           }
           case 18: {
@@ -876,6 +884,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
             }
             input.ReadMessage(foo_);
+            Foo.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 26: {
@@ -921,6 +930,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               zam_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo.Types.Zam();
             }
             input.ReadMessage(zam_);
+            Zam.SetParent(Context, new EventPath(Context.Path, 11));
             break;
           }
           case 96: {
@@ -946,6 +956,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               allPrims_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
             }
             input.ReadMessage(allPrims_);
+            AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
             break;
           }
           case 130: {
@@ -953,6 +964,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               testBlob_ = new global::Com.Zynga.Runtime.Protobuf.File.TestBlob();
             }
             input.ReadMessage(testBlob_);
+            TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
             break;
           }
           case 138: {
@@ -1376,6 +1388,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo_.MergeFrom(other.Foo_);
+        Foo_.SetParent(Context, new EventPath(Context.Path, 3));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -1406,6 +1419,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
             }
             input.ReadMessage(foo_);
+            Foo_.SetParent(Context, new EventPath(Context.Path, 3));
             break;
           }
           case 32: {
@@ -1754,6 +1768,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
         }
         Foo.MergeFrom(other.Foo);
+        Foo.SetParent(Context, new EventPath(Context.Path, 1));
       }
     }
 
@@ -1770,6 +1785,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
             }
             input.ReadMessage(foo_);
+            Foo.SetParent(Context, new EventPath(Context.Path, 1));
             break;
           }
         }
@@ -2698,6 +2714,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -2707,6 +2724,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -2727,6 +2745,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
             }
             input.ReadMessage(primitives_);
+            Primitives.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 24: {
@@ -2738,6 +2757,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
         }
@@ -2999,6 +3019,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -3008,6 +3029,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -3028,6 +3050,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
             }
             input.ReadMessage(primitives_);
+            Primitives.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 24: {
@@ -3039,6 +3062,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
         }

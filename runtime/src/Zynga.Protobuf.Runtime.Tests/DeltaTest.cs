@@ -54,44 +54,41 @@ namespace Com.Zynga.Runtime.Protobuf {
             "BVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEaXwoQU3RyaW5nVG9G",
             "b29FbnRyeRIQCgNrZXkYASABKAlSA2tleRI1CgV2YWx1ZRgCIAEoCzIfLmNv",
             "bS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkZvb1IFdmFsdWU6AjgBOgTIuB4B",
-            "QgYKBHRlc3QiswIKA0ZvbxISCgRsb25nGAEgASgDUgRsb25nEhAKA3N0chgC",
+            "QgYKBHRlc3QigAIKA0ZvbxISCgRsb25nGAEgASgDUgRsb25nEhAKA3N0chgC",
             "IAEoCVIDc3RyEjEKA2ZvbxgDIAEoCzIfLmNvbS56eW5nYS5ydW50aW1lLnBy",
             "b3RvYnVmLkZvb1IDZm9vEj0KB2VudW1lcm8YBCABKA4yIy5jb20uenluZ2Eu",
             "cnVudGltZS5wcm90b2J1Zi5FbnVtZXJvUgdlbnVtZXJvEjYKBG9rYXkYBSAB",
-            "KA4yIi5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5Gb28ub2tSBG9rYXkS",
-            "MQoDYmF6GAwgASgLMh8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuQmF6",
-            "UgNiYXoaFQoDWmFtEg4KAmhpGAEgASgFUgJoaSIMCgJvaxIGCgJISRAAOgTI",
-            "uB4BIj4KA0JhchIxCgNmb28YASABKAsyHy5jb20uenluZ2EucnVudGltZS5w",
-            "cm90b2J1Zi5Gb29SA2ZvbzoEyLgeASIfCgNCYXoSEgoEaW50cxgNIAMoBVIE",
-            "aW50czoEyLgeASLnAQoNQWxsUHJpbWl0aXZlcxIMCgFhGAEgASgNUgFhEgwK",
-            "AWIYAiABKAVSAWISDAoBYxgDIAEoBlIBYxIMCgFkGAQgASgHUgFkEgwKAWUY",
-            "BSABKBBSAWUSDAoBZhgGIAEoD1IBZhIMCgFnGAcgASgBUgFnEgwKAWgYCCAB",
-            "KAJSAWgSDAoBaRgJIAEoCFIBaRIMCgFqGAogASgJUgFqEgwKAWsYCyABKAxS",
-            "AWsSDAoBbBgMIAEoA1IBbBIMCgFtGA0gASgEUgFtEgwKAW4YDiABKBFSAW4S",
-            "DAoBbxgPIAEoElIBbzoEyLgeASL4AgoMUmVjdXJzaXZlTWFwEkMKA21hcBgB",
-            "IAMoCzIxLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlJlY3Vyc2l2ZU1h",
-            "cC5NYXBFbnRyeVIDbWFwEkkKCnByaW1pdGl2ZXMYAiABKAsyKS5jb20uenlu",
-            "Z2EucnVudGltZS5wcm90b2J1Zi5BbGxQcmltaXRpdmVzUgpwcmltaXRpdmVz",
-            "Ej0KB2VudW1lcm8YAyABKA4yIy5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
-            "Zi5FbnVtZXJvUgdlbnVtZXJvEjEKA2JhchgEIAEoCzIfLmNvbS56eW5nYS5y",
-            "dW50aW1lLnByb3RvYnVmLkJhclIDYmFyGmAKCE1hcEVudHJ5EhAKA2tleRgB",
-            "IAEoBVIDa2V5Ej4KBXZhbHVlGAIgASgLMiguY29tLnp5bmdhLnJ1bnRpbWUu",
-            "cHJvdG9idWYuUmVjdXJzaXZlTWFwUgV2YWx1ZToCOAE6BMi4HgEikQIKDVJl",
-            "Y3Vyc2l2ZUxpc3QSPQoEbGlzdBgBIAMoCzIpLmNvbS56eW5nYS5ydW50aW1l",
-            "LnByb3RvYnVmLlJlY3Vyc2l2ZUxpc3RSBGxpc3QSSQoKcHJpbWl0aXZlcxgC",
-            "IAEoCzIpLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkFsbFByaW1pdGl2",
-            "ZXNSCnByaW1pdGl2ZXMSPQoHZW51bWVybxgDIAEoDjIjLmNvbS56eW5nYS5y",
-            "dW50aW1lLnByb3RvYnVmLkVudW1lcm9SB2VudW1lcm8SMQoDYmFyGAQgASgL",
-            "Mh8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuQmFyUgNiYXI6BMi4HgEq",
-            "LQoHRW51bWVybxIJCgVFTVBUWRAAEg0KCVNPTUVUSElORxABEggKBEhBTFAQ",
-            "AmIGcHJvdG8z"));
+            "KA4yIi5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5Gb28ub2tSBG9rYXka",
+            "FQoDWmFtEg4KAmhpGAEgASgFUgJoaSIMCgJvaxIGCgJISRAAOgTIuB4BIj4K",
+            "A0JhchIxCgNmb28YASABKAsyHy5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
+            "Zi5Gb29SA2ZvbzoEyLgeASLnAQoNQWxsUHJpbWl0aXZlcxIMCgFhGAEgASgN",
+            "UgFhEgwKAWIYAiABKAVSAWISDAoBYxgDIAEoBlIBYxIMCgFkGAQgASgHUgFk",
+            "EgwKAWUYBSABKBBSAWUSDAoBZhgGIAEoD1IBZhIMCgFnGAcgASgBUgFnEgwK",
+            "AWgYCCABKAJSAWgSDAoBaRgJIAEoCFIBaRIMCgFqGAogASgJUgFqEgwKAWsY",
+            "CyABKAxSAWsSDAoBbBgMIAEoA1IBbBIMCgFtGA0gASgEUgFtEgwKAW4YDiAB",
+            "KBFSAW4SDAoBbxgPIAEoElIBbzoEyLgeASL4AgoMUmVjdXJzaXZlTWFwEkMK",
+            "A21hcBgBIAMoCzIxLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLlJlY3Vy",
+            "c2l2ZU1hcC5NYXBFbnRyeVIDbWFwEkkKCnByaW1pdGl2ZXMYAiABKAsyKS5j",
+            "b20uenluZ2EucnVudGltZS5wcm90b2J1Zi5BbGxQcmltaXRpdmVzUgpwcmlt",
+            "aXRpdmVzEj0KB2VudW1lcm8YAyABKA4yIy5jb20uenluZ2EucnVudGltZS5w",
+            "cm90b2J1Zi5FbnVtZXJvUgdlbnVtZXJvEjEKA2JhchgEIAEoCzIfLmNvbS56",
+            "eW5nYS5ydW50aW1lLnByb3RvYnVmLkJhclIDYmFyGmAKCE1hcEVudHJ5EhAK",
+            "A2tleRgBIAEoBVIDa2V5Ej4KBXZhbHVlGAIgASgLMiguY29tLnp5bmdhLnJ1",
+            "bnRpbWUucHJvdG9idWYuUmVjdXJzaXZlTWFwUgV2YWx1ZToCOAE6BMi4HgEi",
+            "kQIKDVJlY3Vyc2l2ZUxpc3QSPQoEbGlzdBgBIAMoCzIpLmNvbS56eW5nYS5y",
+            "dW50aW1lLnByb3RvYnVmLlJlY3Vyc2l2ZUxpc3RSBGxpc3QSSQoKcHJpbWl0",
+            "aXZlcxgCIAEoCzIpLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLkFsbFBy",
+            "aW1pdGl2ZXNSCnByaW1pdGl2ZXMSPQoHZW51bWVybxgDIAEoDjIjLmNvbS56",
+            "eW5nYS5ydW50aW1lLnByb3RvYnVmLkVudW1lcm9SB2VudW1lcm8SMQoDYmFy",
+            "GAQgASgLMh8uY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuQmFyUgNiYXI6",
+            "BMi4HgEqLQoHRW51bWVybxIJCgVFTVBUWRAAEg0KCVNPTUVUSElORxABEggK",
+            "BEhBTFAQAmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.DurationReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Com.Zynga.Runtime.Protobuf.Enumero), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.TestBlob), global::Com.Zynga.Runtime.Protobuf.TestBlob.Parser, new[]{ "Bar", "Foo", "IntToString", "StringToFoo", "Ilist", "Slist", "Foolist", "Maybefoo", "Maybeint", "Maybestring", "Zam", "FieldBool", "Timestamp", "Duration", "AllPrims", "TestBlob_" }, new[]{ "Test" }, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo), global::Com.Zynga.Runtime.Protobuf.Foo.Parser, new[]{ "Long", "Str", "Foo_", "Enumero", "Okay", "Baz" }, null, new[]{ typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok) }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam), global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser, new[]{ "Hi" }, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo), global::Com.Zynga.Runtime.Protobuf.Foo.Parser, new[]{ "Long", "Str", "Foo_", "Enumero", "Okay" }, null, new[]{ typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok) }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam), global::Com.Zynga.Runtime.Protobuf.Foo.Types.Zam.Parser, new[]{ "Hi" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Bar), global::Com.Zynga.Runtime.Protobuf.Bar.Parser, new[]{ "Foo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.Baz), global::Com.Zynga.Runtime.Protobuf.Baz.Parser, new[]{ "Ints" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.AllPrimitives), global::Com.Zynga.Runtime.Protobuf.AllPrimitives.Parser, new[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveMap), global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser, new[]{ "Map", "Primitives", "Enumero", "Bar" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.RecursiveList), global::Com.Zynga.Runtime.Protobuf.RecursiveList.Parser, new[]{ "List", "Primitives", "Enumero", "Bar" }, null, null, null)
@@ -684,12 +681,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 1));
       }
       if (other.foo_ != null) {
         if (foo_ == null) {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
         }
         Foo.MergeFrom(other.Foo);
+        Foo.SetParent(Context, new EventPath(Context.Path, 2));
       }
       intToString_.Add(other.intToString_);
       stringToFoo_.Add(other.stringToFoo_);
@@ -722,12 +721,14 @@ namespace Com.Zynga.Runtime.Protobuf {
           allPrims_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
         }
         AllPrims.MergeFrom(other.AllPrims);
+        AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
       }
       if (other.testBlob_ != null) {
         if (testBlob_ == null) {
           testBlob_ = new global::Com.Zynga.Runtime.Protobuf.TestBlob();
         }
         TestBlob_.MergeFrom(other.TestBlob_);
+        TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
       }
       switch (other.TestCase) {
         case TestOneofCase.Maybefoo:
@@ -735,6 +736,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             Maybefoo = new global::Com.Zynga.Runtime.Protobuf.Foo();
           }
           Maybefoo.MergeFrom(other.Maybefoo);
+          Maybefoo.SetParent(Context, new EventPath(Context.Path, 8));
           break;
         case TestOneofCase.Maybeint:
           Maybeint = other.Maybeint;
@@ -759,6 +761,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 1));
             break;
           }
           case 18: {
@@ -766,6 +769,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
             }
             input.ReadMessage(foo_);
+            Foo.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 26: {
@@ -836,6 +840,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               allPrims_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
             }
             input.ReadMessage(allPrims_);
+            AllPrims.SetParent(Context, new EventPath(Context.Path, 15));
             break;
           }
           case 130: {
@@ -843,6 +848,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               testBlob_ = new global::Com.Zynga.Runtime.Protobuf.TestBlob();
             }
             input.ReadMessage(testBlob_);
+            TestBlob_.SetParent(Context, new EventPath(Context.Path, 16));
             break;
           }
         }
@@ -1017,7 +1023,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       foo_ = other.foo_ != null ? other.Foo_.Clone() : null;
       enumero_ = other.enumero_;
       okay_ = other.okay_;
-      baz_ = other.baz_ != null ? other.Baz.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1112,24 +1117,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "baz" field.</summary>
-    public const int BazFieldNumber = 12;
-    private global::Com.Zynga.Runtime.Protobuf.Baz baz_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Com.Zynga.Runtime.Protobuf.Baz Baz {
-      get { return baz_; }
-      set {
-        if(baz_ != null) baz_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 12));
-        #if !DISABLE_EVENTS
-        if(value == null || !value.Equals(baz_)) {
-          Context.AddSetEvent(12, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
-        }
-        #endif
-        baz_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Foo);
@@ -1148,7 +1135,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (!object.Equals(Foo_, other.Foo_)) return false;
       if (Enumero != other.Enumero) return false;
       if (Okay != other.Okay) return false;
-      if (!object.Equals(Baz, other.Baz)) return false;
       return true;
     }
 
@@ -1160,7 +1146,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (foo_ != null) hash ^= Foo_.GetHashCode();
       if (Enumero != 0) hash ^= Enumero.GetHashCode();
       if (Okay != 0) hash ^= Okay.GetHashCode();
-      if (baz_ != null) hash ^= Baz.GetHashCode();
       return hash;
     }
 
@@ -1191,10 +1176,6 @@ namespace Com.Zynga.Runtime.Protobuf {
         output.WriteRawTag(40);
         output.WriteEnum((int) Okay);
       }
-      if (baz_ != null) {
-        output.WriteRawTag(98);
-        output.WriteMessage(Baz);
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1215,9 +1196,6 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (Okay != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Okay);
       }
-      if (baz_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Baz);
-      }
       return size;
     }
 
@@ -1237,18 +1215,13 @@ namespace Com.Zynga.Runtime.Protobuf {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
         }
         Foo_.MergeFrom(other.Foo_);
+        Foo_.SetParent(Context, new EventPath(Context.Path, 3));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
       }
       if (other.Okay != 0) {
         Okay = other.Okay;
-      }
-      if (other.baz_ != null) {
-        if (baz_ == null) {
-          baz_ = new global::Com.Zynga.Runtime.Protobuf.Baz();
-        }
-        Baz.MergeFrom(other.Baz);
       }
     }
 
@@ -1273,6 +1246,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
             }
             input.ReadMessage(foo_);
+            Foo_.SetParent(Context, new EventPath(Context.Path, 3));
             break;
           }
           case 32: {
@@ -1281,13 +1255,6 @@ namespace Com.Zynga.Runtime.Protobuf {
           }
           case 40: {
             okay_ = (global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok) input.ReadEnum();
-            break;
-          }
-          case 98: {
-            if (baz_ == null) {
-              baz_ = new global::Com.Zynga.Runtime.Protobuf.Baz();
-            }
-            input.ReadMessage(baz_);
             break;
           }
         }
@@ -1496,19 +1463,6 @@ namespace Com.Zynga.Runtime.Protobuf {
             okay_ = (global::Com.Zynga.Runtime.Protobuf.Foo.Types.ok)e.Set.U32;
           }
           break;
-          case 12: {
-            if (e.Path.Count - 1 != pathIndex) {
-              if (baz_ == null) {
-                baz_ = new global::Com.Zynga.Runtime.Protobuf.Baz();
-                baz_.SetParent(Context, new EventPath(Context.Path, 12));
-              }
-              (baz_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
-            } else {
-              baz_  = global::Com.Zynga.Runtime.Protobuf.Baz.Parser.ParseFrom(e.Set.ByteData);
-              baz_.SetParent(Context, new EventPath(Context.Path, 12));
-            }
-          }
-          break;
           default:
             return false;
           break;
@@ -1641,6 +1595,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
         }
         Foo.MergeFrom(other.Foo);
+        Foo.SetParent(Context, new EventPath(Context.Path, 1));
       }
     }
 
@@ -1657,6 +1612,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               foo_ = new global::Com.Zynga.Runtime.Protobuf.Foo();
             }
             input.ReadMessage(foo_);
+            Foo.SetParent(Context, new EventPath(Context.Path, 1));
             break;
           }
         }
@@ -1703,162 +1659,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class Baz : zpr::EventRegistry, pb::IMessage<Baz> {
-    private static readonly pb::MessageParser<Baz> _parser = new pb::MessageParser<Baz>(() => new Baz());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Baz> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Baz() {
-      OnConstruction();
-      ints_.SetContext(Context, 13);
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Baz(Baz other) : this() {
-      ints_ = new EventRepeatedField<int>(intsDataConverter, other.Ints.Clone());
-      ints_.SetContext(Context, 13);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Baz Clone() {
-      return new Baz(this);
-    }
-
-    public static bool IsEventSourced = true;
-
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
-      ints_.SetContext(Context, 13);
-    }
-    /// <summary>Field number for the "ints" field.</summary>
-    public const int IntsFieldNumber = 13;
-    private static readonly pb::FieldCodec<int> _repeated_ints_codec
-        = pb::FieldCodec.ForInt32(106);
-    public class IntsDataConverter: EventDataConverter<int> {
-      public override zpr.EventSource.EventContent GetEventData(int data) {
-        return new zpr.EventSource.EventContent() { I32 = data };
-      }
-      public override int GetItem(zpr.EventSource.EventContent data) {
-        return data.I32;
-      }
-    }
-    private static IntsDataConverter intsDataConverter = new IntsDataConverter();
-    private readonly EventRepeatedField<int> ints_ = new EventRepeatedField<int>(intsDataConverter);
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EventRepeatedField<int> Ints {
-      get { return ints_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Baz);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Baz other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!ints_.Equals(other.ints_)) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= ints_.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      ints_.WriteTo(output, _repeated_ints_codec);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += ints_.CalculateSize(_repeated_ints_codec);
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Baz other) {
-      if (other == null) {
-        return;
-      }
-      ints_.Add(other.ints_);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 106:
-          case 104: {
-            ints_.AddEntriesFrom(input, _repeated_ints_codec);
-            break;
-          }
-        }
-      }
-    }
-
-    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        if (e.Path.Count == 0) {
-          this.MergeFrom(e.Set.ByteData);
-          return true;
-        }
-        switch (e.Path[pathIndex]) {
-          case 13: {
-            ints_.ApplyEvent(e.ListEvent);
-          }
-          break;
-          default:
-            return false;
-          break;
-        }
-      return true;
-    }
-
-    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
-      ClearEvents();
-      var er = new zpr.EventSource.EventSourceRoot();
-      var setEvent = new zpr.EventSource.EventData {
-        Set = new zpr.EventSource.EventContent {
-          ByteData = this.ToByteString()
-        }
-      };
-      er.Events.Add(setEvent);
-      return er;
-    }
-
-  }
-
   public sealed partial class AllPrimitives : zpr::EventRegistry, pb::IMessage<AllPrimitives> {
     private static readonly pb::MessageParser<AllPrimitives> _parser = new pb::MessageParser<AllPrimitives>(() => new AllPrimitives());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1866,7 +1666,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2540,7 +2340,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2741,6 +2541,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -2750,6 +2551,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -2770,6 +2572,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
             }
             input.ReadMessage(primitives_);
+            Primitives.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 24: {
@@ -2781,6 +2584,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
         }
@@ -2855,7 +2659,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Com.Zynga.Runtime.Protobuf.DeltaTestReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3042,6 +2846,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
         }
         Primitives.MergeFrom(other.Primitives);
+        Primitives.SetParent(Context, new EventPath(Context.Path, 2));
       }
       if (other.Enumero != 0) {
         Enumero = other.Enumero;
@@ -3051,6 +2856,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
         }
         Bar.MergeFrom(other.Bar);
+        Bar.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -3071,6 +2877,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               primitives_ = new global::Com.Zynga.Runtime.Protobuf.AllPrimitives();
             }
             input.ReadMessage(primitives_);
+            Primitives.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
           case 24: {
@@ -3082,6 +2889,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               bar_ = new global::Com.Zynga.Runtime.Protobuf.Bar();
             }
             input.ReadMessage(bar_);
+            Bar.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
         }

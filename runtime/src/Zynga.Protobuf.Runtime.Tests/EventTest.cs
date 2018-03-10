@@ -925,6 +925,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
         }
         Data.MergeFrom(other.Data);
+        Data.SetParent(Context, new EventPath(Context.Path, 9));
       }
       testMapTwo_.Add(other.testMapTwo_);
       if (other.testNonMessage_ != null) {
@@ -954,6 +955,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             Internal = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
           }
           Internal.MergeFrom(other.Internal);
+          Internal.SetParent(Context, new EventPath(Context.Path, 3));
           break;
       }
 
@@ -1011,6 +1013,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
             }
             input.ReadMessage(data_);
+            Data.SetParent(Context, new EventPath(Context.Path, 9));
             break;
           }
           case 82: {
@@ -1195,6 +1198,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
             }
             DataTwo.MergeFrom(other.DataTwo);
+            DataTwo.SetParent(Context, new EventPath(Context.Path, 2));
           }
         }
 
@@ -1215,6 +1219,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                   dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
                 }
                 input.ReadMessage(dataTwo_);
+                DataTwo.SetParent(Context, new EventPath(Context.Path, 2));
                 break;
               }
             }

@@ -187,6 +187,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           b_ = new global::Com.Zynga.Runtime.Protobuf.ChildMessage();
         }
         B.MergeFrom(other.B);
+        B.SetParent(Context, new EventPath(Context.Path, 2));
       }
     }
 
@@ -207,6 +208,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               b_ = new global::Com.Zynga.Runtime.Protobuf.ChildMessage();
             }
             input.ReadMessage(b_);
+            B.SetParent(Context, new EventPath(Context.Path, 2));
             break;
           }
         }
@@ -397,6 +399,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           d_ = new global::Com.Zynga.Runtime.Protobuf.ChildChildMessage();
         }
         D.MergeFrom(other.D);
+        D.SetParent(Context, new EventPath(Context.Path, 4));
       }
     }
 
@@ -417,6 +420,7 @@ namespace Com.Zynga.Runtime.Protobuf {
               d_ = new global::Com.Zynga.Runtime.Protobuf.ChildChildMessage();
             }
             input.ReadMessage(d_);
+            D.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
         }

@@ -57,7 +57,16 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             "KAVSAWsSDAoBbBgEIAEoBVIBbBIMCgFtGAUgASgFUgFtEgwKAW8YByABKAVS",
             "AW8ibAoITWVzc2FnZUcSDAoBaBgHIAMoBVIBaBIMCgFpGAEgASgFUgFpEgwK",
             "AWoYAiABKAVSAWoSDAoBaxgDIAEoBVIBaxIMCgFsGAQgASgFUgFsEgwKAW0Y",
-            "BSABKAVSAW0SDAoBbhgGIAEoBVIBbkIE2LgeAWIGcHJvdG8z"));
+            "BSABKAVSAW0SDAoBbhgGIAEoBVIBbiJtCghNZXNzYWdlTxI3CgFwGAggASgL",
+            "MikuY29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuZmlsZS5NZXNzYWdlUFIB",
+            "cBIMCgF0GAkgASgFUgF0EgwKAXUYCiABKAVSAXUSDAoBdhgLIAEoBVIBdiJt",
+            "CghNZXNzYWdlUBI3CgFxGAkgASgLMikuY29tLnp5bmdhLnJ1bnRpbWUucHJv",
+            "dG9idWYuZmlsZS5NZXNzYWdlUVIBcRIMCgFzGAggASgFUgFzEgwKAXUYCiAB",
+            "KAVSAXUSDAoBdhgLIAEoBVIBdiJtCghNZXNzYWdlURI3CgFyGAogAygLMiku",
+            "Y29tLnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuZmlsZS5NZXNzYWdlUlIBchIM",
+            "CgFzGAggASgFUgFzEgwKAXQYCSABKAVSAXQSDAoBdhgLIAEoBVIBdiJCCghN",
+            "ZXNzYWdlUhIMCgFyGAsgASgJUgFyEgwKAXMYCCABKAVSAXMSDAoBdBgJIAEo",
+            "BVIBdBIMCgF1GAogASgFUgF1QgTYuB4BYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -67,7 +76,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageD), global::Com.Zynga.Runtime.Protobuf.File.MessageD.Parser, new[]{ "E", "I", "J", "K", "M", "N", "O" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageE), global::Com.Zynga.Runtime.Protobuf.File.MessageE.Parser, new[]{ "F", "I", "J", "K", "L", "N", "O" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageF), global::Com.Zynga.Runtime.Protobuf.File.MessageF.Parser, new[]{ "G", "I", "J", "K", "L", "M", "O" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageG), global::Com.Zynga.Runtime.Protobuf.File.MessageG.Parser, new[]{ "H", "I", "J", "K", "L", "M", "N" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageG), global::Com.Zynga.Runtime.Protobuf.File.MessageG.Parser, new[]{ "H", "I", "J", "K", "L", "M", "N" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageO), global::Com.Zynga.Runtime.Protobuf.File.MessageO.Parser, new[]{ "P", "T", "U", "V" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageP), global::Com.Zynga.Runtime.Protobuf.File.MessageP.Parser, new[]{ "Q", "S", "U", "V" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageQ), global::Com.Zynga.Runtime.Protobuf.File.MessageQ.Parser, new[]{ "R", "S", "T", "V" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.File.MessageR), global::Com.Zynga.Runtime.Protobuf.File.MessageR.Parser, new[]{ "R", "S", "T", "U" }, null, null, null)
           }));
     }
     #endregion
@@ -2844,6 +2857,1120 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           break;
           case 6: {
             n_ = e.Set.I32;
+          }
+          break;
+          default:
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class MessageO : zpr::EventRegistry, pb::IMessage<MessageO> {
+    private static readonly pb::MessageParser<MessageO> _parser = new pb::MessageParser<MessageO>(() => new MessageO());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MessageO> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.File.ComplexTestReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageO() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageO(MessageO other) : this() {
+      p_ = other.p_ != null ? other.P.Clone() : null;
+      t_ = other.t_;
+      u_ = other.u_;
+      v_ = other.v_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageO Clone() {
+      return new MessageO(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+    }
+    /// <summary>Field number for the "p" field.</summary>
+    public const int PFieldNumber = 8;
+    private global::Com.Zynga.Runtime.Protobuf.File.MessageP p_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.File.MessageP P {
+      get { return p_; }
+      set {
+        if(p_ != null) p_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 8));
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(p_)) {
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
+        p_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "t" field.</summary>
+    public const int TFieldNumber = 9;
+    private int t_;
+    /// <summary>
+    /// ensure all numeric ids are in each message
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int T {
+      get { return t_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(t_ != value) {
+          Context.AddSetEvent(9, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        t_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "u" field.</summary>
+    public const int UFieldNumber = 10;
+    private int u_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int U {
+      get { return u_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(u_ != value) {
+          Context.AddSetEvent(10, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        u_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "v" field.</summary>
+    public const int VFieldNumber = 11;
+    private int v_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int V {
+      get { return v_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(v_ != value) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        v_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MessageO);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MessageO other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(P, other.P)) return false;
+      if (T != other.T) return false;
+      if (U != other.U) return false;
+      if (V != other.V) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (p_ != null) hash ^= P.GetHashCode();
+      if (T != 0) hash ^= T.GetHashCode();
+      if (U != 0) hash ^= U.GetHashCode();
+      if (V != 0) hash ^= V.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (p_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(P);
+      }
+      if (T != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(T);
+      }
+      if (U != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(U);
+      }
+      if (V != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(V);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (p_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(P);
+      }
+      if (T != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(T);
+      }
+      if (U != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(U);
+      }
+      if (V != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(V);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MessageO other) {
+      if (other == null) {
+        return;
+      }
+      if (other.p_ != null) {
+        if (p_ == null) {
+          p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
+        }
+        P.MergeFrom(other.P);
+      }
+      if (other.T != 0) {
+        T = other.T;
+      }
+      if (other.U != 0) {
+        U = other.U;
+      }
+      if (other.V != 0) {
+        V = other.V;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 66: {
+            if (p_ == null) {
+              p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
+            }
+            input.ReadMessage(p_);
+            break;
+          }
+          case 72: {
+            T = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            U = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            V = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 8: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (p_ == null) {
+                p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
+                p_.SetParent(Context, new EventPath(Context.Path, 8));
+              }
+              (p_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              p_  = global::Com.Zynga.Runtime.Protobuf.File.MessageP.Parser.ParseFrom(e.Set.ByteData);
+              p_.SetParent(Context, new EventPath(Context.Path, 8));
+            }
+          }
+          break;
+          case 9: {
+            t_ = e.Set.I32;
+          }
+          break;
+          case 10: {
+            u_ = e.Set.I32;
+          }
+          break;
+          case 11: {
+            v_ = e.Set.I32;
+          }
+          break;
+          default:
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class MessageP : zpr::EventRegistry, pb::IMessage<MessageP> {
+    private static readonly pb::MessageParser<MessageP> _parser = new pb::MessageParser<MessageP>(() => new MessageP());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MessageP> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.File.ComplexTestReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageP() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageP(MessageP other) : this() {
+      q_ = other.q_ != null ? other.Q.Clone() : null;
+      s_ = other.s_;
+      u_ = other.u_;
+      v_ = other.v_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageP Clone() {
+      return new MessageP(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+    }
+    /// <summary>Field number for the "q" field.</summary>
+    public const int QFieldNumber = 9;
+    private global::Com.Zynga.Runtime.Protobuf.File.MessageQ q_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.File.MessageQ Q {
+      get { return q_; }
+      set {
+        if(q_ != null) q_.ClearParent();
+        value.SetParent(Context, new EventPath(Context.Path, 9));
+        #if !DISABLE_EVENTS
+        if(value == null || !value.Equals(q_)) {
+          Context.AddSetEvent(9, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
+        }
+        #endif
+        q_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "s" field.</summary>
+    public const int SFieldNumber = 8;
+    private int s_;
+    /// <summary>
+    /// ensure all numeric ids are in each message
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int S {
+      get { return s_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(s_ != value) {
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        s_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "u" field.</summary>
+    public const int UFieldNumber = 10;
+    private int u_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int U {
+      get { return u_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(u_ != value) {
+          Context.AddSetEvent(10, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        u_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "v" field.</summary>
+    public const int VFieldNumber = 11;
+    private int v_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int V {
+      get { return v_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(v_ != value) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        v_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MessageP);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MessageP other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Q, other.Q)) return false;
+      if (S != other.S) return false;
+      if (U != other.U) return false;
+      if (V != other.V) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (q_ != null) hash ^= Q.GetHashCode();
+      if (S != 0) hash ^= S.GetHashCode();
+      if (U != 0) hash ^= U.GetHashCode();
+      if (V != 0) hash ^= V.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (S != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(S);
+      }
+      if (q_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(Q);
+      }
+      if (U != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(U);
+      }
+      if (V != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(V);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (q_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Q);
+      }
+      if (S != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(S);
+      }
+      if (U != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(U);
+      }
+      if (V != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(V);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MessageP other) {
+      if (other == null) {
+        return;
+      }
+      if (other.q_ != null) {
+        if (q_ == null) {
+          q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
+        }
+        Q.MergeFrom(other.Q);
+      }
+      if (other.S != 0) {
+        S = other.S;
+      }
+      if (other.U != 0) {
+        U = other.U;
+      }
+      if (other.V != 0) {
+        V = other.V;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 64: {
+            S = input.ReadInt32();
+            break;
+          }
+          case 74: {
+            if (q_ == null) {
+              q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
+            }
+            input.ReadMessage(q_);
+            break;
+          }
+          case 80: {
+            U = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            V = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 9: {
+            if (e.Path.Count - 1 != pathIndex) {
+              if (q_ == null) {
+                q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
+                q_.SetParent(Context, new EventPath(Context.Path, 9));
+              }
+              (q_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+            } else {
+              q_  = global::Com.Zynga.Runtime.Protobuf.File.MessageQ.Parser.ParseFrom(e.Set.ByteData);
+              q_.SetParent(Context, new EventPath(Context.Path, 9));
+            }
+          }
+          break;
+          case 8: {
+            s_ = e.Set.I32;
+          }
+          break;
+          case 10: {
+            u_ = e.Set.I32;
+          }
+          break;
+          case 11: {
+            v_ = e.Set.I32;
+          }
+          break;
+          default:
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class MessageQ : zpr::EventRegistry, pb::IMessage<MessageQ> {
+    private static readonly pb::MessageParser<MessageQ> _parser = new pb::MessageParser<MessageQ>(() => new MessageQ());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MessageQ> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.File.ComplexTestReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageQ() {
+      OnConstruction();
+      r_.SetContext(Context, 10);
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageQ(MessageQ other) : this() {
+      r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, other.R.Clone(), true);
+      r_.SetContext(Context, 10);
+      s_ = other.s_;
+      t_ = other.t_;
+      v_ = other.v_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageQ Clone() {
+      return new MessageQ(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+      r_.SetContext(Context, 10);
+    }
+    /// <summary>Field number for the "r" field.</summary>
+    public const int RFieldNumber = 10;
+    private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.File.MessageR> _repeated_r_codec
+        = pb::FieldCodec.ForMessage(82, global::Com.Zynga.Runtime.Protobuf.File.MessageR.Parser);
+    public class RDataConverter: EventDataConverter<global::Com.Zynga.Runtime.Protobuf.File.MessageR> {
+      public override zpr.EventSource.EventContent GetEventData(global::Com.Zynga.Runtime.Protobuf.File.MessageR data) {
+        var byteData = (data as pb::IMessage)?.ToByteString();
+        return new zpr.EventSource.EventContent() { ByteData = byteData };
+      }
+      public override global::Com.Zynga.Runtime.Protobuf.File.MessageR GetItem(zpr.EventSource.EventContent data) {
+        return global::Com.Zynga.Runtime.Protobuf.File.MessageR.Parser.ParseFrom(data.ByteData);
+      }
+    }
+    private static RDataConverter rDataConverter = new RDataConverter();
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR> r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, true);
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR> R {
+      get { return r_; }
+    }
+
+    /// <summary>Field number for the "s" field.</summary>
+    public const int SFieldNumber = 8;
+    private int s_;
+    /// <summary>
+    /// ensure all numeric ids are in each message
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int S {
+      get { return s_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(s_ != value) {
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        s_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "t" field.</summary>
+    public const int TFieldNumber = 9;
+    private int t_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int T {
+      get { return t_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(t_ != value) {
+          Context.AddSetEvent(9, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        t_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "v" field.</summary>
+    public const int VFieldNumber = 11;
+    private int v_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int V {
+      get { return v_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(v_ != value) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        v_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MessageQ);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MessageQ other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!r_.Equals(other.r_)) return false;
+      if (S != other.S) return false;
+      if (T != other.T) return false;
+      if (V != other.V) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= r_.GetHashCode();
+      if (S != 0) hash ^= S.GetHashCode();
+      if (T != 0) hash ^= T.GetHashCode();
+      if (V != 0) hash ^= V.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (S != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(S);
+      }
+      if (T != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(T);
+      }
+      r_.WriteTo(output, _repeated_r_codec);
+      if (V != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(V);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += r_.CalculateSize(_repeated_r_codec);
+      if (S != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(S);
+      }
+      if (T != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(T);
+      }
+      if (V != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(V);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MessageQ other) {
+      if (other == null) {
+        return;
+      }
+      r_.Add(other.r_);
+      if (other.S != 0) {
+        S = other.S;
+      }
+      if (other.T != 0) {
+        T = other.T;
+      }
+      if (other.V != 0) {
+        V = other.V;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 64: {
+            S = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            T = input.ReadInt32();
+            break;
+          }
+          case 82: {
+            r_.AddEntriesFrom(input, _repeated_r_codec);
+            break;
+          }
+          case 88: {
+            V = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 10: {
+            r_.ApplyEvent(e.ListEvent);
+          }
+          break;
+          case 8: {
+            s_ = e.Set.I32;
+          }
+          break;
+          case 9: {
+            t_ = e.Set.I32;
+          }
+          break;
+          case 11: {
+            v_ = e.Set.I32;
+          }
+          break;
+          default:
+            return false;
+          break;
+        }
+      return true;
+    }
+
+    public override zpr.EventSource.EventSourceRoot GenerateSnapshot() {
+      ClearEvents();
+      var er = new zpr.EventSource.EventSourceRoot();
+      var setEvent = new zpr.EventSource.EventData {
+        Set = new zpr.EventSource.EventContent {
+          ByteData = this.ToByteString()
+        }
+      };
+      er.Events.Add(setEvent);
+      return er;
+    }
+
+  }
+
+  public sealed partial class MessageR : zpr::EventRegistry, pb::IMessage<MessageR> {
+    private static readonly pb::MessageParser<MessageR> _parser = new pb::MessageParser<MessageR>(() => new MessageR());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MessageR> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.File.ComplexTestReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageR() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageR(MessageR other) : this() {
+      r_ = other.r_;
+      s_ = other.s_;
+      t_ = other.t_;
+      u_ = other.u_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MessageR Clone() {
+      return new MessageR(this);
+    }
+
+    public static bool IsEventSourced = true;
+
+    public override void SetParent(EventContext parent, EventPath path) {
+      base.SetParent(parent, path);
+    }
+    /// <summary>Field number for the "r" field.</summary>
+    public const int RFieldNumber = 11;
+    private string r_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string R {
+      get { return r_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(r_ != value) {
+          Context.AddSetEvent(11, new zpr.EventSource.EventContent { StringData = pb::ProtoPreconditions.CheckNotNull(value, "value") });
+        }
+        #endif
+        r_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "s" field.</summary>
+    public const int SFieldNumber = 8;
+    private int s_;
+    /// <summary>
+    /// ensure all numeric ids are in each message
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int S {
+      get { return s_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(s_ != value) {
+          Context.AddSetEvent(8, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        s_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "t" field.</summary>
+    public const int TFieldNumber = 9;
+    private int t_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int T {
+      get { return t_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(t_ != value) {
+          Context.AddSetEvent(9, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        t_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "u" field.</summary>
+    public const int UFieldNumber = 10;
+    private int u_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int U {
+      get { return u_; }
+      set {
+        #if !DISABLE_EVENTS
+        if(u_ != value) {
+          Context.AddSetEvent(10, new zpr.EventSource.EventContent { I32 = value });
+        }
+        #endif
+        u_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MessageR);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MessageR other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (R != other.R) return false;
+      if (S != other.S) return false;
+      if (T != other.T) return false;
+      if (U != other.U) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (R.Length != 0) hash ^= R.GetHashCode();
+      if (S != 0) hash ^= S.GetHashCode();
+      if (T != 0) hash ^= T.GetHashCode();
+      if (U != 0) hash ^= U.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (S != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(S);
+      }
+      if (T != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(T);
+      }
+      if (U != 0) {
+        output.WriteRawTag(80);
+        output.WriteInt32(U);
+      }
+      if (R.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(R);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (R.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(R);
+      }
+      if (S != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(S);
+      }
+      if (T != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(T);
+      }
+      if (U != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(U);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MessageR other) {
+      if (other == null) {
+        return;
+      }
+      if (other.R.Length != 0) {
+        R = other.R;
+      }
+      if (other.S != 0) {
+        S = other.S;
+      }
+      if (other.T != 0) {
+        T = other.T;
+      }
+      if (other.U != 0) {
+        U = other.U;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 64: {
+            S = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            T = input.ReadInt32();
+            break;
+          }
+          case 80: {
+            U = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            R = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+    public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        if (e.Path.Count == 0) {
+          this.MergeFrom(e.Set.ByteData);
+          return true;
+        }
+        switch (e.Path[pathIndex]) {
+          case 11: {
+            r_ = e.Set.StringData;
+          }
+          break;
+          case 8: {
+            s_ = e.Set.I32;
+          }
+          break;
+          case 9: {
+            t_ = e.Set.I32;
+          }
+          break;
+          case 10: {
+            u_ = e.Set.I32;
           }
           break;
           default:

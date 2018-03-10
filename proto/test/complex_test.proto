@@ -91,3 +91,41 @@ message MessageG {
   int32 m = 5;
   int32 n = 6;
 }
+
+// List Test
+
+message MessageO {
+  MessageP p = 8;
+
+  // ensure all numeric ids are in each message
+  int32 t = 9;
+  int32 u = 10;
+  int32 v = 11;
+}
+
+message MessageP {
+  MessageQ q = 9;
+
+  // ensure all numeric ids are in each message
+  int32 s = 8;
+  int32 u = 10;
+  int32 v = 11;
+}
+
+message MessageQ {
+ repeated MessageR r = 10;
+
+  // ensure all numeric ids are in each message
+  int32 s = 8;
+  int32 t = 9;
+  int32 v = 11;
+}
+
+message MessageR {
+  string r = 11;
+
+  // ensure all numeric ids are in each message
+  int32 s = 8;
+  int32 t = 9;
+  int32 u = 10;
+}

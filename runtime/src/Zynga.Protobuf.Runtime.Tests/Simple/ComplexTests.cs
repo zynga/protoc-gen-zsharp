@@ -40,5 +40,24 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			a.B.C["bar"].D["foo"].E.F.G.H.Add(7);
 			AssertEventsStable(a);
 		}
+
+		[Fact]
+		public void DeeplyNestedMessagesInRepeatedFieldShouldApplyEventsProperly() {
+			var state = new MessageO {
+				P = new MessageP {
+					Q = new MessageQ()
+				}
+			};
+
+			var s = new MessageR();
+			s.R = "hello";
+
+			state.P.Q.R.Add(s);
+
+			AssertEventsStable(state);
+
+			s.R = "World";
+			AssertEventsStable(state);
+		}
 	}
 }

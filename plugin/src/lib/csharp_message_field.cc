@@ -176,7 +176,7 @@ void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
     "  $property_name$.MergeFrom(other.$property_name$);\n");
   if(isEventSourced) {
     printer->Print(variables_,
-      "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+      "  $property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
   }
   printer->Print(
     variables_,

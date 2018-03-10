@@ -552,5 +552,52 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			Assert.Equal(blob, blobB);
 		}
+
+		[Fact]
+		public void ChangesToComplexChildMessageBeStableAfterSnapshots() {
+			var blob = populated();
+			var childBlob = populated();
+			blob.TestBlob_ = childBlob;
+
+			var snapshot = blob.GenerateSnapshot();
+
+			var blobA = new TestBlob();
+			blobA.ApplyEvents(snapshot);
+
+			AssertEventsStable(blobA, () => {
+				blobA.TestBlob_.Bar = new Bar();
+				blobA.TestBlob_.Bar.Foo = new Foo();
+				blobA.TestBlob_.Bar.Foo.Long = 10;
+				blobA.TestBlob_.Bar.Foo.Str = "world";
+				blobA.TestBlob_.Foo = new Foo();
+				blobA.TestBlob_.Foo.Long = 12;
+				blobA.TestBlob_.Foo.Str = "hello";
+
+				blobA.TestBlob_.IntToString.Add(11, "world");
+				blobA.TestBlob_.StringToFoo.Add("helloa", new Foo {Long = 9, Str = "ha"});
+				blobA.TestBlob_.StringToFoo["helloa"].Str = "happy";
+				blobA.TestBlob_.StringToFoo["helloa"].Long = 10;
+
+				blobA.TestBlob_.Foolist.Add(new Foo {Long = 123});
+				blobA.TestBlob_.Foolist[2].Long = 321;
+				blobA.TestBlob_.Foolist.Add(new Foo {Long = 1, Str = "la", Foo_ = new Foo()});
+				blobA.TestBlob_.Foolist[3].Str = "lalala";
+				blobA.TestBlob_.Foolist[3].Long = 2;
+
+				blobA.TestBlob_.Ilist.Add(12);
+				blobA.TestBlob_.Ilist.Add(51);
+
+				blobA.TestBlob_.Maybefoo = new Foo {Long = 42, Str = "maybe_foo_who_knows"};
+
+				blobA.TestBlob_.Timestamp = new Timestamp {
+					Seconds = 1235,
+					Nanos = 987
+				};
+				blobA.TestBlob_.Duration = new Duration {
+					Seconds = 112,
+					Nanos = 2
+				};
+			});
+		}
 	}
 }

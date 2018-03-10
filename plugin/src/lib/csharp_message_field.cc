@@ -166,17 +166,25 @@ void MessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 
 
 void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  bool isEventSourced = IsInternalEventSourced();
   printer->Print(
     variables_,
     "if (other.$has_property_check$) {\n"
     "  if ($has_not_property_check$) {\n"
     "    $name$_ = new $type_name$();\n"
     "  }\n"
-    "  $property_name$.MergeFrom(other.$property_name$);\n"
+    "  $property_name$.MergeFrom(other.$property_name$);\n");
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+  }
+  printer->Print(
+    variables_,
     "}\n");
 }
 
 void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+  bool isEventSourced = IsInternalEventSourced();
   printer->Print(
     variables_,
     "if ($has_not_property_check$) {\n"
@@ -184,7 +192,12 @@ void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer) {
     "}\n"
     // TODO(jonskeet): Do we really need merging behaviour like this?
     "input.ReadMessage($name$_);\n"); // No need to support TYPE_GROUP...
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+  }
 }
+
 
 void MessageFieldGenerator::GenerateSerializationCode(io::Printer* printer) {
   printer->Print(
@@ -368,11 +381,16 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
 }
 
 void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+  bool isEventSourced = IsInternalEventSourced();
   printer->Print(variables_, 
     "if ($property_name$ == null) {\n"
     "  $property_name$ = new $type_name$();\n"
     "}\n"
     "$property_name$.MergeFrom(other.$property_name$);\n");
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+  }
 }
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {

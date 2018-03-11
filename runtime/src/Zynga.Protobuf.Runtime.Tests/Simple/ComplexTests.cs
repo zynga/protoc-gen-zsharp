@@ -56,12 +56,12 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			AssertEventsStable(state);
 
-			AssertEventsStable(state, () => { s.R = "World"; });
+			AssertEventsStableWithClone(state, () => { s.R = "World"; });
 
 			var newState = new MessageO();
 			newState.ApplyEvents(state.GenerateSnapshot());
 
-			AssertEventsStable(newState, () => { newState.P.Q.R[0].R = "Worlds"; });
+			AssertEventsStableWithClone(newState, () => { newState.P.Q.R[0].R = "Worlds"; });
 		}
 	}
 }

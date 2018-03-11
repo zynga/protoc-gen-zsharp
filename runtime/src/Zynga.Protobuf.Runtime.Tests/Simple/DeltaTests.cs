@@ -564,7 +564,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			var blobA = new TestBlob();
 			blobA.ApplyEvents(snapshot);
 
-			AssertEventsStable(blobA, () => {
+			AssertEventsStableWithClone(blobA, () => {
 				blobA.TestBlob_.Bar = new Bar();
 				blobA.TestBlob_.Bar.Foo = new Foo();
 				blobA.TestBlob_.Bar.Foo.Long = 10;

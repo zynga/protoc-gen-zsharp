@@ -36,7 +36,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(message, newMessage);
 		}
 
-		public static void AssertEventsStable<T>(T message, Action makeChanges) where T : EventRegistry, IMessage, IDeepCloneable<T>, new() {
+		public static void AssertEventsStableWithClone<T>(T message, Action makeChanges, bool expectChanges = true) where T : EventRegistry, IMessage, IDeepCloneable<T>, new() {
 			if (message.HasEvents) {
 				message.ClearEvents();
 			}
@@ -44,6 +44,39 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			makeChanges();
 
+			if (expectChanges) {
+				Assert.True(message.HasEvents);
+				Assert.True(message.PeekEvents().Events.Count > 0);
+			}
+			else {
+				Assert.False(message.HasEvents);
+				Assert.False(message.PeekEvents().Events.Count > 0);
+			}
+
+			var events = message.GenerateEvents();
+			newMessage.ApplyEvents(events);
+			Assert.Equal(message, newMessage);
+		}
+
+		public static void AssertEventsStableWithSnapshot<T>(T message, Action makeChanges, bool expectChanges = true) where T : EventRegistry, IMessage, IDeepCloneable<T>, new() {
+			if (message.HasEvents) {
+				message.ClearEvents();
+			}
+
+			var snapshot = message.GenerateSnapshot();
+			var newMessage = new T();
+			newMessage.ApplyEvents(snapshot);
+
+			makeChanges();
+
+			if (expectChanges) {
+				Assert.True(message.HasEvents);
+				Assert.True(message.PeekEvents().Events.Count > 0);
+			}
+			else {
+				Assert.False(message.HasEvents);
+				Assert.False(message.PeekEvents().Events.Count > 0);
+			}
 			var events = message.GenerateEvents();
 			newMessage.ApplyEvents(events);
 			Assert.Equal(message, newMessage);

@@ -766,9 +766,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedA_ != null) {
         if (nestedA_ == null) {
           nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
+          nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
         }
         NestedA.MergeFrom(other.NestedA);
-        NestedA.SetParent(Context, new EventPath(Context.Path, 4));
       }
       listA_.Add(other.listA_);
       mapA_.Add(other.mapA_);
@@ -803,9 +803,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedA_ == null) {
               nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
+              nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
             }
             input.ReadMessage(nestedA_);
-            NestedA.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
           case 42:
@@ -1207,9 +1207,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
+          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
         }
         NestedB.MergeFrom(other.NestedB);
-        NestedB.SetParent(Context, new EventPath(Context.Path, 4));
       }
       listB_.Add(other.listB_);
       mapB_.Add(other.mapB_);
@@ -1244,9 +1244,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
+              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
             }
             input.ReadMessage(nestedB_);
-            NestedB.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
           case 42:
@@ -1703,9 +1703,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
+          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
         }
         NestedB.MergeFrom(other.NestedB);
-        NestedB.SetParent(Context, new EventPath(Context.Path, 4));
       }
       listB_.Add(other.listB_);
       mapB_.Add(other.mapB_);
@@ -1746,9 +1746,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
+              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
             }
             input.ReadMessage(nestedB_);
-            NestedB.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
           case 42:
@@ -2164,9 +2164,9 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
+          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
         }
         NestedB.MergeFrom(other.NestedB);
-        NestedB.SetParent(Context, new EventPath(Context.Path, 4));
       }
       listB_.Add(other.listB_);
       mapB_.Add(other.mapB_);
@@ -2200,9 +2200,9 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
+              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
             }
             input.ReadMessage(nestedB_);
-            NestedB.SetParent(Context, new EventPath(Context.Path, 4));
             break;
           }
           case 42:

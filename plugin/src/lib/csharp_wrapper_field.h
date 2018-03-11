@@ -1,3 +1,4 @@
+
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
 // https://developers.google.com/protocol-buffers/
@@ -62,8 +63,8 @@ class WrapperFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateCheckSum(io::Printer* printer);
   ///
   
-  virtual void GenerateMergingCode(io::Printer* printer);
-  virtual void GenerateParsingCode(io::Printer* printer);
+  virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced);
+  virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateSerializationCode(io::Printer* printer);
   virtual void GenerateSerializedSizeCode(io::Printer* printer);
 
@@ -84,8 +85,8 @@ class WrapperOneofFieldGenerator : public WrapperFieldGenerator {
   ~WrapperOneofFieldGenerator();
 
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
-  virtual void GenerateMergingCode(io::Printer* printer);
-  virtual void GenerateParsingCode(io::Printer* printer);
+  virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced);
+  virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateSerializationCode(io::Printer* printer);
   virtual void GenerateSerializedSizeCode(io::Printer* printer);
 

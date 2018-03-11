@@ -63,8 +63,8 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   virtual void GenerateCheckSum(io::Printer* printer) = 0;
   ///
 
-  virtual void GenerateMergingCode(io::Printer* printer) = 0;
-  virtual void GenerateParsingCode(io::Printer* printer) = 0;
+  virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced) = 0;
+  virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced) = 0;
   virtual void GenerateSerializationCode(io::Printer* printer) = 0;
   virtual void GenerateSerializedSizeCode(io::Printer* printer) = 0;
 

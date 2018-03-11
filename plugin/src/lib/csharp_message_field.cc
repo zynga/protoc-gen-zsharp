@@ -165,8 +165,8 @@ void MessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 }
 
 
-void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
-  bool isEventSourced = IsInternalEventSourced();
+void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
+  bool isInternalEventSourced = IsInternalEventSourced();
   printer->Print(
     variables_,
     "if (other.$has_property_check$) {\n"
@@ -174,7 +174,7 @@ void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
     "    $name$_ = new $type_name$();\n"
     "  }\n"
     "  $property_name$.MergeFrom(other.$property_name$);\n");
-  if(isEventSourced) {
+  if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
       "  $property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
   }
@@ -183,8 +183,8 @@ void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
     "}\n");
 }
 
-void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer) {
-  bool isEventSourced = IsInternalEventSourced();
+void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
+  bool isInternalEventSourced = IsInternalEventSourced();
   printer->Print(
     variables_,
     "if ($has_not_property_check$) {\n"
@@ -192,7 +192,7 @@ void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer) {
     "}\n"
     // TODO(jonskeet): Do we really need merging behaviour like this?
     "input.ReadMessage($name$_);\n"); // No need to support TYPE_GROUP...
-  if(isEventSourced) {
+  if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
       "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
   }
@@ -380,20 +380,20 @@ void MessageOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
   }
 }
 
-void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
-  bool isEventSourced = IsInternalEventSourced();
+void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
+  bool isInternalEventSourced = IsInternalEventSourced();
   printer->Print(variables_, 
     "if ($property_name$ == null) {\n"
     "  $property_name$ = new $type_name$();\n"
     "}\n"
     "$property_name$.MergeFrom(other.$property_name$);\n");
-  if(isEventSourced) {
+  if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
       "$property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
   }
 }
 
-void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   // TODO(jonskeet): We may be able to do better than this
   printer->Print(
     variables_,

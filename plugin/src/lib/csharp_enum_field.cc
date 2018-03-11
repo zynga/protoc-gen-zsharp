@@ -57,7 +57,7 @@ EnumFieldGenerator::EnumFieldGenerator(const FieldDescriptor* descriptor,
 EnumFieldGenerator::~EnumFieldGenerator() {
 }
 
-void EnumFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void EnumFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_,
     "$name$_ = ($type_name$) input.ReadEnum();\n");
 }
@@ -92,11 +92,11 @@ EnumOneofFieldGenerator::EnumOneofFieldGenerator(
 EnumOneofFieldGenerator::~EnumOneofFieldGenerator() {
 }
 
-void EnumOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void EnumOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
 }
 
-void EnumOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void EnumOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   // TODO(jonskeet): What about if we read the default value?
   printer->Print(
     variables_,

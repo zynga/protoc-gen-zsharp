@@ -140,13 +140,13 @@ void RepeatedEnumFieldGenerator::GenerateCheckSum(io::Printer* printer) {
       "}\n");
 }
 
-void RepeatedEnumFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void RepeatedEnumFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.Add(other.$name$_);\n");
 }
 
-void RepeatedEnumFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void RepeatedEnumFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.AddEntriesFrom(input, _repeated_$name$_codec);\n");

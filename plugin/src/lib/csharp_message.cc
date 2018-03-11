@@ -316,7 +316,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
   // Standard methods
   GenerateFrameworkMethods(printer);
   GenerateMessageSerializationMethods(printer);
-  GenerateMergingMethods(printer);
+  GenerateMergingMethods(printer, IsEventSourced());
 
   // Nested messages and enums
   if (HasNestedGeneratedTypes()) {
@@ -590,7 +590,7 @@ void MessageGenerator::GenerateMessageSerializationMethods(io::Printer* printer)
   printer->Print("}\n\n");
 }
 
-void MessageGenerator::GenerateMergingMethods(io::Printer* printer) {
+void MessageGenerator::GenerateMergingMethods(io::Printer* printer, bool isEventSourced) {
   // Note:  These are separate from GenerateMessageSerializationMethods()
   //   because they need to be generated even for messages that are optimized
   //   for code size.
@@ -611,7 +611,7 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer) {
     if (!descriptor_->field(i)->containing_oneof()) {      
       scoped_ptr<FieldGeneratorBase> generator(
           CreateFieldGeneratorInternal(descriptor_->field(i)));
-      generator->GenerateMergingCode(printer);
+      generator->GenerateMergingCode(printer, isEventSourced);
     }
   }
   // Merge oneof fields
@@ -628,7 +628,7 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer) {
         "case $property_name$OneofCase.$field_property_name$:\n");
       printer->Indent();
       scoped_ptr<FieldGeneratorBase> generator(CreateFieldGeneratorInternal(field));
-      generator->GenerateMergingCode(printer);
+      generator->GenerateMergingCode(printer, isEventSourced);
       printer->Print("break;\n");
       printer->Outdent();
     }
@@ -682,7 +682,7 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer) {
     printer->Indent();
     scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(field));
-    generator->GenerateParsingCode(printer);
+    generator->GenerateParsingCode(printer, isEventSourced);
     printer->Print("break;\n");
     printer->Outdent();
     printer->Print("}\n");

@@ -284,13 +284,13 @@ void MapFieldGenerator::GenerateCheckSum(io::Printer* printer) {
       "}\n");
 }
 
-void MapFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void MapFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
       variables_,
       "$name$_.Add(other.$name$_);\n");
 }
 
-void MapFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void MapFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.AddEntriesFrom(input, _map_$name$_codec);\n");

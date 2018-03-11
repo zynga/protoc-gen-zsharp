@@ -102,7 +102,7 @@ void WrapperFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 }
 
 
-void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "if (other.$has_property_check$) {\n"
@@ -112,7 +112,7 @@ void WrapperFieldGenerator::GenerateMergingCode(io::Printer* printer) {
     "}\n");
 }
 
-void WrapperFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void WrapperFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$type_name$ value = _single_$name$_codec.Read(input);\n"
@@ -199,11 +199,11 @@ void WrapperOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
     "}\n");
 }
 
-void WrapperOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void WrapperOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
 }
 
-void WrapperOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void WrapperOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$property_name$ = _oneof_$name$_codec.Read(input);\n");

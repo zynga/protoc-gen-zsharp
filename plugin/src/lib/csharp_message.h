@@ -71,7 +71,7 @@ class MessageGenerator : public SourceGeneratorBase {
   bool is_event_sourced;
 
   void GenerateMessageSerializationMethods(io::Printer* printer);
-  void GenerateMergingMethods(io::Printer* printer);
+  void GenerateMergingMethods(io::Printer* printer, bool isEventSourced);
 
   int GetFieldOrdinal(const FieldDescriptor* descriptor);
 

@@ -157,13 +157,13 @@ void RepeatedMessageFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 }
 
 
-void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void RepeatedMessageFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.Add(other.$name$_);\n");
 }
 
-void RepeatedMessageFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void RepeatedMessageFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.AddEntriesFrom(input, _repeated_$name$_codec);\n");

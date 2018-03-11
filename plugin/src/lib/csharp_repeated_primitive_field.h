@@ -59,8 +59,8 @@ class RepeatedPrimitiveFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateCheckSum(io::Printer* printer);
   ///
   
-  virtual void GenerateMergingCode(io::Printer* printer);
-  virtual void GenerateParsingCode(io::Printer* printer);
+  virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced);
+  virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateSerializationCode(io::Printer* printer);
   virtual void GenerateSerializedSizeCode(io::Printer* printer);
 

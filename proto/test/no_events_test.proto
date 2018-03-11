@@ -13,3 +13,10 @@ message HasEvents {
   option (com.zynga.runtime.protobuf.event_sourced) = true;
   int32 a = 1;
 }
+
+message NoEventsHasChildEvents {
+  HasEvents has_a = 1;
+  oneof foo {
+    HasEvents has_b = 2;
+  }
+}

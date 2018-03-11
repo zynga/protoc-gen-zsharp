@@ -30,13 +30,17 @@ namespace Com.Zynga.Runtime.Protobuf {
           string.Concat(
             "Chl0ZXN0L25vX2V2ZW50c190ZXN0LnByb3RvEhpjb20uenluZ2EucnVudGlt",
             "ZS5wcm90b2J1ZhoSZXZlbnRfcGx1Z2luLnByb3RvIhgKCE5vRXZlbnRzEgwK",
-            "AWEYASABKAVSAWEiHwoJSGFzRXZlbnRzEgwKAWEYASABKAVSAWE6BMi4HgFi",
-            "BnByb3RvMw=="));
+            "AWEYASABKAVSAWEiHwoJSGFzRXZlbnRzEgwKAWEYASABKAVSAWE6BMi4HgEi",
+            "mQEKFk5vRXZlbnRzSGFzQ2hpbGRFdmVudHMSOgoFaGFzX2EYASABKAsyJS5j",
+            "b20uenluZ2EucnVudGltZS5wcm90b2J1Zi5IYXNFdmVudHNSBGhhc0ESPAoF",
+            "aGFzX2IYAiABKAsyJS5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5IYXNF",
+            "dmVudHNIAFIEaGFzQkIFCgNmb29iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Zynga.Protobuf.EventSource.EventPluginReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.NoEvents), global::Com.Zynga.Runtime.Protobuf.NoEvents.Parser, new[]{ "A" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.HasEvents), global::Com.Zynga.Runtime.Protobuf.HasEvents.Parser, new[]{ "A" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.HasEvents), global::Com.Zynga.Runtime.Protobuf.HasEvents.Parser, new[]{ "A" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Zynga.Runtime.Protobuf.NoEventsHasChildEvents), global::Com.Zynga.Runtime.Protobuf.NoEventsHasChildEvents.Parser, new[]{ "HasA", "HasB" }, new[]{ "Foo" }, null, null)
           }));
     }
     #endregion
@@ -314,6 +318,195 @@ namespace Com.Zynga.Runtime.Protobuf {
       };
       er.Events.Add(setEvent);
       return er;
+    }
+
+  }
+
+  public sealed partial class NoEventsHasChildEvents : pb::IMessage<NoEventsHasChildEvents> {
+    private static readonly pb::MessageParser<NoEventsHasChildEvents> _parser = new pb::MessageParser<NoEventsHasChildEvents>(() => new NoEventsHasChildEvents());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<NoEventsHasChildEvents> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Zynga.Runtime.Protobuf.NoEventsTestReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public NoEventsHasChildEvents() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public NoEventsHasChildEvents(NoEventsHasChildEvents other) : this() {
+      hasA_ = other.hasA_ != null ? other.HasA.Clone() : null;
+      switch (other.FooCase) {
+        case FooOneofCase.HasB:
+          HasB = other.HasB.Clone();
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public NoEventsHasChildEvents Clone() {
+      return new NoEventsHasChildEvents(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "has_a" field.</summary>
+    public const int HasAFieldNumber = 1;
+    private global::Com.Zynga.Runtime.Protobuf.HasEvents hasA_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.HasEvents HasA {
+      get { return hasA_; }
+      set {
+        hasA_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "has_b" field.</summary>
+    public const int HasBFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Com.Zynga.Runtime.Protobuf.HasEvents HasB {
+      get { return fooCase_ == FooOneofCase.HasB ? (global::Com.Zynga.Runtime.Protobuf.HasEvents) foo_ : null; }
+      set {
+        foo_ = value;
+        fooCase_ = value == null ? FooOneofCase.None : FooOneofCase.HasB;
+      }
+    }
+
+    private object foo_;
+    /// <summary>Enum of possible cases for the "foo" oneof.</summary>
+    public enum FooOneofCase {
+      None = 0,
+      HasB = 2,
+    }
+    private FooOneofCase fooCase_ = FooOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FooOneofCase FooCase {
+      get { return fooCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearFoo() {
+      fooCase_ = FooOneofCase.None;
+      foo_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as NoEventsHasChildEvents);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(NoEventsHasChildEvents other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(HasA, other.HasA)) return false;
+      if (!object.Equals(HasB, other.HasB)) return false;
+      if (FooCase != other.FooCase) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (hasA_ != null) hash ^= HasA.GetHashCode();
+      if (fooCase_ == FooOneofCase.HasB) hash ^= HasB.GetHashCode();
+      hash ^= (int) fooCase_;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (hasA_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(HasA);
+      }
+      if (fooCase_ == FooOneofCase.HasB) {
+        output.WriteRawTag(18);
+        output.WriteMessage(HasB);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (hasA_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(HasA);
+      }
+      if (fooCase_ == FooOneofCase.HasB) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(HasB);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(NoEventsHasChildEvents other) {
+      if (other == null) {
+        return;
+      }
+      if (other.hasA_ != null) {
+        if (hasA_ == null) {
+          hasA_ = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
+        }
+        HasA.MergeFrom(other.HasA);
+      }
+      switch (other.FooCase) {
+        case FooOneofCase.HasB:
+          if (HasB == null) {
+            HasB = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
+          }
+          HasB.MergeFrom(other.HasB);
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (hasA_ == null) {
+              hasA_ = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
+            }
+            input.ReadMessage(hasA_);
+            break;
+          }
+          case 18: {
+            global::Com.Zynga.Runtime.Protobuf.HasEvents subBuilder = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
+            if (fooCase_ == FooOneofCase.HasB) {
+              subBuilder.MergeFrom(HasB);
+            }
+            input.ReadMessage(subBuilder);
+            HasB = subBuilder;
+            break;
+          }
+        }
+      }
     }
 
   }

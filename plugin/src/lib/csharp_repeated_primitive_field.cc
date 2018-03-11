@@ -139,13 +139,13 @@ void RepeatedPrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 }
 
 
-void RepeatedPrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void RepeatedPrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.Add(other.$name$_);\n");
 }
 
-void RepeatedPrimitiveFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void RepeatedPrimitiveFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "$name$_.AddEntriesFrom(input, _repeated_$name$_codec);\n");

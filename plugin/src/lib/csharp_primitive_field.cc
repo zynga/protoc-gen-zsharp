@@ -205,7 +205,7 @@ void PrimitiveFieldGenerator::GenerateCheckSum(io::Printer* printer) {
 }
 
 
-void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
     "if ($other_has_property_check$) {\n"
@@ -213,7 +213,7 @@ void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer) {
     "}\n");
 }
 
-void PrimitiveFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void PrimitiveFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   // Note: invoke the property setter rather than writing straight to the field,
   // so that we can normalize "null to empty" for strings and bytes.
   printer->Print(
@@ -398,7 +398,7 @@ void PrimitiveOneofFieldGenerator::GenerateEventAddEvent(io::Printer* printer) {
     "field_name", GetPropertyName(descriptor_));
 }
 
-void PrimitiveOneofFieldGenerator::GenerateMergingCode(io::Printer* printer) {
+void PrimitiveOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEventSourced) {
   printer->Print(variables_, "$property_name$ = other.$property_name$;\n");
 }
 
@@ -407,7 +407,7 @@ void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {
     "PrintField(\"$descriptor_name$\", $has_property_check$, $oneof_name$_, writer);\n");
 }
 
-void PrimitiveOneofFieldGenerator::GenerateParsingCode(io::Printer* printer) {
+void PrimitiveOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
     printer->Print(
       variables_,
       "$property_name$ = input.Read$capitalized_type_name$();\n");

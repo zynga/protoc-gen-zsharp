@@ -711,49 +711,49 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			//SetSingular(allTypes.MapInt32TestAllTypesNoEventsMessage[IntValue(keyIndex)], offsetIndex);
 		}
 
-		public static void ApplyAllChanges(TestAllTypes allTypes) {
+		public static void ApplyAllChanges(TestAllTypes allTypes, int offsetIndex = 0) {
 			// single
-			SetSingular(allTypes);
-			SetEnums(allTypes);
-			SetNestedMessages(allTypes);
-			UpdateNestedMessages(allTypes);
+			SetSingular(allTypes, offsetIndex);
+			SetEnums(allTypes, offsetIndex);
+			SetNestedMessages(allTypes, offsetIndex);
+			UpdateNestedMessages(allTypes, offsetIndex);
 
 			// lists
-			AddRepeated(allTypes);
-			RemoveRepeated(allTypes);
-			AddRepeated(allTypes);
+			AddRepeated(allTypes, offsetIndex);
+			RemoveRepeated(allTypes, offsetIndex);
+			AddRepeated(allTypes, offsetIndex);
 			RemoveAtRepeated(allTypes, 0);
-			AddRepeated(allTypes);
-			ReplaceRepeated(allTypes, 0);
-			ReplaceRepeated(allTypes, 0, 1);
-			InsertRepeated(allTypes, 0, 2);
+			AddRepeated(allTypes, offsetIndex);
+			ReplaceRepeated(allTypes, 0, offsetIndex);
+			ReplaceRepeated(allTypes, 0, offsetIndex + 1);
+			InsertRepeated(allTypes, 0, offsetIndex + 2);
 			ClearRepeated(allTypes);
-			AddRepeated(allTypes);
-			UpdateRepeated(allTypes, 0);
+			AddRepeated(allTypes, offsetIndex);
+			UpdateRepeated(allTypes, 0, offsetIndex);
 
 			// maps
-			AddMap(allTypes, 1);
-			RemoveMap(allTypes, 1);
-			AddMap(allTypes, 1);
-			ReplaceMap(allTypes, 1);
-			ReplaceMap(allTypes, 1, 1);
+			AddMap(allTypes, offsetIndex, offsetIndex);
+			RemoveMap(allTypes, offsetIndex);
+			AddMap(allTypes, offsetIndex, offsetIndex);
+			ReplaceMap(allTypes, offsetIndex, offsetIndex);
+			ReplaceMap(allTypes, offsetIndex, offsetIndex + 1);
 			ClearMap(allTypes);
-			AddMap(allTypes, 1);
-			UpdateMap(allTypes, 1);
+			AddMap(allTypes, offsetIndex, offsetIndex);
+			UpdateMap(allTypes, offsetIndex, offsetIndex + 1);
 
 			// oneof
-			allTypes.OneofUint32 = UintValue(0);
-			allTypes.OneofNestedMessage = NestedMessageValue(0);
-			allTypes.OneofString = StringValue(0);
-			allTypes.OneofBytes = ByteValue(0);
-			allTypes.OneofForeignMessage = ForeignMessageValue(0);
-			allTypes.OneofForeignMessageNoEvents = ForeignMessageNoEventsValue(0);
-			allTypes.OneofAllTypes = TestAllTypesValue(0);
-			allTypes.OneofAllTypesNoEvents = TestAllTypesNoEventsValue(0);
+			allTypes.OneofUint32 = UintValue(offsetIndex);
+			allTypes.OneofNestedMessage = NestedMessageValue(offsetIndex);
+			allTypes.OneofString = StringValue(offsetIndex);
+			allTypes.OneofBytes = ByteValue(offsetIndex);
+			allTypes.OneofForeignMessage = ForeignMessageValue(offsetIndex);
+			allTypes.OneofForeignMessageNoEvents = ForeignMessageNoEventsValue(offsetIndex);
+			allTypes.OneofAllTypes = TestAllTypesValue(offsetIndex);
+			allTypes.OneofAllTypesNoEvents = TestAllTypesNoEventsValue(offsetIndex);
 
 			// nested types
-			allTypes.AllTypes = TestAllTypesValue(0);
-			allTypes.AllTypesNoEvents = TestAllTypesNoEventsValue(0);
+			allTypes.AllTypes = TestAllTypesValue(offsetIndex);
+			allTypes.AllTypesNoEvents = TestAllTypesNoEventsValue(offsetIndex);
 		}
 
 		public static void ApplyAllChanges(TestAllTypesNoEvents allTypes) {

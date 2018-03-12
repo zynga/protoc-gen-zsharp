@@ -12,6 +12,16 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 		}
 
 		[Fact]
+		public void ShouldGenerateValidStableEventsToExistingWithClone() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+
+			var newAllTypes = allTypes.Clone();
+			Assert.Equal(allTypes, newAllTypes);
+			AssertEventsStableWithClone(newAllTypes, () => { ApplyAllChanges(newAllTypes, 1); });
+		}
+
+		[Fact]
 		public void ShouldGenerateValidStableEventsSingleStepWithClone() {
 			var allTypes = new TestAllTypes();
 			// single
@@ -64,6 +74,18 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			AssertEventsStableWithSnapshot(allTypes, () => {
 				ApplyAllChanges(allTypes);
 			});
+		}
+
+		[Fact]
+		public void ShouldGenerateValidStableEventsToExistingWithSnapshot() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var newAllTypes = new TestAllTypes();
+			newAllTypes.ApplyEvents(snapshot);
+			Assert.Equal(allTypes, newAllTypes);
+			AssertEventsStableWithClone(newAllTypes, () => { ApplyAllChanges(newAllTypes, 1); });
 		}
 
 		[Fact]
@@ -360,5 +382,20 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			TestManyChangesWithSnapshot(allTypes, allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[0].AllTypes.AllTypes.AllTypes);
 		}
 
+		[Fact]
+		public void ShouldGenerateManyValidEventsDeeplyNestedMapListToExistingWithSnapshot() {
+			var allTypes = DeeplyNested();
+			allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1] = DeeplyNested();
+			allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			TestManyChangesWithSnapshot(allTypes, allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[0].AllTypes.AllTypes.AllTypes);
+
+			var snapshot = allTypes.GenerateSnapshot();
+			var newAllTypes = new TestAllTypes();
+			newAllTypes.ApplyEvents(snapshot);
+			Assert.Equal(allTypes, newAllTypes);
+
+			allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			TestManyChangesWithSnapshot(allTypes, allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes);
+		}
 	}
 }

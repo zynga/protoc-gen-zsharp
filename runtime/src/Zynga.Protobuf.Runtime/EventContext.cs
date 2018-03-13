@@ -12,6 +12,7 @@ namespace Zynga.Protobuf.Runtime {
 		private EventPath _path = EventPath.Empty;
 		private bool _eventsEnabled = true;
 		private readonly HashSet<EventContext> _children = new HashSet<EventContext>();
+		private readonly HashSet<IEventSubscribable> _dirty = new HashSet<IEventSubscribable>();
 
 		/// <summary>
 		/// Establishes a parent child relationship
@@ -79,6 +80,32 @@ namespace Zynga.Protobuf.Runtime {
 			_path = new EventPath(parentPath, _path.Path[_path.Path.Count - 1]);
 			foreach (var child in _children) {
 				child.UpdatePath(_path);
+			}
+		}
+
+		/// <summary>
+		/// Used to track changes when applying events
+		/// </summary>
+		public virtual void MarkDirty(IEventSubscribable subscribable) {
+			if (_parent != null) {
+				_parent.MarkDirty(subscribable);
+			}
+			else {
+				_dirty.Add(subscribable);
+			}
+		}
+
+		/// <summary>
+		/// Notifies all subscribers of changes to messages
+		/// </summary>
+		public void NotifySubscribers() {
+			try {
+				foreach (var registry in _dirty) {
+					registry.NotifySubscribers();
+				}
+			}
+			finally {
+				_dirty.Clear();
 			}
 		}
 

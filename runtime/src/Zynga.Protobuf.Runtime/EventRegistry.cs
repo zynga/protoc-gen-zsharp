@@ -1,12 +1,18 @@
 ﻿using System;
+using Google.Protobuf;
 using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// The EventRegistry is extended by protobuf messages with the event_sourced option set
 	/// </summary>
-	public abstract class EventRegistry {
+	public abstract class EventRegistry<T> : IEventRegistry, IEventSubscribable where T : IMessage<T> {
 		protected readonly EventContext Context = new EventContext();
+
+		/// <summary>
+		/// Subcribe to changes to this message caused by applying events
+		/// </summary>
+		public event Action<T> OnChanged;
 
 		/// <summary>
 		/// Takes a set of events and applies them to the Message
@@ -21,7 +27,28 @@ namespace Zynga.Protobuf.Runtime {
 					throw new ApplyEventException(e, ex);
 				}
 			}
+
+			Context.NotifySubscribers();
 		}
+
+		/// <inheritdoc />
+		public void NotifySubscribers() {
+			OnChanged?.Invoke(Message);
+		}
+
+		/// <summary>
+		/// Mark the message dirty
+		/// </summary>
+		protected void MarkDirty() {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				Context.MarkDirty(this);
+			}
+		}
+
+		/// <summary>
+		/// Returns the current message associated with the EventRegistry
+		/// </summary>
+		protected abstract T Message { get; }
 
 		/// <summary>
 		/// Applies a specific event with the current path index specified.
@@ -101,7 +128,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Used for ListEventContext objects, which may have had their index updated by a replace or insert event
 		/// </summary>
 		/// <param name="index"></param>
-		internal void TryUpdateContextIndex(int index) {
+		public void TryUpdateContextIndex(int index) {
 			var listContext = Context as ListEventContext;
 			if (listContext != null) {
 				listContext.Index = index;

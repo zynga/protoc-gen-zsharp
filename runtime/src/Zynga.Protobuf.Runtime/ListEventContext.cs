@@ -69,5 +69,10 @@ namespace Zynga.Protobuf.Runtime {
 
 			AddUpdateEvent(e);
 		}
+
+		/// <inheritdoc />
+		public override void MarkDirty(IEventSubscribable eventRegistry) {
+			_listContext.MarkDirty(eventRegistry);
+		}
 	}
 }

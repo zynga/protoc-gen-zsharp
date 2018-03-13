@@ -7,7 +7,7 @@ using Google.Protobuf.Collections;
 using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
-	public class EventMapField<TKey, TValue> : IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, IEquatable<MapField<TKey, TValue>>, IDictionary, ICollection, IReadOnlyDictionary<TKey, TValue>, IReadOnlyCollection<KeyValuePair<TKey, TValue>> {
+	public class EventMapField<TKey, TValue> : IEventSubscribable, IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, IEquatable<MapField<TKey, TValue>>, IDictionary, ICollection, IReadOnlyDictionary<TKey, TValue>, IReadOnlyCollection<KeyValuePair<TKey, TValue>> {
 		private readonly MapField<TKey, TValue> _internal;
 		private readonly bool _isMessageType;
 		private EventContext _context;
@@ -32,6 +32,25 @@ namespace Zynga.Protobuf.Runtime {
 			}
 			else {
 				_internal = mapField;
+			}
+		}
+
+		/// <summary>
+		/// Subcribe to changes of this message
+		/// </summary>
+		public event Action<EventMapField<TKey, TValue>> OnChanged;
+
+		/// <inheritdoc />
+		public void NotifySubscribers() {
+			OnChanged?.Invoke(this);
+		}
+
+		/// <summary>
+		/// Mark the message dirty
+		/// </summary>
+		protected void MarkDirty() {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
 			}
 		}
 
@@ -293,6 +312,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public bool ApplyEvent(MapEvent e) {
+			MarkDirty();
 			switch (e.MapAction) {
 				case MapAction.AddMap:
 					var addPair = _converter.GetItem(e.KeyValue);
@@ -311,7 +331,7 @@ namespace Zynga.Protobuf.Runtime {
 					return true;
 				case MapAction.UpdateMap:
 					var updatePair = _converter.GetItem(e.KeyValue, true);
-					var registry = _internal[updatePair.Key] as EventRegistry;
+					var registry = _internal[updatePair.Key] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
 					return true;
 				default:
@@ -363,12 +383,12 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private static void ClearParent(TValue item) {
-			var registry = item as EventRegistry;
+			var registry = item as IEventRegistry;
 			registry?.ClearParent();
 		}
 
 		private void SetParent(TKey key, TValue value) {
-			var registry = value as EventRegistry;
+			var registry = value as IEventRegistry;
 			var keyBytes = _converter.GetKeyValue(key, value, true);
 			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
 		}

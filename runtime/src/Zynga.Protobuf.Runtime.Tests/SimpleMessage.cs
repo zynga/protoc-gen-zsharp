@@ -47,7 +47,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
   #region Messages
-  public sealed partial class ParentMessage : zpr::EventRegistry, pb::IMessage<ParentMessage> {
+  public sealed partial class ParentMessage : zpr::EventRegistry<ParentMessage>, pb::IMessage<ParentMessage> {
     private static readonly pb::MessageParser<ParentMessage> _parser = new pb::MessageParser<ParentMessage>(() => new ParentMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ParentMessage> Parser { get { return _parser; } }
@@ -81,6 +81,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override ParentMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -216,6 +218,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -231,7 +234,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 b_ = new global::Com.Zynga.Runtime.Protobuf.ChildMessage();
                 b_.SetParent(Context, new EventPath(Context.Path, 2));
               }
-              (b_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (b_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               b_  = global::Com.Zynga.Runtime.Protobuf.ChildMessage.Parser.ParseFrom(e.Set.ByteData);
               b_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -259,7 +262,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class ChildMessage : zpr::EventRegistry, pb::IMessage<ChildMessage> {
+  public sealed partial class ChildMessage : zpr::EventRegistry<ChildMessage>, pb::IMessage<ChildMessage> {
     private static readonly pb::MessageParser<ChildMessage> _parser = new pb::MessageParser<ChildMessage>(() => new ChildMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ChildMessage> Parser { get { return _parser; } }
@@ -293,6 +296,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override ChildMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -428,6 +433,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -443,7 +449,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 d_ = new global::Com.Zynga.Runtime.Protobuf.ChildChildMessage();
                 d_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (d_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (d_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               d_  = global::Com.Zynga.Runtime.Protobuf.ChildChildMessage.Parser.ParseFrom(e.Set.ByteData);
               d_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -471,7 +477,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class ChildChildMessage : zpr::EventRegistry, pb::IMessage<ChildChildMessage> {
+  public sealed partial class ChildChildMessage : zpr::EventRegistry<ChildChildMessage>, pb::IMessage<ChildChildMessage> {
     private static readonly pb::MessageParser<ChildChildMessage> _parser = new pb::MessageParser<ChildChildMessage>(() => new ChildChildMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ChildChildMessage> Parser { get { return _parser; } }
@@ -504,6 +510,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override ChildChildMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -597,6 +605,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

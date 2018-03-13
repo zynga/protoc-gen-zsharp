@@ -9,7 +9,7 @@ namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// Wraps a repeated field to add event sourcing support
 	/// </summary>
-	public class EventRepeatedField<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
+	public class EventRepeatedField<T> : IEventSubscribable, IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
 		private readonly RepeatedField<T> _internal;
 		private readonly bool _isMessageType;
 		private EventContext _context;
@@ -34,6 +34,25 @@ namespace Zynga.Protobuf.Runtime {
 			}
 			else {
 				_internal = repeatedField;
+			}
+		}
+
+		/// <summary>
+		/// Subcribe to changes of this message
+		/// </summary>
+		public event Action<EventRepeatedField<T>> OnChanged;
+
+		/// <inheritdoc />
+		public void NotifySubscribers() {
+			OnChanged?.Invoke(this);
+		}
+
+		/// <summary>
+		/// Mark the message dirty
+		/// </summary>
+		protected void MarkDirty() {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
 			}
 		}
 
@@ -294,6 +313,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public bool ApplyEvent(ListEvent e) {
+			MarkDirty();
 			switch (e.ListAction) {
 				case ListAction.AddList:
 					InternalAdd(_converter.GetItem(e.Content));
@@ -314,7 +334,7 @@ namespace Zynga.Protobuf.Runtime {
 					InternalClear();
 					return true;
 				case ListAction.UpdateList:
-					var registry = _internal[e.Index] as EventRegistry;
+					var registry = _internal[e.Index] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
 					return true;
 				default:
@@ -375,18 +395,18 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private static void ClearParent(T item) {
-			var registry = item as EventRegistry;
+			var registry = item as IEventRegistry;
 			registry?.ClearParent();
 		}
 
 		private void SetParent(int index, T item) {
-			var registry = item as EventRegistry;
+			var registry = item as IEventRegistry;
 			registry?.SetParent(new ListEventContext(_context, index, _fieldNumber), EventPath.Empty);
 		}
 
 		private void UpdateParents(int startIndex) {
 			for (int i = startIndex; i < _internal.Count; i++) {
-				var registry = _internal[i] as EventRegistry;
+				var registry = _internal[i] as IEventRegistry;
 				registry?.TryUpdateContextIndex(i);
 			}
 		}

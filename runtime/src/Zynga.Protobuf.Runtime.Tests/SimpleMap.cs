@@ -222,7 +222,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleMapDeltaMessage : zpr::EventRegistry, pb::IMessage<SimpleMapDeltaMessage> {
+  public sealed partial class SimpleMapDeltaMessage : zpr::EventRegistry<SimpleMapDeltaMessage>, pb::IMessage<SimpleMapDeltaMessage> {
     private static readonly pb::MessageParser<SimpleMapDeltaMessage> _parser = new pb::MessageParser<SimpleMapDeltaMessage>(() => new SimpleMapDeltaMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleMapDeltaMessage> Parser { get { return _parser; } }
@@ -255,6 +255,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleMapDeltaMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -348,6 +350,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -489,7 +492,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleLongToMessageDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleLongToMessageDeltaMap> {
+  public sealed partial class SimpleLongToMessageDeltaMap : zpr::EventRegistry<SimpleLongToMessageDeltaMap>, pb::IMessage<SimpleLongToMessageDeltaMap> {
     private static readonly pb::MessageParser<SimpleLongToMessageDeltaMap> _parser = new pb::MessageParser<SimpleLongToMessageDeltaMap>(() => new SimpleLongToMessageDeltaMap());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleLongToMessageDeltaMap> Parser { get { return _parser; } }
@@ -524,6 +527,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleLongToMessageDeltaMap Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -629,6 +634,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -770,7 +776,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleStringToEnumDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToEnumDeltaMap> {
+  public sealed partial class SimpleStringToEnumDeltaMap : zpr::EventRegistry<SimpleStringToEnumDeltaMap>, pb::IMessage<SimpleStringToEnumDeltaMap> {
     private static readonly pb::MessageParser<SimpleStringToEnumDeltaMap> _parser = new pb::MessageParser<SimpleStringToEnumDeltaMap>(() => new SimpleStringToEnumDeltaMap());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleStringToEnumDeltaMap> Parser { get { return _parser; } }
@@ -805,6 +811,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleStringToEnumDeltaMap Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -909,6 +917,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1050,7 +1059,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleStringToStringDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToStringDeltaMap> {
+  public sealed partial class SimpleStringToStringDeltaMap : zpr::EventRegistry<SimpleStringToStringDeltaMap>, pb::IMessage<SimpleStringToStringDeltaMap> {
     private static readonly pb::MessageParser<SimpleStringToStringDeltaMap> _parser = new pb::MessageParser<SimpleStringToStringDeltaMap>(() => new SimpleStringToStringDeltaMap());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleStringToStringDeltaMap> Parser { get { return _parser; } }
@@ -1085,6 +1094,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleStringToStringDeltaMap Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1189,6 +1200,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1330,7 +1342,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleStringToLongDeltaMap : zpr::EventRegistry, pb::IMessage<SimpleStringToLongDeltaMap> {
+  public sealed partial class SimpleStringToLongDeltaMap : zpr::EventRegistry<SimpleStringToLongDeltaMap>, pb::IMessage<SimpleStringToLongDeltaMap> {
     private static readonly pb::MessageParser<SimpleStringToLongDeltaMap> _parser = new pb::MessageParser<SimpleStringToLongDeltaMap>(() => new SimpleStringToLongDeltaMap());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleStringToLongDeltaMap> Parser { get { return _parser; } }
@@ -1365,6 +1377,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleStringToLongDeltaMap Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1469,6 +1483,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

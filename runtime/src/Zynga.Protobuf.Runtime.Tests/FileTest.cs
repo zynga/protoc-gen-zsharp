@@ -114,7 +114,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
   #endregion
 
   #region Messages
-  public sealed partial class TestBlob : zpr::EventRegistry, pb::IMessage<TestBlob> {
+  public sealed partial class TestBlob : zpr::EventRegistry<TestBlob>, pb::IMessage<TestBlob> {
     private static readonly pb::MessageParser<TestBlob> _parser = new pb::MessageParser<TestBlob>(() => new TestBlob());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestBlob> Parser { get { return _parser; } }
@@ -188,6 +188,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestBlob Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -997,6 +999,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1008,7 +1011,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
                 bar_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (bar_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               bar_  = global::Com.Zynga.Runtime.Protobuf.File.Bar.Parser.ParseFrom(e.Set.ByteData);
               bar_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -1021,7 +1024,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
                 foo_.SetParent(Context, new EventPath(Context.Path, 2));
               }
-              (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (foo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foo_  = global::Com.Zynga.Runtime.Protobuf.File.Foo.Parser.ParseFrom(e.Set.ByteData);
               foo_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -1052,12 +1055,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (test_ == null) {
                 test_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
-                (test_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 8));
+                (test_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 8));
               }
-              (test_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (test_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               test_   = global::Com.Zynga.Runtime.Protobuf.File.Foo.Parser.ParseFrom(e.Set.ByteData);
-              (test_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 8));
+              (test_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 8));
             }
             testCase_ = test_ == null ? TestOneofCase.None : TestOneofCase.Maybefoo;
           }
@@ -1081,12 +1084,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (test_ == null) {
                 test_ = new global::Com.Zynga.Runtime.Protobuf.HasEvents();
-                (test_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 19));
+                (test_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 19));
               }
-              (test_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (test_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               test_   = global::Com.Zynga.Runtime.Protobuf.HasEvents.Parser.ParseFrom(e.Set.ByteData);
-              (test_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 19));
+              (test_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 19));
             }
             testCase_ = test_ == null ? TestOneofCase.None : TestOneofCase.HasEventsA;
           }
@@ -1097,7 +1100,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 zam_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo.Types.Zam();
                 zam_.SetParent(Context, new EventPath(Context.Path, 11));
               }
-              (zam_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (zam_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               zam_  = global::Com.Zynga.Runtime.Protobuf.File.Foo.Types.Zam.Parser.ParseFrom(e.Set.ByteData);
               zam_.SetParent(Context, new EventPath(Context.Path, 11));
@@ -1122,7 +1125,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 allPrims_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
                 allPrims_.SetParent(Context, new EventPath(Context.Path, 15));
               }
-              (allPrims_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (allPrims_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               allPrims_  = global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
               allPrims_.SetParent(Context, new EventPath(Context.Path, 15));
@@ -1135,7 +1138,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 testBlob_ = new global::Com.Zynga.Runtime.Protobuf.File.TestBlob();
                 testBlob_.SetParent(Context, new EventPath(Context.Path, 16));
               }
-              (testBlob_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (testBlob_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               testBlob_  = global::Com.Zynga.Runtime.Protobuf.File.TestBlob.Parser.ParseFrom(e.Set.ByteData);
               testBlob_.SetParent(Context, new EventPath(Context.Path, 16));
@@ -1167,7 +1170,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
   }
 
-  public sealed partial class Foo : zpr::EventRegistry, pb::IMessage<Foo> {
+  public sealed partial class Foo : zpr::EventRegistry<Foo>, pb::IMessage<Foo> {
     private static readonly pb::MessageParser<Foo> _parser = new pb::MessageParser<Foo>(() => new Foo());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Foo> Parser { get { return _parser; } }
@@ -1204,6 +1207,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Foo Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1442,7 +1447,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         [pbr::OriginalName("HI")] Hi = 0,
       }
 
-      public sealed partial class Zam : zpr::EventRegistry, pb::IMessage<Zam> {
+      public sealed partial class Zam : zpr::EventRegistry<Zam>, pb::IMessage<Zam> {
         private static readonly pb::MessageParser<Zam> _parser = new pb::MessageParser<Zam>(() => new Zam());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Zam> Parser { get { return _parser; } }
@@ -1475,6 +1480,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         }
 
         public static bool IsEventSourced = true;
+
+        protected override Zam Message { get{ return this; } }
 
         public override void SetParent(EventContext parent, EventPath path) {
           base.SetParent(parent, path);
@@ -1568,6 +1575,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -1602,6 +1610,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1621,7 +1630,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
                 foo_.SetParent(Context, new EventPath(Context.Path, 3));
               }
-              (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (foo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foo_  = global::Com.Zynga.Runtime.Protobuf.File.Foo.Parser.ParseFrom(e.Set.ByteData);
               foo_.SetParent(Context, new EventPath(Context.Path, 3));
@@ -1657,7 +1666,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
   }
 
-  public sealed partial class Bar : zpr::EventRegistry, pb::IMessage<Bar> {
+  public sealed partial class Bar : zpr::EventRegistry<Bar>, pb::IMessage<Bar> {
     private static readonly pb::MessageParser<Bar> _parser = new pb::MessageParser<Bar>(() => new Bar());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Bar> Parser { get { return _parser; } }
@@ -1690,6 +1699,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Bar Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1793,6 +1804,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1804,7 +1816,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 foo_ = new global::Com.Zynga.Runtime.Protobuf.File.Foo();
                 foo_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (foo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foo_  = global::Com.Zynga.Runtime.Protobuf.File.Foo.Parser.ParseFrom(e.Set.ByteData);
               foo_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -1832,7 +1844,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
   }
 
-  public sealed partial class AllPrimitives : zpr::EventRegistry, pb::IMessage<AllPrimitives> {
+  public sealed partial class AllPrimitives : zpr::EventRegistry<AllPrimitives>, pb::IMessage<AllPrimitives> {
     private static readonly pb::MessageParser<AllPrimitives> _parser = new pb::MessageParser<AllPrimitives>(() => new AllPrimitives());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<AllPrimitives> Parser { get { return _parser; } }
@@ -1879,6 +1891,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override AllPrimitives Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -2420,6 +2434,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -2506,7 +2521,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
   }
 
-  public sealed partial class RecursiveMap : zpr::EventRegistry, pb::IMessage<RecursiveMap> {
+  public sealed partial class RecursiveMap : zpr::EventRegistry<RecursiveMap>, pb::IMessage<RecursiveMap> {
     private static readonly pb::MessageParser<RecursiveMap> _parser = new pb::MessageParser<RecursiveMap>(() => new RecursiveMap());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<RecursiveMap> Parser { get { return _parser; } }
@@ -2544,6 +2559,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override RecursiveMap Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -2765,6 +2782,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -2780,7 +2798,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
                 primitives_.SetParent(Context, new EventPath(Context.Path, 2));
               }
-              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (primitives_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               primitives_  = global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
               primitives_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -2797,7 +2815,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
                 bar_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (bar_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               bar_  = global::Com.Zynga.Runtime.Protobuf.File.Bar.Parser.ParseFrom(e.Set.ByteData);
               bar_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -2825,7 +2843,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
   }
 
-  public sealed partial class RecursiveList : zpr::EventRegistry, pb::IMessage<RecursiveList> {
+  public sealed partial class RecursiveList : zpr::EventRegistry<RecursiveList>, pb::IMessage<RecursiveList> {
     private static readonly pb::MessageParser<RecursiveList> _parser = new pb::MessageParser<RecursiveList>(() => new RecursiveList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<RecursiveList> Parser { get { return _parser; } }
@@ -2863,6 +2881,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override RecursiveList Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -3070,6 +3090,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -3085,7 +3106,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 primitives_ = new global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives();
                 primitives_.SetParent(Context, new EventPath(Context.Path, 2));
               }
-              (primitives_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (primitives_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               primitives_  = global::Com.Zynga.Runtime.Protobuf.File.AllPrimitives.Parser.ParseFrom(e.Set.ByteData);
               primitives_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -3102,7 +3123,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 bar_ = new global::Com.Zynga.Runtime.Protobuf.File.Bar();
                 bar_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (bar_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (bar_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               bar_  = global::Com.Zynga.Runtime.Protobuf.File.Bar.Parser.ParseFrom(e.Set.ByteData);
               bar_.SetParent(Context, new EventPath(Context.Path, 4));

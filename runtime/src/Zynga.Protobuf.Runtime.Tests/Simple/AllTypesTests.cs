@@ -397,5 +397,143 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
 			TestManyChangesWithSnapshot(allTypes, allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes);
 		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeEvents() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			bool foreignChanged = false;
+			bool nestedChanged = false;
+			bool importChanged = false;
+			bool publicImportChanged = false;
+
+			target.SingleForeignMessage.OnChanged += f => { foreignChanged = true; };
+			target.SingleNestedMessage.OnChanged += f => { nestedChanged = true; };
+			target.SingleImportMessage.OnChanged += f => { importChanged = true; };
+			target.SinglePublicImportMessage.OnChanged += f => { publicImportChanged = true; };
+
+			allTypes.SingleForeignMessage.C = 100;
+			var events = allTypes.GenerateEvents();
+
+			target.ApplyEvents(events);
+
+			Assert.True(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.SingleNestedMessage.Bb = 100;
+			events = allTypes.GenerateEvents();
+			target.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.True(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			bool repeatedBoolChanged = false;
+			bool mapStringChanged = false;
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.RepeatedBool.Add(false);
+			allTypes.MapStringString["foo"] = "bar";
+			events = allTypes.GenerateEvents();
+			target.RepeatedBool.OnChanged += f => { repeatedBoolChanged = true; };
+			target.MapStringString.OnChanged += f => { mapStringChanged = true; };
+
+			target.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+			Assert.True(repeatedBoolChanged);
+			Assert.True(mapStringChanged);
+		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeEventsDeeplyNested() {
+			var root = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[3] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+
+			var allTypes = root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+			ApplyAllChanges(allTypes);
+			var snapshot = root.GenerateSnapshot();
+
+			var targetAllTypes = new TestAllTypes();
+			targetAllTypes.ApplyEvents(snapshot);
+			var target = targetAllTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+
+			bool foreignChanged = false;
+			bool nestedChanged = false;
+			bool importChanged = false;
+			bool publicImportChanged = false;
+
+			target.SingleForeignMessage.OnChanged += f => { foreignChanged = true; };
+			target.SingleNestedMessage.OnChanged += f => { nestedChanged = true; };
+			target.SingleImportMessage.OnChanged += f => { importChanged = true; };
+			target.SinglePublicImportMessage.OnChanged += f => { publicImportChanged = true; };
+
+			allTypes.SingleForeignMessage.C = 100;
+			var events = root.GenerateEvents();
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.True(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.SingleNestedMessage.Bb = 100;
+			events = root.GenerateEvents();
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.True(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			bool repeatedBoolChanged = false;
+			bool mapStringChanged = false;
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.RepeatedBool.Add(false);
+			allTypes.MapStringString["foo"] = "bar";
+			events = root.GenerateEvents();
+			target.RepeatedBool.OnChanged += f => { repeatedBoolChanged = true; };
+			target.MapStringString.OnChanged += f => { mapStringChanged = true; };
+
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+			Assert.True(repeatedBoolChanged);
+			Assert.True(mapStringChanged);
+		}
 	}
 }

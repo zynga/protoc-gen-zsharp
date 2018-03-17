@@ -7,12 +7,13 @@ using Google.Protobuf.Collections;
 using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
-	public class EventMapField<TKey, TValue> : IEventSubscribable, IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable, IEquatable<MapField<TKey, TValue>>, IDictionary, ICollection, IReadOnlyDictionary<TKey, TValue>, IReadOnlyCollection<KeyValuePair<TKey, TValue>> {
+	public class EventMapField<TKey, TValue> : IEventSubscribable, IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, IEquatable<MapField<TKey, TValue>>, IDictionary, IReadOnlyDictionary<TKey, TValue> {
 		private readonly MapField<TKey, TValue> _internal;
 		private readonly bool _isMessageType;
 		private EventContext _context;
 		private int _fieldNumber;
 		private readonly EventMapConverter<TKey, TValue> _converter;
+		private readonly List<EventMapChange<TKey, TValue>> _itemsChanged = new List<EventMapChange<TKey, TValue>>();
 
 		public EventMapField(EventMapConverter<TKey, TValue> converter, bool isMessageType = false) {
 			_converter = converter;
@@ -38,17 +39,33 @@ namespace Zynga.Protobuf.Runtime {
 		/// <summary>
 		/// Subcribe to changes of this message
 		/// </summary>
-		public event Action<EventMapField<TKey, TValue>> OnChanged;
+		public event Action<EventMapField<TKey, TValue>, IReadOnlyList<EventMapChange<TKey, TValue>>> OnChanged;
 
 		/// <inheritdoc />
 		public void NotifySubscribers() {
-			OnChanged?.Invoke(this);
+			try {
+				OnChanged?.Invoke(this, _itemsChanged);
+			}
+			finally {
+				_itemsChanged.Clear();
+			}
 		}
 
-		/// <summary>
-		/// Mark the message dirty
-		/// </summary>
-		protected void MarkDirty() {
+		private void MarkDirtyAdd(TKey key, TValue value) {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
+				_itemsChanged.Add(new EventMapChange<TKey, TValue>(key, value, EventChangeType.Add));
+			}
+		}
+
+		private void MarkDirtyRemove(TKey key, TValue value) {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
+				_itemsChanged.Add(new EventMapChange<TKey, TValue>(key, value, EventChangeType.Remove));
+			}
+		}
+
+		private void MarkDirty() {
 			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
 				_context.MarkDirty(this);
 			}
@@ -60,17 +77,17 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(TKey key, TValue value) {
 			InternalAdd(key, value);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			AddMapEvent(key, value);
-			#endif
+#endif
 		}
 
 		public void Add(EventMapField<TKey, TValue> other) {
 			foreach (var kv in other) {
 				InternalAdd(kv.Key, kv.Value);
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				AddMapEvent(kv.Key, kv.Value);
-				#endif
+#endif
 			}
 		}
 
@@ -80,11 +97,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public bool Remove(TKey key) {
 			var result = InternalRemove(key);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			if (result) {
 				RemoveMapEvent(key);
 			}
-			#endif
+#endif
 
 			return result;
 		}
@@ -96,15 +113,15 @@ namespace Zynga.Protobuf.Runtime {
 		public TValue this[TKey key] {
 			get { return _internal[key]; }
 			set {
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				var generateEvent = !_internal.ContainsKey(key) || !_internal[key].Equals(value);
-				#endif
+#endif
 				InternalReplace(key, value);
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				if (generateEvent) {
 					ReplaceMapEvent(key, value);
 				}
-				#endif
+#endif
 			}
 		}
 
@@ -130,9 +147,9 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Clear() {
 			InternalClear();
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			ClearMapEvent();
-			#endif
+#endif
 		}
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) {
@@ -148,7 +165,7 @@ namespace Zynga.Protobuf.Runtime {
 
 		bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) {
 			if ((object) item.Key == null)
-				throw new ArgumentException("Key is null", nameof (item));
+				throw new ArgumentException("Key is null", nameof(item));
 			TValue node;
 			if (!TryGetValue(item.Key, out node) || !EqualityComparer<TValue>.Default.Equals(item.Value, node))
 				return false;
@@ -194,7 +211,7 @@ namespace Zynga.Protobuf.Runtime {
 		public void AddEntriesFrom(CodedInputStream input, MapField<TKey, TValue>.Codec codec) {
 			_internal.AddEntriesFrom(input, codec);
 			if (_isMessageType) {
-				foreach(var kv in _internal) {
+				foreach (var kv in _internal) {
 					SetParent(kv.Key, kv.Value);
 				}
 			}
@@ -221,7 +238,7 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		IDictionaryEnumerator IDictionary.GetEnumerator() {
-			return (IDictionaryEnumerator) new EventMapField<TKey, TValue>.DictionaryEnumerator(this.GetEnumerator());
+			return (IDictionaryEnumerator) new DictionaryEnumerator(this.GetEnumerator());
 		}
 
 		void IDictionary.Remove(object key) {
@@ -312,7 +329,6 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		public bool ApplyEvent(MapEvent e) {
-			MarkDirty();
 			switch (e.MapAction) {
 				case MapAction.AddMap:
 					var addPair = _converter.GetItem(e.KeyValue);
@@ -328,11 +344,13 @@ namespace Zynga.Protobuf.Runtime {
 					return true;
 				case MapAction.ClearMap:
 					InternalClear();
+					MarkDirty();
 					return true;
 				case MapAction.UpdateMap:
 					var updatePair = _converter.GetItem(e.KeyValue, true);
 					var registry = _internal[updatePair.Key] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
+					MarkDirty();
 					return true;
 				default:
 					return false;
@@ -341,18 +359,19 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void InternalAdd(TKey key, TValue value) {
 			_internal.Add(key, value);
+			MarkDirtyAdd(key, value);
 			if (_isMessageType) SetParent(key, value);
 		}
 
 		private bool InternalRemove(TKey key) {
-			if (!_isMessageType) {
-				return _internal.Remove(key);
-			}
-
 			TValue value;
-			if(_internal.TryGetValue(key, out value)) {
-				ClearParent(value);
+			if (_internal.TryGetValue(key, out value)) {
+				if (_isMessageType) {
+					ClearParent(value);
+				}
+
 				_internal.Remove(key);
+				MarkDirtyRemove(key, value);
 				return true;
 			}
 
@@ -360,16 +379,18 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private void InternalReplace(TKey key, TValue value) {
-			if (_isMessageType) {
-				TValue existingValue;
-				if(_internal.TryGetValue(key, out existingValue)) {
+			TValue existingValue;
+			if (_internal.TryGetValue(key, out existingValue)) {
+				MarkDirtyRemove(key, existingValue);
+				if (_isMessageType) {
 					ClearParent(existingValue);
 				}
-				_internal[key] = value;
-				SetParent(key, value);
 			}
-			else {
-				_internal[key] = value;
+
+			_internal[key] = value;
+			MarkDirtyAdd(key, value);
+			if (_isMessageType) {
+				SetParent(key, value);
 			}
 		}
 
@@ -379,6 +400,7 @@ namespace Zynga.Protobuf.Runtime {
 					ClearParent(kv.Value);
 				}
 			}
+
 			_internal.Clear();
 		}
 
@@ -393,55 +415,35 @@ namespace Zynga.Protobuf.Runtime {
 			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
 		}
 
-		private class DictionaryEnumerator : IDictionaryEnumerator, IEnumerator
-		{
-			private readonly IEnumerator<KeyValuePair<TKey, TValue>> enumerator;
+		private class DictionaryEnumerator : IDictionaryEnumerator {
+			private readonly IEnumerator<KeyValuePair<TKey, TValue>> _enumerator;
 
-			internal DictionaryEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> enumerator)
-			{
-				this.enumerator = enumerator;
+			internal DictionaryEnumerator(IEnumerator<KeyValuePair<TKey, TValue>> enumerator) {
+				this._enumerator = enumerator;
 			}
 
-			public bool MoveNext()
-			{
-				return this.enumerator.MoveNext();
+			public bool MoveNext() {
+				return this._enumerator.MoveNext();
 			}
 
-			public void Reset()
-			{
-				this.enumerator.Reset();
+			public void Reset() {
+				this._enumerator.Reset();
 			}
 
-			public object Current
-			{
-				get
-				{
-					return (object) this.Entry;
-				}
+			public object Current {
+				get { return (object) this.Entry; }
 			}
 
-			public DictionaryEntry Entry
-			{
-				get
-				{
-					return new DictionaryEntry(this.Key, this.Value);
-				}
+			public DictionaryEntry Entry {
+				get { return new DictionaryEntry(this.Key, this.Value); }
 			}
 
-			public object Key
-			{
-				get
-				{
-					return (object) this.enumerator.Current.Key;
-				}
+			public object Key {
+				get { return (object) this._enumerator.Current.Key; }
 			}
 
-			public object Value
-			{
-				get
-				{
-					return (object) this.enumerator.Current.Value;
-				}
+			public object Value {
+				get { return (object) this._enumerator.Current.Value; }
 			}
 		}
 	}

@@ -12,7 +12,7 @@ namespace Zynga.Protobuf.Runtime {
 		private EventPath _path = EventPath.Empty;
 		private bool _eventsEnabled = true;
 		private readonly HashSet<EventContext> _children = new HashSet<EventContext>();
-		private readonly HashSet<IEventSubscribable> _dirty = new HashSet<IEventSubscribable>();
+		private readonly List<IEventSubscribable> _dirty = new List<IEventSubscribable>();
 
 		/// <summary>
 		/// Establishes a parent child relationship
@@ -91,7 +91,19 @@ namespace Zynga.Protobuf.Runtime {
 				_parent.MarkDirty(subscribable);
 			}
 			else {
-				_dirty.Add(subscribable);
+				// We can't use a HashSet to dedupe subscribers as the HashCode of the subscriber can change over
+				// the course of replaying events.  Instead we use a list and do a reference check on each existing subscriber.
+				bool found = false;
+				for (int i = 0; i < _dirty.Count; i++) {
+					if (ReferenceEquals(subscribable, _dirty[i])) {
+						found = true;
+						break;
+					}
+				}
+
+				if (!found) {
+					_dirty.Add(subscribable);
+				}
 			}
 		}
 

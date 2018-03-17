@@ -198,7 +198,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleListDeltaMessage : zpr::EventRegistry, pb::IMessage<SimpleListDeltaMessage> {
+  public sealed partial class SimpleListDeltaMessage : zpr::EventRegistry<SimpleListDeltaMessage>, pb::IMessage<SimpleListDeltaMessage> {
     private static readonly pb::MessageParser<SimpleListDeltaMessage> _parser = new pb::MessageParser<SimpleListDeltaMessage>(() => new SimpleListDeltaMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleListDeltaMessage> Parser { get { return _parser; } }
@@ -231,6 +231,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleListDeltaMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -324,6 +326,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -465,7 +468,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleDeltaStringList : zpr::EventRegistry, pb::IMessage<SimpleDeltaStringList> {
+  public sealed partial class SimpleDeltaStringList : zpr::EventRegistry<SimpleDeltaStringList>, pb::IMessage<SimpleDeltaStringList> {
     private static readonly pb::MessageParser<SimpleDeltaStringList> _parser = new pb::MessageParser<SimpleDeltaStringList>(() => new SimpleDeltaStringList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleDeltaStringList> Parser { get { return _parser; } }
@@ -500,6 +503,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleDeltaStringList Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -590,6 +595,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -732,7 +738,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleDeltaLongList : zpr::EventRegistry, pb::IMessage<SimpleDeltaLongList> {
+  public sealed partial class SimpleDeltaLongList : zpr::EventRegistry<SimpleDeltaLongList>, pb::IMessage<SimpleDeltaLongList> {
     private static readonly pb::MessageParser<SimpleDeltaLongList> _parser = new pb::MessageParser<SimpleDeltaLongList>(() => new SimpleDeltaLongList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleDeltaLongList> Parser { get { return _parser; } }
@@ -767,6 +773,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleDeltaLongList Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -858,6 +866,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1000,7 +1009,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleDeltaEnumList : zpr::EventRegistry, pb::IMessage<SimpleDeltaEnumList> {
+  public sealed partial class SimpleDeltaEnumList : zpr::EventRegistry<SimpleDeltaEnumList>, pb::IMessage<SimpleDeltaEnumList> {
     private static readonly pb::MessageParser<SimpleDeltaEnumList> _parser = new pb::MessageParser<SimpleDeltaEnumList>(() => new SimpleDeltaEnumList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleDeltaEnumList> Parser { get { return _parser; } }
@@ -1035,6 +1044,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleDeltaEnumList Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1126,6 +1137,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1267,7 +1279,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class SimpleDeltaMessageList : zpr::EventRegistry, pb::IMessage<SimpleDeltaMessageList> {
+  public sealed partial class SimpleDeltaMessageList : zpr::EventRegistry<SimpleDeltaMessageList>, pb::IMessage<SimpleDeltaMessageList> {
     private static readonly pb::MessageParser<SimpleDeltaMessageList> _parser = new pb::MessageParser<SimpleDeltaMessageList>(() => new SimpleDeltaMessageList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SimpleDeltaMessageList> Parser { get { return _parser; } }
@@ -1302,6 +1314,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SimpleDeltaMessageList Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1393,6 +1407,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

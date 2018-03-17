@@ -211,7 +211,7 @@ namespace Com.Zynga.Runtime.Protobuf {
   /// <summary>
   /// must flag internal message as event_sourced
   /// </summary>
-  public sealed partial class TestTwoMessage : zpr::EventRegistry, pb::IMessage<TestTwoMessage> {
+  public sealed partial class TestTwoMessage : zpr::EventRegistry<TestTwoMessage>, pb::IMessage<TestTwoMessage> {
     private static readonly pb::MessageParser<TestTwoMessage> _parser = new pb::MessageParser<TestTwoMessage>(() => new TestTwoMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestTwoMessage> Parser { get { return _parser; } }
@@ -244,6 +244,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestTwoMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -341,6 +343,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -371,7 +374,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class EventTest : zpr::EventRegistry, pb::IMessage<EventTest> {
+  public sealed partial class EventTest : zpr::EventRegistry<EventTest>, pb::IMessage<EventTest> {
     private static readonly pb::MessageParser<EventTest> _parser = new pb::MessageParser<EventTest>(() => new EventTest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<EventTest> Parser { get { return _parser; } }
@@ -434,6 +437,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override EventTest Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1053,7 +1058,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       /// <summary>
       /// must flag internal message as event_sourced
       /// </summary>
-      public sealed partial class NestedMessage : zpr::EventRegistry, pb::IMessage<NestedMessage> {
+      public sealed partial class NestedMessage : zpr::EventRegistry<NestedMessage>, pb::IMessage<NestedMessage> {
         private static readonly pb::MessageParser<NestedMessage> _parser = new pb::MessageParser<NestedMessage>(() => new NestedMessage());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<NestedMessage> Parser { get { return _parser; } }
@@ -1087,6 +1092,8 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public static bool IsEventSourced = true;
+
+        protected override NestedMessage Message { get{ return this; } }
 
         public override void SetParent(EventContext parent, EventPath path) {
           base.SetParent(parent, path);
@@ -1227,6 +1234,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -1242,7 +1250,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                     dataTwo_ = new global::Com.Zynga.Runtime.Protobuf.TestTwoMessage();
                     dataTwo_.SetParent(Context, new EventPath(Context.Path, 2));
                   }
-                  (dataTwo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+                  (dataTwo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
                 } else {
                   dataTwo_  = global::Com.Zynga.Runtime.Protobuf.TestTwoMessage.Parser.ParseFrom(e.Set.ByteData);
                   dataTwo_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -1270,7 +1278,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
       }
 
-      public sealed partial class EventOneofTest : zpr::EventRegistry, pb::IMessage<EventOneofTest> {
+      public sealed partial class EventOneofTest : zpr::EventRegistry<EventOneofTest>, pb::IMessage<EventOneofTest> {
         private static readonly pb::MessageParser<EventOneofTest> _parser = new pb::MessageParser<EventOneofTest>(() => new EventOneofTest());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<EventOneofTest> Parser { get { return _parser; } }
@@ -1311,6 +1319,8 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public static bool IsEventSourced = true;
+
+        protected override EventOneofTest Message { get{ return this; } }
 
         public override void SetParent(EventContext parent, EventPath path) {
           base.SetParent(parent, path);
@@ -1472,6 +1482,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -1512,6 +1523,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1530,12 +1542,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             if (e.Path.Count - 1 != pathIndex) {
               if (testOneof_ == null) {
                 testOneof_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
-                (testOneof_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+                (testOneof_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
               }
-              (testOneof_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (testOneof_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               testOneof_   = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              (testOneof_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+              (testOneof_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
             }
             testOneofCase_ = testOneof_ == null ? TestOneofOneofCase.None : TestOneofOneofCase.Internal;
           }
@@ -1566,7 +1578,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 data_ = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest();
                 data_.SetParent(Context, new EventPath(Context.Path, 9));
               }
-              (data_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (data_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               data_  = global::Com.Zynga.Runtime.Protobuf.EventTest.Types.EventOneofTest.Parser.ParseFrom(e.Set.ByteData);
               data_.SetParent(Context, new EventPath(Context.Path, 9));

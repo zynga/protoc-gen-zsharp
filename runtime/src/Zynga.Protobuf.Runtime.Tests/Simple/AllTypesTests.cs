@@ -1,7 +1,8 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Google.Protobuf.TestProtos;
+using Xunit;
 using static Zynga.Protobuf.Runtime.Tests.Simple.EventTestHelper;
 using static Zynga.Protobuf.Runtime.Tests.Simple.AllTypesTestsHelper;
-using Google.Protobuf.TestProtos;
 
 namespace Zynga.Protobuf.Runtime.Tests.Simple {
 	public class AllTypesTests {
@@ -396,6 +397,282 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
 			TestManyChangesWithSnapshot(allTypes, allTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes);
+		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeEvents() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			bool foreignChanged = false;
+			bool nestedChanged = false;
+			bool importChanged = false;
+			bool publicImportChanged = false;
+
+			target.SingleForeignMessage.OnChanged += f => { foreignChanged = true; };
+			target.SingleNestedMessage.OnChanged += f => { nestedChanged = true; };
+			target.SingleImportMessage.OnChanged += f => { importChanged = true; };
+			target.SinglePublicImportMessage.OnChanged += f => { publicImportChanged = true; };
+
+			allTypes.SingleForeignMessage.C = 100;
+			var events = allTypes.GenerateEvents();
+
+			target.ApplyEvents(events);
+
+			Assert.True(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.SingleNestedMessage.Bb = 100;
+			events = allTypes.GenerateEvents();
+			target.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.True(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			bool repeatedBoolChanged = false;
+			bool mapStringChanged = false;
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.RepeatedBool.Add(false);
+			allTypes.MapStringString["foo"] = "bar";
+			events = allTypes.GenerateEvents();
+			target.RepeatedBool.OnChanged += (f, changes) => {
+				repeatedBoolChanged = true;
+				Assert.Equal(1, changes.Count);
+				Assert.Equal(false, changes[0].Value);
+				Assert.Equal(1, changes[0].Index);  // initial RepeatedBool already has a single element
+			};
+			target.MapStringString.OnChanged += (f, changes) => {
+				mapStringChanged = true;
+				Assert.Equal(1, changes.Count);
+			};
+
+			target.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+			Assert.True(repeatedBoolChanged);
+			Assert.True(mapStringChanged);
+		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeEventsDeeplyNested() {
+			var root = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[3] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+
+			var allTypes = root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+			ApplyAllChanges(allTypes);
+			var snapshot = root.GenerateSnapshot();
+
+			var targetAllTypes = new TestAllTypes();
+			targetAllTypes.ApplyEvents(snapshot);
+			var target = targetAllTypes.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+
+			bool foreignChanged = false;
+			bool nestedChanged = false;
+			bool importChanged = false;
+			bool publicImportChanged = false;
+
+			target.SingleForeignMessage.OnChanged += f => { foreignChanged = true; };
+			target.SingleNestedMessage.OnChanged += f => { nestedChanged = true; };
+			target.SingleImportMessage.OnChanged += f => { importChanged = true; };
+			target.SinglePublicImportMessage.OnChanged += f => { publicImportChanged = true; };
+
+			allTypes.SingleForeignMessage.C = 100;
+			var events = root.GenerateEvents();
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.True(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.SingleNestedMessage.Bb = 100;
+			events = root.GenerateEvents();
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.True(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+
+			bool repeatedBoolChanged = false;
+			bool mapStringChanged = false;
+			foreignChanged = false;
+			nestedChanged = false;
+			importChanged = false;
+			publicImportChanged = false;
+
+			allTypes.RepeatedBool.Add(false);
+			allTypes.MapStringString["foo"] = "bar";
+			events = root.GenerateEvents();
+			target.RepeatedBool.OnChanged += (f, changes) => {
+				repeatedBoolChanged = true;
+				Assert.Equal(1, changes.Count);
+				Assert.Equal(false, changes[0].Value);
+				Assert.Equal(1, changes[0].Index);  // initial RepeatedBool already has a single element
+			};
+			target.MapStringString.OnChanged += (f, changes) => {
+				mapStringChanged = true;
+				Assert.Equal(1, changes.Count);
+			};
+
+			targetAllTypes.ApplyEvents(events);
+
+			Assert.False(foreignChanged);
+			Assert.False(nestedChanged);
+			Assert.False(importChanged);
+			Assert.False(publicImportChanged);
+			Assert.True(repeatedBoolChanged);
+			Assert.True(mapStringChanged);
+		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeListEvents() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			// verify clearing generates an event, but doesn't generate any add/remove events
+			allTypes.RepeatedString.Clear();
+			var events = allTypes.GenerateEvents();
+			_validateListClearCalled = false;
+			target.RepeatedString.OnChanged += ValidateListClear;
+			target.ApplyEvents(events);
+			target.RepeatedString.OnChanged -= ValidateListClear;
+			Assert.True(_validateListClearCalled);
+
+			// verify add, remove, remove at, and insert generate valid events
+			allTypes.RepeatedString.Add("a"); // 1 event
+			allTypes.RepeatedString.Add("b"); // 1 event
+			allTypes.RepeatedString[0] = "c"; // 2 events
+			allTypes.RepeatedString.RemoveAt(0); // 1 event   (3 removes on these two lines)
+			allTypes.RepeatedString.Remove("b"); // 1 event
+			// should be empty
+			allTypes.RepeatedString.Add("e");  // 1 event
+			allTypes.RepeatedString.Insert(0, "f"); // 1 event
+
+			events = allTypes.GenerateEvents();
+			bool onChangeCalled = false;
+			target.RepeatedString.OnChanged += (list, changes) => {
+				onChangeCalled = true;
+				Assert.Equal(2, list.Count);
+				Assert.Equal(8, changes.Count);
+				Assert.Equal(0, changes[0].Index);
+				Assert.Equal(1, changes[1].Index);
+				Assert.Equal(0, changes[2].Index);
+				Assert.Equal(0, changes[3].Index);
+				Assert.Equal(0, changes[4].Index);
+				Assert.Equal(0, changes[5].Index);
+				Assert.Equal(0, changes[6].Index);
+				Assert.Equal(0, changes[7].Index);
+				Assert.Equal("a", changes[0].Value);
+				Assert.Equal("b", changes[1].Value);
+				Assert.Equal("a", changes[2].Value);
+				Assert.Equal("c", changes[3].Value);
+				Assert.Equal("c", changes[4].Value);
+				Assert.Equal("b", changes[5].Value);
+				Assert.Equal("e", changes[6].Value);
+				Assert.Equal("f", changes[7].Value);
+			};
+
+			target.ApplyEvents(events);
+
+			Assert.True(onChangeCalled);
+		}
+
+		private bool _validateListClearCalled;
+		private void ValidateListClear(EventRepeatedField<string> list, IReadOnlyList<EventListChange<string>> changes) {
+			_validateListClearCalled = true;
+			Assert.Equal(0, list.Count);
+			Assert.Equal(0, changes.Count);
+		}
+
+		[Fact]
+		public void ShouldGenerateOnChangeMapEvents() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			// verify clearing generates an event, but doesn't generate any add/remove events
+			allTypes.MapStringString.Clear();
+			var events = allTypes.GenerateEvents();
+			_validateListClearCalled = false;
+			target.MapStringString.OnChanged += ValidateMapClear;
+			target.ApplyEvents(events);
+			target.MapStringString.OnChanged -= ValidateMapClear;
+			Assert.True(_validateMapClearCalled);
+
+			// verify add, remove, remove at, and insert generate valid events
+			allTypes.MapStringString.Add("a", "b"); // 1 event
+			allTypes.MapStringString.Add("c", "d"); // 1 event
+			allTypes.MapStringString["a"] = "e"; // 2 events
+			allTypes.MapStringString.Remove("a"); // 1 event
+			allTypes.MapStringString.Remove("c"); // 1 event
+			allTypes.MapStringString.Remove("d"); // 0 events
+
+			events = allTypes.GenerateEvents();
+			bool onChangeCalled = false;
+			target.MapStringString.OnChanged += (map, changes) => {
+				onChangeCalled = true;
+				Assert.Equal(0, map.Count);
+				Assert.Equal(6, changes.Count);
+				Assert.Equal("a", changes[0].Key);
+				Assert.Equal("b", changes[0].Value);
+				Assert.Equal("c", changes[1].Key);
+				Assert.Equal("d", changes[1].Value);
+				Assert.Equal("a", changes[2].Key);
+				Assert.Equal("b", changes[2].Value);
+				Assert.Equal("a", changes[3].Key);
+				Assert.Equal("e", changes[3].Value);
+				Assert.Equal("a", changes[4].Key);
+				Assert.Equal("e", changes[4].Value);
+				Assert.Equal("c", changes[5].Key);
+				Assert.Equal("d", changes[5].Value);
+			};
+
+			target.ApplyEvents(events);
+
+			Assert.True(onChangeCalled);
+		}
+
+		private bool _validateMapClearCalled;
+		private void ValidateMapClear(EventMapField<string, string> map, IReadOnlyList<EventMapChange<string, string>> changes) {
+			_validateMapClearCalled = true;
+			Assert.Equal(0, map.Count);
+			Assert.Equal(0, changes.Count);
 		}
 	}
 }

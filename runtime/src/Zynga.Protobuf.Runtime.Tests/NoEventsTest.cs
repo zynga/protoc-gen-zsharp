@@ -166,7 +166,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class HasEvents : zpr::EventRegistry, pb::IMessage<HasEvents> {
+  public sealed partial class HasEvents : zpr::EventRegistry<HasEvents>, pb::IMessage<HasEvents> {
     private static readonly pb::MessageParser<HasEvents> _parser = new pb::MessageParser<HasEvents>(() => new HasEvents());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<HasEvents> Parser { get { return _parser; } }
@@ -199,6 +199,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override HasEvents Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -292,6 +294,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

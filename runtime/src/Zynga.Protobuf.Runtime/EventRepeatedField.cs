@@ -9,12 +9,13 @@ namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// Wraps a repeated field to add event sourcing support
 	/// </summary>
-	public class EventRepeatedField<T> : IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable, IList, ICollection, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T>, IReadOnlyCollection<T> {
+	public class EventRepeatedField<T> : IEventSubscribable, IList<T>, IList, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T> {
 		private readonly RepeatedField<T> _internal;
 		private readonly bool _isMessageType;
 		private EventContext _context;
 		private int _fieldNumber;
 		private readonly EventDataConverter<T> _converter;
+		private readonly List<EventListChange<T>> _itemsChanged = new List<EventListChange<T>>();
 
 		public EventRepeatedField(EventDataConverter<T> converter, bool isMessageType = false) {
 			_converter = converter;
@@ -34,6 +35,41 @@ namespace Zynga.Protobuf.Runtime {
 			}
 			else {
 				_internal = repeatedField;
+			}
+		}
+
+		/// <summary>
+		/// Subcribe to changes of this message
+		/// </summary>
+		public event Action<EventRepeatedField<T>, IReadOnlyList<EventListChange<T>>> OnChanged;
+
+		/// <inheritdoc />
+		public void NotifySubscribers() {
+			try {
+				OnChanged?.Invoke(this, _itemsChanged);
+			}
+			finally {
+				_itemsChanged.Clear();
+			}
+		}
+
+		private void MarkDirtyAdd(int index, T item) {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
+				_itemsChanged.Add(new EventListChange<T>(index, item, EventChangeType.Add));
+			}
+		}
+
+		private void MarkDirtyRemove(int index, T item) {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
+				_itemsChanged.Add(new EventListChange<T>(index, item, EventChangeType.Remove));
+			}
+		}
+
+		private void MarkDirty() {
+			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
+				_context.MarkDirty(this);
 			}
 		}
 
@@ -61,34 +97,34 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Add(T item) {
 			InternalAdd(item);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			AddListEvent(item);
-			#endif
+#endif
 		}
 
 		public void Add(EventRepeatedField<T> other) {
 			foreach (var v in other) {
 				InternalAdd(v);
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				AddListEvent(v);
-				#endif
+#endif
 			}
 		}
 
 		public void Add(IList<T> other) {
 			foreach (var v in other) {
 				InternalAdd(v);
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				AddListEvent(v);
-				#endif
+#endif
 			}
 		}
 
 		public void Clear() {
 			InternalClear();
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			ClearListEvent();
-			#endif
+#endif
 		}
 
 		public bool Contains(T item) {
@@ -101,11 +137,11 @@ namespace Zynga.Protobuf.Runtime {
 
 		public bool Remove(T item) {
 			var result = InternalRemove(item);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			if (result) {
 				RemoveListEvent(item);
 			}
-			#endif
+#endif
 
 			return result;
 		}
@@ -154,16 +190,16 @@ namespace Zynga.Protobuf.Runtime {
 
 		public void Insert(int index, T item) {
 			InternalInsert(index, item);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			InsertListEvent(index, item);
-			#endif
+#endif
 		}
 
 		public void RemoveAt(int index) {
 			InternalRemoveAt(index);
-			#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 			RemoveAtListEvent(index);
-			#endif
+#endif
 		}
 
 		public override string ToString() {
@@ -173,15 +209,15 @@ namespace Zynga.Protobuf.Runtime {
 		public T this[int index] {
 			get { return _internal[index]; }
 			set {
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				var generateEvent = !value.Equals(_internal[index]);
-				#endif
+#endif
 				InternalReplaceAt(index, value);
-				#if !DISABLE_EVENTS
+#if !DISABLE_EVENTS
 				if (generateEvent) {
 					ReplaceListEvent(index, value);
 				}
-				#endif
+#endif
 			}
 		}
 
@@ -312,10 +348,12 @@ namespace Zynga.Protobuf.Runtime {
 					return true;
 				case ListAction.ClearList:
 					InternalClear();
+					MarkDirty();
 					return true;
 				case ListAction.UpdateList:
-					var registry = _internal[e.Index] as EventRegistry;
+					var registry = _internal[e.Index] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
+					MarkDirty();
 					return true;
 				default:
 					return false;
@@ -335,6 +373,7 @@ namespace Zynga.Protobuf.Runtime {
 		private void InternalRemoveAt(int index) {
 			var removedItem = _internal[index];
 			_internal.RemoveAt(index);
+			MarkDirtyRemove(index, removedItem);
 			if (_isMessageType) {
 				ClearParent(removedItem);
 				UpdateParents(index);
@@ -343,12 +382,15 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void InternalAdd(T item) {
 			_internal.Add(item);
+			MarkDirtyAdd(_internal.Count - 1, item);
 			if (_isMessageType) SetParent(_internal.Count - 1, item);
 		}
 
 		private void InternalReplaceAt(int index, T item) {
 			var removedItem = _internal[index];
 			_internal[index] = item;
+			MarkDirtyRemove(index, removedItem);
+			MarkDirtyAdd(index, item);
 			if (_isMessageType) {
 				ClearParent(removedItem);
 				SetParent(index, item);
@@ -357,6 +399,7 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void InternalInsert(int index, T item) {
 			_internal.Insert(index, item);
+			MarkDirtyAdd(index, item);
 			if (_isMessageType) {
 				SetParent(index, item);
 				UpdateParents(index + 1);
@@ -366,7 +409,11 @@ namespace Zynga.Protobuf.Runtime {
 		private void InternalClear() {
 			if (_isMessageType) {
 				while (_internal.Count > 0) {
-					InternalRemoveAt(0);
+					var removedItem = _internal[0];
+					_internal.RemoveAt(0);
+					if (_isMessageType) {
+						ClearParent(removedItem);
+					}
 				}
 			}
 			else {
@@ -375,18 +422,18 @@ namespace Zynga.Protobuf.Runtime {
 		}
 
 		private static void ClearParent(T item) {
-			var registry = item as EventRegistry;
+			var registry = item as IEventRegistry;
 			registry?.ClearParent();
 		}
 
 		private void SetParent(int index, T item) {
-			var registry = item as EventRegistry;
+			var registry = item as IEventRegistry;
 			registry?.SetParent(new ListEventContext(_context, index, _fieldNumber), EventPath.Empty);
 		}
 
 		private void UpdateParents(int startIndex) {
 			for (int i = startIndex; i < _internal.Count; i++) {
-				var registry = _internal[i] as EventRegistry;
+				var registry = _internal[i] as IEventRegistry;
 				registry?.TryUpdateContextIndex(i);
 			}
 		}

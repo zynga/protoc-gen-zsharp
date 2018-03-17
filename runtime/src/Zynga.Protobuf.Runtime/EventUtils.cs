@@ -10,7 +10,7 @@ namespace Zynga.Protobuf.Runtime
 {
     public static class EventUtils
     {
-        public static void GetChecksum(this global::Google.Protobuf.WellKnownTypes.Timestamp tmp, BinaryWriter inWriter)
+        public static void GetChecksum(this Google.Protobuf.WellKnownTypes.Timestamp tmp, BinaryWriter inWriter)
         {
             using (var memStream = new MemoryStream())
             {
@@ -22,7 +22,7 @@ namespace Zynga.Protobuf.Runtime
             }
         }
 
-        public static void GetChecksum(this global::Google.Protobuf.WellKnownTypes.Duration tmp, BinaryWriter inWriter)
+        public static void GetChecksum(this Google.Protobuf.WellKnownTypes.Duration tmp, BinaryWriter inWriter)
         {
             using (var memStream = new MemoryStream())
             {

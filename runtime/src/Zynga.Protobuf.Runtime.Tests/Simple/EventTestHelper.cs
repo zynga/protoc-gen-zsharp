@@ -5,13 +5,13 @@ using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime.Tests.Simple {
 	public static class EventTestHelper {
-		public static EventSourceRoot AssertGenerated(EventRegistry blob) {
+		public static EventSourceRoot AssertGenerated(IEventRegistry blob) {
 			EventSourceRoot root = blob.PeekEvents();
 			Assert.Single(root.Events);
 			return root;
 		}
 
-		public static void AssertNotGenerated(EventRegistry blob) {
+		public static void AssertNotGenerated(IEventRegistry blob) {
 			EventSourceRoot root = blob.PeekEvents();
 			Assert.Empty(root.Events);
 		}
@@ -23,20 +23,20 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			}
 		}
 
-		public static void AssertDeltaPath(EventRegistry blob, int[] path) {
+		public static void AssertDeltaPath(IEventRegistry blob, int[] path) {
 			EventSourceRoot root = AssertGenerated(blob);
 			AssertPath(root.Events[0], path);
 			blob.ClearEvents();
 		}
 
-		public static void AssertEventsStable<T>(T message) where T : EventRegistry, IMessage, new() {
+		public static void AssertEventsStable<T>(T message) where T : IEventRegistry, IMessage, new() {
 			var newMessage = new T();
 			var events = message.GenerateEvents();
 			newMessage.ApplyEvents(events);
 			Assert.Equal(message, newMessage);
 		}
 
-		public static void AssertEventsStableWithClone<T>(T message, Action makeChanges, bool expectChanges = true) where T : EventRegistry, IMessage, IDeepCloneable<T>, new() {
+		public static void AssertEventsStableWithClone<T>(T message, Action makeChanges, bool expectChanges = true) where T : IEventRegistry, IMessage, IDeepCloneable<T>, new() {
 			if (message.HasEvents) {
 				message.ClearEvents();
 			}
@@ -58,7 +58,7 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(message, newMessage);
 		}
 
-		public static void AssertEventsStableWithSnapshot<T>(T message, Action makeChanges, bool expectChanges = true) where T : EventRegistry, IMessage, IDeepCloneable<T>, new() {
+		public static void AssertEventsStableWithSnapshot<T>(T message, Action makeChanges, bool expectChanges = true) where T : IEventRegistry, IMessage, IDeepCloneable<T>, new() {
 			if (message.HasEvents) {
 				message.ClearEvents();
 			}

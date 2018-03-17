@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Google.Protobuf;
-using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
 	public abstract class EventMapConverter<TKey, TValue> {
@@ -8,7 +7,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Returns EventContent for the specified data
 		/// </summary>
 		public abstract ByteString GetKeyValue(TKey key, TValue value, bool skipValue = false);
-		
+
 		/// <summary>
 		/// Returns the data for the specified EventContent
 		/// </summary>

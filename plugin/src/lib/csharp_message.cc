@@ -139,7 +139,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     if (IsEventSourced()) {
       printer->Print(
       vars,
-      " zpr::EventRegistry,");  
+      " zpr::EventRegistry<$class_name$>,");  
     }
     ///
 
@@ -224,6 +224,12 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     "public static bool IsEventSourced = $sourced$;\n\n",
     "sourced", IsEventSourced() ? "true" : "false");
 
+  if (IsEventSourced()) {
+    // protected abstract T Message { get; }
+    printer->Print(
+      vars,
+      "protected override $class_name$ Message { get{ return this; } }\n\n");
+  }
   
   if (IsEventSourced()) {
     printer->Print(
@@ -351,6 +357,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     printer->Print(
       vars,
       "public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {\n"
+      "    MarkDirty();\n"
       "    if (e.Path.Count == 0) {\n"
       "      this.MergeFrom(e.Set.ByteData);\n"
       "      return true;\n"

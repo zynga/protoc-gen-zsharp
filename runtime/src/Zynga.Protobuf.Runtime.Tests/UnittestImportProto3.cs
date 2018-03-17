@@ -57,7 +57,7 @@ namespace Google.Protobuf.TestProtos {
   #endregion
 
   #region Messages
-  public sealed partial class ImportMessage : zpr::EventRegistry, pb::IMessage<ImportMessage> {
+  public sealed partial class ImportMessage : zpr::EventRegistry<ImportMessage>, pb::IMessage<ImportMessage> {
     private static readonly pb::MessageParser<ImportMessage> _parser = new pb::MessageParser<ImportMessage>(() => new ImportMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ImportMessage> Parser { get { return _parser; } }
@@ -90,6 +90,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override ImportMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -183,6 +185,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

@@ -749,7 +749,7 @@ namespace Google.Protobuf.TestProtos {
   /// This proto includes every type of field in both singular and repeated
   /// forms.
   /// </summary>
-  public sealed partial class TestAllTypes : zpr::EventRegistry, pb::IMessage<TestAllTypes> {
+  public sealed partial class TestAllTypes : zpr::EventRegistry<TestAllTypes>, pb::IMessage<TestAllTypes> {
     private static readonly pb::MessageParser<TestAllTypes> _parser = new pb::MessageParser<TestAllTypes>(() => new TestAllTypes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestAllTypes> Parser { get { return _parser; } }
@@ -964,6 +964,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestAllTypes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -3788,7 +3790,7 @@ namespace Google.Protobuf.TestProtos {
         [pbr::OriginalName("NEG")] Neg = -1,
       }
 
-      public sealed partial class NestedMessage : zpr::EventRegistry, pb::IMessage<NestedMessage> {
+      public sealed partial class NestedMessage : zpr::EventRegistry<NestedMessage>, pb::IMessage<NestedMessage> {
         private static readonly pb::MessageParser<NestedMessage> _parser = new pb::MessageParser<NestedMessage>(() => new NestedMessage());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<NestedMessage> Parser { get { return _parser; } }
@@ -3821,6 +3823,8 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public static bool IsEventSourced = true;
+
+        protected override NestedMessage Message { get{ return this; } }
 
         public override void SetParent(EventContext parent, EventPath path) {
           base.SetParent(parent, path);
@@ -3919,6 +3923,7 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -3953,6 +3958,7 @@ namespace Google.Protobuf.TestProtos {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4024,7 +4030,7 @@ namespace Google.Protobuf.TestProtos {
                 singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
                 singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
               }
-              (singleNestedMessage_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (singleNestedMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleNestedMessage_  = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
               singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
@@ -4037,7 +4043,7 @@ namespace Google.Protobuf.TestProtos {
                 singleForeignMessage_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
                 singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
               }
-              (singleForeignMessage_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (singleForeignMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleForeignMessage_  = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
               singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
@@ -4050,7 +4056,7 @@ namespace Google.Protobuf.TestProtos {
                 singleImportMessage_ = new global::Google.Protobuf.TestProtos.ImportMessage();
                 singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
               }
-              (singleImportMessage_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (singleImportMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleImportMessage_  = global::Google.Protobuf.TestProtos.ImportMessage.Parser.ParseFrom(e.Set.ByteData);
               singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
@@ -4075,7 +4081,7 @@ namespace Google.Protobuf.TestProtos {
                 singlePublicImportMessage_ = new global::Google.Protobuf.TestProtos.PublicImportMessage();
                 singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
               }
-              (singlePublicImportMessage_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (singlePublicImportMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singlePublicImportMessage_  = global::Google.Protobuf.TestProtos.PublicImportMessage.Parser.ParseFrom(e.Set.ByteData);
               singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
@@ -4187,12 +4193,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-                (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
               }
-              (oneofField_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofNestedMessage;
           }
@@ -4211,12 +4217,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-                (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
               }
-              (oneofField_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofForeignMessage;
           }
@@ -4230,12 +4236,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
               }
-              (oneofField_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofAllTypes;
           }
@@ -4331,7 +4337,7 @@ namespace Google.Protobuf.TestProtos {
                 allTypes_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
                 allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
               }
-              (allTypes_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (allTypes_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               allTypes_  = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
               allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
@@ -4366,7 +4372,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// This proto includes a recusively nested message.
   /// </summary>
-  public sealed partial class NestedTestAllTypes : zpr::EventRegistry, pb::IMessage<NestedTestAllTypes> {
+  public sealed partial class NestedTestAllTypes : zpr::EventRegistry<NestedTestAllTypes>, pb::IMessage<NestedTestAllTypes> {
     private static readonly pb::MessageParser<NestedTestAllTypes> _parser = new pb::MessageParser<NestedTestAllTypes>(() => new NestedTestAllTypes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<NestedTestAllTypes> Parser { get { return _parser; } }
@@ -4403,6 +4409,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override NestedTestAllTypes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -4578,6 +4586,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4589,7 +4598,7 @@ namespace Google.Protobuf.TestProtos {
                 child_ = new global::Google.Protobuf.TestProtos.NestedTestAllTypes();
                 child_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (child_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (child_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               child_  = global::Google.Protobuf.TestProtos.NestedTestAllTypes.Parser.ParseFrom(e.Set.ByteData);
               child_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -4602,7 +4611,7 @@ namespace Google.Protobuf.TestProtos {
                 payload_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
                 payload_.SetParent(Context, new EventPath(Context.Path, 2));
               }
-              (payload_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (payload_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               payload_  = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
               payload_.SetParent(Context, new EventPath(Context.Path, 2));
@@ -4634,7 +4643,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestDeprecatedFields : zpr::EventRegistry, pb::IMessage<TestDeprecatedFields> {
+  public sealed partial class TestDeprecatedFields : zpr::EventRegistry<TestDeprecatedFields>, pb::IMessage<TestDeprecatedFields> {
     private static readonly pb::MessageParser<TestDeprecatedFields> _parser = new pb::MessageParser<TestDeprecatedFields>(() => new TestDeprecatedFields());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestDeprecatedFields> Parser { get { return _parser; } }
@@ -4667,6 +4676,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestDeprecatedFields Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -4761,6 +4772,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4795,7 +4807,7 @@ namespace Google.Protobuf.TestProtos {
   /// Define these after TestAllTypes to make sure the compiler can handle
   /// that.
   /// </summary>
-  public sealed partial class ForeignMessage : zpr::EventRegistry, pb::IMessage<ForeignMessage> {
+  public sealed partial class ForeignMessage : zpr::EventRegistry<ForeignMessage>, pb::IMessage<ForeignMessage> {
     private static readonly pb::MessageParser<ForeignMessage> _parser = new pb::MessageParser<ForeignMessage>(() => new ForeignMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<ForeignMessage> Parser { get { return _parser; } }
@@ -4828,6 +4840,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override ForeignMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -4921,6 +4935,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4951,7 +4966,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestReservedFields : zpr::EventRegistry, pb::IMessage<TestReservedFields> {
+  public sealed partial class TestReservedFields : zpr::EventRegistry<TestReservedFields>, pb::IMessage<TestReservedFields> {
     private static readonly pb::MessageParser<TestReservedFields> _parser = new pb::MessageParser<TestReservedFields>(() => new TestReservedFields());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestReservedFields> Parser { get { return _parser; } }
@@ -4983,6 +4998,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestReservedFields Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -5044,6 +5061,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5073,7 +5091,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test that we can use NestedMessage from outside TestAllTypes.
   /// </summary>
-  public sealed partial class TestForeignNested : zpr::EventRegistry, pb::IMessage<TestForeignNested> {
+  public sealed partial class TestForeignNested : zpr::EventRegistry<TestForeignNested>, pb::IMessage<TestForeignNested> {
     private static readonly pb::MessageParser<TestForeignNested> _parser = new pb::MessageParser<TestForeignNested>(() => new TestForeignNested());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestForeignNested> Parser { get { return _parser; } }
@@ -5106,6 +5124,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestForeignNested Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -5209,6 +5229,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5220,7 +5241,7 @@ namespace Google.Protobuf.TestProtos {
                 foreignNested_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
                 foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (foreignNested_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (foreignNested_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foreignNested_  = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
               foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -5251,7 +5272,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test that really large tag numbers don't break anything.
   /// </summary>
-  public sealed partial class TestReallyLargeTagNumber : zpr::EventRegistry, pb::IMessage<TestReallyLargeTagNumber> {
+  public sealed partial class TestReallyLargeTagNumber : zpr::EventRegistry<TestReallyLargeTagNumber>, pb::IMessage<TestReallyLargeTagNumber> {
     private static readonly pb::MessageParser<TestReallyLargeTagNumber> _parser = new pb::MessageParser<TestReallyLargeTagNumber>(() => new TestReallyLargeTagNumber());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestReallyLargeTagNumber> Parser { get { return _parser; } }
@@ -5285,6 +5306,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestReallyLargeTagNumber Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -5414,6 +5437,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5448,7 +5472,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestRecursiveMessage : zpr::EventRegistry, pb::IMessage<TestRecursiveMessage> {
+  public sealed partial class TestRecursiveMessage : zpr::EventRegistry<TestRecursiveMessage>, pb::IMessage<TestRecursiveMessage> {
     private static readonly pb::MessageParser<TestRecursiveMessage> _parser = new pb::MessageParser<TestRecursiveMessage>(() => new TestRecursiveMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestRecursiveMessage> Parser { get { return _parser; } }
@@ -5482,6 +5506,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestRecursiveMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -5617,6 +5643,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5628,7 +5655,7 @@ namespace Google.Protobuf.TestProtos {
                 a_ = new global::Google.Protobuf.TestProtos.TestRecursiveMessage();
                 a_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (a_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (a_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               a_  = global::Google.Protobuf.TestProtos.TestRecursiveMessage.Parser.ParseFrom(e.Set.ByteData);
               a_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -5663,7 +5690,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test that mutual recursion works.
   /// </summary>
-  public sealed partial class TestMutualRecursionA : zpr::EventRegistry, pb::IMessage<TestMutualRecursionA> {
+  public sealed partial class TestMutualRecursionA : zpr::EventRegistry<TestMutualRecursionA>, pb::IMessage<TestMutualRecursionA> {
     private static readonly pb::MessageParser<TestMutualRecursionA> _parser = new pb::MessageParser<TestMutualRecursionA>(() => new TestMutualRecursionA());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestMutualRecursionA> Parser { get { return _parser; } }
@@ -5696,6 +5723,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestMutualRecursionA Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -5799,6 +5828,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5810,7 +5840,7 @@ namespace Google.Protobuf.TestProtos {
                 bb_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionB();
                 bb_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (bb_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (bb_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               bb_  = global::Google.Protobuf.TestProtos.TestMutualRecursionB.Parser.ParseFrom(e.Set.ByteData);
               bb_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -5838,7 +5868,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestMutualRecursionB : zpr::EventRegistry, pb::IMessage<TestMutualRecursionB> {
+  public sealed partial class TestMutualRecursionB : zpr::EventRegistry<TestMutualRecursionB>, pb::IMessage<TestMutualRecursionB> {
     private static readonly pb::MessageParser<TestMutualRecursionB> _parser = new pb::MessageParser<TestMutualRecursionB>(() => new TestMutualRecursionB());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestMutualRecursionB> Parser { get { return _parser; } }
@@ -5872,6 +5902,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestMutualRecursionB Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -6007,6 +6039,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6018,7 +6051,7 @@ namespace Google.Protobuf.TestProtos {
                 a_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionA();
                 a_.SetParent(Context, new EventPath(Context.Path, 1));
               }
-              (a_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (a_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               a_  = global::Google.Protobuf.TestProtos.TestMutualRecursionA.Parser.ParseFrom(e.Set.ByteData);
               a_.SetParent(Context, new EventPath(Context.Path, 1));
@@ -6050,7 +6083,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestEnumAllowAlias : zpr::EventRegistry, pb::IMessage<TestEnumAllowAlias> {
+  public sealed partial class TestEnumAllowAlias : zpr::EventRegistry<TestEnumAllowAlias>, pb::IMessage<TestEnumAllowAlias> {
     private static readonly pb::MessageParser<TestEnumAllowAlias> _parser = new pb::MessageParser<TestEnumAllowAlias>(() => new TestEnumAllowAlias());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestEnumAllowAlias> Parser { get { return _parser; } }
@@ -6083,6 +6116,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestEnumAllowAlias Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -6176,6 +6211,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6210,7 +6246,7 @@ namespace Google.Protobuf.TestProtos {
   /// Test message with CamelCase field names.  This violates Protocol Buffer
   /// standard style.
   /// </summary>
-  public sealed partial class TestCamelCaseFieldNames : zpr::EventRegistry, pb::IMessage<TestCamelCaseFieldNames> {
+  public sealed partial class TestCamelCaseFieldNames : zpr::EventRegistry<TestCamelCaseFieldNames>, pb::IMessage<TestCamelCaseFieldNames> {
     private static readonly pb::MessageParser<TestCamelCaseFieldNames> _parser = new pb::MessageParser<TestCamelCaseFieldNames>(() => new TestCamelCaseFieldNames());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestCamelCaseFieldNames> Parser { get { return _parser; } }
@@ -6258,6 +6294,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestCamelCaseFieldNames Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -6576,6 +6614,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6599,7 +6638,7 @@ namespace Google.Protobuf.TestProtos {
                 messageField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
                 messageField_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (messageField_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (messageField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               messageField_  = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
               messageField_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -6647,7 +6686,7 @@ namespace Google.Protobuf.TestProtos {
   /// We list fields out of order, to ensure that we're using field number and not
   /// field index to determine serialization order.
   /// </summary>
-  public sealed partial class TestFieldOrderings : zpr::EventRegistry, pb::IMessage<TestFieldOrderings> {
+  public sealed partial class TestFieldOrderings : zpr::EventRegistry<TestFieldOrderings>, pb::IMessage<TestFieldOrderings> {
     private static readonly pb::MessageParser<TestFieldOrderings> _parser = new pb::MessageParser<TestFieldOrderings>(() => new TestFieldOrderings());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestFieldOrderings> Parser { get { return _parser; } }
@@ -6683,6 +6722,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestFieldOrderings Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -6885,7 +6926,7 @@ namespace Google.Protobuf.TestProtos {
     /// <summary>Container for nested types declared in the TestFieldOrderings message type.</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static partial class Types {
-      public sealed partial class NestedMessage : zpr::EventRegistry, pb::IMessage<NestedMessage> {
+      public sealed partial class NestedMessage : zpr::EventRegistry<NestedMessage>, pb::IMessage<NestedMessage> {
         private static readonly pb::MessageParser<NestedMessage> _parser = new pb::MessageParser<NestedMessage>(() => new NestedMessage());
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<NestedMessage> Parser { get { return _parser; } }
@@ -6919,6 +6960,8 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public static bool IsEventSourced = true;
+
+        protected override NestedMessage Message { get{ return this; } }
 
         public override void SetParent(EventContext parent, EventPath path) {
           base.SetParent(parent, path);
@@ -7049,6 +7092,7 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -7087,6 +7131,7 @@ namespace Google.Protobuf.TestProtos {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7110,7 +7155,7 @@ namespace Google.Protobuf.TestProtos {
                 singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage();
                 singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
               }
-              (singleNestedMessage_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (singleNestedMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleNestedMessage_  = global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
               singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
@@ -7138,7 +7183,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class SparseEnumMessage : zpr::EventRegistry, pb::IMessage<SparseEnumMessage> {
+  public sealed partial class SparseEnumMessage : zpr::EventRegistry<SparseEnumMessage>, pb::IMessage<SparseEnumMessage> {
     private static readonly pb::MessageParser<SparseEnumMessage> _parser = new pb::MessageParser<SparseEnumMessage>(() => new SparseEnumMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<SparseEnumMessage> Parser { get { return _parser; } }
@@ -7171,6 +7216,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override SparseEnumMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -7264,6 +7311,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7297,7 +7345,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test String and Bytes: string is for valid UTF-8 strings
   /// </summary>
-  public sealed partial class OneString : zpr::EventRegistry, pb::IMessage<OneString> {
+  public sealed partial class OneString : zpr::EventRegistry<OneString>, pb::IMessage<OneString> {
     private static readonly pb::MessageParser<OneString> _parser = new pb::MessageParser<OneString>(() => new OneString());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<OneString> Parser { get { return _parser; } }
@@ -7330,6 +7378,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override OneString Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -7423,6 +7473,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7453,7 +7504,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class MoreString : zpr::EventRegistry, pb::IMessage<MoreString> {
+  public sealed partial class MoreString : zpr::EventRegistry<MoreString>, pb::IMessage<MoreString> {
     private static readonly pb::MessageParser<MoreString> _parser = new pb::MessageParser<MoreString>(() => new MoreString());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<MoreString> Parser { get { return _parser; } }
@@ -7488,6 +7539,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override MoreString Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -7578,6 +7631,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7608,7 +7662,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class OneBytes : zpr::EventRegistry, pb::IMessage<OneBytes> {
+  public sealed partial class OneBytes : zpr::EventRegistry<OneBytes>, pb::IMessage<OneBytes> {
     private static readonly pb::MessageParser<OneBytes> _parser = new pb::MessageParser<OneBytes>(() => new OneBytes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<OneBytes> Parser { get { return _parser; } }
@@ -7641,6 +7695,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override OneBytes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -7734,6 +7790,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7764,7 +7821,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class MoreBytes : zpr::EventRegistry, pb::IMessage<MoreBytes> {
+  public sealed partial class MoreBytes : zpr::EventRegistry<MoreBytes>, pb::IMessage<MoreBytes> {
     private static readonly pb::MessageParser<MoreBytes> _parser = new pb::MessageParser<MoreBytes>(() => new MoreBytes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<MoreBytes> Parser { get { return _parser; } }
@@ -7797,6 +7854,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override MoreBytes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -7890,6 +7949,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7923,7 +7983,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test int32, uint32, int64, uint64, and bool are all compatible
   /// </summary>
-  public sealed partial class Int32Message : zpr::EventRegistry, pb::IMessage<Int32Message> {
+  public sealed partial class Int32Message : zpr::EventRegistry<Int32Message>, pb::IMessage<Int32Message> {
     private static readonly pb::MessageParser<Int32Message> _parser = new pb::MessageParser<Int32Message>(() => new Int32Message());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Int32Message> Parser { get { return _parser; } }
@@ -7956,6 +8016,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Int32Message Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8049,6 +8111,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8079,7 +8142,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class Uint32Message : zpr::EventRegistry, pb::IMessage<Uint32Message> {
+  public sealed partial class Uint32Message : zpr::EventRegistry<Uint32Message>, pb::IMessage<Uint32Message> {
     private static readonly pb::MessageParser<Uint32Message> _parser = new pb::MessageParser<Uint32Message>(() => new Uint32Message());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Uint32Message> Parser { get { return _parser; } }
@@ -8112,6 +8175,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Uint32Message Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8205,6 +8270,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8235,7 +8301,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class Int64Message : zpr::EventRegistry, pb::IMessage<Int64Message> {
+  public sealed partial class Int64Message : zpr::EventRegistry<Int64Message>, pb::IMessage<Int64Message> {
     private static readonly pb::MessageParser<Int64Message> _parser = new pb::MessageParser<Int64Message>(() => new Int64Message());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Int64Message> Parser { get { return _parser; } }
@@ -8268,6 +8334,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Int64Message Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8361,6 +8429,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8391,7 +8460,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class Uint64Message : zpr::EventRegistry, pb::IMessage<Uint64Message> {
+  public sealed partial class Uint64Message : zpr::EventRegistry<Uint64Message>, pb::IMessage<Uint64Message> {
     private static readonly pb::MessageParser<Uint64Message> _parser = new pb::MessageParser<Uint64Message>(() => new Uint64Message());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<Uint64Message> Parser { get { return _parser; } }
@@ -8424,6 +8493,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override Uint64Message Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8517,6 +8588,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8547,7 +8619,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class BoolMessage : zpr::EventRegistry, pb::IMessage<BoolMessage> {
+  public sealed partial class BoolMessage : zpr::EventRegistry<BoolMessage>, pb::IMessage<BoolMessage> {
     private static readonly pb::MessageParser<BoolMessage> _parser = new pb::MessageParser<BoolMessage>(() => new BoolMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<BoolMessage> Parser { get { return _parser; } }
@@ -8580,6 +8652,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override BoolMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8673,6 +8747,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8706,7 +8781,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test oneofs.
   /// </summary>
-  public sealed partial class TestOneof : zpr::EventRegistry, pb::IMessage<TestOneof> {
+  public sealed partial class TestOneof : zpr::EventRegistry<TestOneof>, pb::IMessage<TestOneof> {
     private static readonly pb::MessageParser<TestOneof> _parser = new pb::MessageParser<TestOneof>(() => new TestOneof());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestOneof> Parser { get { return _parser; } }
@@ -8750,6 +8825,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestOneof Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -8942,6 +9019,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8961,12 +9039,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (foo_ == null) {
                 foo_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                (foo_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+                (foo_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
               }
-              (foo_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (foo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foo_   = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              (foo_ as zpr::EventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+              (foo_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
             }
             fooCase_ = foo_ == null ? FooOneofCase.None : FooOneofCase.FooMessage;
           }
@@ -8992,7 +9070,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestPackedTypes : zpr::EventRegistry, pb::IMessage<TestPackedTypes> {
+  public sealed partial class TestPackedTypes : zpr::EventRegistry<TestPackedTypes>, pb::IMessage<TestPackedTypes> {
     private static readonly pb::MessageParser<TestPackedTypes> _parser = new pb::MessageParser<TestPackedTypes>(() => new TestPackedTypes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestPackedTypes> Parser { get { return _parser; } }
@@ -9066,6 +9144,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestPackedTypes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -9547,6 +9627,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -9633,7 +9714,7 @@ namespace Google.Protobuf.TestProtos {
   /// A message with the same fields as TestPackedTypes, but without packing. Used
   /// to test packed &lt;-> unpacked wire compatibility.
   /// </summary>
-  public sealed partial class TestUnpackedTypes : zpr::EventRegistry, pb::IMessage<TestUnpackedTypes> {
+  public sealed partial class TestUnpackedTypes : zpr::EventRegistry<TestUnpackedTypes>, pb::IMessage<TestUnpackedTypes> {
     private static readonly pb::MessageParser<TestUnpackedTypes> _parser = new pb::MessageParser<TestUnpackedTypes>(() => new TestUnpackedTypes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestUnpackedTypes> Parser { get { return _parser; } }
@@ -9707,6 +9788,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestUnpackedTypes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -10188,6 +10271,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10270,7 +10354,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestRepeatedScalarDifferentTagSizes : zpr::EventRegistry, pb::IMessage<TestRepeatedScalarDifferentTagSizes> {
+  public sealed partial class TestRepeatedScalarDifferentTagSizes : zpr::EventRegistry<TestRepeatedScalarDifferentTagSizes>, pb::IMessage<TestRepeatedScalarDifferentTagSizes> {
     private static readonly pb::MessageParser<TestRepeatedScalarDifferentTagSizes> _parser = new pb::MessageParser<TestRepeatedScalarDifferentTagSizes>(() => new TestRepeatedScalarDifferentTagSizes());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestRepeatedScalarDifferentTagSizes> Parser { get { return _parser; } }
@@ -10320,6 +10404,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestRepeatedScalarDifferentTagSizes Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -10575,6 +10661,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10625,7 +10712,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestCommentInjectionMessage : zpr::EventRegistry, pb::IMessage<TestCommentInjectionMessage> {
+  public sealed partial class TestCommentInjectionMessage : zpr::EventRegistry<TestCommentInjectionMessage>, pb::IMessage<TestCommentInjectionMessage> {
     private static readonly pb::MessageParser<TestCommentInjectionMessage> _parser = new pb::MessageParser<TestCommentInjectionMessage>(() => new TestCommentInjectionMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestCommentInjectionMessage> Parser { get { return _parser; } }
@@ -10658,6 +10745,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestCommentInjectionMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -10754,6 +10843,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10787,7 +10877,7 @@ namespace Google.Protobuf.TestProtos {
   /// <summary>
   /// Test that RPC services work.
   /// </summary>
-  public sealed partial class FooRequest : zpr::EventRegistry, pb::IMessage<FooRequest> {
+  public sealed partial class FooRequest : zpr::EventRegistry<FooRequest>, pb::IMessage<FooRequest> {
     private static readonly pb::MessageParser<FooRequest> _parser = new pb::MessageParser<FooRequest>(() => new FooRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<FooRequest> Parser { get { return _parser; } }
@@ -10819,6 +10909,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override FooRequest Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -10880,6 +10972,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10906,7 +10999,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class FooResponse : zpr::EventRegistry, pb::IMessage<FooResponse> {
+  public sealed partial class FooResponse : zpr::EventRegistry<FooResponse>, pb::IMessage<FooResponse> {
     private static readonly pb::MessageParser<FooResponse> _parser = new pb::MessageParser<FooResponse>(() => new FooResponse());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<FooResponse> Parser { get { return _parser; } }
@@ -10938,6 +11031,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override FooResponse Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -10999,6 +11094,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11025,7 +11121,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class FooClientMessage : zpr::EventRegistry, pb::IMessage<FooClientMessage> {
+  public sealed partial class FooClientMessage : zpr::EventRegistry<FooClientMessage>, pb::IMessage<FooClientMessage> {
     private static readonly pb::MessageParser<FooClientMessage> _parser = new pb::MessageParser<FooClientMessage>(() => new FooClientMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<FooClientMessage> Parser { get { return _parser; } }
@@ -11057,6 +11153,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override FooClientMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -11118,6 +11216,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11144,7 +11243,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class FooServerMessage : zpr::EventRegistry, pb::IMessage<FooServerMessage> {
+  public sealed partial class FooServerMessage : zpr::EventRegistry<FooServerMessage>, pb::IMessage<FooServerMessage> {
     private static readonly pb::MessageParser<FooServerMessage> _parser = new pb::MessageParser<FooServerMessage>(() => new FooServerMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<FooServerMessage> Parser { get { return _parser; } }
@@ -11176,6 +11275,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override FooServerMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -11237,6 +11338,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11263,7 +11365,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class BarRequest : zpr::EventRegistry, pb::IMessage<BarRequest> {
+  public sealed partial class BarRequest : zpr::EventRegistry<BarRequest>, pb::IMessage<BarRequest> {
     private static readonly pb::MessageParser<BarRequest> _parser = new pb::MessageParser<BarRequest>(() => new BarRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<BarRequest> Parser { get { return _parser; } }
@@ -11295,6 +11397,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override BarRequest Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -11356,6 +11460,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11382,7 +11487,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class BarResponse : zpr::EventRegistry, pb::IMessage<BarResponse> {
+  public sealed partial class BarResponse : zpr::EventRegistry<BarResponse>, pb::IMessage<BarResponse> {
     private static readonly pb::MessageParser<BarResponse> _parser = new pb::MessageParser<BarResponse>(() => new BarResponse());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<BarResponse> Parser { get { return _parser; } }
@@ -11414,6 +11519,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override BarResponse Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -11475,6 +11582,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11501,7 +11609,7 @@ namespace Google.Protobuf.TestProtos {
 
   }
 
-  public sealed partial class TestEmptyMessage : zpr::EventRegistry, pb::IMessage<TestEmptyMessage> {
+  public sealed partial class TestEmptyMessage : zpr::EventRegistry<TestEmptyMessage>, pb::IMessage<TestEmptyMessage> {
     private static readonly pb::MessageParser<TestEmptyMessage> _parser = new pb::MessageParser<TestEmptyMessage>(() => new TestEmptyMessage());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<TestEmptyMessage> Parser { get { return _parser; } }
@@ -11533,6 +11641,8 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override TestEmptyMessage Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -11594,6 +11704,7 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

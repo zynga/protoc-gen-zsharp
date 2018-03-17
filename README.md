@@ -172,5 +172,5 @@ Build instructions for protoc-gen-zsharp c++ plugin
 
 3.) Build via commandline
 * cd runtime 
-* run ```build.sh|cmd build```
+* run ```build.sh|cmd build``` 
 

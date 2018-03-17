@@ -103,7 +103,7 @@ namespace Com.Zynga.Runtime.Protobuf {
   #endregion
 
   #region Messages
-  public sealed partial class NestedMessage1 : zpr::EventRegistry, pb::IMessage<NestedMessage1> {
+  public sealed partial class NestedMessage1 : zpr::EventRegistry<NestedMessage1>, pb::IMessage<NestedMessage1> {
     private static readonly pb::MessageParser<NestedMessage1> _parser = new pb::MessageParser<NestedMessage1>(() => new NestedMessage1());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<NestedMessage1> Parser { get { return _parser; } }
@@ -136,6 +136,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override NestedMessage1 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -229,6 +231,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -259,7 +262,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class NestedMessage2 : zpr::EventRegistry, pb::IMessage<NestedMessage2> {
+  public sealed partial class NestedMessage2 : zpr::EventRegistry<NestedMessage2>, pb::IMessage<NestedMessage2> {
     private static readonly pb::MessageParser<NestedMessage2> _parser = new pb::MessageParser<NestedMessage2>(() => new NestedMessage2());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<NestedMessage2> Parser { get { return _parser; } }
@@ -293,6 +296,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override NestedMessage2 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -418,6 +423,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -452,7 +458,7 @@ namespace Com.Zynga.Runtime.Protobuf {
 
   }
 
-  public sealed partial class UpgradeMessage1 : zpr::EventRegistry, pb::IMessage<UpgradeMessage1> {
+  public sealed partial class UpgradeMessage1 : zpr::EventRegistry<UpgradeMessage1>, pb::IMessage<UpgradeMessage1> {
     private static readonly pb::MessageParser<UpgradeMessage1> _parser = new pb::MessageParser<UpgradeMessage1>(() => new UpgradeMessage1());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<UpgradeMessage1> Parser { get { return _parser; } }
@@ -500,6 +506,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override UpgradeMessage1 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -826,6 +834,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -849,7 +858,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
                 nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (nestedA_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (nestedA_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedA_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage1.Parser.ParseFrom(e.Set.ByteData);
               nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -893,7 +902,7 @@ namespace Com.Zynga.Runtime.Protobuf {
   /// <summary>
   /// just re-name fields
   /// </summary>
-  public sealed partial class UpgradeMessage2 : zpr::EventRegistry, pb::IMessage<UpgradeMessage2> {
+  public sealed partial class UpgradeMessage2 : zpr::EventRegistry<UpgradeMessage2>, pb::IMessage<UpgradeMessage2> {
     private static readonly pb::MessageParser<UpgradeMessage2> _parser = new pb::MessageParser<UpgradeMessage2>(() => new UpgradeMessage2());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<UpgradeMessage2> Parser { get { return _parser; } }
@@ -941,6 +950,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override UpgradeMessage2 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1267,6 +1278,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1290,7 +1302,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
                 nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (nestedB_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage1.Parser.ParseFrom(e.Set.ByteData);
               nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -1334,7 +1346,7 @@ namespace Com.Zynga.Runtime.Protobuf {
   /// <summary>
   /// add a few fields
   /// </summary>
-  public sealed partial class UpgradeMessage3 : zpr::EventRegistry, pb::IMessage<UpgradeMessage3> {
+  public sealed partial class UpgradeMessage3 : zpr::EventRegistry<UpgradeMessage3>, pb::IMessage<UpgradeMessage3> {
     private static readonly pb::MessageParser<UpgradeMessage3> _parser = new pb::MessageParser<UpgradeMessage3>(() => new UpgradeMessage3());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<UpgradeMessage3> Parser { get { return _parser; } }
@@ -1386,6 +1398,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override UpgradeMessage3 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -1777,6 +1791,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -1800,7 +1815,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
                 nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (nestedB_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage2.Parser.ParseFrom(e.Set.ByteData);
               nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
@@ -1853,7 +1868,7 @@ namespace Com.Zynga.Runtime.Protobuf {
   /// <summary>
   /// remove a few fields
   /// </summary>
-  public sealed partial class UpgradeMessage4 : zpr::EventRegistry, pb::IMessage<UpgradeMessage4> {
+  public sealed partial class UpgradeMessage4 : zpr::EventRegistry<UpgradeMessage4>, pb::IMessage<UpgradeMessage4> {
     private static readonly pb::MessageParser<UpgradeMessage4> _parser = new pb::MessageParser<UpgradeMessage4>(() => new UpgradeMessage4());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pb::MessageParser<UpgradeMessage4> Parser { get { return _parser; } }
@@ -1901,6 +1916,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public static bool IsEventSourced = true;
+
+    protected override UpgradeMessage4 Message { get{ return this; } }
 
     public override void SetParent(EventContext parent, EventPath path) {
       base.SetParent(parent, path);
@@ -2227,6 +2244,7 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
+        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -2246,7 +2264,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
                 nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
               }
-              (nestedB_ as zpr::EventRegistry)?.ApplyEvent(e, pathIndex + 1);
+              (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage2.Parser.ParseFrom(e.Set.ByteData);
               nestedB_.SetParent(Context, new EventPath(Context.Path, 4));

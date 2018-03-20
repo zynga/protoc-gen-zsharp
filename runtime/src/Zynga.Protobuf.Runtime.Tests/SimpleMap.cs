@@ -200,7 +200,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.G.Length != 0) {
-        G = other.G;
+        g_ = other.G;
       }
     }
 
@@ -213,7 +213,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 10: {
-            G = input.ReadString();
+            g_ = input.ReadString();
             break;
           }
         }
@@ -329,7 +329,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.H.Length != 0) {
-        H = other.H;
+        h_ = other.H;
       }
     }
 
@@ -342,7 +342,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 10: {
-            H = input.ReadString();
+            h_ = input.ReadString();
             break;
           }
         }

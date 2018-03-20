@@ -3210,49 +3210,49 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.SingleInt32 != 0) {
-        SingleInt32 = other.SingleInt32;
+        singleInt32_ = other.SingleInt32;
       }
       if (other.SingleInt64 != 0L) {
-        SingleInt64 = other.SingleInt64;
+        singleInt64_ = other.SingleInt64;
       }
       if (other.SingleUint32 != 0) {
-        SingleUint32 = other.SingleUint32;
+        singleUint32_ = other.SingleUint32;
       }
       if (other.SingleUint64 != 0UL) {
-        SingleUint64 = other.SingleUint64;
+        singleUint64_ = other.SingleUint64;
       }
       if (other.SingleSint32 != 0) {
-        SingleSint32 = other.SingleSint32;
+        singleSint32_ = other.SingleSint32;
       }
       if (other.SingleSint64 != 0L) {
-        SingleSint64 = other.SingleSint64;
+        singleSint64_ = other.SingleSint64;
       }
       if (other.SingleFixed32 != 0) {
-        SingleFixed32 = other.SingleFixed32;
+        singleFixed32_ = other.SingleFixed32;
       }
       if (other.SingleFixed64 != 0UL) {
-        SingleFixed64 = other.SingleFixed64;
+        singleFixed64_ = other.SingleFixed64;
       }
       if (other.SingleSfixed32 != 0) {
-        SingleSfixed32 = other.SingleSfixed32;
+        singleSfixed32_ = other.SingleSfixed32;
       }
       if (other.SingleSfixed64 != 0L) {
-        SingleSfixed64 = other.SingleSfixed64;
+        singleSfixed64_ = other.SingleSfixed64;
       }
       if (other.SingleFloat != 0F) {
-        SingleFloat = other.SingleFloat;
+        singleFloat_ = other.SingleFloat;
       }
       if (other.SingleDouble != 0D) {
-        SingleDouble = other.SingleDouble;
+        singleDouble_ = other.SingleDouble;
       }
       if (other.SingleBool != false) {
-        SingleBool = other.SingleBool;
+        singleBool_ = other.SingleBool;
       }
       if (other.SingleString.Length != 0) {
-        SingleString = other.SingleString;
+        singleString_ = other.SingleString;
       }
       if (other.SingleBytes.Length != 0) {
-        SingleBytes = other.SingleBytes;
+        singleBytes_ = other.SingleBytes;
       }
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
@@ -3276,13 +3276,13 @@ namespace Google.Protobuf.TestProtos {
         SingleImportMessage.MergeFrom(other.SingleImportMessage);
       }
       if (other.SingleNestedEnum != 0) {
-        SingleNestedEnum = other.SingleNestedEnum;
+        singleNestedEnum_ = other.SingleNestedEnum;
       }
       if (other.SingleForeignEnum != 0) {
-        SingleForeignEnum = other.SingleForeignEnum;
+        singleForeignEnum_ = other.SingleForeignEnum;
       }
       if (other.SingleImportEnum != 0) {
-        SingleImportEnum = other.SingleImportEnum;
+        singleImportEnum_ = other.SingleImportEnum;
       }
       if (other.singlePublicImportMessage_ != null) {
         if (singlePublicImportMessage_ == null) {
@@ -3404,63 +3404,63 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            SingleInt32 = input.ReadInt32();
+            singleInt32_ = input.ReadInt32();
             break;
           }
           case 16: {
-            SingleInt64 = input.ReadInt64();
+            singleInt64_ = input.ReadInt64();
             break;
           }
           case 24: {
-            SingleUint32 = input.ReadUInt32();
+            singleUint32_ = input.ReadUInt32();
             break;
           }
           case 32: {
-            SingleUint64 = input.ReadUInt64();
+            singleUint64_ = input.ReadUInt64();
             break;
           }
           case 40: {
-            SingleSint32 = input.ReadSInt32();
+            singleSint32_ = input.ReadSInt32();
             break;
           }
           case 48: {
-            SingleSint64 = input.ReadSInt64();
+            singleSint64_ = input.ReadSInt64();
             break;
           }
           case 61: {
-            SingleFixed32 = input.ReadFixed32();
+            singleFixed32_ = input.ReadFixed32();
             break;
           }
           case 65: {
-            SingleFixed64 = input.ReadFixed64();
+            singleFixed64_ = input.ReadFixed64();
             break;
           }
           case 77: {
-            SingleSfixed32 = input.ReadSFixed32();
+            singleSfixed32_ = input.ReadSFixed32();
             break;
           }
           case 81: {
-            SingleSfixed64 = input.ReadSFixed64();
+            singleSfixed64_ = input.ReadSFixed64();
             break;
           }
           case 93: {
-            SingleFloat = input.ReadFloat();
+            singleFloat_ = input.ReadFloat();
             break;
           }
           case 97: {
-            SingleDouble = input.ReadDouble();
+            singleDouble_ = input.ReadDouble();
             break;
           }
           case 104: {
-            SingleBool = input.ReadBool();
+            singleBool_ = input.ReadBool();
             break;
           }
           case 114: {
-            SingleString = input.ReadString();
+            singleString_ = input.ReadString();
             break;
           }
           case 122: {
-            SingleBytes = input.ReadBytes();
+            singleBytes_ = input.ReadBytes();
             break;
           }
           case 146: {
@@ -3620,7 +3620,8 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 888: {
-            OneofUint32 = input.ReadUInt32();
+            oneofField_ = input.ReadUInt32();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofUint32;
             break;
           }
           case 898: {
@@ -3629,15 +3630,19 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofNestedMessage);
             }
             input.ReadMessage(subBuilder);
-            OneofNestedMessage = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofNestedMessage;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 112));
             break;
           }
           case 906: {
-            OneofString = input.ReadString();
+            oneofField_ = input.ReadString();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofString;
             break;
           }
           case 914: {
-            OneofBytes = input.ReadBytes();
+            oneofField_ = input.ReadBytes();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofBytes;
             break;
           }
           case 922: {
@@ -3741,7 +3746,9 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofForeignMessage);
             }
             input.ReadMessage(subBuilder);
-            OneofForeignMessage = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofForeignMessage;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 137));
             break;
           }
           case 1106: {
@@ -3750,7 +3757,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofForeignMessageNoEvents);
             }
             input.ReadMessage(subBuilder);
-            OneofForeignMessageNoEvents = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofForeignMessageNoEvents;
             break;
           }
           case 1114: {
@@ -3759,7 +3767,9 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofAllTypes);
             }
             input.ReadMessage(subBuilder);
-            OneofAllTypes = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofAllTypes;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 139));
             break;
           }
           case 1122: {
@@ -3768,7 +3778,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofAllTypesNoEvents);
             }
             input.ReadMessage(subBuilder);
-            OneofAllTypesNoEvents = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofAllTypesNoEvents;
             break;
           }
         }
@@ -3902,7 +3913,7 @@ namespace Google.Protobuf.TestProtos {
             return;
           }
           if (other.Bb != 0) {
-            Bb = other.Bb;
+            bb_ = other.Bb;
           }
         }
 
@@ -3915,7 +3926,7 @@ namespace Google.Protobuf.TestProtos {
                 input.SkipLastField();
                 break;
               case 8: {
-                Bb = input.ReadInt32();
+                bb_ = input.ReadInt32();
                 break;
               }
             }
@@ -4751,7 +4762,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.DeprecatedInt32 != 0) {
-        DeprecatedInt32 = other.DeprecatedInt32;
+        deprecatedInt32_ = other.DeprecatedInt32;
       }
     }
 
@@ -4764,7 +4775,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            DeprecatedInt32 = input.ReadInt32();
+            deprecatedInt32_ = input.ReadInt32();
             break;
           }
         }
@@ -4914,7 +4925,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.C != 0) {
-        C = other.C;
+        c_ = other.C;
       }
     }
 
@@ -4927,7 +4938,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            C = input.ReadInt32();
+            c_ = input.ReadInt32();
             break;
           }
         }
@@ -5409,10 +5420,10 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
       if (other.Bb != 0) {
-        Bb = other.Bb;
+        bb_ = other.Bb;
       }
     }
 
@@ -5425,11 +5436,11 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadInt32();
+            a_ = input.ReadInt32();
             break;
           }
           case 2147483640: {
-            Bb = input.ReadInt32();
+            bb_ = input.ReadInt32();
             break;
           }
         }
@@ -5614,7 +5625,7 @@ namespace Google.Protobuf.TestProtos {
         A.MergeFrom(other.A);
       }
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
     }
 
@@ -5635,7 +5646,7 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 16: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
         }
@@ -6010,7 +6021,7 @@ namespace Google.Protobuf.TestProtos {
         A.MergeFrom(other.A);
       }
       if (other.OptionalInt32 != 0) {
-        OptionalInt32 = other.OptionalInt32;
+        optionalInt32_ = other.OptionalInt32;
       }
     }
 
@@ -6031,7 +6042,7 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 16: {
-            OptionalInt32 = input.ReadInt32();
+            optionalInt32_ = input.ReadInt32();
             break;
           }
         }
@@ -6190,7 +6201,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Value != 0) {
-        Value = other.Value;
+        value_ = other.Value;
       }
     }
 
@@ -6542,13 +6553,13 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.PrimitiveField != 0) {
-        PrimitiveField = other.PrimitiveField;
+        primitiveField_ = other.PrimitiveField;
       }
       if (other.StringField.Length != 0) {
-        StringField = other.StringField;
+        stringField_ = other.StringField;
       }
       if (other.EnumField != 0) {
-        EnumField = other.EnumField;
+        enumField_ = other.EnumField;
       }
       if (other.messageField_ != null) {
         if (messageField_ == null) {
@@ -6572,11 +6583,11 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            PrimitiveField = input.ReadInt32();
+            primitiveField_ = input.ReadInt32();
             break;
           }
           case 18: {
-            StringField = input.ReadString();
+            stringField_ = input.ReadString();
             break;
           }
           case 24: {
@@ -6873,13 +6884,13 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.MyString.Length != 0) {
-        MyString = other.MyString;
+        myString_ = other.MyString;
       }
       if (other.MyInt != 0L) {
-        MyInt = other.MyInt;
+        myInt_ = other.MyInt;
       }
       if (other.MyFloat != 0F) {
-        MyFloat = other.MyFloat;
+        myFloat_ = other.MyFloat;
       }
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
@@ -6899,15 +6910,15 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            MyInt = input.ReadInt64();
+            myInt_ = input.ReadInt64();
             break;
           }
           case 90: {
-            MyString = input.ReadString();
+            myString_ = input.ReadString();
             break;
           }
           case 813: {
-            MyFloat = input.ReadFloat();
+            myFloat_ = input.ReadFloat();
             break;
           }
           case 1602: {
@@ -7064,10 +7075,10 @@ namespace Google.Protobuf.TestProtos {
             return;
           }
           if (other.Oo != 0L) {
-            Oo = other.Oo;
+            oo_ = other.Oo;
           }
           if (other.Bb != 0) {
-            Bb = other.Bb;
+            bb_ = other.Bb;
           }
         }
 
@@ -7080,11 +7091,11 @@ namespace Google.Protobuf.TestProtos {
                 input.SkipLastField();
                 break;
               case 8: {
-                Bb = input.ReadInt32();
+                bb_ = input.ReadInt32();
                 break;
               }
               case 16: {
-                Oo = input.ReadInt64();
+                oo_ = input.ReadInt64();
                 break;
               }
             }
@@ -7290,7 +7301,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.SparseEnum != 0) {
-        SparseEnum = other.SparseEnum;
+        sparseEnum_ = other.SparseEnum;
       }
     }
 
@@ -7452,7 +7463,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -7465,7 +7476,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadString();
+            data_ = input.ReadString();
             break;
           }
         }
@@ -7769,7 +7780,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -7782,7 +7793,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadBytes();
+            data_ = input.ReadBytes();
             break;
           }
         }
@@ -7928,7 +7939,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -7941,7 +7952,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadBytes();
+            data_ = input.ReadBytes();
             break;
           }
         }
@@ -8090,7 +8101,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -8103,7 +8114,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt32();
+            data_ = input.ReadInt32();
             break;
           }
         }
@@ -8249,7 +8260,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -8262,7 +8273,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadUInt32();
+            data_ = input.ReadUInt32();
             break;
           }
         }
@@ -8408,7 +8419,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0L) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -8421,7 +8432,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt64();
+            data_ = input.ReadInt64();
             break;
           }
         }
@@ -8567,7 +8578,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0UL) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -8580,7 +8591,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadUInt64();
+            data_ = input.ReadUInt64();
             break;
           }
         }
@@ -8726,7 +8737,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != false) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -8739,7 +8750,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadBool();
+            data_ = input.ReadBool();
             break;
           }
         }
@@ -8998,11 +9009,13 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            FooInt = input.ReadInt32();
+            foo_ = input.ReadInt32();
+            fooCase_ = FooOneofCase.FooInt;
             break;
           }
           case 18: {
-            FooString = input.ReadString();
+            foo_ = input.ReadString();
+            fooCase_ = FooOneofCase.FooString;
             break;
           }
           case 26: {
@@ -9011,7 +9024,9 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(FooMessage);
             }
             input.ReadMessage(subBuilder);
-            FooMessage = subBuilder;
+            foo_ = subBuilder;
+            fooCase_ = FooOneofCase.FooMessage;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 3));
             break;
           }
         }
@@ -10822,7 +10837,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.A.Length != 0) {
-        A = other.A;
+        a_ = other.A;
       }
     }
 
@@ -10835,7 +10850,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            A = input.ReadString();
+            a_ = input.ReadString();
             break;
           }
         }
@@ -13216,49 +13231,49 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.SingleInt32 != 0) {
-        SingleInt32 = other.SingleInt32;
+        singleInt32_ = other.SingleInt32;
       }
       if (other.SingleInt64 != 0L) {
-        SingleInt64 = other.SingleInt64;
+        singleInt64_ = other.SingleInt64;
       }
       if (other.SingleUint32 != 0) {
-        SingleUint32 = other.SingleUint32;
+        singleUint32_ = other.SingleUint32;
       }
       if (other.SingleUint64 != 0UL) {
-        SingleUint64 = other.SingleUint64;
+        singleUint64_ = other.SingleUint64;
       }
       if (other.SingleSint32 != 0) {
-        SingleSint32 = other.SingleSint32;
+        singleSint32_ = other.SingleSint32;
       }
       if (other.SingleSint64 != 0L) {
-        SingleSint64 = other.SingleSint64;
+        singleSint64_ = other.SingleSint64;
       }
       if (other.SingleFixed32 != 0) {
-        SingleFixed32 = other.SingleFixed32;
+        singleFixed32_ = other.SingleFixed32;
       }
       if (other.SingleFixed64 != 0UL) {
-        SingleFixed64 = other.SingleFixed64;
+        singleFixed64_ = other.SingleFixed64;
       }
       if (other.SingleSfixed32 != 0) {
-        SingleSfixed32 = other.SingleSfixed32;
+        singleSfixed32_ = other.SingleSfixed32;
       }
       if (other.SingleSfixed64 != 0L) {
-        SingleSfixed64 = other.SingleSfixed64;
+        singleSfixed64_ = other.SingleSfixed64;
       }
       if (other.SingleFloat != 0F) {
-        SingleFloat = other.SingleFloat;
+        singleFloat_ = other.SingleFloat;
       }
       if (other.SingleDouble != 0D) {
-        SingleDouble = other.SingleDouble;
+        singleDouble_ = other.SingleDouble;
       }
       if (other.SingleBool != false) {
-        SingleBool = other.SingleBool;
+        singleBool_ = other.SingleBool;
       }
       if (other.SingleString.Length != 0) {
-        SingleString = other.SingleString;
+        singleString_ = other.SingleString;
       }
       if (other.SingleBytes.Length != 0) {
-        SingleBytes = other.SingleBytes;
+        singleBytes_ = other.SingleBytes;
       }
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
@@ -13279,13 +13294,13 @@ namespace Google.Protobuf.TestProtos {
         SingleImportMessage.MergeFrom(other.SingleImportMessage);
       }
       if (other.SingleNestedEnum != 0) {
-        SingleNestedEnum = other.SingleNestedEnum;
+        singleNestedEnum_ = other.SingleNestedEnum;
       }
       if (other.SingleForeignEnum != 0) {
-        SingleForeignEnum = other.SingleForeignEnum;
+        singleForeignEnum_ = other.SingleForeignEnum;
       }
       if (other.SingleImportEnum != 0) {
-        SingleImportEnum = other.SingleImportEnum;
+        singleImportEnum_ = other.SingleImportEnum;
       }
       if (other.singlePublicImportMessage_ != null) {
         if (singlePublicImportMessage_ == null) {
@@ -13403,63 +13418,63 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            SingleInt32 = input.ReadInt32();
+            singleInt32_ = input.ReadInt32();
             break;
           }
           case 16: {
-            SingleInt64 = input.ReadInt64();
+            singleInt64_ = input.ReadInt64();
             break;
           }
           case 24: {
-            SingleUint32 = input.ReadUInt32();
+            singleUint32_ = input.ReadUInt32();
             break;
           }
           case 32: {
-            SingleUint64 = input.ReadUInt64();
+            singleUint64_ = input.ReadUInt64();
             break;
           }
           case 40: {
-            SingleSint32 = input.ReadSInt32();
+            singleSint32_ = input.ReadSInt32();
             break;
           }
           case 48: {
-            SingleSint64 = input.ReadSInt64();
+            singleSint64_ = input.ReadSInt64();
             break;
           }
           case 61: {
-            SingleFixed32 = input.ReadFixed32();
+            singleFixed32_ = input.ReadFixed32();
             break;
           }
           case 65: {
-            SingleFixed64 = input.ReadFixed64();
+            singleFixed64_ = input.ReadFixed64();
             break;
           }
           case 77: {
-            SingleSfixed32 = input.ReadSFixed32();
+            singleSfixed32_ = input.ReadSFixed32();
             break;
           }
           case 81: {
-            SingleSfixed64 = input.ReadSFixed64();
+            singleSfixed64_ = input.ReadSFixed64();
             break;
           }
           case 93: {
-            SingleFloat = input.ReadFloat();
+            singleFloat_ = input.ReadFloat();
             break;
           }
           case 97: {
-            SingleDouble = input.ReadDouble();
+            singleDouble_ = input.ReadDouble();
             break;
           }
           case 104: {
-            SingleBool = input.ReadBool();
+            singleBool_ = input.ReadBool();
             break;
           }
           case 114: {
-            SingleString = input.ReadString();
+            singleString_ = input.ReadString();
             break;
           }
           case 122: {
-            SingleBytes = input.ReadBytes();
+            singleBytes_ = input.ReadBytes();
             break;
           }
           case 146: {
@@ -13619,7 +13634,8 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 888: {
-            OneofUint32 = input.ReadUInt32();
+            oneofField_ = input.ReadUInt32();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofUint32;
             break;
           }
           case 898: {
@@ -13628,15 +13644,18 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofNestedMessage);
             }
             input.ReadMessage(subBuilder);
-            OneofNestedMessage = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofNestedMessage;
             break;
           }
           case 906: {
-            OneofString = input.ReadString();
+            oneofField_ = input.ReadString();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofString;
             break;
           }
           case 914: {
-            OneofBytes = input.ReadBytes();
+            oneofField_ = input.ReadBytes();
+            oneofFieldCase_ = OneofFieldOneofCase.OneofBytes;
             break;
           }
           case 922: {
@@ -13739,7 +13758,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofForeignMessage);
             }
             input.ReadMessage(subBuilder);
-            OneofForeignMessage = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofForeignMessage;
             break;
           }
           case 1106: {
@@ -13748,7 +13768,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofForeignMessageNoEvents);
             }
             input.ReadMessage(subBuilder);
-            OneofForeignMessageNoEvents = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofForeignMessageNoEvents;
             break;
           }
           case 1114: {
@@ -13757,7 +13778,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofAllTypes);
             }
             input.ReadMessage(subBuilder);
-            OneofAllTypes = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofAllTypes;
             break;
           }
           case 1122: {
@@ -13766,7 +13788,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(OneofAllTypesNoEvents);
             }
             input.ReadMessage(subBuilder);
-            OneofAllTypesNoEvents = subBuilder;
+            oneofField_ = subBuilder;
+            oneofFieldCase_ = OneofFieldOneofCase.OneofAllTypesNoEvents;
             break;
           }
         }
@@ -13890,7 +13913,7 @@ namespace Google.Protobuf.TestProtos {
             return;
           }
           if (other.Bb != 0) {
-            Bb = other.Bb;
+            bb_ = other.Bb;
           }
         }
 
@@ -13903,7 +13926,7 @@ namespace Google.Protobuf.TestProtos {
                 input.SkipLastField();
                 break;
               case 8: {
-                Bb = input.ReadInt32();
+                bb_ = input.ReadInt32();
                 break;
               }
             }
@@ -14197,7 +14220,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.DeprecatedInt32 != 0) {
-        DeprecatedInt32 = other.DeprecatedInt32;
+        deprecatedInt32_ = other.DeprecatedInt32;
       }
     }
 
@@ -14210,7 +14233,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            DeprecatedInt32 = input.ReadInt32();
+            deprecatedInt32_ = input.ReadInt32();
             break;
           }
         }
@@ -14320,7 +14343,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.C != 0) {
-        C = other.C;
+        c_ = other.C;
       }
     }
 
@@ -14333,7 +14356,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            C = input.ReadInt32();
+            c_ = input.ReadInt32();
             break;
           }
         }
@@ -14686,10 +14709,10 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
       if (other.Bb != 0) {
-        Bb = other.Bb;
+        bb_ = other.Bb;
       }
     }
 
@@ -14702,11 +14725,11 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadInt32();
+            a_ = input.ReadInt32();
             break;
           }
           case 2147483640: {
-            Bb = input.ReadInt32();
+            bb_ = input.ReadInt32();
             break;
           }
         }
@@ -14839,7 +14862,7 @@ namespace Google.Protobuf.TestProtos {
         A.MergeFrom(other.A);
       }
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
     }
 
@@ -14859,7 +14882,7 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 16: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
         }
@@ -15120,7 +15143,7 @@ namespace Google.Protobuf.TestProtos {
         A.MergeFrom(other.A);
       }
       if (other.OptionalInt32 != 0) {
-        OptionalInt32 = other.OptionalInt32;
+        optionalInt32_ = other.OptionalInt32;
       }
     }
 
@@ -15140,7 +15163,7 @@ namespace Google.Protobuf.TestProtos {
             break;
           }
           case 16: {
-            OptionalInt32 = input.ReadInt32();
+            optionalInt32_ = input.ReadInt32();
             break;
           }
         }
@@ -15246,7 +15269,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Value != 0) {
-        Value = other.Value;
+        value_ = other.Value;
       }
     }
 
@@ -15492,13 +15515,13 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.PrimitiveField != 0) {
-        PrimitiveField = other.PrimitiveField;
+        primitiveField_ = other.PrimitiveField;
       }
       if (other.StringField.Length != 0) {
-        StringField = other.StringField;
+        stringField_ = other.StringField;
       }
       if (other.EnumField != 0) {
-        EnumField = other.EnumField;
+        enumField_ = other.EnumField;
       }
       if (other.messageField_ != null) {
         if (messageField_ == null) {
@@ -15521,11 +15544,11 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            PrimitiveField = input.ReadInt32();
+            primitiveField_ = input.ReadInt32();
             break;
           }
           case 18: {
-            StringField = input.ReadString();
+            stringField_ = input.ReadString();
             break;
           }
           case 24: {
@@ -15727,13 +15750,13 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.MyString.Length != 0) {
-        MyString = other.MyString;
+        myString_ = other.MyString;
       }
       if (other.MyInt != 0L) {
-        MyInt = other.MyInt;
+        myInt_ = other.MyInt;
       }
       if (other.MyFloat != 0F) {
-        MyFloat = other.MyFloat;
+        myFloat_ = other.MyFloat;
       }
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
@@ -15752,15 +15775,15 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            MyInt = input.ReadInt64();
+            myInt_ = input.ReadInt64();
             break;
           }
           case 90: {
-            MyString = input.ReadString();
+            myString_ = input.ReadString();
             break;
           }
           case 813: {
-            MyFloat = input.ReadFloat();
+            myFloat_ = input.ReadFloat();
             break;
           }
           case 1602: {
@@ -15901,10 +15924,10 @@ namespace Google.Protobuf.TestProtos {
             return;
           }
           if (other.Oo != 0L) {
-            Oo = other.Oo;
+            oo_ = other.Oo;
           }
           if (other.Bb != 0) {
-            Bb = other.Bb;
+            bb_ = other.Bb;
           }
         }
 
@@ -15917,11 +15940,11 @@ namespace Google.Protobuf.TestProtos {
                 input.SkipLastField();
                 break;
               case 8: {
-                Bb = input.ReadInt32();
+                bb_ = input.ReadInt32();
                 break;
               }
               case 16: {
-                Oo = input.ReadInt64();
+                oo_ = input.ReadInt64();
                 break;
               }
             }
@@ -16032,7 +16055,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.SparseEnum != 0) {
-        SparseEnum = other.SparseEnum;
+        sparseEnum_ = other.SparseEnum;
       }
     }
 
@@ -16154,7 +16177,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16167,7 +16190,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadString();
+            data_ = input.ReadString();
             break;
           }
         }
@@ -16384,7 +16407,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16397,7 +16420,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadBytes();
+            data_ = input.ReadBytes();
             break;
           }
         }
@@ -16503,7 +16526,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data.Length != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16516,7 +16539,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            Data = input.ReadBytes();
+            data_ = input.ReadBytes();
             break;
           }
         }
@@ -16625,7 +16648,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16638,7 +16661,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt32();
+            data_ = input.ReadInt32();
             break;
           }
         }
@@ -16744,7 +16767,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16757,7 +16780,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadUInt32();
+            data_ = input.ReadUInt32();
             break;
           }
         }
@@ -16863,7 +16886,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0L) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16876,7 +16899,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt64();
+            data_ = input.ReadInt64();
             break;
           }
         }
@@ -16982,7 +17005,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != 0UL) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -16995,7 +17018,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadUInt64();
+            data_ = input.ReadUInt64();
             break;
           }
         }
@@ -17101,7 +17124,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.Data != false) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -17114,7 +17137,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadBool();
+            data_ = input.ReadBool();
             break;
           }
         }
@@ -17321,11 +17344,13 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            FooInt = input.ReadInt32();
+            foo_ = input.ReadInt32();
+            fooCase_ = FooOneofCase.FooInt;
             break;
           }
           case 18: {
-            FooString = input.ReadString();
+            foo_ = input.ReadString();
+            fooCase_ = FooOneofCase.FooString;
             break;
           }
           case 26: {
@@ -17334,7 +17359,8 @@ namespace Google.Protobuf.TestProtos {
               subBuilder.MergeFrom(FooMessage);
             }
             input.ReadMessage(subBuilder);
-            FooMessage = subBuilder;
+            foo_ = subBuilder;
+            fooCase_ = FooOneofCase.FooMessage;
             break;
           }
         }
@@ -18448,7 +18474,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.A.Length != 0) {
-        A = other.A;
+        a_ = other.A;
       }
     }
 
@@ -18461,7 +18487,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 10: {
-            A = input.ReadString();
+            a_ = input.ReadString();
             break;
           }
         }

@@ -263,10 +263,10 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         return;
       }
       if (other.ListAction != 0) {
-        ListAction = other.ListAction;
+        listAction_ = other.ListAction;
       }
       if (other.Index != 0) {
-        Index = other.Index;
+        index_ = other.Index;
       }
       if (other.content_ != null) {
         if (content_ == null) {
@@ -295,7 +295,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             break;
           }
           case 16: {
-            Index = input.ReadInt32();
+            index_ = input.ReadInt32();
             break;
           }
           case 26: {
@@ -460,10 +460,10 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         return;
       }
       if (other.MapAction != 0) {
-        MapAction = other.MapAction;
+        mapAction_ = other.MapAction;
       }
       if (other.KeyValue.Length != 0) {
-        KeyValue = other.KeyValue;
+        keyValue_ = other.KeyValue;
       }
       if (other.eventData_ != null) {
         if (eventData_ == null) {
@@ -486,7 +486,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             break;
           }
           case 18: {
-            KeyValue = input.ReadBytes();
+            keyValue_ = input.ReadBytes();
             break;
           }
           case 26: {
@@ -840,7 +840,8 @@ namespace Zynga.Protobuf.Runtime.EventSource {
               subBuilder.MergeFrom(Set);
             }
             input.ReadMessage(subBuilder);
-            Set = subBuilder;
+            action_ = subBuilder;
+            actionCase_ = ActionOneofCase.Set;
             break;
           }
           case 26: {
@@ -849,7 +850,8 @@ namespace Zynga.Protobuf.Runtime.EventSource {
               subBuilder.MergeFrom(MapEvent);
             }
             input.ReadMessage(subBuilder);
-            MapEvent = subBuilder;
+            action_ = subBuilder;
+            actionCase_ = ActionOneofCase.MapEvent;
             break;
           }
           case 34: {
@@ -858,7 +860,8 @@ namespace Zynga.Protobuf.Runtime.EventSource {
               subBuilder.MergeFrom(ListEvent);
             }
             input.ReadMessage(subBuilder);
-            ListEvent = subBuilder;
+            action_ = subBuilder;
+            actionCase_ = ActionOneofCase.ListEvent;
             break;
           }
         }
@@ -1383,63 +1386,78 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             input.SkipLastField();
             break;
           case 8: {
-            U32 = input.ReadUInt32();
+            data_ = input.ReadUInt32();
+            dataCase_ = DataOneofCase.U32;
             break;
           }
           case 16: {
-            I32 = input.ReadInt32();
+            data_ = input.ReadInt32();
+            dataCase_ = DataOneofCase.I32;
             break;
           }
           case 25: {
-            F64 = input.ReadFixed64();
+            data_ = input.ReadFixed64();
+            dataCase_ = DataOneofCase.F64;
             break;
           }
           case 37: {
-            F32 = input.ReadFixed32();
+            data_ = input.ReadFixed32();
+            dataCase_ = DataOneofCase.F32;
             break;
           }
           case 41: {
-            SF64 = input.ReadSFixed64();
+            data_ = input.ReadSFixed64();
+            dataCase_ = DataOneofCase.SF64;
             break;
           }
           case 53: {
-            SF32 = input.ReadSFixed32();
+            data_ = input.ReadSFixed32();
+            dataCase_ = DataOneofCase.SF32;
             break;
           }
           case 57: {
-            R64 = input.ReadDouble();
+            data_ = input.ReadDouble();
+            dataCase_ = DataOneofCase.R64;
             break;
           }
           case 69: {
-            R32 = input.ReadFloat();
+            data_ = input.ReadFloat();
+            dataCase_ = DataOneofCase.R32;
             break;
           }
           case 72: {
-            BoolData = input.ReadBool();
+            data_ = input.ReadBool();
+            dataCase_ = DataOneofCase.BoolData;
             break;
           }
           case 82: {
-            StringData = input.ReadString();
+            data_ = input.ReadString();
+            dataCase_ = DataOneofCase.StringData;
             break;
           }
           case 90: {
-            ByteData = input.ReadBytes();
+            data_ = input.ReadBytes();
+            dataCase_ = DataOneofCase.ByteData;
             break;
           }
           case 96: {
-            I64 = input.ReadInt64();
+            data_ = input.ReadInt64();
+            dataCase_ = DataOneofCase.I64;
             break;
           }
           case 104: {
-            U64 = input.ReadUInt64();
+            data_ = input.ReadUInt64();
+            dataCase_ = DataOneofCase.U64;
             break;
           }
           case 112: {
-            SI32 = input.ReadSInt32();
+            data_ = input.ReadSInt32();
+            dataCase_ = DataOneofCase.SI32;
             break;
           }
           case 120: {
-            SI64 = input.ReadSInt64();
+            data_ = input.ReadSInt64();
+            dataCase_ = DataOneofCase.SI64;
             break;
           }
         }

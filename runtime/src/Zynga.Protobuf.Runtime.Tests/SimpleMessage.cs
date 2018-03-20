@@ -182,7 +182,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
       if (other.b_ != null) {
         if (b_ == null) {
@@ -202,7 +202,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadInt32();
+            a_ = input.ReadInt32();
             break;
           }
           case 18: {
@@ -397,7 +397,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.C != 0L) {
-        C = other.C;
+        c_ = other.C;
       }
       if (other.d_ != null) {
         if (d_ == null) {
@@ -417,7 +417,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 24: {
-            C = input.ReadInt64();
+            c_ = input.ReadInt64();
             break;
           }
           case 34: {
@@ -584,7 +584,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.E != 0L) {
-        E = other.E;
+        e_ = other.E;
       }
     }
 
@@ -597,7 +597,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 40: {
-            E = input.ReadInt64();
+            e_ = input.ReadInt64();
             break;
           }
         }

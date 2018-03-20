@@ -186,7 +186,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -199,7 +199,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt32();
+            data_ = input.ReadInt32();
             break;
           }
         }
@@ -322,7 +322,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.Data != 0) {
-        Data = other.Data;
+        data_ = other.Data;
       }
     }
 
@@ -335,7 +335,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            Data = input.ReadInt32();
+            data_ = input.ReadInt32();
             break;
           }
         }
@@ -916,10 +916,10 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.EventId.Length != 0) {
-        EventId = other.EventId;
+        eventId_ = other.EventId;
       }
       if (other.TestEvent != 0) {
-        TestEvent = other.TestEvent;
+        testEvent_ = other.TestEvent;
       }
       testPrim_.Add(other.testPrim_);
       testMessage_.Add(other.testMessage_);
@@ -940,10 +940,10 @@ namespace Com.Zynga.Runtime.Protobuf {
         TestNonMessage.MergeFrom(other.TestNonMessage);
       }
       if (other.TestStringNoChecksum.Length != 0) {
-        TestStringNoChecksum = other.TestStringNoChecksum;
+        testStringNoChecksum_ = other.TestStringNoChecksum;
       }
       if (other.TestBytesField.Length != 0) {
-        TestBytesField = other.TestBytesField;
+        testBytesField_ = other.TestBytesField;
       }
       if (other.date_ != null) {
         if (date_ == null) {
@@ -975,11 +975,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 10: {
-            EventId = input.ReadString();
+            eventId_ = input.ReadString();
             break;
           }
           case 18: {
-            Foo = input.ReadString();
+            testOneof_ = input.ReadString();
+            testOneofCase_ = TestOneofOneofCase.Foo;
             break;
           }
           case 26: {
@@ -988,7 +989,9 @@ namespace Com.Zynga.Runtime.Protobuf {
               subBuilder.MergeFrom(Internal);
             }
             input.ReadMessage(subBuilder);
-            Internal = subBuilder;
+            testOneof_ = subBuilder;
+            testOneofCase_ = TestOneofOneofCase.Internal;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 3));
             break;
           }
           case 32: {
@@ -1033,11 +1036,11 @@ namespace Com.Zynga.Runtime.Protobuf {
             break;
           }
           case 98: {
-            TestStringNoChecksum = input.ReadString();
+            testStringNoChecksum_ = input.ReadString();
             break;
           }
           case 106: {
-            TestBytesField = input.ReadBytes();
+            testBytesField_ = input.ReadBytes();
             break;
           }
           case 114: {
@@ -1198,7 +1201,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             return;
           }
           if (other.Data != 0) {
-            Data = other.Data;
+            data_ = other.Data;
           }
           if (other.dataTwo_ != null) {
             if (dataTwo_ == null) {
@@ -1218,7 +1221,7 @@ namespace Com.Zynga.Runtime.Protobuf {
                 input.SkipLastField();
                 break;
               case 8: {
-                Data = input.ReadInt32();
+                data_ = input.ReadInt32();
                 break;
               }
               case 18: {
@@ -1465,7 +1468,8 @@ namespace Com.Zynga.Runtime.Protobuf {
                 input.SkipLastField();
                 break;
               case 10: {
-                Foo = input.ReadString();
+                body_ = input.ReadString();
+                bodyCase_ = BodyOneofCase.Foo;
                 break;
               }
               case 18: {
@@ -1474,7 +1478,8 @@ namespace Com.Zynga.Runtime.Protobuf {
                   subBuilder.MergeFrom(Internal);
                 }
                 input.ReadMessage(subBuilder);
-                Internal = subBuilder;
+                body_ = subBuilder;
+                bodyCase_ = BodyOneofCase.Internal;
                 break;
               }
             }

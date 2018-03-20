@@ -379,22 +379,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         return;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
       switch (other.ACase) {
         case AOneofCase.B:
@@ -422,31 +422,33 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               subBuilder.MergeFrom(B);
             }
             input.ReadMessage(subBuilder);
-            B = subBuilder;
+            a_ = subBuilder;
+            aCase_ = AOneofCase.B;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 1));
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -802,22 +804,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
       c_.Add(other.c_);
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -830,7 +832,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 18: {
@@ -838,23 +840,23 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -1200,22 +1202,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
       d_.Add(other.d_);
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -1228,11 +1230,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 26: {
@@ -1240,19 +1242,19 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -1590,22 +1592,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         E.MergeFrom(other.E);
       }
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -1618,15 +1620,15 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 34: {
@@ -1638,15 +1640,15 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -1993,22 +1995,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         F.MergeFrom(other.F);
       }
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -2021,19 +2023,19 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 42: {
@@ -2045,11 +2047,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -2396,22 +2398,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         G.MergeFrom(other.G);
       }
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.O != 0) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -2424,23 +2426,23 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 50: {
@@ -2452,7 +2454,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 56: {
-            O = input.ReadInt32();
+            o_ = input.ReadInt32();
             break;
           }
         }
@@ -2792,22 +2794,22 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
       h_.Add(other.h_);
       if (other.I != 0) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
     }
 
@@ -2820,27 +2822,27 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            I = input.ReadInt32();
+            i_ = input.ReadInt32();
             break;
           }
           case 16: {
-            J = input.ReadInt32();
+            j_ = input.ReadInt32();
             break;
           }
           case 24: {
-            K = input.ReadInt32();
+            k_ = input.ReadInt32();
             break;
           }
           case 32: {
-            L = input.ReadInt32();
+            l_ = input.ReadInt32();
             break;
           }
           case 40: {
-            M = input.ReadInt32();
+            m_ = input.ReadInt32();
             break;
           }
           case 48: {
-            N = input.ReadInt32();
+            n_ = input.ReadInt32();
             break;
           }
           case 58:
@@ -3105,13 +3107,13 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         P.MergeFrom(other.P);
       }
       if (other.T != 0) {
-        T = other.T;
+        t_ = other.T;
       }
       if (other.U != 0) {
-        U = other.U;
+        u_ = other.U;
       }
       if (other.V != 0) {
-        V = other.V;
+        v_ = other.V;
       }
     }
 
@@ -3132,15 +3134,15 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 72: {
-            T = input.ReadInt32();
+            t_ = input.ReadInt32();
             break;
           }
           case 80: {
-            U = input.ReadInt32();
+            u_ = input.ReadInt32();
             break;
           }
           case 88: {
-            V = input.ReadInt32();
+            v_ = input.ReadInt32();
             break;
           }
         }
@@ -3397,13 +3399,13 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         Q.MergeFrom(other.Q);
       }
       if (other.S != 0) {
-        S = other.S;
+        s_ = other.S;
       }
       if (other.U != 0) {
-        U = other.U;
+        u_ = other.U;
       }
       if (other.V != 0) {
-        V = other.V;
+        v_ = other.V;
       }
     }
 
@@ -3416,7 +3418,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 64: {
-            S = input.ReadInt32();
+            s_ = input.ReadInt32();
             break;
           }
           case 74: {
@@ -3428,11 +3430,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 80: {
-            U = input.ReadInt32();
+            u_ = input.ReadInt32();
             break;
           }
           case 88: {
-            V = input.ReadInt32();
+            v_ = input.ReadInt32();
             break;
           }
         }
@@ -3683,13 +3685,13 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
       r_.Add(other.r_);
       if (other.S != 0) {
-        S = other.S;
+        s_ = other.S;
       }
       if (other.T != 0) {
-        T = other.T;
+        t_ = other.T;
       }
       if (other.V != 0) {
-        V = other.V;
+        v_ = other.V;
       }
     }
 
@@ -3702,11 +3704,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 64: {
-            S = input.ReadInt32();
+            s_ = input.ReadInt32();
             break;
           }
           case 72: {
-            T = input.ReadInt32();
+            t_ = input.ReadInt32();
             break;
           }
           case 82: {
@@ -3714,7 +3716,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 88: {
-            V = input.ReadInt32();
+            v_ = input.ReadInt32();
             break;
           }
         }
@@ -3953,16 +3955,16 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         return;
       }
       if (other.R.Length != 0) {
-        R = other.R;
+        r_ = other.R;
       }
       if (other.S != 0) {
-        S = other.S;
+        s_ = other.S;
       }
       if (other.T != 0) {
-        T = other.T;
+        t_ = other.T;
       }
       if (other.U != 0) {
-        U = other.U;
+        u_ = other.U;
       }
     }
 
@@ -3975,19 +3977,19 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 64: {
-            S = input.ReadInt32();
+            s_ = input.ReadInt32();
             break;
           }
           case 72: {
-            T = input.ReadInt32();
+            t_ = input.ReadInt32();
             break;
           }
           case 80: {
-            U = input.ReadInt32();
+            u_ = input.ReadInt32();
             break;
           }
           case 90: {
-            R = input.ReadString();
+            r_ = input.ReadString();
             break;
           }
         }

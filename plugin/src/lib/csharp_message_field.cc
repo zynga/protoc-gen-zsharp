@@ -400,6 +400,7 @@ void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool 
 
 void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
   // TODO(jonskeet): We may be able to do better than this
+  bool isInternalEventSourced = IsInternalEventSourced();
   printer->Print(
     variables_,
     "$type_name$ subBuilder = new $type_name$();\n"
@@ -407,7 +408,13 @@ void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool 
     "  subBuilder.MergeFrom($property_name$);\n"
     "}\n"
     "input.ReadMessage(subBuilder);\n" // No support of TYPE_GROUP
-    "$property_name$ = subBuilder;\n");
+
+    "$oneof_name$_ = subBuilder;\n"
+    "$oneof_name$Case_ = $oneof_property_name$OneofCase.$property_name$;\n");
+  if(isEventSourced && isInternalEventSourced) {
+    printer->Print(variables_,
+      "subBuilder.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+  }
 }
 
 void MessageOneofFieldGenerator::WriteToString(io::Printer* printer) {

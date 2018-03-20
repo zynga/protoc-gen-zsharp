@@ -210,7 +210,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.IntA != 0) {
-        IntA = other.IntA;
+        intA_ = other.IntA;
       }
     }
 
@@ -223,7 +223,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            IntA = input.ReadInt32();
+            intA_ = input.ReadInt32();
             break;
           }
         }
@@ -395,10 +395,10 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.IntA != 0) {
-        IntA = other.IntA;
+        intA_ = other.IntA;
       }
       if (other.IntB != 0) {
-        IntB = other.IntB;
+        intB_ = other.IntB;
       }
     }
 
@@ -411,11 +411,11 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            IntA = input.ReadInt32();
+            intA_ = input.ReadInt32();
             break;
           }
           case 16: {
-            IntB = input.ReadInt32();
+            intB_ = input.ReadInt32();
             break;
           }
         }
@@ -763,13 +763,13 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.LongA != 0L) {
-        LongA = other.LongA;
+        longA_ = other.LongA;
       }
       if (other.StrA.Length != 0) {
-        StrA = other.StrA;
+        strA_ = other.StrA;
       }
       if (other.EnumA != 0) {
-        EnumA = other.EnumA;
+        enumA_ = other.EnumA;
       }
       if (other.nestedA_ != null) {
         if (nestedA_ == null) {
@@ -797,11 +797,11 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            LongA = input.ReadInt64();
+            longA_ = input.ReadInt64();
             break;
           }
           case 18: {
-            StrA = input.ReadString();
+            strA_ = input.ReadString();
             break;
           }
           case 24: {
@@ -826,7 +826,8 @@ namespace Com.Zynga.Runtime.Protobuf {
             break;
           }
           case 61: {
-            FloatA = input.ReadFloat();
+            oneofA_ = input.ReadFloat();
+            oneofACase_ = OneofAOneofCase.FloatA;
             break;
           }
         }
@@ -1207,13 +1208,13 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.LongB != 0L) {
-        LongB = other.LongB;
+        longB_ = other.LongB;
       }
       if (other.StrB.Length != 0) {
-        StrB = other.StrB;
+        strB_ = other.StrB;
       }
       if (other.EnumB != 0) {
-        EnumB = other.EnumB;
+        enumB_ = other.EnumB;
       }
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
@@ -1241,11 +1242,11 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            LongB = input.ReadInt64();
+            longB_ = input.ReadInt64();
             break;
           }
           case 18: {
-            StrB = input.ReadString();
+            strB_ = input.ReadString();
             break;
           }
           case 24: {
@@ -1270,7 +1271,8 @@ namespace Com.Zynga.Runtime.Protobuf {
             break;
           }
           case 61: {
-            FloatB = input.ReadFloat();
+            oneofB_ = input.ReadFloat();
+            oneofBCase_ = OneofBOneofCase.FloatB;
             break;
           }
         }
@@ -1706,13 +1708,13 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.LongB != 0L) {
-        LongB = other.LongB;
+        longB_ = other.LongB;
       }
       if (other.StrB.Length != 0) {
-        StrB = other.StrB;
+        strB_ = other.StrB;
       }
       if (other.EnumB != 0) {
-        EnumB = other.EnumB;
+        enumB_ = other.EnumB;
       }
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
@@ -1724,7 +1726,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       listB_.Add(other.listB_);
       mapB_.Add(other.mapB_);
       if (other.LongC != 0L) {
-        LongC = other.LongC;
+        longC_ = other.LongC;
       }
       switch (other.OneofBCase) {
         case OneofBOneofCase.FloatB:
@@ -1746,11 +1748,11 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            LongB = input.ReadInt64();
+            longB_ = input.ReadInt64();
             break;
           }
           case 18: {
-            StrB = input.ReadString();
+            strB_ = input.ReadString();
             break;
           }
           case 24: {
@@ -1775,15 +1777,17 @@ namespace Com.Zynga.Runtime.Protobuf {
             break;
           }
           case 61: {
-            FloatB = input.ReadFloat();
+            oneofB_ = input.ReadFloat();
+            oneofBCase_ = OneofBOneofCase.FloatB;
             break;
           }
           case 64: {
-            LongC = input.ReadInt64();
+            longC_ = input.ReadInt64();
             break;
           }
           case 77: {
-            FloatC = input.ReadFloat();
+            oneofB_ = input.ReadFloat();
+            oneofBCase_ = OneofBOneofCase.FloatC;
             break;
           }
         }
@@ -2173,10 +2177,10 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.LongB != 0L) {
-        LongB = other.LongB;
+        longB_ = other.LongB;
       }
       if (other.EnumB != 0) {
-        EnumB = other.EnumB;
+        enumB_ = other.EnumB;
       }
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
@@ -2188,7 +2192,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       listB_.Add(other.listB_);
       mapB_.Add(other.mapB_);
       if (other.LongC != 0L) {
-        LongC = other.LongC;
+        longC_ = other.LongC;
       }
       switch (other.OneofBCase) {
         case OneofBOneofCase.FloatC:
@@ -2207,7 +2211,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            LongB = input.ReadInt64();
+            longB_ = input.ReadInt64();
             break;
           }
           case 24: {
@@ -2232,11 +2236,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             break;
           }
           case 64: {
-            LongC = input.ReadInt64();
+            longC_ = input.ReadInt64();
             break;
           }
           case 77: {
-            FloatC = input.ReadFloat();
+            oneofB_ = input.ReadFloat();
+            oneofBCase_ = OneofBOneofCase.FloatC;
             break;
           }
         }

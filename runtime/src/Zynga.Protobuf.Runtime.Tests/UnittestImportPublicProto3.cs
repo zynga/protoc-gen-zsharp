@@ -151,7 +151,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.E != 0) {
-        E = other.E;
+        e_ = other.E;
       }
     }
 
@@ -164,7 +164,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            E = input.ReadInt32();
+            e_ = input.ReadInt32();
             break;
           }
         }
@@ -300,7 +300,7 @@ namespace Google.Protobuf.TestProtos {
         return;
       }
       if (other.E != 0) {
-        E = other.E;
+        e_ = other.E;
       }
     }
 
@@ -313,7 +313,7 @@ namespace Google.Protobuf.TestProtos {
             input.SkipLastField();
             break;
           case 8: {
-            E = input.ReadInt32();
+            e_ = input.ReadInt32();
             break;
           }
         }

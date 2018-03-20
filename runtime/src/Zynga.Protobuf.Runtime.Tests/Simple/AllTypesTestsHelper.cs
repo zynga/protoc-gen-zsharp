@@ -748,11 +748,13 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			allTypes.OneofBytes = ByteValue(offsetIndex);
 			allTypes.OneofForeignMessage = ForeignMessageValue(offsetIndex);
 			allTypes.OneofForeignMessageNoEvents = ForeignMessageNoEventsValue(offsetIndex);
-			allTypes.OneofAllTypes = TestAllTypesValue(offsetIndex);
 			allTypes.OneofAllTypesNoEvents = TestAllTypesNoEventsValue(offsetIndex);
+			allTypes.OneofAllTypes = TestAllTypesValue(offsetIndex);
+			SetNestedMessages(allTypes.OneofAllTypes, offsetIndex);
 
 			// nested types
 			allTypes.AllTypes = TestAllTypesValue(offsetIndex);
+			SetNestedMessages(allTypes.AllTypes , offsetIndex);
 			allTypes.AllTypesNoEvents = TestAllTypesNoEventsValue(offsetIndex);
 		}
 

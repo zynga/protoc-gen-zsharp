@@ -674,5 +674,84 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(0, map.Count);
 			Assert.Equal(0, changes.Count);
 		}
+
+		[Fact]
+		public void ShouldNotGenerateEventsWhenApplyingSnapshot() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			Assert.False(target.HasEvents);
+		}
+
+		[Fact]
+		public void ShouldGenerateEventsInSnapshotBasedInstance() {
+			var allTypes = new TestAllTypes();
+			ApplyAllChanges(allTypes);
+			var snapshot = allTypes.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			UpdateNestedMessages(target, 2);
+			UpdateNestedMessages(target.OneofAllTypes, 5);
+			UpdateNestedMessages(target.AllTypes, 6);
+
+			// verify events are stable
+			var targetEvents = target.GenerateEvents();
+			var target2 = new TestAllTypes();
+			target2.ApplyEvents(snapshot);
+			target2.ApplyEvents(targetEvents);
+			Assert.Equal(target, target2);
+			Assert.NotEqual(allTypes, target2);
+
+			// verify snapshot is stable
+			var targetSnapshot = target.GenerateSnapshot();
+			var target3 = new TestAllTypes();
+			target3.ApplyEvents(targetSnapshot);
+			Assert.Equal(target, target3);
+			Assert.NotEqual(allTypes, target3);
+		}
+
+		[Fact]
+		public void ShouldGenerateEventsInDeeplyNestedSnapshotBasedInstance() {
+			var root = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[3] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+
+			var allTypes = root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+			ApplyAllChanges(allTypes);
+
+			var snapshot = root.GenerateSnapshot();
+
+			var target = new TestAllTypes();
+			target.ApplyEvents(snapshot);
+
+			var nested = target.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[1].AllTypes.AllTypes.AllTypes;
+
+			UpdateNestedMessages(nested, 2);
+			UpdateNestedMessages(nested.OneofAllTypes, 5);
+			UpdateNestedMessages(nested.AllTypes, 6);
+
+			// verify events are stable
+			var targetEvents = target.GenerateEvents();
+			var target2 = new TestAllTypes();
+			target2.ApplyEvents(snapshot);
+			target2.ApplyEvents(targetEvents);
+			Assert.Equal(target, target2);
+			Assert.NotEqual(allTypes, target2);
+
+			// verify snapshot is stable
+			var targetSnapshot = target.GenerateSnapshot();
+			var target3 = new TestAllTypes();
+			target3.ApplyEvents(targetSnapshot);
+			Assert.Equal(target, target3);
+			Assert.NotEqual(allTypes, target3);
+		}
 	}
 }

@@ -800,7 +800,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         Zam.MergeFrom(other.Zam);
       }
       if (other.FieldBool != false) {
-        FieldBool = other.FieldBool;
+        fieldBool_ = other.FieldBool;
       }
       if (other.timestamp_ != null) {
         if (timestamp_ == null) {
@@ -916,15 +916,19 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               subBuilder.MergeFrom(Maybefoo);
             }
             input.ReadMessage(subBuilder);
-            Maybefoo = subBuilder;
+            test_ = subBuilder;
+            testCase_ = TestOneofCase.Maybefoo;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 8));
             break;
           }
           case 72: {
-            Maybeint = input.ReadInt32();
+            test_ = input.ReadInt32();
+            testCase_ = TestOneofCase.Maybeint;
             break;
           }
           case 82: {
-            Maybestring = input.ReadString();
+            test_ = input.ReadString();
+            testCase_ = TestOneofCase.Maybestring;
             break;
           }
           case 90: {
@@ -936,7 +940,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             break;
           }
           case 96: {
-            FieldBool = input.ReadBool();
+            fieldBool_ = input.ReadBool();
             break;
           }
           case 106: {
@@ -975,7 +979,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               subBuilder.MergeFrom(NoEventsA);
             }
             input.ReadMessage(subBuilder);
-            NoEventsA = subBuilder;
+            test_ = subBuilder;
+            testCase_ = TestOneofCase.NoEventsA;
             break;
           }
           case 146: {
@@ -991,7 +996,9 @@ namespace Com.Zynga.Runtime.Protobuf.File {
               subBuilder.MergeFrom(HasEventsA);
             }
             input.ReadMessage(subBuilder);
-            HasEventsA = subBuilder;
+            test_ = subBuilder;
+            testCase_ = TestOneofCase.HasEventsA;
+            subBuilder.SetParent(Context, new EventPath(Context.Path, 19));
             break;
           }
         }
@@ -1383,10 +1390,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         return;
       }
       if (other.Long != 0L) {
-        Long = other.Long;
+        long_ = other.Long;
       }
       if (other.Str.Length != 0) {
-        Str = other.Str;
+        str_ = other.Str;
       }
       if (other.foo_ != null) {
         if (foo_ == null) {
@@ -1396,10 +1403,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         Foo_.MergeFrom(other.Foo_);
       }
       if (other.Enumero != 0) {
-        Enumero = other.Enumero;
+        enumero_ = other.Enumero;
       }
       if (other.Okay != 0) {
-        Okay = other.Okay;
+        okay_ = other.Okay;
       }
     }
 
@@ -1412,11 +1419,11 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            Long = input.ReadInt64();
+            long_ = input.ReadInt64();
             break;
           }
           case 18: {
-            Str = input.ReadString();
+            str_ = input.ReadString();
             break;
           }
           case 26: {
@@ -1554,7 +1561,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             return;
           }
           if (other.Hi != 0) {
-            Hi = other.Hi;
+            hi_ = other.Hi;
           }
         }
 
@@ -1567,7 +1574,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
                 input.SkipLastField();
                 break;
               case 8: {
-                Hi = input.ReadInt32();
+                hi_ = input.ReadInt32();
                 break;
               }
             }
@@ -2315,49 +2322,49 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
       if (other.B != 0) {
-        B = other.B;
+        b_ = other.B;
       }
       if (other.C != 0UL) {
-        C = other.C;
+        c_ = other.C;
       }
       if (other.D != 0) {
-        D = other.D;
+        d_ = other.D;
       }
       if (other.E != 0L) {
-        E = other.E;
+        e_ = other.E;
       }
       if (other.F != 0) {
-        F = other.F;
+        f_ = other.F;
       }
       if (other.G != 0D) {
-        G = other.G;
+        g_ = other.G;
       }
       if (other.H != 0F) {
-        H = other.H;
+        h_ = other.H;
       }
       if (other.I != false) {
-        I = other.I;
+        i_ = other.I;
       }
       if (other.J.Length != 0) {
-        J = other.J;
+        j_ = other.J;
       }
       if (other.K.Length != 0) {
-        K = other.K;
+        k_ = other.K;
       }
       if (other.L != 0L) {
-        L = other.L;
+        l_ = other.L;
       }
       if (other.M != 0UL) {
-        M = other.M;
+        m_ = other.M;
       }
       if (other.N != 0) {
-        N = other.N;
+        n_ = other.N;
       }
       if (other.O != 0L) {
-        O = other.O;
+        o_ = other.O;
       }
     }
 
@@ -2370,63 +2377,63 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadUInt32();
+            a_ = input.ReadUInt32();
             break;
           }
           case 16: {
-            B = input.ReadInt32();
+            b_ = input.ReadInt32();
             break;
           }
           case 25: {
-            C = input.ReadFixed64();
+            c_ = input.ReadFixed64();
             break;
           }
           case 37: {
-            D = input.ReadFixed32();
+            d_ = input.ReadFixed32();
             break;
           }
           case 41: {
-            E = input.ReadSFixed64();
+            e_ = input.ReadSFixed64();
             break;
           }
           case 53: {
-            F = input.ReadSFixed32();
+            f_ = input.ReadSFixed32();
             break;
           }
           case 57: {
-            G = input.ReadDouble();
+            g_ = input.ReadDouble();
             break;
           }
           case 69: {
-            H = input.ReadFloat();
+            h_ = input.ReadFloat();
             break;
           }
           case 72: {
-            I = input.ReadBool();
+            i_ = input.ReadBool();
             break;
           }
           case 82: {
-            J = input.ReadString();
+            j_ = input.ReadString();
             break;
           }
           case 90: {
-            K = input.ReadBytes();
+            k_ = input.ReadBytes();
             break;
           }
           case 96: {
-            L = input.ReadInt64();
+            l_ = input.ReadInt64();
             break;
           }
           case 104: {
-            M = input.ReadUInt64();
+            m_ = input.ReadUInt64();
             break;
           }
           case 112: {
-            N = input.ReadSInt32();
+            n_ = input.ReadSInt32();
             break;
           }
           case 120: {
-            O = input.ReadSInt64();
+            o_ = input.ReadSInt64();
             break;
           }
         }
@@ -2734,7 +2741,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         Primitives.MergeFrom(other.Primitives);
       }
       if (other.Enumero != 0) {
-        Enumero = other.Enumero;
+        enumero_ = other.Enumero;
       }
       if (other.bar_ != null) {
         if (bar_ == null) {
@@ -3042,7 +3049,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         Primitives.MergeFrom(other.Primitives);
       }
       if (other.Enumero != 0) {
-        Enumero = other.Enumero;
+        enumero_ = other.Enumero;
       }
       if (other.bar_ != null) {
         if (bar_ == null) {

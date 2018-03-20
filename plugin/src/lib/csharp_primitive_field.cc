@@ -209,7 +209,7 @@ void PrimitiveFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isE
   printer->Print(
     variables_,
     "if ($other_has_property_check$) {\n"
-    "  $property_name$ = other.$property_name$;\n"
+    "  $name$_ = other.$property_name$;\n"
     "}\n");
 }
 
@@ -218,7 +218,7 @@ void PrimitiveFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isE
   // so that we can normalize "null to empty" for strings and bytes.
   printer->Print(
     variables_,
-    "$property_name$ = input.Read$capitalized_type_name$();\n");
+    "$name$_ = input.Read$capitalized_type_name$();\n");
 }
 
 void PrimitiveFieldGenerator::GenerateSerializationCode(io::Printer* printer) {
@@ -410,7 +410,8 @@ void PrimitiveOneofFieldGenerator::WriteToString(io::Printer* printer) {
 void PrimitiveOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEventSourced) {
     printer->Print(
       variables_,
-      "$property_name$ = input.Read$capitalized_type_name$();\n");
+      "$oneof_name$_ = input.Read$capitalized_type_name$();\n"
+      "$oneof_name$Case_ = $oneof_property_name$OneofCase.$property_name$;\n");
 }
 
 void PrimitiveOneofFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {

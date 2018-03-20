@@ -144,7 +144,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
     }
 
@@ -157,7 +157,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadInt32();
+            a_ = input.ReadInt32();
             break;
           }
         }
@@ -273,7 +273,7 @@ namespace Com.Zynga.Runtime.Protobuf {
         return;
       }
       if (other.A != 0) {
-        A = other.A;
+        a_ = other.A;
       }
     }
 
@@ -286,7 +286,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 8: {
-            A = input.ReadInt32();
+            a_ = input.ReadInt32();
             break;
           }
         }
@@ -505,7 +505,8 @@ namespace Com.Zynga.Runtime.Protobuf {
               subBuilder.MergeFrom(HasB);
             }
             input.ReadMessage(subBuilder);
-            HasB = subBuilder;
+            foo_ = subBuilder;
+            fooCase_ = FooOneofCase.HasB;
             break;
           }
         }

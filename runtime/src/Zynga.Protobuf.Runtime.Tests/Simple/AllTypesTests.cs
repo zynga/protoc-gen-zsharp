@@ -753,5 +753,32 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 			Assert.Equal(target, target3);
 			Assert.NotEqual(allTypes, target3);
 		}
+
+		[Fact]
+		public void ShouldGenerateValidEventsForRepeatedFields() {
+			var allTypes = new TestAllTypes();
+			allTypes.RepeatedNestedMessage.Add(new TestAllTypes.Types.NestedMessage { Bb = 10 });
+			allTypes.RepeatedNestedMessage[0].Bb = 11;
+			allTypes.RepeatedNestedMessage[0].Bb = 12;
+			allTypes.RepeatedNestedMessage.RemoveAt(0);
+
+			allTypes.RepeatedNestedMessage.Add(new TestAllTypes.Types.NestedMessage { Bb = 13 });
+			allTypes.RepeatedNestedMessage.Add(new TestAllTypes.Types.NestedMessage { Bb = 14 });
+			allTypes.RepeatedNestedMessage.Add(new TestAllTypes.Types.NestedMessage { Bb = 15 });
+
+			allTypes.RepeatedNestedMessage[0].Bb = 16;
+			allTypes.RepeatedNestedMessage[0].Bb = 17;
+			allTypes.RepeatedNestedMessage.RemoveAt(0);
+
+			allTypes.RepeatedNestedMessage.Add(new TestAllTypes.Types.NestedMessage { Bb = 18 });
+			allTypes.RepeatedNestedMessage[0].Bb = 19;
+			allTypes.RepeatedNestedMessage[0].Bb = 20;
+
+			var events = allTypes.GenerateEvents();
+			var target = new TestAllTypes();
+			target.ApplyEvents(events);
+
+			Assert.Equal(allTypes, target);
+		}
 	}
 }

@@ -129,10 +129,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// </summary>
 		/// <param name="index"></param>
 		public void TryUpdateContextIndex(int index) {
-			var listContext = Context as ListEventContext;
-			if (listContext != null) {
-				listContext.Index = index;
-			}
+			Context.TryUpdateContextIndex(index);
 		}
 	}
 }

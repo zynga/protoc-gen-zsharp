@@ -226,5 +226,16 @@ namespace Zynga.Protobuf.Runtime {
 				_events.Add(e);
 			}
 		}
+
+		/// <summary>
+		/// Used for ListEventContext objects, which may have had their index updated by a replace or insert event
+		/// </summary>
+		/// <param name="index"></param>
+		public void TryUpdateContextIndex(int index) {
+			var listContext = _parent as ListEventContext;
+			if (listContext != null) {
+				listContext.Index = index;
+			}
+		}
 	}
 }

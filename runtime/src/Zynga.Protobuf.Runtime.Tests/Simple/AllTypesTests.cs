@@ -780,5 +780,36 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			Assert.Equal(allTypes, target);
 		}
+
+		private static TestAllTypes GenerateMapTestAllTypes(int nestedValue) {
+			return new TestAllTypes {SingleNestedMessage = new TestAllTypes.Types.NestedMessage {Bb = nestedValue}};
+		}
+
+		[Fact]
+		public void ShouldGenerateValidEventsForMapFields() {
+			var allTypes = new TestAllTypes();
+			allTypes.MapInt32TestAllTypesMessage.Add(1, GenerateMapTestAllTypes(100));
+			allTypes.MapInt32TestAllTypesMessage[1].SingleNestedMessage.Bb += 1;
+			allTypes.MapInt32TestAllTypesMessage[1].SingleNestedMessage.Bb += 1;
+			allTypes.MapInt32TestAllTypesMessage.Remove(1);
+
+			allTypes.MapInt32TestAllTypesMessage.Add(2, GenerateMapTestAllTypes(101));
+			allTypes.MapInt32TestAllTypesMessage.Add(3, GenerateMapTestAllTypes(102));
+			allTypes.MapInt32TestAllTypesMessage.Add(4, GenerateMapTestAllTypes(103));
+
+			allTypes.MapInt32TestAllTypesMessage[2].SingleNestedMessage.Bb += 1;
+			allTypes.MapInt32TestAllTypesMessage[2].SingleNestedMessage.Bb += 1;
+			allTypes.MapInt32TestAllTypesMessage.Remove(2);
+
+			allTypes.MapInt32TestAllTypesMessage.Add(5, GenerateMapTestAllTypes(104));
+			allTypes.MapInt32TestAllTypesMessage[3].SingleNestedMessage.Bb += 1;
+			allTypes.MapInt32TestAllTypesMessage[3].SingleNestedMessage.Bb += 1;
+
+			var events = allTypes.GenerateEvents();
+			var target = new TestAllTypes();
+			target.ApplyEvents(events);
+
+			Assert.Equal(allTypes, target);
+		}
 	}
 }

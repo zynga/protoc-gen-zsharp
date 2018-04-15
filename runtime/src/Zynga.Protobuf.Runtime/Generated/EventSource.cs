@@ -34,43 +34,52 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             "EhQKBWluZGV4GAIgASgFUgVpbmRleBJCCgdjb250ZW50GAMgASgLMiguY29t",
             "Lnp5bmdhLnJ1bnRpbWUucHJvdG9idWYuRXZlbnRDb250ZW50Ugdjb250ZW50",
             "EkQKCmV2ZW50X2RhdGEYBCABKAsyJS5jb20uenluZ2EucnVudGltZS5wcm90",
-            "b2J1Zi5FdmVudERhdGFSCWV2ZW50RGF0YSKzAQoITWFwRXZlbnQSRAoKbWFw",
+            "b2J1Zi5FdmVudERhdGFSCWV2ZW50RGF0YSLpAQoITWFwRXZlbnQSRAoKbWFw",
             "X2FjdGlvbhgBIAEoDjIlLmNvbS56eW5nYS5ydW50aW1lLnByb3RvYnVmLk1h",
-            "cEFjdGlvblIJbWFwQWN0aW9uEhsKCWtleV92YWx1ZRgCIAEoDFIIa2V5VmFs",
-            "dWUSRAoKZXZlbnRfZGF0YRgDIAEoCzIlLmNvbS56eW5nYS5ydW50aW1lLnBy",
-            "b3RvYnVmLkV2ZW50RGF0YVIJZXZlbnREYXRhIlAKD0V2ZW50U291cmNlUm9v",
-            "dBI9CgZldmVudHMYASADKAsyJS5jb20uenluZ2EucnVudGltZS5wcm90b2J1",
-            "Zi5FdmVudERhdGFSBmV2ZW50cyL0AQoJRXZlbnREYXRhEhIKBHBhdGgYASAD",
-            "KAVSBHBhdGgSPAoDc2V0GAIgASgLMiguY29tLnp5bmdhLnJ1bnRpbWUucHJv",
-            "dG9idWYuRXZlbnRDb250ZW50SABSA3NldBJDCgltYXBfZXZlbnQYAyABKAsy",
-            "JC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5NYXBFdmVudEgAUghtYXBF",
-            "dmVudBJGCgpsaXN0X2V2ZW50GAQgASgLMiUuY29tLnp5bmdhLnJ1bnRpbWUu",
-            "cHJvdG9idWYuTGlzdEV2ZW50SABSCWxpc3RFdmVudEIICgZhY3Rpb24i/wIK",
-            "DEV2ZW50Q29udGVudBITCgR1XzMyGAEgASgNSABSA3UzMhITCgRpXzMyGAIg",
-            "ASgFSABSA2kzMhITCgRmXzY0GAMgASgGSABSA2Y2NBITCgRmXzMyGAQgASgH",
-            "SABSA2YzMhIWCgZzX2ZfNjQYBSABKBBIAFIEc0Y2NBIWCgZzX2ZfMzIYBiAB",
-            "KA9IAFIEc0YzMhITCgRyXzY0GAcgASgBSABSA3I2NBITCgRyXzMyGAggASgC",
-            "SABSA3IzMhIdCglib29sX2RhdGEYCSABKAhIAFIIYm9vbERhdGESIQoLc3Ry",
-            "aW5nX2RhdGEYCiABKAlIAFIKc3RyaW5nRGF0YRIdCglieXRlX2RhdGEYCyAB",
-            "KAxIAFIIYnl0ZURhdGESEwoEaV82NBgMIAEoA0gAUgNpNjQSEwoEdV82NBgN",
-            "IAEoBEgAUgN1NjQSFgoGc19pXzMyGA4gASgRSABSBHNJMzISFgoGc19pXzY0",
-            "GA8gASgSSABSBHNJNjRCBgoEZGF0YSqVAQoKTGlzdEFjdGlvbhIQCgxVTktO",
-            "T1dOX0xJU1QQABIMCghBRERfTElTVBABEg8KC1JFTU9WRV9MSVNUEAISEgoO",
-            "UkVNT1ZFX0FUX0xJU1QQAxIQCgxSRVBMQUNFX0xJU1QQBBIPCgtJTlNFUlRf",
-            "TElTVBAFEg4KCkNMRUFSX0xJU1QQBhIPCgtVUERBVEVfTElTVBAHKmkKCU1h",
-            "cEFjdGlvbhIPCgtVTktOT1dOX01BUBAAEgsKB0FERF9NQVAQARIOCgpSRU1P",
-            "VkVfTUFQEAISDwoLUkVQTEFDRV9NQVAQAxINCglDTEVBUl9NQVAQBBIOCgpV",
-            "UERBVEVfTUFQEAVCRgoSY29tLnp5bmdhLnByb3RvYnVmQgtFdmVudFNvdXJj",
-            "ZaoCIlp5bmdhLlByb3RvYnVmLlJ1bnRpbWUuRXZlbnRTb3VyY2ViBnByb3Rv",
-            "Mw=="));
+            "cEFjdGlvblIJbWFwQWN0aW9uEjQKA2tleRgCIAEoCzIiLmNvbS56eW5nYS5y",
+            "dW50aW1lLnByb3RvYnVmLk1hcEtleVIDa2V5EhsKCWtleV92YWx1ZRgDIAEo",
+            "DFIIa2V5VmFsdWUSRAoKZXZlbnRfZGF0YRgEIAEoCzIlLmNvbS56eW5nYS5y",
+            "dW50aW1lLnByb3RvYnVmLkV2ZW50RGF0YVIJZXZlbnREYXRhIlAKD0V2ZW50",
+            "U291cmNlUm9vdBI9CgZldmVudHMYASADKAsyJS5jb20uenluZ2EucnVudGlt",
+            "ZS5wcm90b2J1Zi5FdmVudERhdGFSBmV2ZW50cyL0AQoJRXZlbnREYXRhEhIK",
+            "BHBhdGgYASADKAVSBHBhdGgSPAoDc2V0GAIgASgLMiguY29tLnp5bmdhLnJ1",
+            "bnRpbWUucHJvdG9idWYuRXZlbnRDb250ZW50SABSA3NldBJDCgltYXBfZXZl",
+            "bnQYAyABKAsyJC5jb20uenluZ2EucnVudGltZS5wcm90b2J1Zi5NYXBFdmVu",
+            "dEgAUghtYXBFdmVudBJGCgpsaXN0X2V2ZW50GAQgASgLMiUuY29tLnp5bmdh",
+            "LnJ1bnRpbWUucHJvdG9idWYuTGlzdEV2ZW50SABSCWxpc3RFdmVudEIICgZh",
+            "Y3Rpb24i/wIKDEV2ZW50Q29udGVudBITCgR1XzMyGAEgASgNSABSA3UzMhIT",
+            "CgRpXzMyGAIgASgFSABSA2kzMhITCgRmXzY0GAMgASgGSABSA2Y2NBITCgRm",
+            "XzMyGAQgASgHSABSA2YzMhIWCgZzX2ZfNjQYBSABKBBIAFIEc0Y2NBIWCgZz",
+            "X2ZfMzIYBiABKA9IAFIEc0YzMhITCgRyXzY0GAcgASgBSABSA3I2NBITCgRy",
+            "XzMyGAggASgCSABSA3IzMhIdCglib29sX2RhdGEYCSABKAhIAFIIYm9vbERh",
+            "dGESIQoLc3RyaW5nX2RhdGEYCiABKAlIAFIKc3RyaW5nRGF0YRIdCglieXRl",
+            "X2RhdGEYCyABKAxIAFIIYnl0ZURhdGESEwoEaV82NBgMIAEoA0gAUgNpNjQS",
+            "EwoEdV82NBgNIAEoBEgAUgN1NjQSFgoGc19pXzMyGA4gASgRSABSBHNJMzIS",
+            "FgoGc19pXzY0GA8gASgSSABSBHNJNjRCBgoEZGF0YSKwAgoGTWFwS2V5EhMK",
+            "BHVfMzIYASABKA1IAFIDdTMyEhMKBGlfMzIYAiABKAVIAFIDaTMyEhMKBGZf",
+            "NjQYAyABKAZIAFIDZjY0EhMKBGZfMzIYBCABKAdIAFIDZjMyEhYKBnNfZl82",
+            "NBgFIAEoEEgAUgRzRjY0EhYKBnNfZl8zMhgGIAEoD0gAUgRzRjMyEh0KCWJv",
+            "b2xfZGF0YRgJIAEoCEgAUghib29sRGF0YRIhCgtzdHJpbmdfZGF0YRgKIAEo",
+            "CUgAUgpzdHJpbmdEYXRhEhMKBGlfNjQYDCABKANIAFIDaTY0EhMKBHVfNjQY",
+            "DSABKARIAFIDdTY0EhYKBnNfaV8zMhgOIAEoEUgAUgRzSTMyEhYKBnNfaV82",
+            "NBgPIAEoEkgAUgRzSTY0QgYKBGRhdGEqlQEKCkxpc3RBY3Rpb24SEAoMVU5L",
+            "Tk9XTl9MSVNUEAASDAoIQUREX0xJU1QQARIPCgtSRU1PVkVfTElTVBACEhIK",
+            "DlJFTU9WRV9BVF9MSVNUEAMSEAoMUkVQTEFDRV9MSVNUEAQSDwoLSU5TRVJU",
+            "X0xJU1QQBRIOCgpDTEVBUl9MSVNUEAYSDwoLVVBEQVRFX0xJU1QQByppCglN",
+            "YXBBY3Rpb24SDwoLVU5LTk9XTl9NQVAQABILCgdBRERfTUFQEAESDgoKUkVN",
+            "T1ZFX01BUBACEg8KC1JFUExBQ0VfTUFQEAMSDQoJQ0xFQVJfTUFQEAQSDgoK",
+            "VVBEQVRFX01BUBAFQkYKEmNvbS56eW5nYS5wcm90b2J1ZkILRXZlbnRTb3Vy",
+            "Y2WqAiJaeW5nYS5Qcm90b2J1Zi5SdW50aW1lLkV2ZW50U291cmNlYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Zynga.Protobuf.Runtime.EventSource.ListAction), typeof(global::Zynga.Protobuf.Runtime.EventSource.MapAction), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.ListEvent), global::Zynga.Protobuf.Runtime.EventSource.ListEvent.Parser, new[]{ "ListAction", "Index", "Content", "EventData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.MapEvent), global::Zynga.Protobuf.Runtime.EventSource.MapEvent.Parser, new[]{ "MapAction", "KeyValue", "EventData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.MapEvent), global::Zynga.Protobuf.Runtime.EventSource.MapEvent.Parser, new[]{ "MapAction", "Key", "KeyValue", "EventData" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot), global::Zynga.Protobuf.Runtime.EventSource.EventSourceRoot.Parser, new[]{ "Events" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventData), global::Zynga.Protobuf.Runtime.EventSource.EventData.Parser, new[]{ "Path", "Set", "MapEvent", "ListEvent" }, new[]{ "Action" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventContent), global::Zynga.Protobuf.Runtime.EventSource.EventContent.Parser, new[]{ "U32", "I32", "F64", "F32", "SF64", "SF32", "R64", "R32", "BoolData", "StringData", "ByteData", "I64", "U64", "SI32", "SI64" }, new[]{ "Data" }, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.EventContent), global::Zynga.Protobuf.Runtime.EventSource.EventContent.Parser, new[]{ "U32", "I32", "F64", "F32", "SF64", "SF32", "R64", "R32", "BoolData", "StringData", "ByteData", "I64", "U64", "SI32", "SI64" }, new[]{ "Data" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Zynga.Protobuf.Runtime.EventSource.MapKey), global::Zynga.Protobuf.Runtime.EventSource.MapKey.Parser, new[]{ "U32", "I32", "F64", "F32", "SF64", "SF32", "BoolData", "StringData", "I64", "U64", "SI32", "SI64" }, new[]{ "Data" }, null, null)
           }));
     }
     #endregion
@@ -343,6 +352,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MapEvent(MapEvent other) : this() {
       mapAction_ = other.mapAction_;
+      key_ = other.key_ != null ? other.Key.Clone() : null;
       keyValue_ = other.keyValue_;
       eventData_ = other.eventData_ != null ? other.EventData.Clone() : null;
     }
@@ -365,8 +375,19 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       }
     }
 
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 2;
+    private global::Zynga.Protobuf.Runtime.EventSource.MapKey key_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Zynga.Protobuf.Runtime.EventSource.MapKey Key {
+      get { return key_; }
+      set {
+        key_ = value;
+      }
+    }
+
     /// <summary>Field number for the "key_value" field.</summary>
-    public const int KeyValueFieldNumber = 2;
+    public const int KeyValueFieldNumber = 3;
     private pb::ByteString keyValue_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString KeyValue {
@@ -377,7 +398,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     }
 
     /// <summary>Field number for the "event_data" field.</summary>
-    public const int EventDataFieldNumber = 3;
+    public const int EventDataFieldNumber = 4;
     private global::Zynga.Protobuf.Runtime.EventSource.EventData eventData_;
     /// <summary>
     /// only used by update action
@@ -404,6 +425,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         return true;
       }
       if (MapAction != other.MapAction) return false;
+      if (!object.Equals(Key, other.Key)) return false;
       if (KeyValue != other.KeyValue) return false;
       if (!object.Equals(EventData, other.EventData)) return false;
       return true;
@@ -413,6 +435,7 @@ namespace Zynga.Protobuf.Runtime.EventSource {
     public override int GetHashCode() {
       int hash = 1;
       if (MapAction != 0) hash ^= MapAction.GetHashCode();
+      if (key_ != null) hash ^= Key.GetHashCode();
       if (KeyValue.Length != 0) hash ^= KeyValue.GetHashCode();
       if (eventData_ != null) hash ^= EventData.GetHashCode();
       return hash;
@@ -429,12 +452,16 @@ namespace Zynga.Protobuf.Runtime.EventSource {
         output.WriteRawTag(8);
         output.WriteEnum((int) MapAction);
       }
-      if (KeyValue.Length != 0) {
+      if (key_ != null) {
         output.WriteRawTag(18);
+        output.WriteMessage(Key);
+      }
+      if (KeyValue.Length != 0) {
+        output.WriteRawTag(26);
         output.WriteBytes(KeyValue);
       }
       if (eventData_ != null) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteMessage(EventData);
       }
     }
@@ -444,6 +471,9 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       int size = 0;
       if (MapAction != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MapAction);
+      }
+      if (key_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Key);
       }
       if (KeyValue.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(KeyValue);
@@ -461,6 +491,12 @@ namespace Zynga.Protobuf.Runtime.EventSource {
       }
       if (other.MapAction != 0) {
         mapAction_ = other.MapAction;
+      }
+      if (other.key_ != null) {
+        if (key_ == null) {
+          key_ = new global::Zynga.Protobuf.Runtime.EventSource.MapKey();
+        }
+        Key.MergeFrom(other.Key);
       }
       if (other.KeyValue.Length != 0) {
         keyValue_ = other.KeyValue;
@@ -486,10 +522,17 @@ namespace Zynga.Protobuf.Runtime.EventSource {
             break;
           }
           case 18: {
-            keyValue_ = input.ReadBytes();
+            if (key_ == null) {
+              key_ = new global::Zynga.Protobuf.Runtime.EventSource.MapKey();
+            }
+            input.ReadMessage(key_);
             break;
           }
           case 26: {
+            keyValue_ = input.ReadBytes();
+            break;
+          }
+          case 34: {
             if (eventData_ == null) {
               eventData_ = new global::Zynga.Protobuf.Runtime.EventSource.EventData();
             }
@@ -1438,6 +1481,506 @@ namespace Zynga.Protobuf.Runtime.EventSource {
           case 90: {
             data_ = input.ReadBytes();
             dataCase_ = DataOneofCase.ByteData;
+            break;
+          }
+          case 96: {
+            data_ = input.ReadInt64();
+            dataCase_ = DataOneofCase.I64;
+            break;
+          }
+          case 104: {
+            data_ = input.ReadUInt64();
+            dataCase_ = DataOneofCase.U64;
+            break;
+          }
+          case 112: {
+            data_ = input.ReadSInt32();
+            dataCase_ = DataOneofCase.SI32;
+            break;
+          }
+          case 120: {
+            data_ = input.ReadSInt64();
+            dataCase_ = DataOneofCase.SI64;
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class MapKey : pb::IMessage<MapKey> {
+    private static readonly pb::MessageParser<MapKey> _parser = new pb::MessageParser<MapKey>(() => new MapKey());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<MapKey> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Zynga.Protobuf.Runtime.EventSource.EventSourceReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapKey() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapKey(MapKey other) : this() {
+      switch (other.DataCase) {
+        case DataOneofCase.U32:
+          U32 = other.U32;
+          break;
+        case DataOneofCase.I32:
+          I32 = other.I32;
+          break;
+        case DataOneofCase.F64:
+          F64 = other.F64;
+          break;
+        case DataOneofCase.F32:
+          F32 = other.F32;
+          break;
+        case DataOneofCase.SF64:
+          SF64 = other.SF64;
+          break;
+        case DataOneofCase.SF32:
+          SF32 = other.SF32;
+          break;
+        case DataOneofCase.BoolData:
+          BoolData = other.BoolData;
+          break;
+        case DataOneofCase.StringData:
+          StringData = other.StringData;
+          break;
+        case DataOneofCase.I64:
+          I64 = other.I64;
+          break;
+        case DataOneofCase.U64:
+          U64 = other.U64;
+          break;
+        case DataOneofCase.SI32:
+          SI32 = other.SI32;
+          break;
+        case DataOneofCase.SI64:
+          SI64 = other.SI64;
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public MapKey Clone() {
+      return new MapKey(this);
+    }
+
+    public static bool IsEventSourced = false;
+
+    /// <summary>Field number for the "u_32" field.</summary>
+    public const int U32FieldNumber = 1;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint U32 {
+      get { return dataCase_ == DataOneofCase.U32 ? (uint) data_ : 0; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.U32;
+      }
+    }
+
+    /// <summary>Field number for the "i_32" field.</summary>
+    public const int I32FieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int I32 {
+      get { return dataCase_ == DataOneofCase.I32 ? (int) data_ : 0; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.I32;
+      }
+    }
+
+    /// <summary>Field number for the "f_64" field.</summary>
+    public const int F64FieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong F64 {
+      get { return dataCase_ == DataOneofCase.F64 ? (ulong) data_ : 0UL; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.F64;
+      }
+    }
+
+    /// <summary>Field number for the "f_32" field.</summary>
+    public const int F32FieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint F32 {
+      get { return dataCase_ == DataOneofCase.F32 ? (uint) data_ : 0; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.F32;
+      }
+    }
+
+    /// <summary>Field number for the "s_f_64" field.</summary>
+    public const int SF64FieldNumber = 5;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long SF64 {
+      get { return dataCase_ == DataOneofCase.SF64 ? (long) data_ : 0L; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.SF64;
+      }
+    }
+
+    /// <summary>Field number for the "s_f_32" field.</summary>
+    public const int SF32FieldNumber = 6;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int SF32 {
+      get { return dataCase_ == DataOneofCase.SF32 ? (int) data_ : 0; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.SF32;
+      }
+    }
+
+    /// <summary>Field number for the "bool_data" field.</summary>
+    public const int BoolDataFieldNumber = 9;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool BoolData {
+      get { return dataCase_ == DataOneofCase.BoolData ? (bool) data_ : false; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.BoolData;
+      }
+    }
+
+    /// <summary>Field number for the "string_data" field.</summary>
+    public const int StringDataFieldNumber = 10;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string StringData {
+      get { return dataCase_ == DataOneofCase.StringData ? (string) data_ : ""; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        dataCase_ = DataOneofCase.StringData;
+      }
+    }
+
+    /// <summary>Field number for the "i_64" field.</summary>
+    public const int I64FieldNumber = 12;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long I64 {
+      get { return dataCase_ == DataOneofCase.I64 ? (long) data_ : 0L; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.I64;
+      }
+    }
+
+    /// <summary>Field number for the "u_64" field.</summary>
+    public const int U64FieldNumber = 13;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong U64 {
+      get { return dataCase_ == DataOneofCase.U64 ? (ulong) data_ : 0UL; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.U64;
+      }
+    }
+
+    /// <summary>Field number for the "s_i_32" field.</summary>
+    public const int SI32FieldNumber = 14;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int SI32 {
+      get { return dataCase_ == DataOneofCase.SI32 ? (int) data_ : 0; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.SI32;
+      }
+    }
+
+    /// <summary>Field number for the "s_i_64" field.</summary>
+    public const int SI64FieldNumber = 15;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long SI64 {
+      get { return dataCase_ == DataOneofCase.SI64 ? (long) data_ : 0L; }
+      set {
+        data_ = value;
+        dataCase_ = DataOneofCase.SI64;
+      }
+    }
+
+    private object data_;
+    /// <summary>Enum of possible cases for the "data" oneof.</summary>
+    public enum DataOneofCase {
+      None = 0,
+      U32 = 1,
+      I32 = 2,
+      F64 = 3,
+      F32 = 4,
+      SF64 = 5,
+      SF32 = 6,
+      BoolData = 9,
+      StringData = 10,
+      I64 = 12,
+      U64 = 13,
+      SI32 = 14,
+      SI64 = 15,
+    }
+    private DataOneofCase dataCase_ = DataOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DataOneofCase DataCase {
+      get { return dataCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearData() {
+      dataCase_ = DataOneofCase.None;
+      data_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as MapKey);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(MapKey other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (U32 != other.U32) return false;
+      if (I32 != other.I32) return false;
+      if (F64 != other.F64) return false;
+      if (F32 != other.F32) return false;
+      if (SF64 != other.SF64) return false;
+      if (SF32 != other.SF32) return false;
+      if (BoolData != other.BoolData) return false;
+      if (StringData != other.StringData) return false;
+      if (I64 != other.I64) return false;
+      if (U64 != other.U64) return false;
+      if (SI32 != other.SI32) return false;
+      if (SI64 != other.SI64) return false;
+      if (DataCase != other.DataCase) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (dataCase_ == DataOneofCase.U32) hash ^= U32.GetHashCode();
+      if (dataCase_ == DataOneofCase.I32) hash ^= I32.GetHashCode();
+      if (dataCase_ == DataOneofCase.F64) hash ^= F64.GetHashCode();
+      if (dataCase_ == DataOneofCase.F32) hash ^= F32.GetHashCode();
+      if (dataCase_ == DataOneofCase.SF64) hash ^= SF64.GetHashCode();
+      if (dataCase_ == DataOneofCase.SF32) hash ^= SF32.GetHashCode();
+      if (dataCase_ == DataOneofCase.BoolData) hash ^= BoolData.GetHashCode();
+      if (dataCase_ == DataOneofCase.StringData) hash ^= StringData.GetHashCode();
+      if (dataCase_ == DataOneofCase.I64) hash ^= I64.GetHashCode();
+      if (dataCase_ == DataOneofCase.U64) hash ^= U64.GetHashCode();
+      if (dataCase_ == DataOneofCase.SI32) hash ^= SI32.GetHashCode();
+      if (dataCase_ == DataOneofCase.SI64) hash ^= SI64.GetHashCode();
+      hash ^= (int) dataCase_;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (dataCase_ == DataOneofCase.U32) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(U32);
+      }
+      if (dataCase_ == DataOneofCase.I32) {
+        output.WriteRawTag(16);
+        output.WriteInt32(I32);
+      }
+      if (dataCase_ == DataOneofCase.F64) {
+        output.WriteRawTag(25);
+        output.WriteFixed64(F64);
+      }
+      if (dataCase_ == DataOneofCase.F32) {
+        output.WriteRawTag(37);
+        output.WriteFixed32(F32);
+      }
+      if (dataCase_ == DataOneofCase.SF64) {
+        output.WriteRawTag(41);
+        output.WriteSFixed64(SF64);
+      }
+      if (dataCase_ == DataOneofCase.SF32) {
+        output.WriteRawTag(53);
+        output.WriteSFixed32(SF32);
+      }
+      if (dataCase_ == DataOneofCase.BoolData) {
+        output.WriteRawTag(72);
+        output.WriteBool(BoolData);
+      }
+      if (dataCase_ == DataOneofCase.StringData) {
+        output.WriteRawTag(82);
+        output.WriteString(StringData);
+      }
+      if (dataCase_ == DataOneofCase.I64) {
+        output.WriteRawTag(96);
+        output.WriteInt64(I64);
+      }
+      if (dataCase_ == DataOneofCase.U64) {
+        output.WriteRawTag(104);
+        output.WriteUInt64(U64);
+      }
+      if (dataCase_ == DataOneofCase.SI32) {
+        output.WriteRawTag(112);
+        output.WriteSInt32(SI32);
+      }
+      if (dataCase_ == DataOneofCase.SI64) {
+        output.WriteRawTag(120);
+        output.WriteSInt64(SI64);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (dataCase_ == DataOneofCase.U32) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(U32);
+      }
+      if (dataCase_ == DataOneofCase.I32) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(I32);
+      }
+      if (dataCase_ == DataOneofCase.F64) {
+        size += 1 + 8;
+      }
+      if (dataCase_ == DataOneofCase.F32) {
+        size += 1 + 4;
+      }
+      if (dataCase_ == DataOneofCase.SF64) {
+        size += 1 + 8;
+      }
+      if (dataCase_ == DataOneofCase.SF32) {
+        size += 1 + 4;
+      }
+      if (dataCase_ == DataOneofCase.BoolData) {
+        size += 1 + 1;
+      }
+      if (dataCase_ == DataOneofCase.StringData) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(StringData);
+      }
+      if (dataCase_ == DataOneofCase.I64) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(I64);
+      }
+      if (dataCase_ == DataOneofCase.U64) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(U64);
+      }
+      if (dataCase_ == DataOneofCase.SI32) {
+        size += 1 + pb::CodedOutputStream.ComputeSInt32Size(SI32);
+      }
+      if (dataCase_ == DataOneofCase.SI64) {
+        size += 1 + pb::CodedOutputStream.ComputeSInt64Size(SI64);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(MapKey other) {
+      if (other == null) {
+        return;
+      }
+      switch (other.DataCase) {
+        case DataOneofCase.U32:
+          U32 = other.U32;
+          break;
+        case DataOneofCase.I32:
+          I32 = other.I32;
+          break;
+        case DataOneofCase.F64:
+          F64 = other.F64;
+          break;
+        case DataOneofCase.F32:
+          F32 = other.F32;
+          break;
+        case DataOneofCase.SF64:
+          SF64 = other.SF64;
+          break;
+        case DataOneofCase.SF32:
+          SF32 = other.SF32;
+          break;
+        case DataOneofCase.BoolData:
+          BoolData = other.BoolData;
+          break;
+        case DataOneofCase.StringData:
+          StringData = other.StringData;
+          break;
+        case DataOneofCase.I64:
+          I64 = other.I64;
+          break;
+        case DataOneofCase.U64:
+          U64 = other.U64;
+          break;
+        case DataOneofCase.SI32:
+          SI32 = other.SI32;
+          break;
+        case DataOneofCase.SI64:
+          SI64 = other.SI64;
+          break;
+      }
+
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            data_ = input.ReadUInt32();
+            dataCase_ = DataOneofCase.U32;
+            break;
+          }
+          case 16: {
+            data_ = input.ReadInt32();
+            dataCase_ = DataOneofCase.I32;
+            break;
+          }
+          case 25: {
+            data_ = input.ReadFixed64();
+            dataCase_ = DataOneofCase.F64;
+            break;
+          }
+          case 37: {
+            data_ = input.ReadFixed32();
+            dataCase_ = DataOneofCase.F32;
+            break;
+          }
+          case 41: {
+            data_ = input.ReadSFixed64();
+            dataCase_ = DataOneofCase.SF64;
+            break;
+          }
+          case 53: {
+            data_ = input.ReadSFixed32();
+            dataCase_ = DataOneofCase.SF32;
+            break;
+          }
+          case 72: {
+            data_ = input.ReadBool();
+            dataCase_ = DataOneofCase.BoolData;
+            break;
+          }
+          case 82: {
+            data_ = input.ReadString();
+            dataCase_ = DataOneofCase.StringData;
             break;
           }
           case 96: {

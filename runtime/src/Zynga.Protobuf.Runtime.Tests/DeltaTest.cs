@@ -226,25 +226,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_intToString_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 26);
     internal class IntToStringMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeyintToString = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeyintToString, default(string));
-        }
-        else {
-          var realValueintToString = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeyintToString, realValueintToString);
-        }
+        var realValueintToString = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeyintToString, realValueintToString);
       }
     }
     private static readonly EventMapConverter<int, string> intToStringMapConverter = new IntToStringMapConverter();
@@ -259,26 +260,27 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>.Codec _map_stringToFoo_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.Foo.Parser), 34);
     internal class StringToFooMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> {
-      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.Foo value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(string key) {
+        return new zpr.EventSource.MapKey { StringData = key };
+      }
+      public override string GetKey(zpr.EventSource.MapKey key) {
+        return key.StringData;
+      }
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.Foo value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeystringToFoo = dataStream.ReadString();
-        if (skipValue) {
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo>(realKeystringToFoo, default(global::Com.Zynga.Runtime.Protobuf.Foo));
-        }
-        else {
-          var realValuestringToFoo = new global::Com.Zynga.Runtime.Protobuf.Foo();
-          dataStream.ReadMessage(realValuestringToFoo);;
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo>(realKeystringToFoo, realValuestringToFoo);
-        }
+        var realValuestringToFoo = new global::Com.Zynga.Runtime.Protobuf.Foo();
+        dataStream.ReadMessage(realValuestringToFoo);;
+        return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.Foo>(realKeystringToFoo, realValuestringToFoo);
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFooMapConverter = new StringToFooMapConverter();
@@ -2402,26 +2404,27 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec _map_map_codec
         = new pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.RecursiveMap.Parser), 10);
     internal class MapMapConverter : EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> {
-      public override ByteString GetKeyValue(int key, global::Com.Zynga.Runtime.Protobuf.RecursiveMap value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Com.Zynga.Runtime.Protobuf.RecursiveMap value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymap = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, default(global::Com.Zynga.Runtime.Protobuf.RecursiveMap));
-        }
-        else {
-          var realValuemap = new global::Com.Zynga.Runtime.Protobuf.RecursiveMap();
-          dataStream.ReadMessage(realValuemap);;
-          return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, realValuemap);
-        }
+        var realValuemap = new global::Com.Zynga.Runtime.Protobuf.RecursiveMap();
+        dataStream.ReadMessage(realValuemap);;
+        return new KeyValuePair<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(realKeymap, realValuemap);
       }
     }
     private static readonly EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> mapMapConverter = new MapMapConverter();

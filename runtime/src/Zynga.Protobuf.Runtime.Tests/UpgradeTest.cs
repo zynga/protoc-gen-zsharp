@@ -604,25 +604,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_mapA_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 50);
     internal class MapAMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapA = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeymapA, default(string));
-        }
-        else {
-          var realValuemapA = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeymapA, realValuemapA);
-        }
+        var realValuemapA = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeymapA, realValuemapA);
       }
     }
     private static readonly EventMapConverter<int, string> mapAMapConverter = new MapAMapConverter();
@@ -1049,25 +1050,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_mapB_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 50);
     internal class MapBMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapB = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeymapB, default(string));
-        }
-        else {
-          var realValuemapB = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
-        }
+        var realValuemapB = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();
@@ -1498,25 +1500,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_mapB_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 50);
     internal class MapBMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapB = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeymapB, default(string));
-        }
-        else {
-          var realValuemapB = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
-        }
+        var realValuemapB = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();
@@ -2002,25 +2005,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_mapB_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 50);
     internal class MapBMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapB = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeymapB, default(string));
-        }
-        else {
-          var realValuemapB = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
-        }
+        var realValuemapB = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeymapB, realValuemapB);
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();

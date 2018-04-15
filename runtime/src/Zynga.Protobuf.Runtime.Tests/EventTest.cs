@@ -580,26 +580,27 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>.Codec _map_testMap_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage.Parser), 66);
     internal class TestMapMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> {
-      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(string key) {
+        return new zpr.EventSource.MapKey { StringData = key };
+      }
+      public override string GetKey(zpr.EventSource.MapKey key) {
+        return key.StringData;
+      }
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeytestMap = dataStream.ReadString();
-        if (skipValue) {
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(realKeytestMap, default(global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage));
-        }
-        else {
-          var realValuetestMap = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
-          dataStream.ReadMessage(realValuetestMap);;
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(realKeytestMap, realValuetestMap);
-        }
+        var realValuetestMap = new global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage();
+        dataStream.ReadMessage(realValuetestMap);;
+        return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(realKeytestMap, realValuetestMap);
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMapMapConverter = new TestMapMapConverter();
@@ -632,25 +633,26 @@ namespace Com.Zynga.Runtime.Protobuf {
     private static readonly pbc::MapField<int, string>.Codec _map_testMapTwo_codec
         = new pbc::MapField<int, string>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForString(18), 82);
     internal class TestMapTwoMapConverter : EventMapConverter<int, string> {
-      public override ByteString GetKeyValue(int key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeytestMapTwo = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, string>(realKeytestMapTwo, default(string));
-        }
-        else {
-          var realValuetestMapTwo = dataStream.ReadString();
-          return new KeyValuePair<int, string>(realKeytestMapTwo, realValuetestMapTwo);
-        }
+        var realValuetestMapTwo = dataStream.ReadString();
+        return new KeyValuePair<int, string>(realKeytestMapTwo, realValuetestMapTwo);
       }
     }
     private static readonly EventMapConverter<int, string> testMapTwoMapConverter = new TestMapTwoMapConverter();

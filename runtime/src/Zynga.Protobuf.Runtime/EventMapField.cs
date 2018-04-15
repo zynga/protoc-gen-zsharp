@@ -301,7 +301,7 @@ namespace Zynga.Protobuf.Runtime {
 			if (!_context.EventsEnabled) return;
 			var mapEvent = new MapEvent {
 				MapAction = MapAction.RemoveMap,
-				KeyValue = _converter.GetKeyValue(key, default(TValue), true)
+				Key = _converter.GetMapKey(key)
 			};
 			_context.AddMapEvent(_fieldNumber, mapEvent);
 		}
@@ -335,8 +335,8 @@ namespace Zynga.Protobuf.Runtime {
 					InternalAdd(addPair.Key, addPair.Value);
 					return true;
 				case MapAction.RemoveMap:
-					var removePair = _converter.GetItem(e.KeyValue, true);
-					InternalRemove(removePair.Key);
+					var removeKey = _converter.GetKey(e.Key);
+					InternalRemove(removeKey);
 					return true;
 				case MapAction.ReplaceMap:
 					var replacePair = _converter.GetItem(e.KeyValue);
@@ -347,8 +347,8 @@ namespace Zynga.Protobuf.Runtime {
 					MarkDirty();
 					return true;
 				case MapAction.UpdateMap:
-					var updatePair = _converter.GetItem(e.KeyValue, true);
-					var registry = _internal[updatePair.Key] as IEventRegistry;
+					var updateKey = _converter.GetKey(e.Key);
+					var registry = _internal[updateKey] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
 					MarkDirty();
 					return true;
@@ -411,8 +411,8 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void SetParent(TKey key, TValue value) {
 			var registry = value as IEventRegistry;
-			var keyBytes = _converter.GetKeyValue(key, value, true);
-			registry?.SetParent(new MapEventContext(_context, keyBytes, _fieldNumber), EventPath.Empty);
+			var mapKey = _converter.GetMapKey(key);
+			registry?.SetParent(new MapEventContext(_context, mapKey, _fieldNumber), EventPath.Empty);
 		}
 
 		private class DictionaryEnumerator : IDictionaryEnumerator {

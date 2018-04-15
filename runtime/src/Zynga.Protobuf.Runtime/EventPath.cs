@@ -1,34 +1,32 @@
-using System.Collections.Generic;
+using System;
 
 namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// Used for generating event paths
 	/// </summary>
-	public class EventPath {
+	public struct EventPath {
 		/// <summary>
 		/// Generates an empty EventPath
 		/// </summary>
-		public static EventPath Empty => new EventPath();
+		public static EventPath Empty = new EventPath();
 
 		/// <summary>
 		/// The full path
 		/// </summary>
-		public List<int> Path { get; }
-
-		/// <summary>
-		/// Creates an empty EventPath
-		/// </summary>
-		public EventPath() {
-			Path = new List<int>();
-		}
+		public int[] Path;
 
 		/// <summary>
 		/// Create an EventPath for the child of another message
 		/// </summary>
 		public EventPath(EventPath parent, int field) {
-			Path = new List<int>(parent.Path.Count + 1);
-			Path.AddRange(parent.Path);
-			Path.Add(field);
+			if (parent.Path == null) {
+				Path = new[] {field};
+			}
+			else {
+				Path = new int[parent.Path.Length + 1];
+				Array.Copy(parent.Path, Path, parent.Path.Length);
+				Path[Path.Length - 1] = field;
+			}
 		}
 	}
 }

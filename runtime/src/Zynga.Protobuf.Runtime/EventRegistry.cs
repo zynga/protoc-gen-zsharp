@@ -70,7 +70,9 @@ namespace Zynga.Protobuf.Runtime {
 		/// <returns></returns>
 		public EventSourceRoot PeekEvents() {
 			var er = new EventSourceRoot();
-			er.Events.AddRange(Context.Events);
+			if (Context.Events != null) {
+				er.Events.AddRange(Context.Events);
+			}
 			return er;
 		}
 
@@ -78,7 +80,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Returns true if the object currently has Events
 		/// </summary>
 		public bool HasEvents {
-			get { return Context.Events.Count > 0; }
+			get { return Context.Events != null && Context.Events.Count > 0; }
 		}
 
 		/// <summary>

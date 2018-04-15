@@ -7,12 +7,12 @@ namespace Zynga.Protobuf.Runtime {
 	/// The event context does the work of managing events and the relative paths of parents and children
 	/// </summary>
 	public class EventContext {
-		private readonly List<EventData> _events = new List<EventData>();
+		private List<EventData> _events;
 		private EventContext _parent;
 		private EventPath _path = EventPath.Empty;
 		private bool _eventsEnabled = true;
-		private readonly HashSet<EventContext> _children = new HashSet<EventContext>();
-		private readonly List<IEventSubscribable> _dirty = new List<IEventSubscribable>();
+		private HashSet<EventContext> _children;
+		private List<IEventSubscribable> _dirty;
 
 		/// <summary>
 		/// Establishes a parent child relationship
@@ -30,12 +30,10 @@ namespace Zynga.Protobuf.Runtime {
 
 			_path = path;
 			// when a message is added to a parent, any delta events it currently has are no longer valid
-			_events.Clear();
+			_events?.Clear();
 
 			// update children paths
-			foreach (var child in _children) {
-				child.UpdatePath(_path);
-			}
+			UpdateChildrenPath(_path);
 		}
 
 		/// <summary>
@@ -47,15 +45,16 @@ namespace Zynga.Protobuf.Runtime {
 			_path = EventPath.Empty;
 
 			// update children paths
-			foreach (var child in _children) {
-				child.UpdatePath(_path);
-			}
+			UpdateChildrenPath(_path);
 		}
 
 		/// <summary>
 		/// Adds a reference to a child context
 		/// </summary>
 		public void AddChild(EventContext context) {
+			if (_children == null) {
+				_children = new HashSet<EventContext>();
+			}
 			_children.Add(context);
 		}
 
@@ -63,6 +62,9 @@ namespace Zynga.Protobuf.Runtime {
 		/// Removes a reference to a child context
 		/// </summary>
 		public void RemoveChild(EventContext context) {
+			if (_children == null) {
+				_children = new HashSet<EventContext>();
+			}
 			_children.Remove(context);
 		}
 
@@ -70,7 +72,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Clears any events that have been generated
 		/// </summary>
 		public void ClearEvents() {
-			_events.Clear();
+			_events?.Clear();
 		}
 
 		/// <summary>
@@ -78,9 +80,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// </summary>
 		public void UpdatePath(EventPath parentPath) {
 			_path = new EventPath(parentPath, _path.Path[_path.Path.Length - 1]);
-			foreach (var child in _children) {
-				child.UpdatePath(_path);
-			}
+			UpdateChildrenPath(_path);
 		}
 
 		/// <summary>
@@ -94,14 +94,20 @@ namespace Zynga.Protobuf.Runtime {
 				// We can't use a HashSet to dedupe subscribers as the HashCode of the subscriber can change over
 				// the course of replaying events.  Instead we use a list and do a reference check on each existing subscriber.
 				bool found = false;
-				for (int i = 0; i < _dirty.Count; i++) {
-					if (ReferenceEquals(subscribable, _dirty[i])) {
-						found = true;
-						break;
+				if (_dirty != null) {
+					for (int i = 0; i < _dirty.Count; i++) {
+						if (ReferenceEquals(subscribable, _dirty[i])) {
+							found = true;
+							break;
+						}
 					}
 				}
 
 				if (!found) {
+					if (_dirty == null) {
+						_dirty = new List<IEventSubscribable>();
+					}
+
 					_dirty.Add(subscribable);
 				}
 			}
@@ -112,12 +118,14 @@ namespace Zynga.Protobuf.Runtime {
 		/// </summary>
 		public void NotifySubscribers() {
 			try {
-				foreach (var registry in _dirty) {
-					registry.NotifySubscribers();
+				if (_dirty != null) {
+					foreach (var registry in _dirty) {
+						registry.NotifySubscribers();
+					}
 				}
 			}
 			finally {
-				_dirty.Clear();
+				_dirty?.Clear();
 			}
 		}
 
@@ -143,11 +151,21 @@ namespace Zynga.Protobuf.Runtime {
 			set {
 				_eventsEnabled = value;
 				if (!_eventsEnabled) {
-					_events.Clear();
+					_events?.Clear();
 				}
 
+				if (_children != null) {
+					foreach (var child in _children) {
+						child.EventsEnabled = value;
+					}
+				}
+			}
+		}
+
+		private void UpdateChildrenPath(EventPath path) {
+			if (_children != null) {
 				foreach (var child in _children) {
-					child.EventsEnabled = value;
+					child.UpdatePath(path);
 				}
 			}
 		}
@@ -173,8 +191,16 @@ namespace Zynga.Protobuf.Runtime {
 					Set = content
 				};
 				e.Path.AddRange(path.Path);
-				_events.Add(e);
+				AddEvent(e);
 			}
+		}
+
+		private void AddEvent(EventData e) {
+			if (_events == null) {
+				_events = new List<EventData>();
+			}
+
+			_events.Add(e);
 		}
 
 		/// <summary>
@@ -198,7 +224,7 @@ namespace Zynga.Protobuf.Runtime {
 					MapEvent = mapEvent
 				};
 				e.Path.AddRange(path.Path);
-				_events.Add(e);
+				AddEvent(e);
 			}
 		}
 
@@ -223,7 +249,7 @@ namespace Zynga.Protobuf.Runtime {
 					ListEvent = listEvent
 				};
 				e.Path.AddRange(path.Path);
-				_events.Add(e);
+				AddEvent(e);
 			}
 		}
 

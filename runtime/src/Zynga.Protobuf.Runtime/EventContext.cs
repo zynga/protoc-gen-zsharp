@@ -77,7 +77,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Updates the path based on the parent path
 		/// </summary>
 		public void UpdatePath(EventPath parentPath) {
-			_path = new EventPath(parentPath, _path.Path[_path.Path.Count - 1]);
+			_path = new EventPath(parentPath, _path.Path[_path.Path.Length - 1]);
 			foreach (var child in _children) {
 				child.UpdatePath(_path);
 			}

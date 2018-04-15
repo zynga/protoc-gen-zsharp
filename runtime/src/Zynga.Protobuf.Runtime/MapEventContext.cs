@@ -1,5 +1,4 @@
-﻿using Google.Protobuf;
-using Zynga.Protobuf.Runtime.EventSource;
+﻿using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
 	/// <summary>
@@ -8,13 +7,13 @@ namespace Zynga.Protobuf.Runtime {
 	/// </summary>
 	public class MapEventContext : EventContext {
 		private readonly EventContext _mapContext;
-		private readonly ByteString _key;
+		private readonly MapKey _key;
 		private readonly int _fieldNumber;
 
 		/// <summary>
 		/// Creates a MapContext Instance
 		/// </summary>
-		public MapEventContext(EventContext mapContext, ByteString key, int fieldNumber) {
+		public MapEventContext(EventContext mapContext, MapKey key, int fieldNumber) {
 			_mapContext = mapContext;
 			_key = key;
 			_fieldNumber = fieldNumber;
@@ -23,7 +22,7 @@ namespace Zynga.Protobuf.Runtime {
 		private void AddUpdateEvent(EventData data) {
 			var me = new MapEvent {
 				MapAction = MapAction.UpdateMap,
-				KeyValue = _key,
+				Key = _key,
 				EventData = data
 			};
 

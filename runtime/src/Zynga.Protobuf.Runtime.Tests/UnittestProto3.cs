@@ -1984,25 +1984,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, int>.Codec _map_mapInt32Int32_codec
         = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForInt32(16), 922);
     internal class MapInt32Int32MapConverter : EventMapConverter<int, int> {
-      public override ByteString GetKeyValue(int key, int value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, int value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteInt32(value);
+          dataStream.WriteInt32(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, int> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, int> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32Int32 = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, int>(realKeymapInt32Int32, default(int));
-        }
-        else {
-          var realValuemapInt32Int32 = dataStream.ReadInt32();
-          return new KeyValuePair<int, int>(realKeymapInt32Int32, realValuemapInt32Int32);
-        }
+        var realValuemapInt32Int32 = dataStream.ReadInt32();
+        return new KeyValuePair<int, int>(realKeymapInt32Int32, realValuemapInt32Int32);
       }
     }
     private static readonly EventMapConverter<int, int> mapInt32Int32MapConverter = new MapInt32Int32MapConverter();
@@ -2017,25 +2018,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<long, long>.Codec _map_mapInt64Int64_codec
         = new pbc::MapField<long, long>.Codec(pb::FieldCodec.ForInt64(8), pb::FieldCodec.ForInt64(16), 930);
     internal class MapInt64Int64MapConverter : EventMapConverter<long, long> {
-      public override ByteString GetKeyValue(long key, long value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(long key) {
+        return new zpr.EventSource.MapKey { I64 = key };
+      }
+      public override long GetKey(zpr.EventSource.MapKey key) {
+        return key.I64;
+      }
+      public override ByteString GetKeyValue(long key, long value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt64(key);
-          if(!skipValue) dataStream.WriteInt64(value);
+          dataStream.WriteInt64(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<long, long> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<long, long> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt64Int64 = dataStream.ReadInt64();
-        if (skipValue) {
-          return new KeyValuePair<long, long>(realKeymapInt64Int64, default(long));
-        }
-        else {
-          var realValuemapInt64Int64 = dataStream.ReadInt64();
-          return new KeyValuePair<long, long>(realKeymapInt64Int64, realValuemapInt64Int64);
-        }
+        var realValuemapInt64Int64 = dataStream.ReadInt64();
+        return new KeyValuePair<long, long>(realKeymapInt64Int64, realValuemapInt64Int64);
       }
     }
     private static readonly EventMapConverter<long, long> mapInt64Int64MapConverter = new MapInt64Int64MapConverter();
@@ -2050,25 +2052,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<uint, uint>.Codec _map_mapUint32Uint32_codec
         = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForUInt32(8), pb::FieldCodec.ForUInt32(16), 938);
     internal class MapUint32Uint32MapConverter : EventMapConverter<uint, uint> {
-      public override ByteString GetKeyValue(uint key, uint value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(uint key) {
+        return new zpr.EventSource.MapKey { U32 = key };
+      }
+      public override uint GetKey(zpr.EventSource.MapKey key) {
+        return key.U32;
+      }
+      public override ByteString GetKeyValue(uint key, uint value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteUInt32(key);
-          if(!skipValue) dataStream.WriteUInt32(value);
+          dataStream.WriteUInt32(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<uint, uint> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<uint, uint> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapUint32Uint32 = dataStream.ReadUInt32();
-        if (skipValue) {
-          return new KeyValuePair<uint, uint>(realKeymapUint32Uint32, default(uint));
-        }
-        else {
-          var realValuemapUint32Uint32 = dataStream.ReadUInt32();
-          return new KeyValuePair<uint, uint>(realKeymapUint32Uint32, realValuemapUint32Uint32);
-        }
+        var realValuemapUint32Uint32 = dataStream.ReadUInt32();
+        return new KeyValuePair<uint, uint>(realKeymapUint32Uint32, realValuemapUint32Uint32);
       }
     }
     private static readonly EventMapConverter<uint, uint> mapUint32Uint32MapConverter = new MapUint32Uint32MapConverter();
@@ -2083,25 +2086,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<ulong, ulong>.Codec _map_mapUint64Uint64_codec
         = new pbc::MapField<ulong, ulong>.Codec(pb::FieldCodec.ForUInt64(8), pb::FieldCodec.ForUInt64(16), 946);
     internal class MapUint64Uint64MapConverter : EventMapConverter<ulong, ulong> {
-      public override ByteString GetKeyValue(ulong key, ulong value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(ulong key) {
+        return new zpr.EventSource.MapKey { U64 = key };
+      }
+      public override ulong GetKey(zpr.EventSource.MapKey key) {
+        return key.U64;
+      }
+      public override ByteString GetKeyValue(ulong key, ulong value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteUInt64(key);
-          if(!skipValue) dataStream.WriteUInt64(value);
+          dataStream.WriteUInt64(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<ulong, ulong> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<ulong, ulong> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapUint64Uint64 = dataStream.ReadUInt64();
-        if (skipValue) {
-          return new KeyValuePair<ulong, ulong>(realKeymapUint64Uint64, default(ulong));
-        }
-        else {
-          var realValuemapUint64Uint64 = dataStream.ReadUInt64();
-          return new KeyValuePair<ulong, ulong>(realKeymapUint64Uint64, realValuemapUint64Uint64);
-        }
+        var realValuemapUint64Uint64 = dataStream.ReadUInt64();
+        return new KeyValuePair<ulong, ulong>(realKeymapUint64Uint64, realValuemapUint64Uint64);
       }
     }
     private static readonly EventMapConverter<ulong, ulong> mapUint64Uint64MapConverter = new MapUint64Uint64MapConverter();
@@ -2116,25 +2120,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, int>.Codec _map_mapSint32Sint32_codec
         = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForSInt32(8), pb::FieldCodec.ForSInt32(16), 954);
     internal class MapSint32Sint32MapConverter : EventMapConverter<int, int> {
-      public override ByteString GetKeyValue(int key, int value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { SI32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.SI32;
+      }
+      public override ByteString GetKeyValue(int key, int value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteSInt32(key);
-          if(!skipValue) dataStream.WriteSInt32(value);
+          dataStream.WriteSInt32(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, int> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, int> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapSint32Sint32 = dataStream.ReadSInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, int>(realKeymapSint32Sint32, default(int));
-        }
-        else {
-          var realValuemapSint32Sint32 = dataStream.ReadSInt32();
-          return new KeyValuePair<int, int>(realKeymapSint32Sint32, realValuemapSint32Sint32);
-        }
+        var realValuemapSint32Sint32 = dataStream.ReadSInt32();
+        return new KeyValuePair<int, int>(realKeymapSint32Sint32, realValuemapSint32Sint32);
       }
     }
     private static readonly EventMapConverter<int, int> mapSint32Sint32MapConverter = new MapSint32Sint32MapConverter();
@@ -2149,25 +2154,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<long, long>.Codec _map_mapSint64Sint64_codec
         = new pbc::MapField<long, long>.Codec(pb::FieldCodec.ForSInt64(8), pb::FieldCodec.ForSInt64(16), 962);
     internal class MapSint64Sint64MapConverter : EventMapConverter<long, long> {
-      public override ByteString GetKeyValue(long key, long value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(long key) {
+        return new zpr.EventSource.MapKey { SI64 = key };
+      }
+      public override long GetKey(zpr.EventSource.MapKey key) {
+        return key.SI64;
+      }
+      public override ByteString GetKeyValue(long key, long value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteSInt64(key);
-          if(!skipValue) dataStream.WriteSInt64(value);
+          dataStream.WriteSInt64(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<long, long> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<long, long> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapSint64Sint64 = dataStream.ReadSInt64();
-        if (skipValue) {
-          return new KeyValuePair<long, long>(realKeymapSint64Sint64, default(long));
-        }
-        else {
-          var realValuemapSint64Sint64 = dataStream.ReadSInt64();
-          return new KeyValuePair<long, long>(realKeymapSint64Sint64, realValuemapSint64Sint64);
-        }
+        var realValuemapSint64Sint64 = dataStream.ReadSInt64();
+        return new KeyValuePair<long, long>(realKeymapSint64Sint64, realValuemapSint64Sint64);
       }
     }
     private static readonly EventMapConverter<long, long> mapSint64Sint64MapConverter = new MapSint64Sint64MapConverter();
@@ -2182,25 +2188,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<uint, uint>.Codec _map_mapFixed32Fixed32_codec
         = new pbc::MapField<uint, uint>.Codec(pb::FieldCodec.ForFixed32(13), pb::FieldCodec.ForFixed32(21), 970);
     internal class MapFixed32Fixed32MapConverter : EventMapConverter<uint, uint> {
-      public override ByteString GetKeyValue(uint key, uint value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(uint key) {
+        return new zpr.EventSource.MapKey { F32 = key };
+      }
+      public override uint GetKey(zpr.EventSource.MapKey key) {
+        return key.F32;
+      }
+      public override ByteString GetKeyValue(uint key, uint value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteFixed32(key);
-          if(!skipValue) dataStream.WriteFixed32(value);
+          dataStream.WriteFixed32(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<uint, uint> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<uint, uint> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapFixed32Fixed32 = dataStream.ReadFixed32();
-        if (skipValue) {
-          return new KeyValuePair<uint, uint>(realKeymapFixed32Fixed32, default(uint));
-        }
-        else {
-          var realValuemapFixed32Fixed32 = dataStream.ReadFixed32();
-          return new KeyValuePair<uint, uint>(realKeymapFixed32Fixed32, realValuemapFixed32Fixed32);
-        }
+        var realValuemapFixed32Fixed32 = dataStream.ReadFixed32();
+        return new KeyValuePair<uint, uint>(realKeymapFixed32Fixed32, realValuemapFixed32Fixed32);
       }
     }
     private static readonly EventMapConverter<uint, uint> mapFixed32Fixed32MapConverter = new MapFixed32Fixed32MapConverter();
@@ -2215,25 +2222,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<ulong, ulong>.Codec _map_mapFixed64Fixed64_codec
         = new pbc::MapField<ulong, ulong>.Codec(pb::FieldCodec.ForFixed64(9), pb::FieldCodec.ForFixed64(17), 978);
     internal class MapFixed64Fixed64MapConverter : EventMapConverter<ulong, ulong> {
-      public override ByteString GetKeyValue(ulong key, ulong value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(ulong key) {
+        return new zpr.EventSource.MapKey { F64 = key };
+      }
+      public override ulong GetKey(zpr.EventSource.MapKey key) {
+        return key.F64;
+      }
+      public override ByteString GetKeyValue(ulong key, ulong value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteFixed64(key);
-          if(!skipValue) dataStream.WriteFixed64(value);
+          dataStream.WriteFixed64(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<ulong, ulong> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<ulong, ulong> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapFixed64Fixed64 = dataStream.ReadFixed64();
-        if (skipValue) {
-          return new KeyValuePair<ulong, ulong>(realKeymapFixed64Fixed64, default(ulong));
-        }
-        else {
-          var realValuemapFixed64Fixed64 = dataStream.ReadFixed64();
-          return new KeyValuePair<ulong, ulong>(realKeymapFixed64Fixed64, realValuemapFixed64Fixed64);
-        }
+        var realValuemapFixed64Fixed64 = dataStream.ReadFixed64();
+        return new KeyValuePair<ulong, ulong>(realKeymapFixed64Fixed64, realValuemapFixed64Fixed64);
       }
     }
     private static readonly EventMapConverter<ulong, ulong> mapFixed64Fixed64MapConverter = new MapFixed64Fixed64MapConverter();
@@ -2248,25 +2256,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, int>.Codec _map_mapSfixed32Sfixed32_codec
         = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForSFixed32(13), pb::FieldCodec.ForSFixed32(21), 986);
     internal class MapSfixed32Sfixed32MapConverter : EventMapConverter<int, int> {
-      public override ByteString GetKeyValue(int key, int value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { SF32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.SF32;
+      }
+      public override ByteString GetKeyValue(int key, int value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteSFixed32(key);
-          if(!skipValue) dataStream.WriteSFixed32(value);
+          dataStream.WriteSFixed32(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, int> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, int> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapSfixed32Sfixed32 = dataStream.ReadSFixed32();
-        if (skipValue) {
-          return new KeyValuePair<int, int>(realKeymapSfixed32Sfixed32, default(int));
-        }
-        else {
-          var realValuemapSfixed32Sfixed32 = dataStream.ReadSFixed32();
-          return new KeyValuePair<int, int>(realKeymapSfixed32Sfixed32, realValuemapSfixed32Sfixed32);
-        }
+        var realValuemapSfixed32Sfixed32 = dataStream.ReadSFixed32();
+        return new KeyValuePair<int, int>(realKeymapSfixed32Sfixed32, realValuemapSfixed32Sfixed32);
       }
     }
     private static readonly EventMapConverter<int, int> mapSfixed32Sfixed32MapConverter = new MapSfixed32Sfixed32MapConverter();
@@ -2281,25 +2290,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<long, long>.Codec _map_mapSfixed64Sfixed64_codec
         = new pbc::MapField<long, long>.Codec(pb::FieldCodec.ForSFixed64(9), pb::FieldCodec.ForSFixed64(17), 994);
     internal class MapSfixed64Sfixed64MapConverter : EventMapConverter<long, long> {
-      public override ByteString GetKeyValue(long key, long value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(long key) {
+        return new zpr.EventSource.MapKey { SF64 = key };
+      }
+      public override long GetKey(zpr.EventSource.MapKey key) {
+        return key.SF64;
+      }
+      public override ByteString GetKeyValue(long key, long value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteSFixed64(key);
-          if(!skipValue) dataStream.WriteSFixed64(value);
+          dataStream.WriteSFixed64(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<long, long> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<long, long> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapSfixed64Sfixed64 = dataStream.ReadSFixed64();
-        if (skipValue) {
-          return new KeyValuePair<long, long>(realKeymapSfixed64Sfixed64, default(long));
-        }
-        else {
-          var realValuemapSfixed64Sfixed64 = dataStream.ReadSFixed64();
-          return new KeyValuePair<long, long>(realKeymapSfixed64Sfixed64, realValuemapSfixed64Sfixed64);
-        }
+        var realValuemapSfixed64Sfixed64 = dataStream.ReadSFixed64();
+        return new KeyValuePair<long, long>(realKeymapSfixed64Sfixed64, realValuemapSfixed64Sfixed64);
       }
     }
     private static readonly EventMapConverter<long, long> mapSfixed64Sfixed64MapConverter = new MapSfixed64Sfixed64MapConverter();
@@ -2314,25 +2324,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, float>.Codec _map_mapInt32Float_codec
         = new pbc::MapField<int, float>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForFloat(21), 1002);
     internal class MapInt32FloatMapConverter : EventMapConverter<int, float> {
-      public override ByteString GetKeyValue(int key, float value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, float value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteFloat(value);
+          dataStream.WriteFloat(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, float> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, float> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32Float = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, float>(realKeymapInt32Float, default(float));
-        }
-        else {
-          var realValuemapInt32Float = dataStream.ReadFloat();
-          return new KeyValuePair<int, float>(realKeymapInt32Float, realValuemapInt32Float);
-        }
+        var realValuemapInt32Float = dataStream.ReadFloat();
+        return new KeyValuePair<int, float>(realKeymapInt32Float, realValuemapInt32Float);
       }
     }
     private static readonly EventMapConverter<int, float> mapInt32FloatMapConverter = new MapInt32FloatMapConverter();
@@ -2347,25 +2358,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, double>.Codec _map_mapInt32Double_codec
         = new pbc::MapField<int, double>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForDouble(17), 1010);
     internal class MapInt32DoubleMapConverter : EventMapConverter<int, double> {
-      public override ByteString GetKeyValue(int key, double value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, double value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteDouble(value);
+          dataStream.WriteDouble(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, double> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, double> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32Double = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, double>(realKeymapInt32Double, default(double));
-        }
-        else {
-          var realValuemapInt32Double = dataStream.ReadDouble();
-          return new KeyValuePair<int, double>(realKeymapInt32Double, realValuemapInt32Double);
-        }
+        var realValuemapInt32Double = dataStream.ReadDouble();
+        return new KeyValuePair<int, double>(realKeymapInt32Double, realValuemapInt32Double);
       }
     }
     private static readonly EventMapConverter<int, double> mapInt32DoubleMapConverter = new MapInt32DoubleMapConverter();
@@ -2380,25 +2392,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<bool, bool>.Codec _map_mapBoolBool_codec
         = new pbc::MapField<bool, bool>.Codec(pb::FieldCodec.ForBool(8), pb::FieldCodec.ForBool(16), 1018);
     internal class MapBoolBoolMapConverter : EventMapConverter<bool, bool> {
-      public override ByteString GetKeyValue(bool key, bool value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(bool key) {
+        return new zpr.EventSource.MapKey { BoolData = key };
+      }
+      public override bool GetKey(zpr.EventSource.MapKey key) {
+        return key.BoolData;
+      }
+      public override ByteString GetKeyValue(bool key, bool value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteBool(key);
-          if(!skipValue) dataStream.WriteBool(value);
+          dataStream.WriteBool(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<bool, bool> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<bool, bool> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapBoolBool = dataStream.ReadBool();
-        if (skipValue) {
-          return new KeyValuePair<bool, bool>(realKeymapBoolBool, default(bool));
-        }
-        else {
-          var realValuemapBoolBool = dataStream.ReadBool();
-          return new KeyValuePair<bool, bool>(realKeymapBoolBool, realValuemapBoolBool);
-        }
+        var realValuemapBoolBool = dataStream.ReadBool();
+        return new KeyValuePair<bool, bool>(realKeymapBoolBool, realValuemapBoolBool);
       }
     }
     private static readonly EventMapConverter<bool, bool> mapBoolBoolMapConverter = new MapBoolBoolMapConverter();
@@ -2413,25 +2426,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<string, string>.Codec _map_mapStringString_codec
         = new pbc::MapField<string, string>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForString(18), 1026);
     internal class MapStringStringMapConverter : EventMapConverter<string, string> {
-      public override ByteString GetKeyValue(string key, string value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(string key) {
+        return new zpr.EventSource.MapKey { StringData = key };
+      }
+      public override string GetKey(zpr.EventSource.MapKey key) {
+        return key.StringData;
+      }
+      public override ByteString GetKeyValue(string key, string value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
-          if(!skipValue) dataStream.WriteString(value);
+          dataStream.WriteString(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<string, string> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<string, string> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapStringString = dataStream.ReadString();
-        if (skipValue) {
-          return new KeyValuePair<string, string>(realKeymapStringString, default(string));
-        }
-        else {
-          var realValuemapStringString = dataStream.ReadString();
-          return new KeyValuePair<string, string>(realKeymapStringString, realValuemapStringString);
-        }
+        var realValuemapStringString = dataStream.ReadString();
+        return new KeyValuePair<string, string>(realKeymapStringString, realValuemapStringString);
       }
     }
     private static readonly EventMapConverter<string, string> mapStringStringMapConverter = new MapStringStringMapConverter();
@@ -2446,25 +2460,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, pb::ByteString>.Codec _map_mapInt32Bytes_codec
         = new pbc::MapField<int, pb::ByteString>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForBytes(18), 1034);
     internal class MapInt32BytesMapConverter : EventMapConverter<int, pb::ByteString> {
-      public override ByteString GetKeyValue(int key, pb::ByteString value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, pb::ByteString value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteBytes(value);
+          dataStream.WriteBytes(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, pb::ByteString> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, pb::ByteString> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32Bytes = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, pb::ByteString>(realKeymapInt32Bytes, default(pb::ByteString));
-        }
-        else {
-          var realValuemapInt32Bytes = dataStream.ReadBytes();
-          return new KeyValuePair<int, pb::ByteString>(realKeymapInt32Bytes, realValuemapInt32Bytes);
-        }
+        var realValuemapInt32Bytes = dataStream.ReadBytes();
+        return new KeyValuePair<int, pb::ByteString>(realKeymapInt32Bytes, realValuemapInt32Bytes);
       }
     }
     private static readonly EventMapConverter<int, pb::ByteString> mapInt32BytesMapConverter = new MapInt32BytesMapConverter();
@@ -2479,25 +2494,26 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, global::Google.Protobuf.TestProtos.MapEnum>.Codec _map_mapInt32Enum_codec
         = new pbc::MapField<int, global::Google.Protobuf.TestProtos.MapEnum>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForEnum(16, x => (int) x, x => (global::Google.Protobuf.TestProtos.MapEnum) x), 1042);
     internal class MapInt32EnumMapConverter : EventMapConverter<int, global::Google.Protobuf.TestProtos.MapEnum> {
-      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.MapEnum value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.MapEnum value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteEnum((int) value);
+          dataStream.WriteEnum((int) value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.MapEnum> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.MapEnum> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32Enum = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.MapEnum>(realKeymapInt32Enum, default(global::Google.Protobuf.TestProtos.MapEnum));
-        }
-        else {
-          var realValuemapInt32Enum = (global::Google.Protobuf.TestProtos.MapEnum) dataStream.ReadEnum();
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.MapEnum>(realKeymapInt32Enum, realValuemapInt32Enum);
-        }
+        var realValuemapInt32Enum = (global::Google.Protobuf.TestProtos.MapEnum) dataStream.ReadEnum();
+        return new KeyValuePair<int, global::Google.Protobuf.TestProtos.MapEnum>(realKeymapInt32Enum, realValuemapInt32Enum);
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.MapEnum> mapInt32EnumMapConverter = new MapInt32EnumMapConverter();
@@ -2512,26 +2528,27 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>.Codec _map_mapInt32ForeignMessage_codec
         = new pbc::MapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Google.Protobuf.TestProtos.ForeignMessage.Parser), 1050);
     internal class MapInt32ForeignMessageMapConverter : EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessage> {
-      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.ForeignMessage value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.ForeignMessage value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessage> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessage> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32ForeignMessage = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessage>(realKeymapInt32ForeignMessage, default(global::Google.Protobuf.TestProtos.ForeignMessage));
-        }
-        else {
-          var realValuemapInt32ForeignMessage = new global::Google.Protobuf.TestProtos.ForeignMessage();
-          dataStream.ReadMessage(realValuemapInt32ForeignMessage);;
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessage>(realKeymapInt32ForeignMessage, realValuemapInt32ForeignMessage);
-        }
+        var realValuemapInt32ForeignMessage = new global::Google.Protobuf.TestProtos.ForeignMessage();
+        dataStream.ReadMessage(realValuemapInt32ForeignMessage);;
+        return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessage>(realKeymapInt32ForeignMessage, realValuemapInt32ForeignMessage);
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessage> mapInt32ForeignMessageMapConverter = new MapInt32ForeignMessageMapConverter();
@@ -2546,26 +2563,27 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>.Codec _map_mapInt32ForeignNoEventsMessage_codec
         = new pbc::MapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents.Parser), 1058);
     internal class MapInt32ForeignNoEventsMessageMapConverter : EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> {
-      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32ForeignNoEventsMessage = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(realKeymapInt32ForeignNoEventsMessage, default(global::Google.Protobuf.TestProtos.ForeignMessageNoEvents));
-        }
-        else {
-          var realValuemapInt32ForeignNoEventsMessage = new global::Google.Protobuf.TestProtos.ForeignMessageNoEvents();
-          dataStream.ReadMessage(realValuemapInt32ForeignNoEventsMessage);;
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(realKeymapInt32ForeignNoEventsMessage, realValuemapInt32ForeignNoEventsMessage);
-        }
+        var realValuemapInt32ForeignNoEventsMessage = new global::Google.Protobuf.TestProtos.ForeignMessageNoEvents();
+        dataStream.ReadMessage(realValuemapInt32ForeignNoEventsMessage);;
+        return new KeyValuePair<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(realKeymapInt32ForeignNoEventsMessage, realValuemapInt32ForeignNoEventsMessage);
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> mapInt32ForeignNoEventsMessageMapConverter = new MapInt32ForeignNoEventsMessageMapConverter();
@@ -2580,26 +2598,27 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>.Codec _map_mapInt32TestAllTypesMessage_codec
         = new pbc::MapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Google.Protobuf.TestProtos.TestAllTypes.Parser), 1066);
     internal class MapInt32TestAllTypesMessageMapConverter : EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypes> {
-      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.TestAllTypes value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.TestAllTypes value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypes> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypes> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32TestAllTypesMessage = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypes>(realKeymapInt32TestAllTypesMessage, default(global::Google.Protobuf.TestProtos.TestAllTypes));
-        }
-        else {
-          var realValuemapInt32TestAllTypesMessage = new global::Google.Protobuf.TestProtos.TestAllTypes();
-          dataStream.ReadMessage(realValuemapInt32TestAllTypesMessage);;
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypes>(realKeymapInt32TestAllTypesMessage, realValuemapInt32TestAllTypesMessage);
-        }
+        var realValuemapInt32TestAllTypesMessage = new global::Google.Protobuf.TestProtos.TestAllTypes();
+        dataStream.ReadMessage(realValuemapInt32TestAllTypesMessage);;
+        return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypes>(realKeymapInt32TestAllTypesMessage, realValuemapInt32TestAllTypesMessage);
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypes> mapInt32TestAllTypesMessageMapConverter = new MapInt32TestAllTypesMessageMapConverter();
@@ -2614,26 +2633,27 @@ namespace Google.Protobuf.TestProtos {
     private static readonly pbc::MapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>.Codec _map_mapInt32TestAllTypesNoEventsMessage_codec
         = new pbc::MapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>.Codec(pb::FieldCodec.ForInt32(8), pb::FieldCodec.ForMessage(18, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents.Parser), 1074);
     internal class MapInt32TestAllTypesNoEventsMessageMapConverter : EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> {
-      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(int key) {
+        return new zpr.EventSource.MapKey { I32 = key };
+      }
+      public override int GetKey(zpr.EventSource.MapKey key) {
+        return key.I32;
+      }
+      public override ByteString GetKeyValue(int key, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteInt32(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeymapInt32TestAllTypesNoEventsMessage = dataStream.ReadInt32();
-        if (skipValue) {
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(realKeymapInt32TestAllTypesNoEventsMessage, default(global::Google.Protobuf.TestProtos.TestAllTypesNoEvents));
-        }
-        else {
-          var realValuemapInt32TestAllTypesNoEventsMessage = new global::Google.Protobuf.TestProtos.TestAllTypesNoEvents();
-          dataStream.ReadMessage(realValuemapInt32TestAllTypesNoEventsMessage);;
-          return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(realKeymapInt32TestAllTypesNoEventsMessage, realValuemapInt32TestAllTypesNoEventsMessage);
-        }
+        var realValuemapInt32TestAllTypesNoEventsMessage = new global::Google.Protobuf.TestProtos.TestAllTypesNoEvents();
+        dataStream.ReadMessage(realValuemapInt32TestAllTypesNoEventsMessage);;
+        return new KeyValuePair<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(realKeymapInt32TestAllTypesNoEventsMessage, realValuemapInt32TestAllTypesNoEventsMessage);
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> mapInt32TestAllTypesNoEventsMessageMapConverter = new MapInt32TestAllTypesNoEventsMessageMapConverter();

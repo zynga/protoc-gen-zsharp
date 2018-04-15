@@ -75,6 +75,7 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
   variables_["key_read_name"] = GetByteStringRead(key_descriptor);
   variables_["value_read_name"] = GetByteStringRead(value_descriptor);
   variables_["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
+  variables_["key_data_value"] = GetEventDataType(key_descriptor);
 
   printer->Print(
     variables_,
@@ -87,11 +88,18 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       variables_,
       ", $tag$);\n");
 
+// Context.AddSetEvent($number$, new zpr.EventSource.EventContent { $data_value$ = value });\n");
   if (isEventSourced) {
     printer->Print(
       variables_,
       "internal class $property_name$MapConverter : EventMapConverter<$key_type_name$, $value_type_name$> {\n"
-      "  public override ByteString GetKeyValue($key_type_name$ key, $value_type_name$ value, bool skipValue = false) {\n"
+      "  public override zpr.EventSource.MapKey GetMapKey($key_type_name$ key) {\n"
+      "    return new zpr.EventSource.MapKey { $key_data_value$ = key };\n"
+      "  }\n"
+      "  public override $key_type_name$ GetKey(zpr.EventSource.MapKey key) {\n"
+      "    return key.$key_data_value$;\n"
+      "  }\n"
+      "  public override ByteString GetKeyValue($key_type_name$ key, $value_type_name$ value) {\n"
       "    using (var memStream = new MemoryStream()) {\n"
       "      var dataStream = new CodedOutputStream(memStream);\n"
       "      dataStream.$key_write_name$(key);\n");
@@ -99,12 +107,12 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
     if (value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
       printer->Print(
         variables_,
-        "      if(!skipValue) dataStream.$value_write_name$((int) value);\n");
+        "      dataStream.$value_write_name$((int) value);\n");
     }
     else {
       printer->Print(
         variables_,
-        "      if(!skipValue) dataStream.$value_write_name$(value);\n");
+        "      dataStream.$value_write_name$(value);\n");
     }
 
     printer->Print(
@@ -113,7 +121,7 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       "      return ByteString.CopyFrom(memStream.ToArray());\n"
       "    }\n"
       "  }\n"
-      "  public override KeyValuePair<$key_type_name$, $value_type_name$> GetItem(ByteString data, bool skipValue = false) {\n"
+      "  public override KeyValuePair<$key_type_name$, $value_type_name$> GetItem(ByteString data) {\n"
       "    var dataStream = data.CreateCodedInput();\n");
 
     // if we are a message type then we need to decode the message to its actual value
@@ -128,33 +136,25 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
         "    var realKey$name$ = dataStream.$key_read_name$();\n");
     }
 
-    printer->Print(
-      variables_,
-      "    if (skipValue) {\n"
-      "      return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, default($value_type_name$));\n"
-      "    }\n"
-      "    else {\n");
-
     if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
       printer->Print(
         variables_,
-        "      var realValue$name$ = new $value_type_name$();\n"
-        "      dataStream.ReadMessage(realValue$name$);;\n");
+        "    var realValue$name$ = new $value_type_name$();\n"
+        "    dataStream.ReadMessage(realValue$name$);;\n");
     }
     else if(value_descriptor->type() == FieldDescriptor::TYPE_ENUM) {
       printer->Print(
         variables_,
-        "      var realValue$name$ = ($value_type_name$) dataStream.$value_read_name$();\n");
+        "    var realValue$name$ = ($value_type_name$) dataStream.$value_read_name$();\n");
     }
     else {
       printer->Print(
         variables_,
-        "      var realValue$name$ = dataStream.$value_read_name$();\n");
+        "    var realValue$name$ = dataStream.$value_read_name$();\n");
     }
     printer->Print(
       variables_,
-      "      return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, realValue$name$);\n"
-      "    }\n"
+      "    return new KeyValuePair<$key_type_name$, $value_type_name$>(realKey$name$, realValue$name$);\n"
       "  }\n"
       "}\n"
       "private static readonly EventMapConverter<$key_type_name$, $value_type_name$> $name$MapConverter = new $property_name$MapConverter();\n");

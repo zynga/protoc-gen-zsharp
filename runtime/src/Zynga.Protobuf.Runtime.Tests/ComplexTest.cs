@@ -574,26 +574,27 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>.Codec _map_c_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.File.MessageC.Parser), 18);
     internal class CMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> {
-      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.File.MessageC value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(string key) {
+        return new zpr.EventSource.MapKey { StringData = key };
+      }
+      public override string GetKey(zpr.EventSource.MapKey key) {
+        return key.StringData;
+      }
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.File.MessageC value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeyc = dataStream.ReadString();
-        if (skipValue) {
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(realKeyc, default(global::Com.Zynga.Runtime.Protobuf.File.MessageC));
-        }
-        else {
-          var realValuec = new global::Com.Zynga.Runtime.Protobuf.File.MessageC();
-          dataStream.ReadMessage(realValuec);;
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(realKeyc, realValuec);
-        }
+        var realValuec = new global::Com.Zynga.Runtime.Protobuf.File.MessageC();
+        dataStream.ReadMessage(realValuec);;
+        return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(realKeyc, realValuec);
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> cMapConverter = new CMapConverter();
@@ -972,26 +973,27 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>.Codec _map_d_codec
         = new pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Com.Zynga.Runtime.Protobuf.File.MessageD.Parser), 26);
     internal class DMapConverter : EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> {
-      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.File.MessageD value, bool skipValue = false) {
+      public override zpr.EventSource.MapKey GetMapKey(string key) {
+        return new zpr.EventSource.MapKey { StringData = key };
+      }
+      public override string GetKey(zpr.EventSource.MapKey key) {
+        return key.StringData;
+      }
+      public override ByteString GetKeyValue(string key, global::Com.Zynga.Runtime.Protobuf.File.MessageD value) {
         using (var memStream = new MemoryStream()) {
           var dataStream = new CodedOutputStream(memStream);
           dataStream.WriteString(key);
-          if(!skipValue) dataStream.WriteMessage(value);
+          dataStream.WriteMessage(value);
           dataStream.Flush();
           return ByteString.CopyFrom(memStream.ToArray());
         }
       }
-      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> GetItem(ByteString data, bool skipValue = false) {
+      public override KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> GetItem(ByteString data) {
         var dataStream = data.CreateCodedInput();
         var realKeyd = dataStream.ReadString();
-        if (skipValue) {
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(realKeyd, default(global::Com.Zynga.Runtime.Protobuf.File.MessageD));
-        }
-        else {
-          var realValued = new global::Com.Zynga.Runtime.Protobuf.File.MessageD();
-          dataStream.ReadMessage(realValued);;
-          return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(realKeyd, realValued);
-        }
+        var realValued = new global::Com.Zynga.Runtime.Protobuf.File.MessageD();
+        dataStream.ReadMessage(realValued);;
+        return new KeyValuePair<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(realKeyd, realValued);
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> dMapConverter = new DMapConverter();

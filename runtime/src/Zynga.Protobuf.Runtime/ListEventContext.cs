@@ -27,47 +27,14 @@ namespace Zynga.Protobuf.Runtime {
 			set { _index = value; }
 		}
 
-		private void AddUpdateEvent(EventData data) {
+		public override void AddEvent(EventData e) {
 			var le = new ListEvent {
 				ListAction = ListAction.UpdateList,
 				Index = _index,
-				EventData = data
+				EventData = e
 			};
 
 			_listContext.AddListEvent(_fieldNumber, le);
-		}
-
-		/// <inheritdoc />
-		public override void AddSetEvent(EventPath path, EventContent content) {
-			if (!_listContext.EventsEnabled) return;
-			var e = new EventData {
-				Set = content
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
-		}
-
-		/// <inheritdoc />
-		public override void AddMapEvent(EventPath path, MapEvent mapEvent) {
-			if (!_listContext.EventsEnabled) return;
-			var e = new EventData {
-				MapEvent = mapEvent
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
-		}
-
-		/// <inheritdoc />
-		public override void AddListEvent(EventPath path, ListEvent listEvent) {
-			if (!_listContext.EventsEnabled) return;
-			var e = new EventData {
-				ListEvent = listEvent
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
 		}
 
 		/// <inheritdoc />

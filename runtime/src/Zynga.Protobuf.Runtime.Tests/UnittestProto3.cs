@@ -967,8 +967,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestAllTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       repeatedInt32_.SetContext(Context, 31);
       repeatedInt64_.SetContext(Context, 32);
       repeatedUint32_.SetContext(Context, 33);
@@ -1265,7 +1265,7 @@ namespace Google.Protobuf.TestProtos {
       get { return singleNestedMessage_; }
       set {
         if(singleNestedMessage_ != null) singleNestedMessage_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 18));
+        value.SetParent(Context, 18);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(singleNestedMessage_)) {
           Context.AddSetEvent(18, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1283,7 +1283,7 @@ namespace Google.Protobuf.TestProtos {
       get { return singleForeignMessage_; }
       set {
         if(singleForeignMessage_ != null) singleForeignMessage_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 19));
+        value.SetParent(Context, 19);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(singleForeignMessage_)) {
           Context.AddSetEvent(19, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1301,7 +1301,7 @@ namespace Google.Protobuf.TestProtos {
       get { return singleImportMessage_; }
       set {
         if(singleImportMessage_ != null) singleImportMessage_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 20));
+        value.SetParent(Context, 20);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(singleImportMessage_)) {
           Context.AddSetEvent(20, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1370,7 +1370,7 @@ namespace Google.Protobuf.TestProtos {
       get { return singlePublicImportMessage_; }
       set {
         if(singlePublicImportMessage_ != null) singlePublicImportMessage_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 26));
+        value.SetParent(Context, 26);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(singlePublicImportMessage_)) {
           Context.AddSetEvent(26, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1868,7 +1868,7 @@ namespace Google.Protobuf.TestProtos {
       get { return oneofFieldCase_ == OneofFieldOneofCase.OneofNestedMessage ? (global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage) oneofField_ : null; }
       set {
         if(oneofFieldCase_ == OneofFieldOneofCase.OneofNestedMessage && oneofField_ != null) ((global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage) oneofField_).ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 112));
+        value.SetParent(Context, 112);
         #if !DISABLE_EVENTS
         if(oneofFieldCase_ != OneofFieldOneofCase.OneofNestedMessage || !value.Equals(oneofField_)) {
           Context.AddSetEvent(112, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1918,7 +1918,7 @@ namespace Google.Protobuf.TestProtos {
       get { return oneofFieldCase_ == OneofFieldOneofCase.OneofForeignMessage ? (global::Google.Protobuf.TestProtos.ForeignMessage) oneofField_ : null; }
       set {
         if(oneofFieldCase_ == OneofFieldOneofCase.OneofForeignMessage && oneofField_ != null) ((global::Google.Protobuf.TestProtos.ForeignMessage) oneofField_).ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 137));
+        value.SetParent(Context, 137);
         #if !DISABLE_EVENTS
         if(oneofFieldCase_ != OneofFieldOneofCase.OneofForeignMessage || !value.Equals(oneofField_)) {
           Context.AddSetEvent(137, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1952,7 +1952,7 @@ namespace Google.Protobuf.TestProtos {
       get { return oneofFieldCase_ == OneofFieldOneofCase.OneofAllTypes ? (global::Google.Protobuf.TestProtos.TestAllTypes) oneofField_ : null; }
       set {
         if(oneofFieldCase_ == OneofFieldOneofCase.OneofAllTypes && oneofField_ != null) ((global::Google.Protobuf.TestProtos.TestAllTypes) oneofField_).ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 139));
+        value.SetParent(Context, 139);
         #if !DISABLE_EVENTS
         if(oneofFieldCase_ != OneofFieldOneofCase.OneofAllTypes || !value.Equals(oneofField_)) {
           Context.AddSetEvent(139, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -2671,7 +2671,7 @@ namespace Google.Protobuf.TestProtos {
       get { return allTypes_; }
       set {
         if(allTypes_ != null) allTypes_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 135));
+        value.SetParent(Context, 135);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(allTypes_)) {
           Context.AddSetEvent(135, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -3277,21 +3277,21 @@ namespace Google.Protobuf.TestProtos {
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
           singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-          singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
+          singleNestedMessage_.SetParent(Context, 18);
         }
         SingleNestedMessage.MergeFrom(other.SingleNestedMessage);
       }
       if (other.singleForeignMessage_ != null) {
         if (singleForeignMessage_ == null) {
           singleForeignMessage_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-          singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
+          singleForeignMessage_.SetParent(Context, 19);
         }
         SingleForeignMessage.MergeFrom(other.SingleForeignMessage);
       }
       if (other.singleImportMessage_ != null) {
         if (singleImportMessage_ == null) {
           singleImportMessage_ = new global::Google.Protobuf.TestProtos.ImportMessage();
-          singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
+          singleImportMessage_.SetParent(Context, 20);
         }
         SingleImportMessage.MergeFrom(other.SingleImportMessage);
       }
@@ -3307,7 +3307,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.singlePublicImportMessage_ != null) {
         if (singlePublicImportMessage_ == null) {
           singlePublicImportMessage_ = new global::Google.Protobuf.TestProtos.PublicImportMessage();
-          singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
+          singlePublicImportMessage_.SetParent(Context, 26);
         }
         SinglePublicImportMessage.MergeFrom(other.SinglePublicImportMessage);
       }
@@ -3358,7 +3358,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.allTypes_ != null) {
         if (allTypes_ == null) {
           allTypes_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-          allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
+          allTypes_.SetParent(Context, 135);
         }
         AllTypes.MergeFrom(other.AllTypes);
       }
@@ -3375,7 +3375,7 @@ namespace Google.Protobuf.TestProtos {
         case OneofFieldOneofCase.OneofNestedMessage:
           if (OneofNestedMessage == null) {
             OneofNestedMessage = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-            OneofNestedMessage.SetParent(Context, new EventPath(Context.Path, 112));
+            OneofNestedMessage.SetParent(Context, 112);
           }
           OneofNestedMessage.MergeFrom(other.OneofNestedMessage);
           break;
@@ -3388,7 +3388,7 @@ namespace Google.Protobuf.TestProtos {
         case OneofFieldOneofCase.OneofForeignMessage:
           if (OneofForeignMessage == null) {
             OneofForeignMessage = new global::Google.Protobuf.TestProtos.ForeignMessage();
-            OneofForeignMessage.SetParent(Context, new EventPath(Context.Path, 137));
+            OneofForeignMessage.SetParent(Context, 137);
           }
           OneofForeignMessage.MergeFrom(other.OneofForeignMessage);
           break;
@@ -3401,7 +3401,7 @@ namespace Google.Protobuf.TestProtos {
         case OneofFieldOneofCase.OneofAllTypes:
           if (OneofAllTypes == null) {
             OneofAllTypes = new global::Google.Protobuf.TestProtos.TestAllTypes();
-            OneofAllTypes.SetParent(Context, new EventPath(Context.Path, 139));
+            OneofAllTypes.SetParent(Context, 139);
           }
           OneofAllTypes.MergeFrom(other.OneofAllTypes);
           break;
@@ -3486,7 +3486,7 @@ namespace Google.Protobuf.TestProtos {
           case 146: {
             if (singleNestedMessage_ == null) {
               singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-              singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
+              singleNestedMessage_.SetParent(Context, 18);
             }
             input.ReadMessage(singleNestedMessage_);
             break;
@@ -3494,7 +3494,7 @@ namespace Google.Protobuf.TestProtos {
           case 154: {
             if (singleForeignMessage_ == null) {
               singleForeignMessage_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-              singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
+              singleForeignMessage_.SetParent(Context, 19);
             }
             input.ReadMessage(singleForeignMessage_);
             break;
@@ -3502,7 +3502,7 @@ namespace Google.Protobuf.TestProtos {
           case 162: {
             if (singleImportMessage_ == null) {
               singleImportMessage_ = new global::Google.Protobuf.TestProtos.ImportMessage();
-              singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
+              singleImportMessage_.SetParent(Context, 20);
             }
             input.ReadMessage(singleImportMessage_);
             break;
@@ -3522,7 +3522,7 @@ namespace Google.Protobuf.TestProtos {
           case 210: {
             if (singlePublicImportMessage_ == null) {
               singlePublicImportMessage_ = new global::Google.Protobuf.TestProtos.PublicImportMessage();
-              singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
+              singlePublicImportMessage_.SetParent(Context, 26);
             }
             input.ReadMessage(singlePublicImportMessage_);
             break;
@@ -3652,7 +3652,7 @@ namespace Google.Protobuf.TestProtos {
             input.ReadMessage(subBuilder);
             oneofField_ = subBuilder;
             oneofFieldCase_ = OneofFieldOneofCase.OneofNestedMessage;
-            subBuilder.SetParent(Context, new EventPath(Context.Path, 112));
+            subBuilder.SetParent(Context, 112);
             break;
           }
           case 906: {
@@ -3748,7 +3748,7 @@ namespace Google.Protobuf.TestProtos {
           case 1082: {
             if (allTypes_ == null) {
               allTypes_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-              allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
+              allTypes_.SetParent(Context, 135);
             }
             input.ReadMessage(allTypes_);
             break;
@@ -3768,7 +3768,7 @@ namespace Google.Protobuf.TestProtos {
             input.ReadMessage(subBuilder);
             oneofField_ = subBuilder;
             oneofFieldCase_ = OneofFieldOneofCase.OneofForeignMessage;
-            subBuilder.SetParent(Context, new EventPath(Context.Path, 137));
+            subBuilder.SetParent(Context, 137);
             break;
           }
           case 1106: {
@@ -3789,7 +3789,7 @@ namespace Google.Protobuf.TestProtos {
             input.ReadMessage(subBuilder);
             oneofField_ = subBuilder;
             oneofFieldCase_ = OneofFieldOneofCase.OneofAllTypes;
-            subBuilder.SetParent(Context, new EventPath(Context.Path, 139));
+            subBuilder.SetParent(Context, 139);
             break;
           }
           case 1122: {
@@ -3857,8 +3857,8 @@ namespace Google.Protobuf.TestProtos {
 
         protected override NestedMessage Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, EventPath path) {
-          base.SetParent(parent, path);
+        public override void SetParent(EventContext parent, int field) {
+          base.SetParent(parent, field);
         }
         /// <summary>Field number for the "bb" field.</summary>
         public const int BbFieldNumber = 1;
@@ -4059,12 +4059,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (singleNestedMessage_ == null) {
                 singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-                singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
+                singleNestedMessage_.SetParent(Context, 18);
               }
               (singleNestedMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleNestedMessage_  = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 18));
+              singleNestedMessage_.SetParent(Context, 18);
             }
           }
           break;
@@ -4072,12 +4072,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (singleForeignMessage_ == null) {
                 singleForeignMessage_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-                singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
+                singleForeignMessage_.SetParent(Context, 19);
               }
               (singleForeignMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleForeignMessage_  = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
-              singleForeignMessage_.SetParent(Context, new EventPath(Context.Path, 19));
+              singleForeignMessage_.SetParent(Context, 19);
             }
           }
           break;
@@ -4085,12 +4085,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (singleImportMessage_ == null) {
                 singleImportMessage_ = new global::Google.Protobuf.TestProtos.ImportMessage();
-                singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
+                singleImportMessage_.SetParent(Context, 20);
               }
               (singleImportMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleImportMessage_  = global::Google.Protobuf.TestProtos.ImportMessage.Parser.ParseFrom(e.Set.ByteData);
-              singleImportMessage_.SetParent(Context, new EventPath(Context.Path, 20));
+              singleImportMessage_.SetParent(Context, 20);
             }
           }
           break;
@@ -4110,12 +4110,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (singlePublicImportMessage_ == null) {
                 singlePublicImportMessage_ = new global::Google.Protobuf.TestProtos.PublicImportMessage();
-                singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
+                singlePublicImportMessage_.SetParent(Context, 26);
               }
               (singlePublicImportMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singlePublicImportMessage_  = global::Google.Protobuf.TestProtos.PublicImportMessage.Parser.ParseFrom(e.Set.ByteData);
-              singlePublicImportMessage_.SetParent(Context, new EventPath(Context.Path, 26));
+              singlePublicImportMessage_.SetParent(Context, 26);
             }
           }
           break;
@@ -4224,12 +4224,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 112);
               }
               (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 112));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 112);
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofNestedMessage;
           }
@@ -4248,12 +4248,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 137);
               }
               (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 137));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 137);
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofForeignMessage;
           }
@@ -4267,12 +4267,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (oneofField_ == null) {
                 oneofField_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
+                (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 139);
               }
               (oneofField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               oneofField_   = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 139));
+              (oneofField_ as zpr::IEventRegistry)?.SetParent(Context, 139);
             }
             oneofFieldCase_ = oneofField_ == null ? OneofFieldOneofCase.None : OneofFieldOneofCase.OneofAllTypes;
           }
@@ -4366,12 +4366,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (allTypes_ == null) {
                 allTypes_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
+                allTypes_.SetParent(Context, 135);
               }
               (allTypes_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               allTypes_  = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              allTypes_.SetParent(Context, new EventPath(Context.Path, 135));
+              allTypes_.SetParent(Context, 135);
             }
           }
           break;
@@ -4443,8 +4443,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override NestedTestAllTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       repeatedChild_.SetContext(Context, 3);
     }
     /// <summary>Field number for the "child" field.</summary>
@@ -4455,7 +4455,7 @@ namespace Google.Protobuf.TestProtos {
       get { return child_; }
       set {
         if(child_ != null) child_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(child_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -4473,7 +4473,7 @@ namespace Google.Protobuf.TestProtos {
       get { return payload_; }
       set {
         if(payload_ != null) payload_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 2));
+        value.SetParent(Context, 2);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(payload_)) {
           Context.AddSetEvent(2, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -4570,14 +4570,14 @@ namespace Google.Protobuf.TestProtos {
       if (other.child_ != null) {
         if (child_ == null) {
           child_ = new global::Google.Protobuf.TestProtos.NestedTestAllTypes();
-          child_.SetParent(Context, new EventPath(Context.Path, 1));
+          child_.SetParent(Context, 1);
         }
         Child.MergeFrom(other.Child);
       }
       if (other.payload_ != null) {
         if (payload_ == null) {
           payload_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-          payload_.SetParent(Context, new EventPath(Context.Path, 2));
+          payload_.SetParent(Context, 2);
         }
         Payload.MergeFrom(other.Payload);
       }
@@ -4595,7 +4595,7 @@ namespace Google.Protobuf.TestProtos {
           case 10: {
             if (child_ == null) {
               child_ = new global::Google.Protobuf.TestProtos.NestedTestAllTypes();
-              child_.SetParent(Context, new EventPath(Context.Path, 1));
+              child_.SetParent(Context, 1);
             }
             input.ReadMessage(child_);
             break;
@@ -4603,7 +4603,7 @@ namespace Google.Protobuf.TestProtos {
           case 18: {
             if (payload_ == null) {
               payload_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-              payload_.SetParent(Context, new EventPath(Context.Path, 2));
+              payload_.SetParent(Context, 2);
             }
             input.ReadMessage(payload_);
             break;
@@ -4627,12 +4627,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (child_ == null) {
                 child_ = new global::Google.Protobuf.TestProtos.NestedTestAllTypes();
-                child_.SetParent(Context, new EventPath(Context.Path, 1));
+                child_.SetParent(Context, 1);
               }
               (child_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               child_  = global::Google.Protobuf.TestProtos.NestedTestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              child_.SetParent(Context, new EventPath(Context.Path, 1));
+              child_.SetParent(Context, 1);
             }
           }
           break;
@@ -4640,12 +4640,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (payload_ == null) {
                 payload_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                payload_.SetParent(Context, new EventPath(Context.Path, 2));
+                payload_.SetParent(Context, 2);
               }
               (payload_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               payload_  = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              payload_.SetParent(Context, new EventPath(Context.Path, 2));
+              payload_.SetParent(Context, 2);
             }
           }
           break;
@@ -4710,8 +4710,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestDeprecatedFields Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "deprecated_int32" field.</summary>
     public const int DeprecatedInt32FieldNumber = 1;
@@ -4874,8 +4874,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override ForeignMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "c" field.</summary>
     public const int CFieldNumber = 1;
@@ -5032,8 +5032,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestReservedFields Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -5158,8 +5158,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestForeignNested Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "foreign_nested" field.</summary>
     public const int ForeignNestedFieldNumber = 1;
@@ -5169,7 +5169,7 @@ namespace Google.Protobuf.TestProtos {
       get { return foreignNested_; }
       set {
         if(foreignNested_ != null) foreignNested_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(foreignNested_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -5233,7 +5233,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.foreignNested_ != null) {
         if (foreignNested_ == null) {
           foreignNested_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-          foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
+          foreignNested_.SetParent(Context, 1);
         }
         ForeignNested.MergeFrom(other.ForeignNested);
       }
@@ -5250,7 +5250,7 @@ namespace Google.Protobuf.TestProtos {
           case 10: {
             if (foreignNested_ == null) {
               foreignNested_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-              foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
+              foreignNested_.SetParent(Context, 1);
             }
             input.ReadMessage(foreignNested_);
             break;
@@ -5270,12 +5270,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (foreignNested_ == null) {
                 foreignNested_ = new global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage();
-                foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
+                foreignNested_.SetParent(Context, 1);
               }
               (foreignNested_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foreignNested_  = global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              foreignNested_.SetParent(Context, new EventPath(Context.Path, 1));
+              foreignNested_.SetParent(Context, 1);
             }
           }
           break;
@@ -5340,8 +5340,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestReallyLargeTagNumber Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
@@ -5540,8 +5540,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestRecursiveMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
@@ -5551,7 +5551,7 @@ namespace Google.Protobuf.TestProtos {
       get { return a_; }
       set {
         if(a_ != null) a_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(a_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -5640,7 +5640,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.a_ != null) {
         if (a_ == null) {
           a_ = new global::Google.Protobuf.TestProtos.TestRecursiveMessage();
-          a_.SetParent(Context, new EventPath(Context.Path, 1));
+          a_.SetParent(Context, 1);
         }
         A.MergeFrom(other.A);
       }
@@ -5660,7 +5660,7 @@ namespace Google.Protobuf.TestProtos {
           case 10: {
             if (a_ == null) {
               a_ = new global::Google.Protobuf.TestProtos.TestRecursiveMessage();
-              a_.SetParent(Context, new EventPath(Context.Path, 1));
+              a_.SetParent(Context, 1);
             }
             input.ReadMessage(a_);
             break;
@@ -5684,12 +5684,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (a_ == null) {
                 a_ = new global::Google.Protobuf.TestProtos.TestRecursiveMessage();
-                a_.SetParent(Context, new EventPath(Context.Path, 1));
+                a_.SetParent(Context, 1);
               }
               (a_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               a_  = global::Google.Protobuf.TestProtos.TestRecursiveMessage.Parser.ParseFrom(e.Set.ByteData);
-              a_.SetParent(Context, new EventPath(Context.Path, 1));
+              a_.SetParent(Context, 1);
             }
           }
           break;
@@ -5757,8 +5757,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestMutualRecursionA Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "bb" field.</summary>
     public const int BbFieldNumber = 1;
@@ -5768,7 +5768,7 @@ namespace Google.Protobuf.TestProtos {
       get { return bb_; }
       set {
         if(bb_ != null) bb_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(bb_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -5832,7 +5832,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.bb_ != null) {
         if (bb_ == null) {
           bb_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionB();
-          bb_.SetParent(Context, new EventPath(Context.Path, 1));
+          bb_.SetParent(Context, 1);
         }
         Bb.MergeFrom(other.Bb);
       }
@@ -5849,7 +5849,7 @@ namespace Google.Protobuf.TestProtos {
           case 10: {
             if (bb_ == null) {
               bb_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionB();
-              bb_.SetParent(Context, new EventPath(Context.Path, 1));
+              bb_.SetParent(Context, 1);
             }
             input.ReadMessage(bb_);
             break;
@@ -5869,12 +5869,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (bb_ == null) {
                 bb_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionB();
-                bb_.SetParent(Context, new EventPath(Context.Path, 1));
+                bb_.SetParent(Context, 1);
               }
               (bb_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               bb_  = global::Google.Protobuf.TestProtos.TestMutualRecursionB.Parser.ParseFrom(e.Set.ByteData);
-              bb_.SetParent(Context, new EventPath(Context.Path, 1));
+              bb_.SetParent(Context, 1);
             }
           }
           break;
@@ -5936,8 +5936,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestMutualRecursionB Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
@@ -5947,7 +5947,7 @@ namespace Google.Protobuf.TestProtos {
       get { return a_; }
       set {
         if(a_ != null) a_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(a_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -6036,7 +6036,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.a_ != null) {
         if (a_ == null) {
           a_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionA();
-          a_.SetParent(Context, new EventPath(Context.Path, 1));
+          a_.SetParent(Context, 1);
         }
         A.MergeFrom(other.A);
       }
@@ -6056,7 +6056,7 @@ namespace Google.Protobuf.TestProtos {
           case 10: {
             if (a_ == null) {
               a_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionA();
-              a_.SetParent(Context, new EventPath(Context.Path, 1));
+              a_.SetParent(Context, 1);
             }
             input.ReadMessage(a_);
             break;
@@ -6080,12 +6080,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (a_ == null) {
                 a_ = new global::Google.Protobuf.TestProtos.TestMutualRecursionA();
-                a_.SetParent(Context, new EventPath(Context.Path, 1));
+                a_.SetParent(Context, 1);
               }
               (a_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               a_  = global::Google.Protobuf.TestProtos.TestMutualRecursionA.Parser.ParseFrom(e.Set.ByteData);
-              a_.SetParent(Context, new EventPath(Context.Path, 1));
+              a_.SetParent(Context, 1);
             }
           }
           break;
@@ -6150,8 +6150,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestEnumAllowAlias Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "value" field.</summary>
     public const int ValueFieldNumber = 1;
@@ -6328,8 +6328,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestCamelCaseFieldNames Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       repeatedPrimitiveField_.SetContext(Context, 7);
       repeatedStringField_.SetContext(Context, 8);
       repeatedEnumField_.SetContext(Context, 9);
@@ -6391,7 +6391,7 @@ namespace Google.Protobuf.TestProtos {
       get { return messageField_; }
       set {
         if(messageField_ != null) messageField_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(messageField_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -6584,7 +6584,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.messageField_ != null) {
         if (messageField_ == null) {
           messageField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-          messageField_.SetParent(Context, new EventPath(Context.Path, 4));
+          messageField_.SetParent(Context, 4);
         }
         MessageField.MergeFrom(other.MessageField);
       }
@@ -6617,7 +6617,7 @@ namespace Google.Protobuf.TestProtos {
           case 34: {
             if (messageField_ == null) {
               messageField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-              messageField_.SetParent(Context, new EventPath(Context.Path, 4));
+              messageField_.SetParent(Context, 4);
             }
             input.ReadMessage(messageField_);
             break;
@@ -6667,12 +6667,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (messageField_ == null) {
                 messageField_ = new global::Google.Protobuf.TestProtos.ForeignMessage();
-                messageField_.SetParent(Context, new EventPath(Context.Path, 4));
+                messageField_.SetParent(Context, 4);
               }
               (messageField_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               messageField_  = global::Google.Protobuf.TestProtos.ForeignMessage.Parser.ParseFrom(e.Set.ByteData);
-              messageField_.SetParent(Context, new EventPath(Context.Path, 4));
+              messageField_.SetParent(Context, 4);
             }
           }
           break;
@@ -6756,8 +6756,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestFieldOrderings Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "my_string" field.</summary>
     public const int MyStringFieldNumber = 11;
@@ -6815,7 +6815,7 @@ namespace Google.Protobuf.TestProtos {
       get { return singleNestedMessage_; }
       set {
         if(singleNestedMessage_ != null) singleNestedMessage_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 200));
+        value.SetParent(Context, 200);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(singleNestedMessage_)) {
           Context.AddSetEvent(200, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -6915,7 +6915,7 @@ namespace Google.Protobuf.TestProtos {
       if (other.singleNestedMessage_ != null) {
         if (singleNestedMessage_ == null) {
           singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage();
-          singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
+          singleNestedMessage_.SetParent(Context, 200);
         }
         SingleNestedMessage.MergeFrom(other.SingleNestedMessage);
       }
@@ -6944,7 +6944,7 @@ namespace Google.Protobuf.TestProtos {
           case 1602: {
             if (singleNestedMessage_ == null) {
               singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage();
-              singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
+              singleNestedMessage_.SetParent(Context, 200);
             }
             input.ReadMessage(singleNestedMessage_);
             break;
@@ -6994,8 +6994,8 @@ namespace Google.Protobuf.TestProtos {
 
         protected override NestedMessage Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, EventPath path) {
-          base.SetParent(parent, path);
+        public override void SetParent(EventContext parent, int field) {
+          base.SetParent(parent, field);
         }
         /// <summary>Field number for the "oo" field.</summary>
         public const int OoFieldNumber = 2;
@@ -7184,12 +7184,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (singleNestedMessage_ == null) {
                 singleNestedMessage_ = new global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage();
-                singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
+                singleNestedMessage_.SetParent(Context, 200);
               }
               (singleNestedMessage_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               singleNestedMessage_  = global::Google.Protobuf.TestProtos.TestFieldOrderings.Types.NestedMessage.Parser.ParseFrom(e.Set.ByteData);
-              singleNestedMessage_.SetParent(Context, new EventPath(Context.Path, 200));
+              singleNestedMessage_.SetParent(Context, 200);
             }
           }
           break;
@@ -7250,8 +7250,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override SparseEnumMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "sparse_enum" field.</summary>
     public const int SparseEnumFieldNumber = 1;
@@ -7412,8 +7412,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override OneString Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -7573,8 +7573,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override MoreString Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       data_.SetContext(Context, 1);
     }
     /// <summary>Field number for the "data" field.</summary>
@@ -7729,8 +7729,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override OneBytes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -7888,8 +7888,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override MoreBytes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8050,8 +8050,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Int32Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8209,8 +8209,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Uint32Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8368,8 +8368,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Int64Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8527,8 +8527,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Uint64Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8686,8 +8686,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BoolMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
@@ -8859,8 +8859,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestOneof Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "foo_int" field.</summary>
     public const int FooIntFieldNumber = 1;
@@ -8901,7 +8901,7 @@ namespace Google.Protobuf.TestProtos {
       get { return fooCase_ == FooOneofCase.FooMessage ? (global::Google.Protobuf.TestProtos.TestAllTypes) foo_ : null; }
       set {
         if(fooCase_ == FooOneofCase.FooMessage && foo_ != null) ((global::Google.Protobuf.TestProtos.TestAllTypes) foo_).ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 3));
+        value.SetParent(Context, 3);
         #if !DISABLE_EVENTS
         if(fooCase_ != FooOneofCase.FooMessage || !value.Equals(foo_)) {
           Context.AddSetEvent(3, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -9012,7 +9012,7 @@ namespace Google.Protobuf.TestProtos {
         case FooOneofCase.FooMessage:
           if (FooMessage == null) {
             FooMessage = new global::Google.Protobuf.TestProtos.TestAllTypes();
-            FooMessage.SetParent(Context, new EventPath(Context.Path, 3));
+            FooMessage.SetParent(Context, 3);
           }
           FooMessage.MergeFrom(other.FooMessage);
           break;
@@ -9046,7 +9046,7 @@ namespace Google.Protobuf.TestProtos {
             input.ReadMessage(subBuilder);
             foo_ = subBuilder;
             fooCase_ = FooOneofCase.FooMessage;
-            subBuilder.SetParent(Context, new EventPath(Context.Path, 3));
+            subBuilder.SetParent(Context, 3);
             break;
           }
         }
@@ -9074,12 +9074,12 @@ namespace Google.Protobuf.TestProtos {
             if (e.Path.Count - 1 != pathIndex) {
               if (foo_ == null) {
                 foo_ = new global::Google.Protobuf.TestProtos.TestAllTypes();
-                (foo_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+                (foo_ as zpr::IEventRegistry)?.SetParent(Context, 3);
               }
               (foo_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               foo_   = global::Google.Protobuf.TestProtos.TestAllTypes.Parser.ParseFrom(e.Set.ByteData);
-              (foo_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 3));
+              (foo_ as zpr::IEventRegistry)?.SetParent(Context, 3);
             }
             fooCase_ = foo_ == null ? FooOneofCase.None : FooOneofCase.FooMessage;
           }
@@ -9182,8 +9182,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestPackedTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       packedInt32_.SetContext(Context, 90);
       packedInt64_.SetContext(Context, 91);
       packedUint32_.SetContext(Context, 92);
@@ -9826,8 +9826,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestUnpackedTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       unpackedInt32_.SetContext(Context, 90);
       unpackedInt64_.SetContext(Context, 91);
       unpackedUint32_.SetContext(Context, 92);
@@ -10442,8 +10442,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestRepeatedScalarDifferentTagSizes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       repeatedFixed32_.SetContext(Context, 12);
       repeatedInt32_.SetContext(Context, 13);
       repeatedFixed64_.SetContext(Context, 2046);
@@ -10783,8 +10783,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestCommentInjectionMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
@@ -10947,8 +10947,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooRequest Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11069,8 +11069,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooResponse Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11191,8 +11191,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooClientMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11313,8 +11313,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooServerMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11435,8 +11435,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BarRequest Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11557,8 +11557,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BarResponse Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
@@ -11679,8 +11679,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestEmptyMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {

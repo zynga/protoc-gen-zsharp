@@ -83,7 +83,7 @@ void MessageFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSo
        printer->Print(
          variables_,
          "    if($name$_ != null) $name$_.ClearParent();\n"
-         "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+         "    value.SetParent(Context, $number$);\n");
     }
 
     printer->Print(
@@ -113,12 +113,12 @@ void MessageFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "        if (e.Path.Count - 1 != pathIndex) {\n"
       "          if ($name$_ == null) {\n"
       "            $name$_ = new $type_name$();\n"
-      "            $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "            $name$_.SetParent(Context, $number$);\n"
       "          }\n"
       "          ($name$_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        } else {\n"
       "          $name$_  = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
-      "          $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "          $name$_.SetParent(Context, $number$);\n"
       "        }\n");
   }
   else {
@@ -174,7 +174,7 @@ void MessageFieldGenerator::GenerateMergingCode(io::Printer* printer, bool isEve
     "    $name$_ = new $type_name$();\n");
   if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
-      "    $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+      "    $name$_.SetParent(Context, $number$);\n");
   }
   printer->Print(
     variables_,
@@ -192,7 +192,7 @@ void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEve
 
   if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
-      "  $name$_.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+      "  $name$_.SetParent(Context, $number$);\n");
   }
 
   printer->Print(
@@ -315,7 +315,7 @@ void MessageOneofFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
         printer->Print(
           variables_,
           "    if($oneof_name$Case_ == $oneof_property_name$OneofCase.$property_name$ && $oneof_name$_ != null) (($type_name$) $oneof_name$_).ClearParent();\n"
-          "    value.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+          "    value.SetParent(Context, $number$);\n");
       }
       // if (!value.Equals(test_)) {
 
@@ -343,12 +343,12 @@ void MessageOneofFieldGenerator::GenerateEventSource(io::Printer* printer) {
       "        if (e.Path.Count - 1 != pathIndex) {\n"
       "          if ($oneof_name$_ == null) {\n"
       "            $oneof_name$_ = new $type_name$();\n"
-      "            ($oneof_name$_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "            ($oneof_name$_ as zpr::IEventRegistry)?.SetParent(Context, $number$);\n"
       "          }\n"
       "          ($oneof_name$_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);\n"
       "        } else {\n"
       "          $oneof_name$_   = $type_name$.Parser.ParseFrom(e.Set.ByteData);\n"
-      "          ($oneof_name$_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, $number$));\n"
+      "          ($oneof_name$_ as zpr::IEventRegistry)?.SetParent(Context, $number$);\n"
       "        }\n");
   }
   else {
@@ -391,7 +391,7 @@ void MessageOneofFieldGenerator::GenerateMergingCode(io::Printer* printer, bool 
     "  $property_name$ = new $type_name$();\n");
   if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
-      "  $property_name$.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+      "  $property_name$.SetParent(Context, $number$);\n");
   }
   printer->Print(variables_,
     "}\n"
@@ -413,7 +413,7 @@ void MessageOneofFieldGenerator::GenerateParsingCode(io::Printer* printer, bool 
     "$oneof_name$Case_ = $oneof_property_name$OneofCase.$property_name$;\n");
   if(isEventSourced && isInternalEventSourced) {
     printer->Print(variables_,
-      "subBuilder.SetParent(Context, new EventPath(Context.Path, $number$));\n");
+      "subBuilder.SetParent(Context, $number$);\n");
   }
 }
 

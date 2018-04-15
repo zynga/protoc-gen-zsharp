@@ -234,8 +234,8 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
   if (IsEventSourced()) {
     printer->Print(
       vars,
-      "public override void SetParent(EventContext parent, EventPath path) {\n"
-      "  base.SetParent(parent, path);\n");
+      "public override void SetParent(EventContext parent, int field) {\n"
+      "  base.SetParent(parent, field);\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       bool isFieldSourced = false;

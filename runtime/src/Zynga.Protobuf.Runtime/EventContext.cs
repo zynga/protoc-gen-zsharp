@@ -7,7 +7,7 @@ namespace Zynga.Protobuf.Runtime {
 	/// The event context does the work of managing events and the relative paths of parents and children
 	/// </summary>
 	public class EventContext {
-		private const int UnsetPath = -1;
+		public const int UnsetPath = -1;
 		private List<EventData> _events;
 		private EventContext _parent;
 		private bool _eventsEnabled = true;

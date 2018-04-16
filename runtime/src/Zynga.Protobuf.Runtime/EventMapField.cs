@@ -412,8 +412,7 @@ namespace Zynga.Protobuf.Runtime {
 		private void SetParent(TKey key, TValue value) {
 			var registry = value as IEventRegistry;
 			var mapKey = _converter.GetMapKey(key);
-			// TODO: This is probably wrong
-			registry?.SetParent(new MapEventContext(_context, mapKey, _fieldNumber), -1);
+			registry?.SetParent(new MapEventContext(_context, mapKey, _fieldNumber), EventContext.UnsetPath);
 		}
 
 		private class DictionaryEnumerator : IDictionaryEnumerator {

@@ -28,10 +28,5 @@ namespace Zynga.Protobuf.Runtime {
 
 			_mapContext.AddMapEvent(_fieldNumber, me);
 		}
-
-		/// <inheritdoc />
-		public override void MarkDirty(IEventSubscribable eventRegistry) {
-			_mapContext.MarkDirty(eventRegistry);
-		}
 	}
 }

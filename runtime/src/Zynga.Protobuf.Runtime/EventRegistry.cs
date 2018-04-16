@@ -6,13 +6,8 @@ namespace Zynga.Protobuf.Runtime {
 	/// <summary>
 	/// The EventRegistry is extended by protobuf messages with the event_sourced option set
 	/// </summary>
-	public abstract class EventRegistry<T> : IEventRegistry, IEventSubscribable where T : IMessage<T> {
+	public abstract class EventRegistry<T> : IEventRegistry where T : IMessage<T> {
 		protected readonly EventContext Context = new EventContext();
-
-		/// <summary>
-		/// Subcribe to changes to this message caused by applying events
-		/// </summary>
-		public event Action<T> OnChanged;
 
 		/// <summary>
 		/// Takes a set of events and applies them to the Message
@@ -26,22 +21,6 @@ namespace Zynga.Protobuf.Runtime {
 				catch (Exception ex) {
 					throw new ApplyEventException(e, ex);
 				}
-			}
-
-			Context.NotifySubscribers();
-		}
-
-		/// <inheritdoc />
-		public void NotifySubscribers() {
-			OnChanged?.Invoke(Message);
-		}
-
-		/// <summary>
-		/// Mark the message dirty
-		/// </summary>
-		protected void MarkDirty() {
-			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
-				Context.MarkDirty(this);
 			}
 		}
 

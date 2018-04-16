@@ -357,7 +357,6 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     printer->Print(
       vars,
       "public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {\n"
-      "    MarkDirty();\n"
       "    if (e.Path.Count == 0) {\n"
       "      this.MergeFrom(e.Set.ByteData);\n"
       "      return true;\n"

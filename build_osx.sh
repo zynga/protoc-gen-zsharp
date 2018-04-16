@@ -19,7 +19,7 @@ zsharp="$SCRIPT_DIR/plugin/bazel-bin/protoc-gen-zsharp"
 $protoc --proto_path=$SCRIPT_DIR/proto --cpp_out=$SCRIPT_DIR/plugin/src/lib/generated $SCRIPT_DIR/proto/event_plugin.proto
 
 pushd $SCRIPT_DIR/plugin
-  ./build_linux.sh
+  #./build_linux.sh
   ./build_osx.sh
 popd
 

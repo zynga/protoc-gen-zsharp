@@ -258,8 +258,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleMapDeltaMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
@@ -530,8 +530,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleLongToMessageDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
@@ -815,8 +815,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToEnumDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
@@ -1099,8 +1099,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToStringDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>
@@ -1383,8 +1383,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToLongDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       testFoo_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "test_foo" field.</summary>

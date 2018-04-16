@@ -428,7 +428,7 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void SetParent(int index, T item) {
 			var registry = item as IEventRegistry;
-			registry?.SetParent(new ListEventContext(_context, index, _fieldNumber), EventPath.Empty);
+			registry?.SetParent(new ListEventContext(_context, index, _fieldNumber), EventContext.UnsetPath);
 		}
 
 		private void UpdateParents(int startIndex) {

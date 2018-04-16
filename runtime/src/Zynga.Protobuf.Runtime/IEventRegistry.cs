@@ -52,9 +52,7 @@ namespace Zynga.Protobuf.Runtime {
 		/// Used to establish a parent child relationship between a message and child message.
 		/// This is for internal use only.
 		/// </summary>
-		/// <param name="parent"></param>
-		/// <param name="path"></param>
-		void SetParent(EventContext parent, EventPath path);
+		void SetParent(EventContext parent, int field);
 
 		/// <summary>
 		/// Clears the existing parent, this is typically called when a child message is replaced or a message

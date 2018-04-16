@@ -19,47 +19,14 @@ namespace Zynga.Protobuf.Runtime {
 			_fieldNumber = fieldNumber;
 		}
 
-		private void AddUpdateEvent(EventData data) {
+		public override void AddEvent(EventData e) {
 			var me = new MapEvent {
 				MapAction = MapAction.UpdateMap,
 				Key = _key,
-				EventData = data
+				EventData = e
 			};
 
 			_mapContext.AddMapEvent(_fieldNumber, me);
-		}
-
-		/// <inheritdoc />
-		public override void AddSetEvent(EventPath path, EventContent content) {
-			if (!_mapContext.EventsEnabled) return;
-			var e = new EventData {
-				Set = content
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
-		}
-
-		/// <inheritdoc />
-		public override void AddMapEvent(EventPath path, MapEvent mapEvent) {
-			if (!_mapContext.EventsEnabled) return;
-			var e = new EventData {
-				MapEvent = mapEvent
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
-		}
-
-		/// <inheritdoc />
-		public override void AddListEvent(EventPath path, ListEvent listEvent) {
-			if (!_mapContext.EventsEnabled) return;
-			var e = new EventData {
-				ListEvent = listEvent
-			};
-			e.Path.AddRange(path.Path);
-
-			AddUpdateEvent(e);
 		}
 
 		/// <inheritdoc />

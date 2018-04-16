@@ -93,8 +93,8 @@ namespace Google.Protobuf.TestProtos {
 
     protected override ImportMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "d" field.</summary>
     public const int DFieldNumber = 1;

@@ -202,8 +202,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override HasEvents Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;

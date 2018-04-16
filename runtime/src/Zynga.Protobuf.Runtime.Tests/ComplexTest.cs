@@ -134,8 +134,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageA Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "b" field.</summary>
     public const int BFieldNumber = 1;
@@ -144,7 +144,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return aCase_ == AOneofCase.B ? (global::Com.Zynga.Runtime.Protobuf.File.MessageB) a_ : null; }
       set {
         if(aCase_ == AOneofCase.B && a_ != null) ((global::Com.Zynga.Runtime.Protobuf.File.MessageB) a_).ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 1));
+        value.SetParent(Context, 1);
         #if !DISABLE_EVENTS
         if(aCase_ != AOneofCase.B || !value.Equals(a_)) {
           Context.AddSetEvent(1, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -400,7 +400,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
         case AOneofCase.B:
           if (B == null) {
             B = new global::Com.Zynga.Runtime.Protobuf.File.MessageB();
-            B.SetParent(Context, new EventPath(Context.Path, 1));
+            B.SetParent(Context, 1);
           }
           B.MergeFrom(other.B);
           break;
@@ -424,7 +424,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             input.ReadMessage(subBuilder);
             a_ = subBuilder;
             aCase_ = AOneofCase.B;
-            subBuilder.SetParent(Context, new EventPath(Context.Path, 1));
+            subBuilder.SetParent(Context, 1);
             break;
           }
           case 16: {
@@ -466,12 +466,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (a_ == null) {
                 a_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageB();
-                (a_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 1));
+                (a_ as zpr::IEventRegistry)?.SetParent(Context, 1);
               }
               (a_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               a_   = global::Com.Zynga.Runtime.Protobuf.File.MessageB.Parser.ParseFrom(e.Set.ByteData);
-              (a_ as zpr::IEventRegistry)?.SetParent(Context, new EventPath(Context.Path, 1));
+              (a_ as zpr::IEventRegistry)?.SetParent(Context, 1);
             }
             aCase_ = a_ == null ? AOneofCase.None : AOneofCase.B;
           }
@@ -565,8 +565,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageB Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       c_.SetContext(Context, 2);
     }
     /// <summary>Field number for the "c" field.</summary>
@@ -964,8 +964,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageC Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       d_.SetContext(Context, 3);
     }
     /// <summary>Field number for the "d" field.</summary>
@@ -1361,8 +1361,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageD Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "e" field.</summary>
     public const int EFieldNumber = 4;
@@ -1372,7 +1372,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return e_; }
       set {
         if(e_ != null) e_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(e_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1589,7 +1589,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       if (other.e_ != null) {
         if (e_ == null) {
           e_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageE();
-          e_.SetParent(Context, new EventPath(Context.Path, 4));
+          e_.SetParent(Context, 4);
         }
         E.MergeFrom(other.E);
       }
@@ -1636,7 +1636,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           case 34: {
             if (e_ == null) {
               e_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageE();
-              e_.SetParent(Context, new EventPath(Context.Path, 4));
+              e_.SetParent(Context, 4);
             }
             input.ReadMessage(e_);
             break;
@@ -1668,12 +1668,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (e_ == null) {
                 e_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageE();
-                e_.SetParent(Context, new EventPath(Context.Path, 4));
+                e_.SetParent(Context, 4);
               }
               (e_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               e_  = global::Com.Zynga.Runtime.Protobuf.File.MessageE.Parser.ParseFrom(e.Set.ByteData);
-              e_.SetParent(Context, new EventPath(Context.Path, 4));
+              e_.SetParent(Context, 4);
             }
           }
           break;
@@ -1764,8 +1764,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageE Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "f" field.</summary>
     public const int FFieldNumber = 5;
@@ -1775,7 +1775,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return f_; }
       set {
         if(f_ != null) f_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 5));
+        value.SetParent(Context, 5);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(f_)) {
           Context.AddSetEvent(5, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1992,7 +1992,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       if (other.f_ != null) {
         if (f_ == null) {
           f_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageF();
-          f_.SetParent(Context, new EventPath(Context.Path, 5));
+          f_.SetParent(Context, 5);
         }
         F.MergeFrom(other.F);
       }
@@ -2043,7 +2043,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           case 42: {
             if (f_ == null) {
               f_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageF();
-              f_.SetParent(Context, new EventPath(Context.Path, 5));
+              f_.SetParent(Context, 5);
             }
             input.ReadMessage(f_);
             break;
@@ -2071,12 +2071,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (f_ == null) {
                 f_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageF();
-                f_.SetParent(Context, new EventPath(Context.Path, 5));
+                f_.SetParent(Context, 5);
               }
               (f_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               f_  = global::Com.Zynga.Runtime.Protobuf.File.MessageF.Parser.ParseFrom(e.Set.ByteData);
-              f_.SetParent(Context, new EventPath(Context.Path, 5));
+              f_.SetParent(Context, 5);
             }
           }
           break;
@@ -2167,8 +2167,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageF Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "g" field.</summary>
     public const int GFieldNumber = 6;
@@ -2178,7 +2178,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return g_; }
       set {
         if(g_ != null) g_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 6));
+        value.SetParent(Context, 6);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(g_)) {
           Context.AddSetEvent(6, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -2395,7 +2395,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       if (other.g_ != null) {
         if (g_ == null) {
           g_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageG();
-          g_.SetParent(Context, new EventPath(Context.Path, 6));
+          g_.SetParent(Context, 6);
         }
         G.MergeFrom(other.G);
       }
@@ -2450,7 +2450,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           case 50: {
             if (g_ == null) {
               g_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageG();
-              g_.SetParent(Context, new EventPath(Context.Path, 6));
+              g_.SetParent(Context, 6);
             }
             input.ReadMessage(g_);
             break;
@@ -2474,12 +2474,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (g_ == null) {
                 g_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageG();
-                g_.SetParent(Context, new EventPath(Context.Path, 6));
+                g_.SetParent(Context, 6);
               }
               (g_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               g_  = global::Com.Zynga.Runtime.Protobuf.File.MessageG.Parser.ParseFrom(e.Set.ByteData);
-              g_.SetParent(Context, new EventPath(Context.Path, 6));
+              g_.SetParent(Context, 6);
             }
           }
           break;
@@ -2572,8 +2572,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageG Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       h_.SetContext(Context, 7);
     }
     /// <summary>Field number for the "h" field.</summary>
@@ -2951,8 +2951,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageO Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "p" field.</summary>
     public const int PFieldNumber = 8;
@@ -2962,7 +2962,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return p_; }
       set {
         if(p_ != null) p_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 8));
+        value.SetParent(Context, 8);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(p_)) {
           Context.AddSetEvent(8, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -3104,7 +3104,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       if (other.p_ != null) {
         if (p_ == null) {
           p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
-          p_.SetParent(Context, new EventPath(Context.Path, 8));
+          p_.SetParent(Context, 8);
         }
         P.MergeFrom(other.P);
       }
@@ -3130,7 +3130,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           case 66: {
             if (p_ == null) {
               p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
-              p_.SetParent(Context, new EventPath(Context.Path, 8));
+              p_.SetParent(Context, 8);
             }
             input.ReadMessage(p_);
             break;
@@ -3162,12 +3162,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (p_ == null) {
                 p_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageP();
-                p_.SetParent(Context, new EventPath(Context.Path, 8));
+                p_.SetParent(Context, 8);
               }
               (p_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               p_  = global::Com.Zynga.Runtime.Protobuf.File.MessageP.Parser.ParseFrom(e.Set.ByteData);
-              p_.SetParent(Context, new EventPath(Context.Path, 8));
+              p_.SetParent(Context, 8);
             }
           }
           break;
@@ -3243,8 +3243,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageP Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "q" field.</summary>
     public const int QFieldNumber = 9;
@@ -3254,7 +3254,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       get { return q_; }
       set {
         if(q_ != null) q_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 9));
+        value.SetParent(Context, 9);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(q_)) {
           Context.AddSetEvent(9, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -3396,7 +3396,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       if (other.q_ != null) {
         if (q_ == null) {
           q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
-          q_.SetParent(Context, new EventPath(Context.Path, 9));
+          q_.SetParent(Context, 9);
         }
         Q.MergeFrom(other.Q);
       }
@@ -3426,7 +3426,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
           case 74: {
             if (q_ == null) {
               q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
-              q_.SetParent(Context, new EventPath(Context.Path, 9));
+              q_.SetParent(Context, 9);
             }
             input.ReadMessage(q_);
             break;
@@ -3454,12 +3454,12 @@ namespace Com.Zynga.Runtime.Protobuf.File {
             if (e.Path.Count - 1 != pathIndex) {
               if (q_ == null) {
                 q_ = new global::Com.Zynga.Runtime.Protobuf.File.MessageQ();
-                q_.SetParent(Context, new EventPath(Context.Path, 9));
+                q_.SetParent(Context, 9);
               }
               (q_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               q_  = global::Com.Zynga.Runtime.Protobuf.File.MessageQ.Parser.ParseFrom(e.Set.ByteData);
-              q_.SetParent(Context, new EventPath(Context.Path, 9));
+              q_.SetParent(Context, 9);
             }
           }
           break;
@@ -3537,8 +3537,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageQ Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       r_.SetContext(Context, 10);
     }
     /// <summary>Field number for the "r" field.</summary>
@@ -3808,8 +3808,8 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageR Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "r" field.</summary>
     public const int RFieldNumber = 11;

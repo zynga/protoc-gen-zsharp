@@ -139,8 +139,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override NestedMessage1 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "int_a" field.</summary>
     public const int IntAFieldNumber = 1;
@@ -299,8 +299,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override NestedMessage2 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
     }
     /// <summary>Field number for the "int_a" field.</summary>
     public const int IntAFieldNumber = 1;
@@ -509,8 +509,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage1 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       listA_.SetContext(Context, 5);
       mapA_.SetContext(Context, 6);
     }
@@ -570,7 +570,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return nestedA_; }
       set {
         if(nestedA_ != null) nestedA_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(nestedA_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -775,7 +775,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedA_ != null) {
         if (nestedA_ == null) {
           nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-          nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
+          nestedA_.SetParent(Context, 4);
         }
         NestedA.MergeFrom(other.NestedA);
       }
@@ -812,7 +812,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedA_ == null) {
               nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-              nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedA_.SetParent(Context, 4);
             }
             input.ReadMessage(nestedA_);
             break;
@@ -858,12 +858,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             if (e.Path.Count - 1 != pathIndex) {
               if (nestedA_ == null) {
                 nestedA_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-                nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
+                nestedA_.SetParent(Context, 4);
               }
               (nestedA_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedA_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage1.Parser.ParseFrom(e.Set.ByteData);
-              nestedA_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedA_.SetParent(Context, 4);
             }
           }
           break;
@@ -955,8 +955,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage2 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       listB_.SetContext(Context, 5);
       mapB_.SetContext(Context, 6);
     }
@@ -1016,7 +1016,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return nestedB_; }
       set {
         if(nestedB_ != null) nestedB_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(nestedB_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1221,7 +1221,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+          nestedB_.SetParent(Context, 4);
         }
         NestedB.MergeFrom(other.NestedB);
       }
@@ -1258,7 +1258,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
             input.ReadMessage(nestedB_);
             break;
@@ -1304,12 +1304,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             if (e.Path.Count - 1 != pathIndex) {
               if (nestedB_ == null) {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage1();
-                nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+                nestedB_.SetParent(Context, 4);
               }
               (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage1.Parser.ParseFrom(e.Set.ByteData);
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
           }
           break;
@@ -1405,8 +1405,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage3 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       listB_.SetContext(Context, 5);
       mapB_.SetContext(Context, 6);
     }
@@ -1466,7 +1466,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return nestedB_; }
       set {
         if(nestedB_ != null) nestedB_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(nestedB_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -1722,7 +1722,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+          nestedB_.SetParent(Context, 4);
         }
         NestedB.MergeFrom(other.NestedB);
       }
@@ -1765,7 +1765,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
             input.ReadMessage(nestedB_);
             break;
@@ -1820,12 +1820,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             if (e.Path.Count - 1 != pathIndex) {
               if (nestedB_ == null) {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-                nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+                nestedB_.SetParent(Context, 4);
               }
               (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage2.Parser.ParseFrom(e.Set.ByteData);
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
           }
           break;
@@ -1926,8 +1926,8 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage4 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, EventPath path) {
-      base.SetParent(parent, path);
+    public override void SetParent(EventContext parent, int field) {
+      base.SetParent(parent, field);
       listB_.SetContext(Context, 5);
       mapB_.SetContext(Context, 6);
     }
@@ -1971,7 +1971,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       get { return nestedB_; }
       set {
         if(nestedB_ != null) nestedB_.ClearParent();
-        value.SetParent(Context, new EventPath(Context.Path, 4));
+        value.SetParent(Context, 4);
         #if !DISABLE_EVENTS
         if(value == null || !value.Equals(nestedB_)) {
           Context.AddSetEvent(4, new zpr.EventSource.EventContent { ByteData = value.ToByteString() });
@@ -2189,7 +2189,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       if (other.nestedB_ != null) {
         if (nestedB_ == null) {
           nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-          nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+          nestedB_.SetParent(Context, 4);
         }
         NestedB.MergeFrom(other.NestedB);
       }
@@ -2225,7 +2225,7 @@ namespace Com.Zynga.Runtime.Protobuf {
           case 34: {
             if (nestedB_ == null) {
               nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
             input.ReadMessage(nestedB_);
             break;
@@ -2271,12 +2271,12 @@ namespace Com.Zynga.Runtime.Protobuf {
             if (e.Path.Count - 1 != pathIndex) {
               if (nestedB_ == null) {
                 nestedB_ = new global::Com.Zynga.Runtime.Protobuf.NestedMessage2();
-                nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+                nestedB_.SetParent(Context, 4);
               }
               (nestedB_ as zpr::IEventRegistry)?.ApplyEvent(e, pathIndex + 1);
             } else {
               nestedB_  = global::Com.Zynga.Runtime.Protobuf.NestedMessage2.Parser.ParseFrom(e.Set.ByteData);
-              nestedB_.SetParent(Context, new EventPath(Context.Path, 4));
+              nestedB_.SetParent(Context, 4);
             }
           }
           break;

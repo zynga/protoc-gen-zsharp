@@ -7,13 +7,12 @@ using Google.Protobuf.Collections;
 using Zynga.Protobuf.Runtime.EventSource;
 
 namespace Zynga.Protobuf.Runtime {
-	public class EventMapField<TKey, TValue> : IEventSubscribable, IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, IEquatable<MapField<TKey, TValue>>, IDictionary, IReadOnlyDictionary<TKey, TValue> {
+	public class EventMapField<TKey, TValue>: IDeepCloneable<MapField<TKey, TValue>>, IDictionary<TKey, TValue>, IEquatable<MapField<TKey, TValue>>, IDictionary, IReadOnlyDictionary<TKey, TValue> {
 		private readonly MapField<TKey, TValue> _internal;
 		private readonly bool _isMessageType;
 		private EventContext _context;
 		private int _fieldNumber;
 		private readonly EventMapConverter<TKey, TValue> _converter;
-		private readonly List<EventMapChange<TKey, TValue>> _itemsChanged = new List<EventMapChange<TKey, TValue>>();
 
 		public EventMapField(EventMapConverter<TKey, TValue> converter, bool isMessageType = false) {
 			_converter = converter;
@@ -33,41 +32,6 @@ namespace Zynga.Protobuf.Runtime {
 			}
 			else {
 				_internal = mapField;
-			}
-		}
-
-		/// <summary>
-		/// Subcribe to changes of this message
-		/// </summary>
-		public event Action<EventMapField<TKey, TValue>, IReadOnlyList<EventMapChange<TKey, TValue>>> OnChanged;
-
-		/// <inheritdoc />
-		public void NotifySubscribers() {
-			try {
-				OnChanged?.Invoke(this, _itemsChanged);
-			}
-			finally {
-				_itemsChanged.Clear();
-			}
-		}
-
-		private void MarkDirtyAdd(TKey key, TValue value) {
-			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
-				_context.MarkDirty(this);
-				_itemsChanged.Add(new EventMapChange<TKey, TValue>(key, value, EventChangeType.Add));
-			}
-		}
-
-		private void MarkDirtyRemove(TKey key, TValue value) {
-			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
-				_context.MarkDirty(this);
-				_itemsChanged.Add(new EventMapChange<TKey, TValue>(key, value, EventChangeType.Remove));
-			}
-		}
-
-		private void MarkDirty() {
-			if (OnChanged != null && OnChanged.GetInvocationList().Length > 0) {
-				_context.MarkDirty(this);
 			}
 		}
 
@@ -344,13 +308,11 @@ namespace Zynga.Protobuf.Runtime {
 					return true;
 				case MapAction.ClearMap:
 					InternalClear();
-					MarkDirty();
 					return true;
 				case MapAction.UpdateMap:
 					var updateKey = _converter.GetKey(e.Key);
 					var registry = _internal[updateKey] as IEventRegistry;
 					registry?.ApplyEvent(e.EventData, 0);
-					MarkDirty();
 					return true;
 				default:
 					return false;
@@ -359,7 +321,6 @@ namespace Zynga.Protobuf.Runtime {
 
 		private void InternalAdd(TKey key, TValue value) {
 			_internal.Add(key, value);
-			MarkDirtyAdd(key, value);
 			if (_isMessageType) SetParent(key, value);
 		}
 
@@ -371,7 +332,6 @@ namespace Zynga.Protobuf.Runtime {
 				}
 
 				_internal.Remove(key);
-				MarkDirtyRemove(key, value);
 				return true;
 			}
 
@@ -381,14 +341,12 @@ namespace Zynga.Protobuf.Runtime {
 		private void InternalReplace(TKey key, TValue value) {
 			TValue existingValue;
 			if (_internal.TryGetValue(key, out existingValue)) {
-				MarkDirtyRemove(key, existingValue);
 				if (_isMessageType) {
 					ClearParent(existingValue);
 				}
 			}
 
 			_internal[key] = value;
-			MarkDirtyAdd(key, value);
 			if (_isMessageType) {
 				SetParent(key, value);
 			}

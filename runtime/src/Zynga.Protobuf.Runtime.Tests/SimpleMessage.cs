@@ -218,7 +218,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -433,7 +432,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -605,7 +603,6 @@ namespace Com.Zynga.Runtime.Protobuf {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

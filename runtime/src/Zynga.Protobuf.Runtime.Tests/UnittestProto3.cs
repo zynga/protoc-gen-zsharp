@@ -3954,7 +3954,6 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -3989,7 +3988,6 @@ namespace Google.Protobuf.TestProtos {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4617,7 +4615,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4803,7 +4800,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -4966,7 +4962,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5092,7 +5087,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5260,7 +5254,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5468,7 +5461,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5674,7 +5666,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -5859,7 +5850,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6070,7 +6060,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6242,7 +6231,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -6645,7 +6633,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7123,7 +7110,6 @@ namespace Google.Protobuf.TestProtos {
         }
 
         public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-            MarkDirty();
             if (e.Path.Count == 0) {
               this.MergeFrom(e.Set.ByteData);
               return true;
@@ -7162,7 +7148,6 @@ namespace Google.Protobuf.TestProtos {
     #endregion
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7342,7 +7327,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7504,7 +7488,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7662,7 +7645,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7821,7 +7803,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -7980,7 +7961,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8142,7 +8122,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8301,7 +8280,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8460,7 +8438,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8619,7 +8596,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -8778,7 +8754,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -9054,7 +9029,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -9662,7 +9636,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10306,7 +10279,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10696,7 +10668,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -10878,7 +10849,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11007,7 +10977,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11129,7 +11098,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11251,7 +11219,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11373,7 +11340,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11495,7 +11461,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11617,7 +11582,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;
@@ -11739,7 +11703,6 @@ namespace Google.Protobuf.TestProtos {
     }
 
     public override bool ApplyEvent(zpr.EventSource.EventData e, int pathIndex) {
-        MarkDirty();
         if (e.Path.Count == 0) {
           this.MergeFrom(e.Set.ByteData);
           return true;

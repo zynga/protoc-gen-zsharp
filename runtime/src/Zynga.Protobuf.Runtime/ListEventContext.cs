@@ -36,10 +36,5 @@ namespace Zynga.Protobuf.Runtime {
 
 			_listContext.AddListEvent(_fieldNumber, le);
 		}
-
-		/// <inheritdoc />
-		public override void MarkDirty(IEventSubscribable eventRegistry) {
-			_listContext.MarkDirty(eventRegistry);
-		}
 	}
 }

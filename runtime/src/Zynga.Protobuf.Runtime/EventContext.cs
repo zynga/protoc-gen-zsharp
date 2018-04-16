@@ -33,8 +33,18 @@ namespace Zynga.Protobuf.Runtime {
 			_events?.Clear();
 		}
 
+		/// <summary>
+		/// If the associated message has a parent, this will be the field id of the message for the parent
+		/// </summary>
 		public int Field {
 			get { return _field; }
+		}
+
+		/// <summary>
+		/// The current parent message
+		/// </summary>
+		public EventContext Parent {
+			get { return _parent; }
 		}
 
 		/// <summary>
@@ -123,7 +133,7 @@ namespace Zynga.Protobuf.Runtime {
 			EventContext p = this;
 			while (p != null && p.Field != UnsetPath) {
 				path.Add(p.Field);
-				p = p._parent;
+				p = p.Parent;
 			}
 
 			// add it to the repeated field in reverse

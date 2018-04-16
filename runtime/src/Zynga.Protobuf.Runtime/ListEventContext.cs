@@ -8,7 +8,7 @@ namespace Zynga.Protobuf.Runtime {
 	public class ListEventContext : EventContext {
 		private readonly EventContext _listContext;
 		private int _index;
-		private int _fieldNumber;
+		private readonly int _fieldNumber;
 
 		/// <summary>
 		/// Creates a ListEventContext Instance

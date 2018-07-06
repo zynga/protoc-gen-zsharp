@@ -204,8 +204,8 @@ void MessageFieldGenerator::GenerateParsingCode(io::Printer* printer, bool isEve
 
     printer->Print(
       variables_,
-      "$name$_ = new $type_name$();\n"
-      "$name$_.MergeFrom(input);\n");
+      // TODO(jonskeet): Do we really need merging behaviour like this?
+      "input.ReadMessage($name$_);\n"); // No need to support TYPE_GROUP...
   }
   else {
     printer->Print(

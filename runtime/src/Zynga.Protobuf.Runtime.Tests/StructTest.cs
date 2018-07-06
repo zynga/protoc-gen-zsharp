@@ -288,8 +288,7 @@ namespace Com.Zynga.Runtime.Protobuf {
             input.SkipLastField();
             break;
           case 10: {
-            a_ = new global::Com.Zynga.Runtime.Protobuf.TestStruct();
-            a_.MergeFrom(input);
+            input.ReadMessage(a_);
             break;
           }
         }

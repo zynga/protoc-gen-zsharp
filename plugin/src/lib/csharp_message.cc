@@ -82,14 +82,16 @@ MessageGenerator::MessageGenerator(const Descriptor* descriptor,
   }
   std::sort(fields_by_number_.begin(), fields_by_number_.end(),
             CompareFieldNumbers);
-  
+
   is_event_sourced = HasFileEventSource(descriptor->file());
 
-  // only use this override if the file level check has not been
-  // set
-  if (descriptor_ != NULL && !is_event_sourced) {
+  if (descriptor_ != NULL) {
       const MessageOptions& op = descriptor_->options();
-      is_event_sourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+      // only use this override if the file level check has not been set
+      if(!is_event_sourced) {
+        is_event_sourced = op.HasExtension(com::zynga::runtime::protobuf::event_sourced);
+      }
+      use_struct = op.HasExtension(com::zynga::runtime::protobuf::use_struct);
   }
 }
 
@@ -130,16 +132,23 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 
   WriteMessageDocComment(printer, descriptor_);
   AddDeprecatedFlag(printer);
-  
-  printer->Print(
-    vars,
-    "$access_level$ sealed partial class $class_name$ :");
+
+  if(UseStruct()) {
+    printer->Print(
+      vars,
+      "$access_level$ partial struct $class_name$ :");
+  }
+  else {
+    printer->Print(
+      vars,
+      "$access_level$ sealed partial class $class_name$ :");
+  }
 
     /// The following code is Copyright 2018, Zynga
     if (IsEventSourced()) {
       printer->Print(
       vars,
-      " zpr::EventRegistry<$class_name$>,");  
+      " zpr::EventRegistry<$class_name$>,");
     }
     ///
 
@@ -190,36 +199,38 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
   }
 
   // Parameterless constructor and partial OnConstruction method.
-  WriteGeneratedCodeAttributes(printer);
-  printer->Print(
-    vars,
-    "public $class_name$() {\n"
-    "  OnConstruction();\n");
+  if(!UseStruct()) {
+    WriteGeneratedCodeAttributes(printer);
+    printer->Print(
+      vars,
+      "public $class_name$() {\n"
+      "  OnConstruction();\n");
 
-  if (IsEventSourced()) {
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      bool isFieldSourced = false;
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
-        printer->Print(
-          "  $field_name$_.SetContext(Context, $field_num$);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
-          "field_num", SimpleItoa(fieldDescriptor->number()));
+    if (IsEventSourced()) {
+      for (int i = 0; i < descriptor_->field_count(); i++) {
+        bool isFieldSourced = false;
+        const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+        if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
+          printer->Print(
+            "  $field_name$_.SetContext(Context, $field_num$);\n",
+            "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
+            "field_num", SimpleItoa(fieldDescriptor->number()));
+        }
       }
     }
-  }
 
-  printer->Print(
-    vars,
-    "}\n\n"
-    "partial void OnConstruction();\n\n");
+    printer->Print(
+      vars,
+      "}\n\n"
+      "partial void OnConstruction();\n\n");
+  }
 
   GenerateCloningCode(printer, IsEventSourced());
   GenerateFreezingCode(printer);
 
   /// The following code is Copyright 2018, Zynga
   // we add this to all files just as an easy way to know if this is a DeltaFile
-  // without having to do some sort of cast check 
+  // without having to do some sort of cast check
   printer->Print(
     "public static bool IsEventSourced = $sourced$;\n\n",
     "sourced", IsEventSourced() ? "true" : "false");
@@ -230,7 +241,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       vars,
       "protected override $class_name$ Message { get{ return this; } }\n\n");
   }
-  
+
   if (IsEventSourced()) {
     printer->Print(
       vars,
@@ -253,7 +264,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       "}\n");
   }
   ///
-  
+
   // Fields/properties
   for (int i = 0; i < descriptor_->field_count(); i++) {
     const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
@@ -267,7 +278,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       "index", SimpleItoa(fieldDescriptor->number()));
     scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(fieldDescriptor));
-        
+
     generator->GenerateMembers(printer, IsEventSourced());
     printer->Print("\n");
   }
@@ -294,9 +305,16 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     printer->Print("}\n");
     // TODO: Should we put the oneof .proto comments here?
     // It's unclear exactly where they should go.
-    printer->Print(
-      vars,
-      "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
+    if(UseStruct()) {
+      printer->Print(
+        vars,
+        "private $property_name$OneofCase $name$Case_;\n");
+    }
+    else {
+      printer->Print(
+        vars,
+        "private $property_name$OneofCase $name$Case_ = $property_name$OneofCase.None;\n");
+    }
     WriteGeneratedCodeAttributes(printer);
     printer->Print(
       vars,
@@ -370,7 +388,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
         "field_number", SimpleItoa(fieldDescriptor->number()));
         scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(fieldDescriptor));
-        
+
         generator->GenerateEventSource(printer);
         printer->Print("      }\n");
         printer->Print("      break;\n");
@@ -402,7 +420,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       "}\n\n");
   }
   ///
-  
+
 
   printer->Outdent();
   printer->Print("}\n");
@@ -414,6 +432,10 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 // are set!
 bool MessageGenerator::IsEventSourced() {
   return is_event_sourced;
+}
+
+bool MessageGenerator::UseStruct() {
+  return use_struct;
 }
 ///
 
@@ -490,12 +512,14 @@ void MessageGenerator::GenerateFrameworkMethods(io::Printer* printer) {
     vars["class_name"] = class_name();
 
     // Equality
-	WriteGeneratedCodeAttributes(printer);
-    printer->Print(
-        vars,
-        "public override bool Equals(object other) {\n"
-        "  return Equals(other as $class_name$);\n"
-        "}\n\n");
+    if(!UseStruct()) {
+      WriteGeneratedCodeAttributes(printer);
+      printer->Print(
+          vars,
+          "public override bool Equals(object other) {\n"
+          "  return Equals(other as $class_name$);\n"
+          "}\n\n");
+    }
 	WriteGeneratedCodeAttributes(printer);
 	printer->Print(
 	    vars,
@@ -608,13 +632,16 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer, bool isEvent
     vars,
     "public void MergeFrom($class_name$ other) {\n");
   printer->Indent();
-  printer->Print(
-    "if (other == null) {\n"
-    "  return;\n"
-    "}\n");
+  if(!UseStruct()) {
+    printer->Print(
+      "if (other == null) {\n"
+      "  return;\n"
+      "}\n");
+  }
+
   // Merge non-oneof fields
   for (int i = 0; i < descriptor_->field_count(); i++) {
-    if (!descriptor_->field(i)->containing_oneof()) {      
+    if (!descriptor_->field(i)->containing_oneof()) {
       scoped_ptr<FieldGeneratorBase> generator(
           CreateFieldGeneratorInternal(descriptor_->field(i)));
       generator->GenerateMergingCode(printer, isEventSourced);

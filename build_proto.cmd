@@ -13,3 +13,4 @@ protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/unittest_import_proto3.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/unittest_import_public_proto3.proto
 protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/unittest_proto3.proto
+protoc --proto_path=./proto/ --plugin=protoc-gen-zsharp=./plugin/bazel-bin/protoc-gen-zsharp.exe --zsharp_out=./runtime/src/Zynga.Protobuf.Runtime.Tests ./proto/test/struct_test.proto

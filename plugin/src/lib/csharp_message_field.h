@@ -72,6 +72,7 @@ class MessageFieldGenerator : public FieldGeneratorBase {
   virtual void WriteToString(io::Printer* printer);
  protected:
   bool IsInternalEventSourced();
+  bool UseStruct();
 
 
  private:
@@ -94,7 +95,7 @@ class MessageOneofFieldGenerator : public MessageFieldGenerator {
   virtual void GenerateEventAdd(io::Printer* printer, bool isMap = false);
   virtual void GenerateEventAddEvent(io::Printer* printer);
   ///
-  
+
   virtual void WriteToString(io::Printer* printer);
   virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
 

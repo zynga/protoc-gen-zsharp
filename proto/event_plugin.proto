@@ -9,7 +9,8 @@ option csharp_namespace = "Zynga.Protobuf.EventSource";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.MessageOptions {
-	bool event_sourced = 62345;
+  bool event_sourced = 62345;
+  bool use_struct = 62348;
 }
 
 extend google.protobuf.FieldOptions {
@@ -17,6 +18,5 @@ extend google.protobuf.FieldOptions {
 }
 
 extend google.protobuf.FileOptions {
-	bool file_event_sourced = 62347;
+  bool file_event_sourced = 62347;
 }
-

@@ -67,6 +67,10 @@ static const int kEventSourcedFieldNumber = 62345;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   event_sourced;
+static const int kUseStructFieldNumber = 62348;
+extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  use_struct;
 static const int kExcludeChecksumFieldNumber = 62346;
 extern ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >

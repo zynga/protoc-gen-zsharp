@@ -59,6 +59,7 @@ class MessageGenerator : public SourceGeneratorBase {
 
   /// The following code is Copyright 2018, Zynga
   bool IsEventSourced();
+  bool UseStruct();
   ///
 
   FieldGeneratorBase* CreateFieldGeneratorInternal(
@@ -69,6 +70,7 @@ class MessageGenerator : public SourceGeneratorBase {
   std::vector<std::string> field_names_;
   std::vector<const FieldDescriptor*> fields_by_number_;
   bool is_event_sourced;
+  bool use_struct;
 
   void GenerateMessageSerializationMethods(io::Printer* printer);
   void GenerateMergingMethods(io::Printer* printer, bool isEventSourced);
@@ -79,7 +81,7 @@ class MessageGenerator : public SourceGeneratorBase {
   bool HasNestedGeneratedTypes();
 
   void AddDeprecatedFlag(io::Printer* printer);
-  
+
   std::string class_name();
   std::string full_class_name();
 

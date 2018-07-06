@@ -77,6 +77,9 @@ void TableStruct::InitDefaultsImpl() {
     ::google::protobuf::MessageOptions::internal_default_instance(),
     62345, 8, false, false);
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
+    ::google::protobuf::MessageOptions::internal_default_instance(),
+    62348, 8, false, false);
+  ::google::protobuf::internal::ExtensionSet::RegisterExtension(
     ::google::protobuf::FieldOptions::internal_default_instance(),
     62346, 8, false, false);
   ::google::protobuf::internal::ExtensionSet::RegisterExtension(
@@ -95,15 +98,16 @@ void AddDescriptorsImpl() {
       "\n\022event_plugin.proto\022\032com.zynga.runtime."
       "protobuf\032 google/protobuf/descriptor.pro"
       "to:8\n\revent_sourced\022\037.google.protobuf.Me"
-      "ssageOptions\030\211\347\003 \001(\010:9\n\020exclude_checksum"
-      "\022\035.google.protobuf.FieldOptions\030\212\347\003 \001(\010:"
-      ":\n\022file_event_sourced\022\034.google.protobuf."
-      "FileOptions\030\213\347\003 \001(\010B>\n\022com.zynga.protobu"
-      "fB\013EventSource\252\002\032Zynga.Protobuf.EventSou"
-      "rceb\006proto3"
+      "ssageOptions\030\211\347\003 \001(\010:5\n\nuse_struct\022\037.goo"
+      "gle.protobuf.MessageOptions\030\214\347\003 \001(\010:9\n\020e"
+      "xclude_checksum\022\035.google.protobuf.FieldO"
+      "ptions\030\212\347\003 \001(\010::\n\022file_event_sourced\022\034.g"
+      "oogle.protobuf.FileOptions\030\213\347\003 \001(\010B>\n\022co"
+      "m.zynga.protobufB\013EventSource\252\002\032Zynga.Pr"
+      "otobuf.EventSourceb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 331);
+      descriptor, 386);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event_plugin.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_google_2fprotobuf_2fdescriptor_2eproto::AddDescriptors();
@@ -126,6 +130,9 @@ struct StaticDescriptorInitializer {
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   event_sourced(kEventSourcedFieldNumber, false);
+::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::MessageOptions,
+    ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
+  use_struct(kUseStructFieldNumber, false);
 ::google::protobuf::internal::ExtensionIdentifier< ::google::protobuf::FieldOptions,
     ::google::protobuf::internal::PrimitiveTypeTraits< bool >, 8, false >
   exclude_checksum(kExcludeChecksumFieldNumber, false);

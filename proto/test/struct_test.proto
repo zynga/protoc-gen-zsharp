@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.zynga.runtime.protobuf;
+
+import "event_plugin.proto";
+
+message TestStruct {
+  option (com.zynga.runtime.protobuf.use_struct) = true;
+
+  int64 long = 3;
+  TestMessageNestedStruct nested = 1;
+}
+
+message TestMessageNestedStruct {
+  TestStruct a = 1;
+}

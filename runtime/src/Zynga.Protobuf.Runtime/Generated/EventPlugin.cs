@@ -31,12 +31,13 @@ namespace Zynga.Protobuf.EventSource {
             "ChJldmVudF9wbHVnaW4ucHJvdG8SGmNvbS56eW5nYS5ydW50aW1lLnByb3Rv",
             "YnVmGiBnb29nbGUvcHJvdG9idWYvZGVzY3JpcHRvci5wcm90bzpGCg1ldmVu",
             "dF9zb3VyY2VkEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGInn",
-            "AyABKAhSDGV2ZW50U291cmNlZDpKChBleGNsdWRlX2NoZWNrc3VtEh0uZ29v",
-            "Z2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxiK5wMgASgIUg9leGNsdWRlQ2hl",
-            "Y2tzdW06TAoSZmlsZV9ldmVudF9zb3VyY2VkEhwuZ29vZ2xlLnByb3RvYnVm",
-            "LkZpbGVPcHRpb25zGIvnAyABKAhSEGZpbGVFdmVudFNvdXJjZWRCPgoSY29t",
-            "Lnp5bmdhLnByb3RvYnVmQgtFdmVudFNvdXJjZaoCGlp5bmdhLlByb3RvYnVm",
-            "LkV2ZW50U291cmNlYgZwcm90bzM="));
+            "AyABKAhSDGV2ZW50U291cmNlZDpACgp1c2Vfc3RydWN0Eh8uZ29vZ2xlLnBy",
+            "b3RvYnVmLk1lc3NhZ2VPcHRpb25zGIznAyABKAhSCXVzZVN0cnVjdDpKChBl",
+            "eGNsdWRlX2NoZWNrc3VtEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9u",
+            "cxiK5wMgASgIUg9leGNsdWRlQ2hlY2tzdW06TAoSZmlsZV9ldmVudF9zb3Vy",
+            "Y2VkEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGIvnAyABKAhSEGZp",
+            "bGVFdmVudFNvdXJjZWRCPgoSY29tLnp5bmdhLnByb3RvYnVmQgtFdmVudFNv",
+            "dXJjZaoCGlp5bmdhLlByb3RvYnVmLkV2ZW50U291cmNlYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { pbr::FileDescriptor.DescriptorProtoFileDescriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

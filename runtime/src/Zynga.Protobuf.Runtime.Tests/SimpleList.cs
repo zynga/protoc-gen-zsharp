@@ -234,9 +234,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleListDeltaMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
     private string h_ = "";
@@ -485,15 +482,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaStringList() {
       OnConstruction();
-      testBar_.SetContext(Context, 11);
+    testBar_ = new EventRepeatedField<string>(testBarDataConverter, Context, 11);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaStringList(SimpleDeltaStringList other) : this() {
-      testBar_ = new EventRepeatedField<string>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetContext(Context, 11);
+      testBar_ = new EventRepeatedField<string>(testBarDataConverter, Context, 11, other.TestBar.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -505,10 +501,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleDeltaStringList Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testBar_.SetContext(Context, 11);
-    }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
     private static readonly pb::FieldCodec<string> _repeated_testBar_codec
@@ -522,7 +514,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<string> testBar_ = new EventRepeatedField<string>(testBarDataConverter);
+    private readonly EventRepeatedField<string> testBar_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<string> TestBar {
       get { return testBar_; }
@@ -754,15 +746,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaLongList() {
       OnConstruction();
-      testBar_.SetContext(Context, 11);
+    testBar_ = new EventRepeatedField<long>(testBarDataConverter, Context, 11);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaLongList(SimpleDeltaLongList other) : this() {
-      testBar_ = new EventRepeatedField<long>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetContext(Context, 11);
+      testBar_ = new EventRepeatedField<long>(testBarDataConverter, Context, 11, other.TestBar.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -774,10 +765,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleDeltaLongList Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testBar_.SetContext(Context, 11);
-    }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
     private static readonly pb::FieldCodec<long> _repeated_testBar_codec
@@ -791,7 +778,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<long> testBar_ = new EventRepeatedField<long>(testBarDataConverter);
+    private readonly EventRepeatedField<long> testBar_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> TestBar {
       get { return testBar_; }
@@ -1024,15 +1011,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaEnumList() {
       OnConstruction();
-      testBar_.SetContext(Context, 11);
+    testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter, Context, 11);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaEnumList(SimpleDeltaEnumList other) : this() {
-      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter, other.TestBar.Clone());
-      testBar_.SetContext(Context, 11);
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter, Context, 11, other.TestBar.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1044,10 +1030,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleDeltaEnumList Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testBar_.SetContext(Context, 11);
-    }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> _repeated_testBar_codec
@@ -1061,7 +1043,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum>(testBarDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> testBar_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListEnum> TestBar {
       get { return testBar_; }
@@ -1293,15 +1275,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaMessageList() {
       OnConstruction();
-      testBar_.SetContext(Context, 11);
+    testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, Context, 11, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleDeltaMessageList(SimpleDeltaMessageList other) : this() {
-      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, other.TestBar.Clone(), true);
-      testBar_.SetContext(Context, 11);
+      testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, Context, 11, other.TestBar.Clone(), true);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1313,10 +1294,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleDeltaMessageList Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testBar_.SetContext(Context, 11);
-    }
     /// <summary>Field number for the "test_bar" field.</summary>
     public const int TestBarFieldNumber = 11;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> _repeated_testBar_codec
@@ -1331,7 +1308,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestBarDataConverter testBarDataConverter = new TestBarDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage>(testBarDataConverter, true);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> testBar_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.SimpleListDeltaMessage> TestBar {
       get { return testBar_; }

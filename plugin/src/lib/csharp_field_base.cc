@@ -125,6 +125,11 @@ void FieldGeneratorBase::GenerateCodecCode(io::Printer* printer) {
     // Could fail if we get called here though...
 }
 
+void FieldGeneratorBase::GenerateConstructor(io::Printer* printer, bool isEventSourced) {
+    // No-op: expect this to be overridden by appropriate types.
+    // Could fail if we get called here though...
+}
+
 void FieldGeneratorBase::AddDeprecatedFlag(io::Printer* printer) {
   if (descriptor_->options().deprecated()) {
     printer->Print("[global::System.ObsoleteAttribute]\n");

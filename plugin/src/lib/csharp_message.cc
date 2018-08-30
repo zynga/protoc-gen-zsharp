@@ -82,7 +82,7 @@ MessageGenerator::MessageGenerator(const Descriptor* descriptor,
   }
   std::sort(fields_by_number_.begin(), fields_by_number_.end(),
             CompareFieldNumbers);
-  
+
   is_event_sourced = HasFileEventSource(descriptor->file());
 
   // only use this override if the file level check has not been
@@ -130,7 +130,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 
   WriteMessageDocComment(printer, descriptor_);
   AddDeprecatedFlag(printer);
-  
+
   printer->Print(
     vars,
     "$access_level$ sealed partial class $class_name$ :");
@@ -139,7 +139,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     if (IsEventSourced()) {
       printer->Print(
       vars,
-      " zpr::EventRegistry<$class_name$>,");  
+      " zpr::EventRegistry<$class_name$>,");
     }
     ///
 
@@ -196,17 +196,10 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
     "public $class_name$() {\n"
     "  OnConstruction();\n");
 
-  if (IsEventSourced()) {
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      bool isFieldSourced = false;
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
-        printer->Print(
-          "  $field_name$_.SetContext(Context, $field_num$);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
-          "field_num", SimpleItoa(fieldDescriptor->number()));
-      }
-    }
+  for (int i = 0; i < descriptor_->field_count(); i++) {
+    const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
+    scoped_ptr<FieldGeneratorBase> generator(CreateFieldGeneratorInternal(fieldDescriptor));
+    generator->GenerateConstructor(printer, IsEventSourced());
   }
 
   printer->Print(
@@ -219,7 +212,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
 
   /// The following code is Copyright 2018, Zynga
   // we add this to all files just as an easy way to know if this is a DeltaFile
-  // without having to do some sort of cast check 
+  // without having to do some sort of cast check
   printer->Print(
     "public static bool IsEventSourced = $sourced$;\n\n",
     "sourced", IsEventSourced() ? "true" : "false");
@@ -230,30 +223,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       vars,
       "protected override $class_name$ Message { get{ return this; } }\n\n");
   }
-  
-  if (IsEventSourced()) {
-    printer->Print(
-      vars,
-      "public override void SetParent(EventContext parent, int field) {\n"
-      "  base.SetParent(parent, field);\n");
 
-    for (int i = 0; i < descriptor_->field_count(); i++) {
-      bool isFieldSourced = false;
-      const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
-      if(fieldDescriptor->is_map() || fieldDescriptor->is_repeated()) {
-        printer->Print(
-          "  $field_name$_.SetContext(Context, $field_num$);\n",
-          "field_name", UnderscoresToCamelCase(GetFieldName(fieldDescriptor), false),
-          "field_num", SimpleItoa(fieldDescriptor->number()));
-      }
-    }
-
-    printer->Print(
-      vars,
-      "}\n");
-  }
-  ///
-  
   // Fields/properties
   for (int i = 0; i < descriptor_->field_count(); i++) {
     const FieldDescriptor* fieldDescriptor = descriptor_->field(i);
@@ -267,7 +237,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       "index", SimpleItoa(fieldDescriptor->number()));
     scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(fieldDescriptor));
-        
+
     generator->GenerateMembers(printer, IsEventSourced());
     printer->Print("\n");
   }
@@ -370,7 +340,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
         "field_number", SimpleItoa(fieldDescriptor->number()));
         scoped_ptr<FieldGeneratorBase> generator(
         CreateFieldGeneratorInternal(fieldDescriptor));
-        
+
         generator->GenerateEventSource(printer);
         printer->Print("      }\n");
         printer->Print("      break;\n");
@@ -402,7 +372,7 @@ void MessageGenerator::Generate(io::Printer* printer, bool isEventSourced) {
       "}\n\n");
   }
   ///
-  
+
 
   printer->Outdent();
   printer->Print("}\n");
@@ -614,7 +584,7 @@ void MessageGenerator::GenerateMergingMethods(io::Printer* printer, bool isEvent
     "}\n");
   // Merge non-oneof fields
   for (int i = 0; i < descriptor_->field_count(); i++) {
-    if (!descriptor_->field(i)->containing_oneof()) {      
+    if (!descriptor_->field(i)->containing_oneof()) {
       scoped_ptr<FieldGeneratorBase> generator(
           CreateFieldGeneratorInternal(descriptor_->field(i)));
       generator->GenerateMergingCode(printer, isEventSourced);

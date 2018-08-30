@@ -58,7 +58,33 @@ MapFieldGenerator::MapFieldGenerator(const FieldDescriptor* descriptor,
 MapFieldGenerator::~MapFieldGenerator() {
 }
 
-void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {   
+void MapFieldGenerator::GenerateConstructor(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    const FieldDescriptor* key_descriptor =
+        descriptor_->message_type()->FindFieldByName("key");
+    const FieldDescriptor* value_descriptor =
+        descriptor_->message_type()->FindFieldByName("value");
+    std::map<string, string> vars;
+      vars["name"] = variables_["name"];
+      vars["type_name"] = variables_["type_name"];
+      vars["property_name"] = variables_["property_name"];
+      vars["number"] = variables_["number"];
+      vars["key_type_name"] = type_name(key_descriptor);
+      vars["value_type_name"] = type_name(value_descriptor);
+      vars["field_name"] = UnderscoresToCamelCase(GetFieldName(descriptor_), false);
+
+    if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
+      printer->Print(vars,
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, Context, $number$, true);\n");
+    }
+    else {
+      printer->Print(vars,
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, Context, $number$);\n");
+    }
+  }
+}
+
+void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   const FieldDescriptor* key_descriptor =
       descriptor_->message_type()->FindFieldByName("key");
   const FieldDescriptor* value_descriptor =
@@ -159,16 +185,9 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSource
       "}\n"
       "private static readonly EventMapConverter<$key_type_name$, $value_type_name$> $name$MapConverter = new $property_name$MapConverter();\n");
 
-    if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
-      printer->Print(
-        variables_,
-        "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, true);\n");
-    }
-    else {
-      printer->Print(
-        variables_,
-        "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter);\n");
-    }
+    printer->Print(
+      variables_,
+      "private readonly EventMapField<$key_type_name$, $value_type_name$> $name$_;\n");
   }
   else {
     printer->Print(
@@ -340,15 +359,12 @@ void MapFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSo
 
     if (value_descriptor->type() == FieldDescriptor::TYPE_MESSAGE) {
       printer->Print(vars,
-        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone(), true);\n");
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, Context, $number$, other.$name$_.Clone(), true);\n");
     }
     else {
       printer->Print(vars,
-        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, other.$name$_.Clone());\n");
+        "$name$_ = new EventMapField<$key_type_name$, $value_type_name$>($name$MapConverter, Context, $number$, other.$name$_.Clone());\n");
     }
-
-    printer->Print(vars,
-      "$name$_.SetContext(Context, $number$);\n");
   }
   else {
     printer->Print(variables_,

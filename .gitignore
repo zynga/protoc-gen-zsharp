@@ -1,3 +1,4 @@
+.DS_Store
 .protoc
 plugin/protoc-gen-zsharp*
 

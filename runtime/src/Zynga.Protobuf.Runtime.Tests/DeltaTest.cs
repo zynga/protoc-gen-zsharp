@@ -125,35 +125,42 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestBlob() {
       OnConstruction();
-      intToString_.SetContext(Context, 3);
-      stringToFoo_.SetContext(Context, 4);
-      ilist_.SetContext(Context, 5);
-      slist_.SetContext(Context, 6);
-      foolist_.SetContext(Context, 7);
+    intToString_ = new EventMapField<int, string>(intToStringMapConverter, Context, 3);
+    stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, Context, 4, true);
+    ilist_ = new EventRepeatedField<int>(ilistDataConverter, Context, 5);
+    slist_ = new EventRepeatedField<string>(slistDataConverter, Context, 6);
+    foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, Context, 7, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestBlob(TestBlob other) : this() {
-      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
-      foo_ = other.foo_ != null ? other.Foo.Clone() : null;
-      intToString_ = new EventMapField<int, string>(intToStringMapConverter, other.intToString_.Clone());
-      intToString_.SetContext(Context, 3);
-      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, other.stringToFoo_.Clone(), true);
-      stringToFoo_.SetContext(Context, 4);
-      ilist_ = new EventRepeatedField<int>(ilistDataConverter, other.Ilist.Clone());
-      ilist_.SetContext(Context, 5);
-      slist_ = new EventRepeatedField<string>(slistDataConverter, other.Slist.Clone());
-      slist_.SetContext(Context, 6);
-      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, other.Foolist.Clone(), true);
-      foolist_.SetContext(Context, 7);
+      if(other.bar_ != null) {
+        bar_ = other.Bar.Clone();
+        bar_.SetParent(Context, 1);
+      }
+      if(other.foo_ != null) {
+        foo_ = other.Foo.Clone();
+        foo_.SetParent(Context, 2);
+      }
+      intToString_ = new EventMapField<int, string>(intToStringMapConverter, Context, 3, other.intToString_.Clone());
+      stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, Context, 4, other.stringToFoo_.Clone(), true);
+      ilist_ = new EventRepeatedField<int>(ilistDataConverter, Context, 5, other.Ilist.Clone());
+      slist_ = new EventRepeatedField<string>(slistDataConverter, Context, 6, other.Slist.Clone());
+      foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, Context, 7, other.Foolist.Clone(), true);
       zam_ = other.zam_ != null ? other.Zam.Clone() : null;
       fieldBool_ = other.fieldBool_;
       timestamp_ = other.timestamp_ != null ? other.Timestamp.Clone() : null;
       duration_ = other.duration_ != null ? other.Duration.Clone() : null;
-      allPrims_ = other.allPrims_ != null ? other.AllPrims.Clone() : null;
-      testBlob_ = other.testBlob_ != null ? other.TestBlob_.Clone() : null;
+      if(other.allPrims_ != null) {
+        allPrims_ = other.AllPrims.Clone();
+        allPrims_.SetParent(Context, 15);
+      }
+      if(other.testBlob_ != null) {
+        testBlob_ = other.TestBlob_.Clone();
+        testBlob_.SetParent(Context, 16);
+      }
       switch (other.TestCase) {
         case TestOneofCase.Maybefoo:
           Maybefoo = other.Maybefoo.Clone();
@@ -177,14 +184,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override TestBlob Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      intToString_.SetContext(Context, 3);
-      stringToFoo_.SetContext(Context, 4);
-      ilist_.SetContext(Context, 5);
-      slist_.SetContext(Context, 6);
-      foolist_.SetContext(Context, 7);
-    }
     /// <summary>Field number for the "bar" field.</summary>
     public const int BarFieldNumber = 1;
     private global::Com.Zynga.Runtime.Protobuf.Bar bar_;
@@ -249,7 +248,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> intToStringMapConverter = new IntToStringMapConverter();
-    private readonly EventMapField<int, string> intToString_ = new EventMapField<int, string>(intToStringMapConverter);
+    private readonly EventMapField<int, string> intToString_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> IntToString {
       get { return intToString_; }
@@ -284,7 +283,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFooMapConverter = new StringToFooMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo>(stringToFooMapConverter, true);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> stringToFoo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.Foo> StringToFoo {
       get { return stringToFoo_; }
@@ -303,7 +302,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static IlistDataConverter ilistDataConverter = new IlistDataConverter();
-    private readonly EventRepeatedField<int> ilist_ = new EventRepeatedField<int>(ilistDataConverter);
+    private readonly EventRepeatedField<int> ilist_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> Ilist {
       get { return ilist_; }
@@ -322,7 +321,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static SlistDataConverter slistDataConverter = new SlistDataConverter();
-    private readonly EventRepeatedField<string> slist_ = new EventRepeatedField<string>(slistDataConverter);
+    private readonly EventRepeatedField<string> slist_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<string> Slist {
       get { return slist_; }
@@ -342,7 +341,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static FoolistDataConverter foolistDataConverter = new FoolistDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo>(foolistDataConverter, true);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> foolist_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.Foo> Foolist {
       get { return foolist_; }
@@ -1028,7 +1027,10 @@ namespace Com.Zynga.Runtime.Protobuf {
     public Foo(Foo other) : this() {
       long_ = other.long_;
       str_ = other.str_;
-      foo_ = other.foo_ != null ? other.Foo_.Clone() : null;
+      if(other.foo_ != null) {
+        foo_ = other.Foo_.Clone();
+        foo_.SetParent(Context, 3);
+      }
       enumero_ = other.enumero_;
       okay_ = other.okay_;
     }
@@ -1042,9 +1044,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override Foo Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "long" field.</summary>
     public const int LongFieldNumber = 1;
     private long long_;
@@ -1315,9 +1314,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
         protected override Zam Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, int field) {
-          base.SetParent(parent, field);
-        }
         /// <summary>Field number for the "hi" field.</summary>
         public const int HiFieldNumber = 1;
         private int hi_;
@@ -1520,7 +1516,10 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Bar(Bar other) : this() {
-      foo_ = other.foo_ != null ? other.Foo.Clone() : null;
+      if(other.foo_ != null) {
+        foo_ = other.Foo.Clone();
+        foo_.SetParent(Context, 1);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1532,9 +1531,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override Bar Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "foo" field.</summary>
     public const int FooFieldNumber = 1;
     private global::Com.Zynga.Runtime.Protobuf.Foo foo_;
@@ -1723,9 +1719,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override AllPrimitives Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private uint a_;
@@ -2367,18 +2360,23 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RecursiveMap() {
       OnConstruction();
-      map_.SetContext(Context, 1);
+    map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, Context, 1, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RecursiveMap(RecursiveMap other) : this() {
-      map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, other.map_.Clone(), true);
-      map_.SetContext(Context, 1);
-      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, Context, 1, other.map_.Clone(), true);
+      if(other.primitives_ != null) {
+        primitives_ = other.Primitives.Clone();
+        primitives_.SetParent(Context, 2);
+      }
       enumero_ = other.enumero_;
-      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+      if(other.bar_ != null) {
+        bar_ = other.Bar.Clone();
+        bar_.SetParent(Context, 4);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2390,10 +2388,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override RecursiveMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      map_.SetContext(Context, 1);
-    }
     /// <summary>Field number for the "map" field.</summary>
     public const int MapFieldNumber = 1;
     private static readonly pbc::MapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>.Codec _map_map_codec
@@ -2423,7 +2417,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> mapMapConverter = new MapMapConverter();
-    private readonly EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> map_ = new EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap>(mapMapConverter, true);
+    private readonly EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> map_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Com.Zynga.Runtime.Protobuf.RecursiveMap> Map {
       get { return map_; }
@@ -2689,18 +2683,23 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RecursiveList() {
       OnConstruction();
-      list_.SetContext(Context, 1);
+    list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, Context, 1, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RecursiveList(RecursiveList other) : this() {
-      list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, other.List.Clone(), true);
-      list_.SetContext(Context, 1);
-      primitives_ = other.primitives_ != null ? other.Primitives.Clone() : null;
+      list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, Context, 1, other.List.Clone(), true);
+      if(other.primitives_ != null) {
+        primitives_ = other.Primitives.Clone();
+        primitives_.SetParent(Context, 2);
+      }
       enumero_ = other.enumero_;
-      bar_ = other.bar_ != null ? other.Bar.Clone() : null;
+      if(other.bar_ != null) {
+        bar_ = other.Bar.Clone();
+        bar_.SetParent(Context, 4);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2712,10 +2711,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override RecursiveList Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      list_.SetContext(Context, 1);
-    }
     /// <summary>Field number for the "list" field.</summary>
     public const int ListFieldNumber = 1;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.RecursiveList> _repeated_list_codec
@@ -2730,7 +2725,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static ListDataConverter listDataConverter = new ListDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> list_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList>(listDataConverter, true);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> list_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.RecursiveList> List {
       get { return list_; }

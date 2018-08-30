@@ -48,9 +48,10 @@ class RepeatedPrimitiveFieldGenerator : public FieldGeneratorBase {
   RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor, int fieldOrdinal, const Options *options);
   ~RepeatedPrimitiveFieldGenerator();
 
+  virtual void GenerateConstructor(io::Printer* printer, bool isEventSourced);
   virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateFreezingCode(io::Printer* printer);
-  
+
   /// The following code is Copyright 2018, Zynga
   virtual void GenerateMembers(io::Printer* printer, bool isEventSourced);
   virtual void GenerateEventSource(io::Printer* printer);
@@ -58,7 +59,7 @@ class RepeatedPrimitiveFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateEventAddEvent(io::Printer* printer);
   virtual void GenerateCheckSum(io::Printer* printer);
   ///
-  
+
   virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateSerializationCode(io::Printer* printer);

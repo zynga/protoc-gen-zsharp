@@ -12,18 +12,22 @@ namespace Zynga.Protobuf.Runtime {
 	public class EventRepeatedField<T> : IList<T>, IList, IDeepCloneable<RepeatedField<T>>, IEquatable<RepeatedField<T>>, IReadOnlyList<T> {
 		private readonly RepeatedField<T> _internal;
 		private readonly bool _isMessageType;
-		private EventContext _context;
-		private int _fieldNumber;
+		private readonly EventContext _context;
+		private readonly int _fieldNumber;
 		private readonly EventDataConverter<T> _converter;
 
-		public EventRepeatedField(EventDataConverter<T> converter, bool isMessageType = false) {
+		public EventRepeatedField(EventDataConverter<T> converter, EventContext context, int fieldNumber, bool isMessageType = false) {
 			_converter = converter;
-			_internal = new RepeatedField<T>();
+			_context = context;
+			_fieldNumber = fieldNumber;
 			_isMessageType = isMessageType;
+			_internal = new RepeatedField<T>();
 		}
 
-		public EventRepeatedField(EventDataConverter<T> converter, RepeatedField<T> repeatedField, bool isMessageType = false) {
+		public EventRepeatedField(EventDataConverter<T> converter, EventContext context, int fieldNumber, RepeatedField<T> repeatedField, bool isMessageType = false) {
 			_converter = converter;
+			_context = context;
+			_fieldNumber = fieldNumber;
 			_isMessageType = isMessageType;
 
 			if (isMessageType) {
@@ -288,10 +292,12 @@ namespace Zynga.Protobuf.Runtime {
 			_context.AddListEvent(_fieldNumber, listEvent);
 		}
 
+		/*
 		public void SetContext(EventContext context, int fieldNumber) {
 			_context = context;
 			_fieldNumber = fieldNumber;
 		}
+		*/
 
 		public bool ApplyEvent(ListEvent e) {
 			switch (e.ListAction) {

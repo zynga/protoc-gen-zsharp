@@ -258,9 +258,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleMapDeltaMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 1;
     private string h_ = "";
@@ -509,15 +506,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleLongToMessageDeltaMap() {
       OnConstruction();
-      testFoo_.SetContext(Context, 10);
+    testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, Context, 10, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleLongToMessageDeltaMap(SimpleLongToMessageDeltaMap other) : this() {
-      testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, other.testFoo_.Clone(), true);
-      testFoo_.SetContext(Context, 10);
+      testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, Context, 10, other.testFoo_.Clone(), true);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -529,10 +525,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleLongToMessageDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testFoo_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>.Codec _map_testFoo_codec
@@ -562,7 +554,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFoo_ = new EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage>(testFooMapConverter, true);
+    private readonly EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> testFoo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<long, global::Com.Zynga.Runtime.Protobuf.SimpleMapDeltaMessage> TestFoo {
       get { return testFoo_; }
@@ -793,15 +785,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToEnumDeltaMap() {
       OnConstruction();
-      testFoo_.SetContext(Context, 10);
+    testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter, Context, 10);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToEnumDeltaMap(SimpleStringToEnumDeltaMap other) : this() {
-      testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetContext(Context, 10);
+      testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter, Context, 10, other.testFoo_.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -813,10 +804,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToEnumDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testFoo_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>.Codec _map_testFoo_codec
@@ -845,7 +832,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFoo_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum>(testFooMapConverter);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> testFoo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.SimpleMapEnum> TestFoo {
       get { return testFoo_; }
@@ -1076,15 +1063,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToStringDeltaMap() {
       OnConstruction();
-      testFoo_.SetContext(Context, 10);
+    testFoo_ = new EventMapField<string, string>(testFooMapConverter, Context, 10);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToStringDeltaMap(SimpleStringToStringDeltaMap other) : this() {
-      testFoo_ = new EventMapField<string, string>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetContext(Context, 10);
+      testFoo_ = new EventMapField<string, string>(testFooMapConverter, Context, 10, other.testFoo_.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1096,10 +1082,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToStringDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testFoo_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, string>.Codec _map_testFoo_codec
@@ -1128,7 +1110,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, string> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<string, string> testFoo_ = new EventMapField<string, string>(testFooMapConverter);
+    private readonly EventMapField<string, string> testFoo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, string> TestFoo {
       get { return testFoo_; }
@@ -1359,15 +1341,14 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToLongDeltaMap() {
       OnConstruction();
-      testFoo_.SetContext(Context, 10);
+    testFoo_ = new EventMapField<string, long>(testFooMapConverter, Context, 10);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SimpleStringToLongDeltaMap(SimpleStringToLongDeltaMap other) : this() {
-      testFoo_ = new EventMapField<string, long>(testFooMapConverter, other.testFoo_.Clone());
-      testFoo_.SetContext(Context, 10);
+      testFoo_ = new EventMapField<string, long>(testFooMapConverter, Context, 10, other.testFoo_.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1379,10 +1360,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override SimpleStringToLongDeltaMap Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testFoo_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "test_foo" field.</summary>
     public const int TestFooFieldNumber = 10;
     private static readonly pbc::MapField<string, long>.Codec _map_testFoo_codec
@@ -1411,7 +1388,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, long> testFooMapConverter = new TestFooMapConverter();
-    private readonly EventMapField<string, long> testFoo_ = new EventMapField<string, long>(testFooMapConverter);
+    private readonly EventMapField<string, long> testFoo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, long> TestFoo {
       get { return testFoo_; }

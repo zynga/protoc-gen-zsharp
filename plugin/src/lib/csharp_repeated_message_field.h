@@ -52,6 +52,7 @@ class RepeatedMessageFieldGenerator : public FieldGeneratorBase {
                                 const Options *options);
   ~RepeatedMessageFieldGenerator();
 
+  virtual void GenerateConstructor(io::Printer* printer, bool isEventSourced);
   virtual void GenerateCloningCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateFreezingCode(io::Printer* printer);
   /// The following code is Copyright 2018, Zynga
@@ -61,7 +62,7 @@ class RepeatedMessageFieldGenerator : public FieldGeneratorBase {
   virtual void GenerateEventAddEvent(io::Printer* printer);
   virtual void GenerateCheckSum(io::Printer* printer);
   ///
-  
+
   virtual void GenerateMergingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateParsingCode(io::Printer* printer, bool isEventSourced);
   virtual void GenerateSerializationCode(io::Printer* printer);

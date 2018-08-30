@@ -134,9 +134,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageA Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "b" field.</summary>
     public const int BFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -538,15 +535,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageB() {
       OnConstruction();
-      c_.SetContext(Context, 2);
+    c_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(cMapConverter, Context, 2, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageB(MessageB other) : this() {
-      c_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(cMapConverter, other.c_.Clone(), true);
-      c_.SetContext(Context, 2);
+      c_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(cMapConverter, Context, 2, other.c_.Clone(), true);
       i_ = other.i_;
       k_ = other.k_;
       l_ = other.l_;
@@ -564,10 +560,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageB Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      c_.SetContext(Context, 2);
-    }
     /// <summary>Field number for the "c" field.</summary>
     public const int CFieldNumber = 2;
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>.Codec _map_c_codec
@@ -597,7 +589,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> cMapConverter = new CMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> c_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC>(cMapConverter, true);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> c_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageC> C {
       get { return c_; }
@@ -936,15 +928,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageC() {
       OnConstruction();
-      d_.SetContext(Context, 3);
+    d_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(dMapConverter, Context, 3, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageC(MessageC other) : this() {
-      d_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(dMapConverter, other.d_.Clone(), true);
-      d_.SetContext(Context, 3);
+      d_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(dMapConverter, Context, 3, other.d_.Clone(), true);
       i_ = other.i_;
       j_ = other.j_;
       l_ = other.l_;
@@ -962,10 +953,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageC Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      d_.SetContext(Context, 3);
-    }
     /// <summary>Field number for the "d" field.</summary>
     public const int DFieldNumber = 3;
     private static readonly pbc::MapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>.Codec _map_d_codec
@@ -995,7 +982,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> dMapConverter = new DMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> d_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD>(dMapConverter, true);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> d_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.File.MessageD> D {
       get { return d_; }
@@ -1340,7 +1327,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageD(MessageD other) : this() {
-      e_ = other.e_ != null ? other.E.Clone() : null;
+      if(other.e_ != null) {
+        e_ = other.E.Clone();
+        e_.SetParent(Context, 4);
+      }
       i_ = other.i_;
       j_ = other.j_;
       k_ = other.k_;
@@ -1358,9 +1348,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageD Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "e" field.</summary>
     public const int EFieldNumber = 4;
     private global::Com.Zynga.Runtime.Protobuf.File.MessageE e_;
@@ -1742,7 +1729,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageE(MessageE other) : this() {
-      f_ = other.f_ != null ? other.F.Clone() : null;
+      if(other.f_ != null) {
+        f_ = other.F.Clone();
+        f_.SetParent(Context, 5);
+      }
       i_ = other.i_;
       j_ = other.j_;
       k_ = other.k_;
@@ -1760,9 +1750,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageE Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "f" field.</summary>
     public const int FFieldNumber = 5;
     private global::Com.Zynga.Runtime.Protobuf.File.MessageF f_;
@@ -2144,7 +2131,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageF(MessageF other) : this() {
-      g_ = other.g_ != null ? other.G.Clone() : null;
+      if(other.g_ != null) {
+        g_ = other.G.Clone();
+        g_.SetParent(Context, 6);
+      }
       i_ = other.i_;
       j_ = other.j_;
       k_ = other.k_;
@@ -2162,9 +2152,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageF Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "g" field.</summary>
     public const int GFieldNumber = 6;
     private global::Com.Zynga.Runtime.Protobuf.File.MessageG g_;
@@ -2540,15 +2527,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageG() {
       OnConstruction();
-      h_.SetContext(Context, 7);
+    h_ = new EventRepeatedField<int>(hDataConverter, Context, 7);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageG(MessageG other) : this() {
-      h_ = new EventRepeatedField<int>(hDataConverter, other.H.Clone());
-      h_.SetContext(Context, 7);
+      h_ = new EventRepeatedField<int>(hDataConverter, Context, 7, other.H.Clone());
       i_ = other.i_;
       j_ = other.j_;
       k_ = other.k_;
@@ -2566,10 +2552,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageG Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      h_.SetContext(Context, 7);
-    }
     /// <summary>Field number for the "h" field.</summary>
     public const int HFieldNumber = 7;
     private static readonly pb::FieldCodec<int> _repeated_h_codec
@@ -2583,7 +2565,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
     }
     private static HDataConverter hDataConverter = new HDataConverter();
-    private readonly EventRepeatedField<int> h_ = new EventRepeatedField<int>(hDataConverter);
+    private readonly EventRepeatedField<int> h_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> H {
       get { return h_; }
@@ -2929,7 +2911,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageO(MessageO other) : this() {
-      p_ = other.p_ != null ? other.P.Clone() : null;
+      if(other.p_ != null) {
+        p_ = other.P.Clone();
+        p_.SetParent(Context, 8);
+      }
       t_ = other.t_;
       u_ = other.u_;
       v_ = other.v_;
@@ -2944,9 +2929,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageO Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "p" field.</summary>
     public const int PFieldNumber = 8;
     private global::Com.Zynga.Runtime.Protobuf.File.MessageP p_;
@@ -3220,7 +3202,10 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageP(MessageP other) : this() {
-      q_ = other.q_ != null ? other.Q.Clone() : null;
+      if(other.q_ != null) {
+        q_ = other.Q.Clone();
+        q_.SetParent(Context, 9);
+      }
       s_ = other.s_;
       u_ = other.u_;
       v_ = other.v_;
@@ -3235,9 +3220,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageP Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "q" field.</summary>
     public const int QFieldNumber = 9;
     private global::Com.Zynga.Runtime.Protobuf.File.MessageQ q_;
@@ -3505,15 +3487,14 @@ namespace Com.Zynga.Runtime.Protobuf.File {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageQ() {
       OnConstruction();
-      r_.SetContext(Context, 10);
+    r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, Context, 10, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MessageQ(MessageQ other) : this() {
-      r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, other.R.Clone(), true);
-      r_.SetContext(Context, 10);
+      r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, Context, 10, other.R.Clone(), true);
       s_ = other.s_;
       t_ = other.t_;
       v_ = other.v_;
@@ -3528,10 +3509,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageQ Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      r_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "r" field.</summary>
     public const int RFieldNumber = 10;
     private static readonly pb::FieldCodec<global::Com.Zynga.Runtime.Protobuf.File.MessageR> _repeated_r_codec
@@ -3546,7 +3523,7 @@ namespace Com.Zynga.Runtime.Protobuf.File {
       }
     }
     private static RDataConverter rDataConverter = new RDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR> r_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR>(rDataConverter, true);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR> r_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.File.MessageR> R {
       get { return r_; }
@@ -3798,9 +3775,6 @@ namespace Com.Zynga.Runtime.Protobuf.File {
 
     protected override MessageR Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "r" field.</summary>
     public const int RFieldNumber = 11;
     private string r_ = "";

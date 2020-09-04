@@ -171,6 +171,10 @@ Build instructions for protoc-gen-zsharp c++ plugin
 * build .sln file included in the runtime folder 
 
 3.) Build via commandline
+
 * cd runtime 
 * run ```build.sh|cmd build``` 
 
+# Special Credits
+
+Inspiration from a similar project by Jason Green

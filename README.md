@@ -1,3 +1,7 @@
+**Please note:** This project is deprecated at Zynga and is no longer maintained.
+
+---
+
 # protoc-gen-zsharp
 The main purpose of this project is to add support for event sourcing and other modern c# features within Protobuf targeting the c# codegen. This is a standalone c# protoc plugin that will generate code compatible with the Google.Protobuf runtime provided by google.
 

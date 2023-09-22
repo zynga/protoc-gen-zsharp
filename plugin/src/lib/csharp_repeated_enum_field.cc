@@ -58,6 +58,13 @@ RepeatedEnumFieldGenerator::~RepeatedEnumFieldGenerator() {
 
 }
 
+void RepeatedEnumFieldGenerator::GenerateConstructor(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, Context, $number$);\n");
+  }
+}
+
 void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
@@ -82,7 +89,7 @@ void RepeatedEnumFieldGenerator::GenerateMembers(io::Printer* printer, bool isEv
 
     printer->Print(
       variables_,
-      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
+      "private readonly EventRepeatedField<$type_name$> $name$_;\n");
   }
   else {
     printer->Print(
@@ -158,7 +165,7 @@ void RepeatedEnumFieldGenerator::GenerateSerializationCode(io::Printer* printer)
     "$name$_.WriteTo(output, _repeated_$name$_codec);\n");
 }
 
-void RepeatedEnumFieldGenerator::GenerateSerializedSizeCode(io::Printer* printer) {  
+void RepeatedEnumFieldGenerator::GenerateSerializedSizeCode(io::Printer* printer) {
   printer->Print(
     variables_,
     "size += $name$_.CalculateSize(_repeated_$name$_codec);\n");
@@ -184,8 +191,7 @@ void RepeatedEnumFieldGenerator::WriteToString(io::Printer* printer) {
 void RepeatedEnumFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   if(isEventSourced) {
     printer->Print(variables_,
-      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
-      "$name$_.SetContext(Context, $number$);\n");
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, Context, $number$, other.$property_name$.Clone());\n");
   }
   else {
     printer->Print(variables_,

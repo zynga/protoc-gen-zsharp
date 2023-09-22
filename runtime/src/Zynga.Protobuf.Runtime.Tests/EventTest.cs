@@ -247,9 +247,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override TestTwoMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private int data_;
@@ -391,11 +388,11 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventTest() {
       OnConstruction();
-      testPrim_.SetContext(Context, 5);
-      testMessage_.SetContext(Context, 6);
-      testEnum_.SetContext(Context, 7);
-      testMap_.SetContext(Context, 8);
-      testMapTwo_.SetContext(Context, 10);
+    testPrim_ = new EventRepeatedField<int>(testPrimDataConverter, Context, 5);
+    testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, Context, 6, true);
+    testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter, Context, 7);
+    testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, Context, 8, true);
+    testMapTwo_ = new EventMapField<int, string>(testMapTwoMapConverter, Context, 10);
     }
 
     partial void OnConstruction();
@@ -404,17 +401,15 @@ namespace Com.Zynga.Runtime.Protobuf {
     public EventTest(EventTest other) : this() {
       eventId_ = other.eventId_;
       testEvent_ = other.testEvent_;
-      testPrim_ = new EventRepeatedField<int>(testPrimDataConverter, other.TestPrim.Clone());
-      testPrim_.SetContext(Context, 5);
-      testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, other.TestMessage.Clone(), true);
-      testMessage_.SetContext(Context, 6);
-      testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter, other.TestEnum.Clone());
-      testEnum_.SetContext(Context, 7);
-      testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, other.testMap_.Clone(), true);
-      testMap_.SetContext(Context, 8);
-      data_ = other.data_ != null ? other.Data.Clone() : null;
-      testMapTwo_ = new EventMapField<int, string>(testMapTwoMapConverter, other.testMapTwo_.Clone());
-      testMapTwo_.SetContext(Context, 10);
+      testPrim_ = new EventRepeatedField<int>(testPrimDataConverter, Context, 5, other.TestPrim.Clone());
+      testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, Context, 6, other.TestMessage.Clone(), true);
+      testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter, Context, 7, other.TestEnum.Clone());
+      testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, Context, 8, other.testMap_.Clone(), true);
+      if(other.data_ != null) {
+        data_ = other.Data.Clone();
+        data_.SetParent(Context, 9);
+      }
+      testMapTwo_ = new EventMapField<int, string>(testMapTwoMapConverter, Context, 10, other.testMapTwo_.Clone());
       testNonMessage_ = other.testNonMessage_ != null ? other.TestNonMessage.Clone() : null;
       testStringNoChecksum_ = other.testStringNoChecksum_;
       testBytesField_ = other.testBytesField_;
@@ -439,14 +434,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override EventTest Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      testPrim_.SetContext(Context, 5);
-      testMessage_.SetContext(Context, 6);
-      testEnum_.SetContext(Context, 7);
-      testMap_.SetContext(Context, 8);
-      testMapTwo_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "eventId" field.</summary>
     public const int EventIdFieldNumber = 1;
     private string eventId_ = "";
@@ -529,7 +516,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestPrimDataConverter testPrimDataConverter = new TestPrimDataConverter();
-    private readonly EventRepeatedField<int> testPrim_ = new EventRepeatedField<int>(testPrimDataConverter);
+    private readonly EventRepeatedField<int> testPrim_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> TestPrim {
       get { return testPrim_; }
@@ -549,7 +536,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestMessageDataConverter testMessageDataConverter = new TestMessageDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMessage {
       get { return testMessage_; }
@@ -568,7 +555,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static TestEnumDataConverter testEnumDataConverter = new TestEnumDataConverter();
-    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> testEnum_ = new EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest>(testEnumDataConverter);
+    private readonly EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> testEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Com.Zynga.Runtime.Protobuf.EnumTest> TestEnum {
       get { return testEnum_; }
@@ -603,7 +590,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMapMapConverter = new TestMapMapConverter();
-    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMap_ = new EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage>(testMapMapConverter, true);
+    private readonly EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> testMap_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, global::Com.Zynga.Runtime.Protobuf.EventTest.Types.NestedMessage> TestMap {
       get { return testMap_; }
@@ -655,7 +642,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> testMapTwoMapConverter = new TestMapTwoMapConverter();
-    private readonly EventMapField<int, string> testMapTwo_ = new EventMapField<int, string>(testMapTwoMapConverter);
+    private readonly EventMapField<int, string> testMapTwo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> TestMapTwo {
       get { return testMapTwo_; }
@@ -1087,7 +1074,10 @@ namespace Com.Zynga.Runtime.Protobuf {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public NestedMessage(NestedMessage other) : this() {
           data_ = other.data_;
-          dataTwo_ = other.dataTwo_ != null ? other.DataTwo.Clone() : null;
+          if(other.dataTwo_ != null) {
+            dataTwo_ = other.DataTwo.Clone();
+            dataTwo_.SetParent(Context, 2);
+          }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1099,9 +1089,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
         protected override NestedMessage Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, int field) {
-          base.SetParent(parent, field);
-        }
         /// <summary>Field number for the "data" field.</summary>
         public const int DataFieldNumber = 1;
         private int data_;
@@ -1325,9 +1312,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
         protected override EventOneofTest Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, int field) {
-          base.SetParent(parent, field);
-        }
         /// <summary>Field number for the "foo" field.</summary>
         public const int FooFieldNumber = 1;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

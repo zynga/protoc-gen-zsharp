@@ -58,6 +58,13 @@ RepeatedPrimitiveFieldGenerator::~RepeatedPrimitiveFieldGenerator() {
 
 }
 
+void RepeatedPrimitiveFieldGenerator::GenerateConstructor(io::Printer* printer, bool isEventSourced) {
+  if(isEventSourced) {
+    printer->Print(variables_,
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, Context, $number$);\n");
+  }
+}
+
 void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool isEventSourced) {
   printer->Print(
     variables_,
@@ -82,7 +89,7 @@ void RepeatedPrimitiveFieldGenerator::GenerateMembers(io::Printer* printer, bool
 
     printer->Print(
       variables_,
-      "private readonly EventRepeatedField<$type_name$> $name$_ = new EventRepeatedField<$type_name$>($name$DataConverter);\n");
+      "private readonly EventRepeatedField<$type_name$> $name$_;\n");
   }
   else {
     printer->Print(
@@ -181,8 +188,7 @@ void RepeatedPrimitiveFieldGenerator::WriteToString(io::Printer* printer) {
 void RepeatedPrimitiveFieldGenerator::GenerateCloningCode(io::Printer* printer, bool isEventSourced) {
   if(isEventSourced) {
     printer->Print(variables_,
-      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, other.$property_name$.Clone());\n"
-      "$name$_.SetContext(Context, $number$);\n");
+      "$name$_ = new EventRepeatedField<$type_name$>($name$DataConverter, Context, $number$, other.$property_name$.Clone());\n");
   }
   else {
     printer->Print(variables_,

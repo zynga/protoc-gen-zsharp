@@ -72,7 +72,10 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ParentMessage(ParentMessage other) : this() {
       a_ = other.a_;
-      b_ = other.b_ != null ? other.B.Clone() : null;
+      if(other.b_ != null) {
+        b_ = other.B.Clone();
+        b_.SetParent(Context, 2);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -84,9 +87,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override ParentMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private int a_;
@@ -286,7 +286,10 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ChildMessage(ChildMessage other) : this() {
       c_ = other.c_;
-      d_ = other.d_ != null ? other.D.Clone() : null;
+      if(other.d_ != null) {
+        d_ = other.D.Clone();
+        d_.SetParent(Context, 4);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -298,9 +301,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override ChildMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "c" field.</summary>
     public const int CFieldNumber = 3;
     private long c_;
@@ -511,9 +511,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override ChildChildMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "e" field.</summary>
     public const int EFieldNumber = 5;
     private long e_;

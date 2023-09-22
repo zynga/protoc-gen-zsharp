@@ -14,14 +14,18 @@ namespace Zynga.Protobuf.Runtime {
 		private int _fieldNumber;
 		private readonly EventMapConverter<TKey, TValue> _converter;
 
-		public EventMapField(EventMapConverter<TKey, TValue> converter, bool isMessageType = false) {
+		public EventMapField(EventMapConverter<TKey, TValue> converter, EventContext context, int fieldNumber, bool isMessageType = false) {
 			_converter = converter;
-			_internal = new MapField<TKey, TValue>();
+			_context = context;
+			_fieldNumber = fieldNumber;
 			_isMessageType = isMessageType;
+			_internal = new MapField<TKey, TValue>();
 		}
 
-		public EventMapField(EventMapConverter<TKey, TValue> converter, MapField<TKey, TValue> mapField, bool isMessageType = false) {
+		public EventMapField(EventMapConverter<TKey, TValue> converter, EventContext context, int fieldNumber, MapField<TKey, TValue> mapField, bool isMessageType = false) {
 			_converter = converter;
+			_context = context;
+			_fieldNumber = fieldNumber;
 			_isMessageType = isMessageType;
 
 			if (_isMessageType) {
@@ -285,11 +289,6 @@ namespace Zynga.Protobuf.Runtime {
 				MapAction = MapAction.ClearMap
 			};
 			_context.AddMapEvent(_fieldNumber, mapEvent);
-		}
-
-		public void SetContext(EventContext context, int fieldNumber) {
-			_context = context;
-			_fieldNumber = fieldNumber;
 		}
 
 		public bool ApplyEvent(MapEvent e) {

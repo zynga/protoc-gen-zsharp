@@ -767,50 +767,50 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestAllTypes() {
       OnConstruction();
-      repeatedInt32_.SetContext(Context, 31);
-      repeatedInt64_.SetContext(Context, 32);
-      repeatedUint32_.SetContext(Context, 33);
-      repeatedUint64_.SetContext(Context, 34);
-      repeatedSint32_.SetContext(Context, 35);
-      repeatedSint64_.SetContext(Context, 36);
-      repeatedFixed32_.SetContext(Context, 37);
-      repeatedFixed64_.SetContext(Context, 38);
-      repeatedSfixed32_.SetContext(Context, 39);
-      repeatedSfixed64_.SetContext(Context, 40);
-      repeatedFloat_.SetContext(Context, 41);
-      repeatedDouble_.SetContext(Context, 42);
-      repeatedBool_.SetContext(Context, 43);
-      repeatedString_.SetContext(Context, 44);
-      repeatedBytes_.SetContext(Context, 45);
-      repeatedNestedMessage_.SetContext(Context, 48);
-      repeatedForeignMessage_.SetContext(Context, 49);
-      repeatedImportMessage_.SetContext(Context, 50);
-      repeatedImportNoEvents_.SetContext(Context, 55);
-      repeatedTestAllTypesMessage_.SetContext(Context, 56);
-      repeatedTestAllTypesNoEventsMessage_.SetContext(Context, 57);
-      repeatedNestedEnum_.SetContext(Context, 51);
-      repeatedForeignEnum_.SetContext(Context, 52);
-      repeatedImportEnum_.SetContext(Context, 53);
-      mapInt32Int32_.SetContext(Context, 115);
-      mapInt64Int64_.SetContext(Context, 116);
-      mapUint32Uint32_.SetContext(Context, 117);
-      mapUint64Uint64_.SetContext(Context, 118);
-      mapSint32Sint32_.SetContext(Context, 119);
-      mapSint64Sint64_.SetContext(Context, 120);
-      mapFixed32Fixed32_.SetContext(Context, 121);
-      mapFixed64Fixed64_.SetContext(Context, 122);
-      mapSfixed32Sfixed32_.SetContext(Context, 123);
-      mapSfixed64Sfixed64_.SetContext(Context, 124);
-      mapInt32Float_.SetContext(Context, 125);
-      mapInt32Double_.SetContext(Context, 126);
-      mapBoolBool_.SetContext(Context, 127);
-      mapStringString_.SetContext(Context, 128);
-      mapInt32Bytes_.SetContext(Context, 129);
-      mapInt32Enum_.SetContext(Context, 130);
-      mapInt32ForeignMessage_.SetContext(Context, 131);
-      mapInt32ForeignNoEventsMessage_.SetContext(Context, 132);
-      mapInt32TestAllTypesMessage_.SetContext(Context, 133);
-      mapInt32TestAllTypesNoEventsMessage_.SetContext(Context, 134);
+    repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, Context, 31);
+    repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, Context, 32);
+    repeatedUint32_ = new EventRepeatedField<uint>(repeatedUint32DataConverter, Context, 33);
+    repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, Context, 34);
+    repeatedSint32_ = new EventRepeatedField<int>(repeatedSint32DataConverter, Context, 35);
+    repeatedSint64_ = new EventRepeatedField<long>(repeatedSint64DataConverter, Context, 36);
+    repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, Context, 37);
+    repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, Context, 38);
+    repeatedSfixed32_ = new EventRepeatedField<int>(repeatedSfixed32DataConverter, Context, 39);
+    repeatedSfixed64_ = new EventRepeatedField<long>(repeatedSfixed64DataConverter, Context, 40);
+    repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, Context, 41);
+    repeatedDouble_ = new EventRepeatedField<double>(repeatedDoubleDataConverter, Context, 42);
+    repeatedBool_ = new EventRepeatedField<bool>(repeatedBoolDataConverter, Context, 43);
+    repeatedString_ = new EventRepeatedField<string>(repeatedStringDataConverter, Context, 44);
+    repeatedBytes_ = new EventRepeatedField<pb::ByteString>(repeatedBytesDataConverter, Context, 45);
+    repeatedNestedMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage>(repeatedNestedMessageDataConverter, Context, 48, true);
+    repeatedForeignMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedForeignMessageDataConverter, Context, 49, true);
+    repeatedImportMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage>(repeatedImportMessageDataConverter, Context, 50, true);
+    repeatedImportNoEvents_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents>(repeatedImportNoEventsDataConverter, Context, 55, true);
+    repeatedTestAllTypesMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes>(repeatedTestAllTypesMessageDataConverter, Context, 56, true);
+    repeatedTestAllTypesNoEventsMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(repeatedTestAllTypesNoEventsMessageDataConverter, Context, 57, true);
+    repeatedNestedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum>(repeatedNestedEnumDataConverter, Context, 51);
+    repeatedForeignEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedForeignEnumDataConverter, Context, 52);
+    repeatedImportEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum>(repeatedImportEnumDataConverter, Context, 53);
+    mapInt32Int32_ = new EventMapField<int, int>(mapInt32Int32MapConverter, Context, 115);
+    mapInt64Int64_ = new EventMapField<long, long>(mapInt64Int64MapConverter, Context, 116);
+    mapUint32Uint32_ = new EventMapField<uint, uint>(mapUint32Uint32MapConverter, Context, 117);
+    mapUint64Uint64_ = new EventMapField<ulong, ulong>(mapUint64Uint64MapConverter, Context, 118);
+    mapSint32Sint32_ = new EventMapField<int, int>(mapSint32Sint32MapConverter, Context, 119);
+    mapSint64Sint64_ = new EventMapField<long, long>(mapSint64Sint64MapConverter, Context, 120);
+    mapFixed32Fixed32_ = new EventMapField<uint, uint>(mapFixed32Fixed32MapConverter, Context, 121);
+    mapFixed64Fixed64_ = new EventMapField<ulong, ulong>(mapFixed64Fixed64MapConverter, Context, 122);
+    mapSfixed32Sfixed32_ = new EventMapField<int, int>(mapSfixed32Sfixed32MapConverter, Context, 123);
+    mapSfixed64Sfixed64_ = new EventMapField<long, long>(mapSfixed64Sfixed64MapConverter, Context, 124);
+    mapInt32Float_ = new EventMapField<int, float>(mapInt32FloatMapConverter, Context, 125);
+    mapInt32Double_ = new EventMapField<int, double>(mapInt32DoubleMapConverter, Context, 126);
+    mapBoolBool_ = new EventMapField<bool, bool>(mapBoolBoolMapConverter, Context, 127);
+    mapStringString_ = new EventMapField<string, string>(mapStringStringMapConverter, Context, 128);
+    mapInt32Bytes_ = new EventMapField<int, pb::ByteString>(mapInt32BytesMapConverter, Context, 129);
+    mapInt32Enum_ = new EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum>(mapInt32EnumMapConverter, Context, 130);
+    mapInt32ForeignMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>(mapInt32ForeignMessageMapConverter, Context, 131, true);
+    mapInt32ForeignNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(mapInt32ForeignNoEventsMessageMapConverter, Context, 132, true);
+    mapInt32TestAllTypesMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>(mapInt32TestAllTypesMessageMapConverter, Context, 133, true);
+    mapInt32TestAllTypesNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(mapInt32TestAllTypesNoEventsMessageMapConverter, Context, 134, true);
     }
 
     partial void OnConstruction();
@@ -832,102 +832,73 @@ namespace Google.Protobuf.TestProtos {
       singleBool_ = other.singleBool_;
       singleString_ = other.singleString_;
       singleBytes_ = other.singleBytes_;
-      singleNestedMessage_ = other.singleNestedMessage_ != null ? other.SingleNestedMessage.Clone() : null;
-      singleForeignMessage_ = other.singleForeignMessage_ != null ? other.SingleForeignMessage.Clone() : null;
-      singleImportMessage_ = other.singleImportMessage_ != null ? other.SingleImportMessage.Clone() : null;
+      if(other.singleNestedMessage_ != null) {
+        singleNestedMessage_ = other.SingleNestedMessage.Clone();
+        singleNestedMessage_.SetParent(Context, 18);
+      }
+      if(other.singleForeignMessage_ != null) {
+        singleForeignMessage_ = other.SingleForeignMessage.Clone();
+        singleForeignMessage_.SetParent(Context, 19);
+      }
+      if(other.singleImportMessage_ != null) {
+        singleImportMessage_ = other.SingleImportMessage.Clone();
+        singleImportMessage_.SetParent(Context, 20);
+      }
       singleNestedEnum_ = other.singleNestedEnum_;
       singleForeignEnum_ = other.singleForeignEnum_;
       singleImportEnum_ = other.singleImportEnum_;
-      singlePublicImportMessage_ = other.singlePublicImportMessage_ != null ? other.SinglePublicImportMessage.Clone() : null;
-      repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, other.RepeatedInt32.Clone());
-      repeatedInt32_.SetContext(Context, 31);
-      repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, other.RepeatedInt64.Clone());
-      repeatedInt64_.SetContext(Context, 32);
-      repeatedUint32_ = new EventRepeatedField<uint>(repeatedUint32DataConverter, other.RepeatedUint32.Clone());
-      repeatedUint32_.SetContext(Context, 33);
-      repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, other.RepeatedUint64.Clone());
-      repeatedUint64_.SetContext(Context, 34);
-      repeatedSint32_ = new EventRepeatedField<int>(repeatedSint32DataConverter, other.RepeatedSint32.Clone());
-      repeatedSint32_.SetContext(Context, 35);
-      repeatedSint64_ = new EventRepeatedField<long>(repeatedSint64DataConverter, other.RepeatedSint64.Clone());
-      repeatedSint64_.SetContext(Context, 36);
-      repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, other.RepeatedFixed32.Clone());
-      repeatedFixed32_.SetContext(Context, 37);
-      repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, other.RepeatedFixed64.Clone());
-      repeatedFixed64_.SetContext(Context, 38);
-      repeatedSfixed32_ = new EventRepeatedField<int>(repeatedSfixed32DataConverter, other.RepeatedSfixed32.Clone());
-      repeatedSfixed32_.SetContext(Context, 39);
-      repeatedSfixed64_ = new EventRepeatedField<long>(repeatedSfixed64DataConverter, other.RepeatedSfixed64.Clone());
-      repeatedSfixed64_.SetContext(Context, 40);
-      repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, other.RepeatedFloat.Clone());
-      repeatedFloat_.SetContext(Context, 41);
-      repeatedDouble_ = new EventRepeatedField<double>(repeatedDoubleDataConverter, other.RepeatedDouble.Clone());
-      repeatedDouble_.SetContext(Context, 42);
-      repeatedBool_ = new EventRepeatedField<bool>(repeatedBoolDataConverter, other.RepeatedBool.Clone());
-      repeatedBool_.SetContext(Context, 43);
-      repeatedString_ = new EventRepeatedField<string>(repeatedStringDataConverter, other.RepeatedString.Clone());
-      repeatedString_.SetContext(Context, 44);
-      repeatedBytes_ = new EventRepeatedField<pb::ByteString>(repeatedBytesDataConverter, other.RepeatedBytes.Clone());
-      repeatedBytes_.SetContext(Context, 45);
-      repeatedNestedMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage>(repeatedNestedMessageDataConverter, other.RepeatedNestedMessage.Clone(), true);
-      repeatedNestedMessage_.SetContext(Context, 48);
-      repeatedForeignMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedForeignMessageDataConverter, other.RepeatedForeignMessage.Clone(), true);
-      repeatedForeignMessage_.SetContext(Context, 49);
-      repeatedImportMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage>(repeatedImportMessageDataConverter, other.RepeatedImportMessage.Clone(), true);
-      repeatedImportMessage_.SetContext(Context, 50);
-      repeatedImportNoEvents_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents>(repeatedImportNoEventsDataConverter, other.RepeatedImportNoEvents.Clone(), true);
-      repeatedImportNoEvents_.SetContext(Context, 55);
-      repeatedTestAllTypesMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes>(repeatedTestAllTypesMessageDataConverter, other.RepeatedTestAllTypesMessage.Clone(), true);
-      repeatedTestAllTypesMessage_.SetContext(Context, 56);
-      repeatedTestAllTypesNoEventsMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(repeatedTestAllTypesNoEventsMessageDataConverter, other.RepeatedTestAllTypesNoEventsMessage.Clone(), true);
-      repeatedTestAllTypesNoEventsMessage_.SetContext(Context, 57);
-      repeatedNestedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum>(repeatedNestedEnumDataConverter, other.RepeatedNestedEnum.Clone());
-      repeatedNestedEnum_.SetContext(Context, 51);
-      repeatedForeignEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedForeignEnumDataConverter, other.RepeatedForeignEnum.Clone());
-      repeatedForeignEnum_.SetContext(Context, 52);
-      repeatedImportEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum>(repeatedImportEnumDataConverter, other.RepeatedImportEnum.Clone());
-      repeatedImportEnum_.SetContext(Context, 53);
-      mapInt32Int32_ = new EventMapField<int, int>(mapInt32Int32MapConverter, other.mapInt32Int32_.Clone());
-      mapInt32Int32_.SetContext(Context, 115);
-      mapInt64Int64_ = new EventMapField<long, long>(mapInt64Int64MapConverter, other.mapInt64Int64_.Clone());
-      mapInt64Int64_.SetContext(Context, 116);
-      mapUint32Uint32_ = new EventMapField<uint, uint>(mapUint32Uint32MapConverter, other.mapUint32Uint32_.Clone());
-      mapUint32Uint32_.SetContext(Context, 117);
-      mapUint64Uint64_ = new EventMapField<ulong, ulong>(mapUint64Uint64MapConverter, other.mapUint64Uint64_.Clone());
-      mapUint64Uint64_.SetContext(Context, 118);
-      mapSint32Sint32_ = new EventMapField<int, int>(mapSint32Sint32MapConverter, other.mapSint32Sint32_.Clone());
-      mapSint32Sint32_.SetContext(Context, 119);
-      mapSint64Sint64_ = new EventMapField<long, long>(mapSint64Sint64MapConverter, other.mapSint64Sint64_.Clone());
-      mapSint64Sint64_.SetContext(Context, 120);
-      mapFixed32Fixed32_ = new EventMapField<uint, uint>(mapFixed32Fixed32MapConverter, other.mapFixed32Fixed32_.Clone());
-      mapFixed32Fixed32_.SetContext(Context, 121);
-      mapFixed64Fixed64_ = new EventMapField<ulong, ulong>(mapFixed64Fixed64MapConverter, other.mapFixed64Fixed64_.Clone());
-      mapFixed64Fixed64_.SetContext(Context, 122);
-      mapSfixed32Sfixed32_ = new EventMapField<int, int>(mapSfixed32Sfixed32MapConverter, other.mapSfixed32Sfixed32_.Clone());
-      mapSfixed32Sfixed32_.SetContext(Context, 123);
-      mapSfixed64Sfixed64_ = new EventMapField<long, long>(mapSfixed64Sfixed64MapConverter, other.mapSfixed64Sfixed64_.Clone());
-      mapSfixed64Sfixed64_.SetContext(Context, 124);
-      mapInt32Float_ = new EventMapField<int, float>(mapInt32FloatMapConverter, other.mapInt32Float_.Clone());
-      mapInt32Float_.SetContext(Context, 125);
-      mapInt32Double_ = new EventMapField<int, double>(mapInt32DoubleMapConverter, other.mapInt32Double_.Clone());
-      mapInt32Double_.SetContext(Context, 126);
-      mapBoolBool_ = new EventMapField<bool, bool>(mapBoolBoolMapConverter, other.mapBoolBool_.Clone());
-      mapBoolBool_.SetContext(Context, 127);
-      mapStringString_ = new EventMapField<string, string>(mapStringStringMapConverter, other.mapStringString_.Clone());
-      mapStringString_.SetContext(Context, 128);
-      mapInt32Bytes_ = new EventMapField<int, pb::ByteString>(mapInt32BytesMapConverter, other.mapInt32Bytes_.Clone());
-      mapInt32Bytes_.SetContext(Context, 129);
-      mapInt32Enum_ = new EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum>(mapInt32EnumMapConverter, other.mapInt32Enum_.Clone());
-      mapInt32Enum_.SetContext(Context, 130);
-      mapInt32ForeignMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>(mapInt32ForeignMessageMapConverter, other.mapInt32ForeignMessage_.Clone(), true);
-      mapInt32ForeignMessage_.SetContext(Context, 131);
-      mapInt32ForeignNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(mapInt32ForeignNoEventsMessageMapConverter, other.mapInt32ForeignNoEventsMessage_.Clone(), true);
-      mapInt32ForeignNoEventsMessage_.SetContext(Context, 132);
-      mapInt32TestAllTypesMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>(mapInt32TestAllTypesMessageMapConverter, other.mapInt32TestAllTypesMessage_.Clone(), true);
-      mapInt32TestAllTypesMessage_.SetContext(Context, 133);
-      mapInt32TestAllTypesNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(mapInt32TestAllTypesNoEventsMessageMapConverter, other.mapInt32TestAllTypesNoEventsMessage_.Clone(), true);
-      mapInt32TestAllTypesNoEventsMessage_.SetContext(Context, 134);
-      allTypes_ = other.allTypes_ != null ? other.AllTypes.Clone() : null;
+      if(other.singlePublicImportMessage_ != null) {
+        singlePublicImportMessage_ = other.SinglePublicImportMessage.Clone();
+        singlePublicImportMessage_.SetParent(Context, 26);
+      }
+      repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, Context, 31, other.RepeatedInt32.Clone());
+      repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, Context, 32, other.RepeatedInt64.Clone());
+      repeatedUint32_ = new EventRepeatedField<uint>(repeatedUint32DataConverter, Context, 33, other.RepeatedUint32.Clone());
+      repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, Context, 34, other.RepeatedUint64.Clone());
+      repeatedSint32_ = new EventRepeatedField<int>(repeatedSint32DataConverter, Context, 35, other.RepeatedSint32.Clone());
+      repeatedSint64_ = new EventRepeatedField<long>(repeatedSint64DataConverter, Context, 36, other.RepeatedSint64.Clone());
+      repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, Context, 37, other.RepeatedFixed32.Clone());
+      repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, Context, 38, other.RepeatedFixed64.Clone());
+      repeatedSfixed32_ = new EventRepeatedField<int>(repeatedSfixed32DataConverter, Context, 39, other.RepeatedSfixed32.Clone());
+      repeatedSfixed64_ = new EventRepeatedField<long>(repeatedSfixed64DataConverter, Context, 40, other.RepeatedSfixed64.Clone());
+      repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, Context, 41, other.RepeatedFloat.Clone());
+      repeatedDouble_ = new EventRepeatedField<double>(repeatedDoubleDataConverter, Context, 42, other.RepeatedDouble.Clone());
+      repeatedBool_ = new EventRepeatedField<bool>(repeatedBoolDataConverter, Context, 43, other.RepeatedBool.Clone());
+      repeatedString_ = new EventRepeatedField<string>(repeatedStringDataConverter, Context, 44, other.RepeatedString.Clone());
+      repeatedBytes_ = new EventRepeatedField<pb::ByteString>(repeatedBytesDataConverter, Context, 45, other.RepeatedBytes.Clone());
+      repeatedNestedMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage>(repeatedNestedMessageDataConverter, Context, 48, other.RepeatedNestedMessage.Clone(), true);
+      repeatedForeignMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedForeignMessageDataConverter, Context, 49, other.RepeatedForeignMessage.Clone(), true);
+      repeatedImportMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage>(repeatedImportMessageDataConverter, Context, 50, other.RepeatedImportMessage.Clone(), true);
+      repeatedImportNoEvents_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents>(repeatedImportNoEventsDataConverter, Context, 55, other.RepeatedImportNoEvents.Clone(), true);
+      repeatedTestAllTypesMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes>(repeatedTestAllTypesMessageDataConverter, Context, 56, other.RepeatedTestAllTypesMessage.Clone(), true);
+      repeatedTestAllTypesNoEventsMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(repeatedTestAllTypesNoEventsMessageDataConverter, Context, 57, other.RepeatedTestAllTypesNoEventsMessage.Clone(), true);
+      repeatedNestedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum>(repeatedNestedEnumDataConverter, Context, 51, other.RepeatedNestedEnum.Clone());
+      repeatedForeignEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedForeignEnumDataConverter, Context, 52, other.RepeatedForeignEnum.Clone());
+      repeatedImportEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum>(repeatedImportEnumDataConverter, Context, 53, other.RepeatedImportEnum.Clone());
+      mapInt32Int32_ = new EventMapField<int, int>(mapInt32Int32MapConverter, Context, 115, other.mapInt32Int32_.Clone());
+      mapInt64Int64_ = new EventMapField<long, long>(mapInt64Int64MapConverter, Context, 116, other.mapInt64Int64_.Clone());
+      mapUint32Uint32_ = new EventMapField<uint, uint>(mapUint32Uint32MapConverter, Context, 117, other.mapUint32Uint32_.Clone());
+      mapUint64Uint64_ = new EventMapField<ulong, ulong>(mapUint64Uint64MapConverter, Context, 118, other.mapUint64Uint64_.Clone());
+      mapSint32Sint32_ = new EventMapField<int, int>(mapSint32Sint32MapConverter, Context, 119, other.mapSint32Sint32_.Clone());
+      mapSint64Sint64_ = new EventMapField<long, long>(mapSint64Sint64MapConverter, Context, 120, other.mapSint64Sint64_.Clone());
+      mapFixed32Fixed32_ = new EventMapField<uint, uint>(mapFixed32Fixed32MapConverter, Context, 121, other.mapFixed32Fixed32_.Clone());
+      mapFixed64Fixed64_ = new EventMapField<ulong, ulong>(mapFixed64Fixed64MapConverter, Context, 122, other.mapFixed64Fixed64_.Clone());
+      mapSfixed32Sfixed32_ = new EventMapField<int, int>(mapSfixed32Sfixed32MapConverter, Context, 123, other.mapSfixed32Sfixed32_.Clone());
+      mapSfixed64Sfixed64_ = new EventMapField<long, long>(mapSfixed64Sfixed64MapConverter, Context, 124, other.mapSfixed64Sfixed64_.Clone());
+      mapInt32Float_ = new EventMapField<int, float>(mapInt32FloatMapConverter, Context, 125, other.mapInt32Float_.Clone());
+      mapInt32Double_ = new EventMapField<int, double>(mapInt32DoubleMapConverter, Context, 126, other.mapInt32Double_.Clone());
+      mapBoolBool_ = new EventMapField<bool, bool>(mapBoolBoolMapConverter, Context, 127, other.mapBoolBool_.Clone());
+      mapStringString_ = new EventMapField<string, string>(mapStringStringMapConverter, Context, 128, other.mapStringString_.Clone());
+      mapInt32Bytes_ = new EventMapField<int, pb::ByteString>(mapInt32BytesMapConverter, Context, 129, other.mapInt32Bytes_.Clone());
+      mapInt32Enum_ = new EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum>(mapInt32EnumMapConverter, Context, 130, other.mapInt32Enum_.Clone());
+      mapInt32ForeignMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>(mapInt32ForeignMessageMapConverter, Context, 131, other.mapInt32ForeignMessage_.Clone(), true);
+      mapInt32ForeignNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(mapInt32ForeignNoEventsMessageMapConverter, Context, 132, other.mapInt32ForeignNoEventsMessage_.Clone(), true);
+      mapInt32TestAllTypesMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>(mapInt32TestAllTypesMessageMapConverter, Context, 133, other.mapInt32TestAllTypesMessage_.Clone(), true);
+      mapInt32TestAllTypesNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(mapInt32TestAllTypesNoEventsMessageMapConverter, Context, 134, other.mapInt32TestAllTypesNoEventsMessage_.Clone(), true);
+      if(other.allTypes_ != null) {
+        allTypes_ = other.AllTypes.Clone();
+        allTypes_.SetParent(Context, 135);
+      }
       allTypesNoEvents_ = other.allTypesNoEvents_ != null ? other.AllTypesNoEvents.Clone() : null;
       switch (other.OneofFieldCase) {
         case OneofFieldOneofCase.OneofUint32:
@@ -967,53 +938,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestAllTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      repeatedInt32_.SetContext(Context, 31);
-      repeatedInt64_.SetContext(Context, 32);
-      repeatedUint32_.SetContext(Context, 33);
-      repeatedUint64_.SetContext(Context, 34);
-      repeatedSint32_.SetContext(Context, 35);
-      repeatedSint64_.SetContext(Context, 36);
-      repeatedFixed32_.SetContext(Context, 37);
-      repeatedFixed64_.SetContext(Context, 38);
-      repeatedSfixed32_.SetContext(Context, 39);
-      repeatedSfixed64_.SetContext(Context, 40);
-      repeatedFloat_.SetContext(Context, 41);
-      repeatedDouble_.SetContext(Context, 42);
-      repeatedBool_.SetContext(Context, 43);
-      repeatedString_.SetContext(Context, 44);
-      repeatedBytes_.SetContext(Context, 45);
-      repeatedNestedMessage_.SetContext(Context, 48);
-      repeatedForeignMessage_.SetContext(Context, 49);
-      repeatedImportMessage_.SetContext(Context, 50);
-      repeatedImportNoEvents_.SetContext(Context, 55);
-      repeatedTestAllTypesMessage_.SetContext(Context, 56);
-      repeatedTestAllTypesNoEventsMessage_.SetContext(Context, 57);
-      repeatedNestedEnum_.SetContext(Context, 51);
-      repeatedForeignEnum_.SetContext(Context, 52);
-      repeatedImportEnum_.SetContext(Context, 53);
-      mapInt32Int32_.SetContext(Context, 115);
-      mapInt64Int64_.SetContext(Context, 116);
-      mapUint32Uint32_.SetContext(Context, 117);
-      mapUint64Uint64_.SetContext(Context, 118);
-      mapSint32Sint32_.SetContext(Context, 119);
-      mapSint64Sint64_.SetContext(Context, 120);
-      mapFixed32Fixed32_.SetContext(Context, 121);
-      mapFixed64Fixed64_.SetContext(Context, 122);
-      mapSfixed32Sfixed32_.SetContext(Context, 123);
-      mapSfixed64Sfixed64_.SetContext(Context, 124);
-      mapInt32Float_.SetContext(Context, 125);
-      mapInt32Double_.SetContext(Context, 126);
-      mapBoolBool_.SetContext(Context, 127);
-      mapStringString_.SetContext(Context, 128);
-      mapInt32Bytes_.SetContext(Context, 129);
-      mapInt32Enum_.SetContext(Context, 130);
-      mapInt32ForeignMessage_.SetContext(Context, 131);
-      mapInt32ForeignNoEventsMessage_.SetContext(Context, 132);
-      mapInt32TestAllTypesMessage_.SetContext(Context, 133);
-      mapInt32TestAllTypesNoEventsMessage_.SetContext(Context, 134);
-    }
     /// <summary>Field number for the "single_int32" field.</summary>
     public const int SingleInt32FieldNumber = 1;
     private int singleInt32_;
@@ -1393,7 +1317,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedInt32DataConverter repeatedInt32DataConverter = new RepeatedInt32DataConverter();
-    private readonly EventRepeatedField<int> repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter);
+    private readonly EventRepeatedField<int> repeatedInt32_;
     /// <summary>
     /// Repeated
     /// </summary>
@@ -1415,7 +1339,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedInt64DataConverter repeatedInt64DataConverter = new RepeatedInt64DataConverter();
-    private readonly EventRepeatedField<long> repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter);
+    private readonly EventRepeatedField<long> repeatedInt64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> RepeatedInt64 {
       get { return repeatedInt64_; }
@@ -1434,7 +1358,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedUint32DataConverter repeatedUint32DataConverter = new RepeatedUint32DataConverter();
-    private readonly EventRepeatedField<uint> repeatedUint32_ = new EventRepeatedField<uint>(repeatedUint32DataConverter);
+    private readonly EventRepeatedField<uint> repeatedUint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> RepeatedUint32 {
       get { return repeatedUint32_; }
@@ -1453,7 +1377,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedUint64DataConverter repeatedUint64DataConverter = new RepeatedUint64DataConverter();
-    private readonly EventRepeatedField<ulong> repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter);
+    private readonly EventRepeatedField<ulong> repeatedUint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> RepeatedUint64 {
       get { return repeatedUint64_; }
@@ -1472,7 +1396,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedSint32DataConverter repeatedSint32DataConverter = new RepeatedSint32DataConverter();
-    private readonly EventRepeatedField<int> repeatedSint32_ = new EventRepeatedField<int>(repeatedSint32DataConverter);
+    private readonly EventRepeatedField<int> repeatedSint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> RepeatedSint32 {
       get { return repeatedSint32_; }
@@ -1491,7 +1415,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedSint64DataConverter repeatedSint64DataConverter = new RepeatedSint64DataConverter();
-    private readonly EventRepeatedField<long> repeatedSint64_ = new EventRepeatedField<long>(repeatedSint64DataConverter);
+    private readonly EventRepeatedField<long> repeatedSint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> RepeatedSint64 {
       get { return repeatedSint64_; }
@@ -1510,7 +1434,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFixed32DataConverter repeatedFixed32DataConverter = new RepeatedFixed32DataConverter();
-    private readonly EventRepeatedField<uint> repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter);
+    private readonly EventRepeatedField<uint> repeatedFixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> RepeatedFixed32 {
       get { return repeatedFixed32_; }
@@ -1529,7 +1453,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFixed64DataConverter repeatedFixed64DataConverter = new RepeatedFixed64DataConverter();
-    private readonly EventRepeatedField<ulong> repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter);
+    private readonly EventRepeatedField<ulong> repeatedFixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> RepeatedFixed64 {
       get { return repeatedFixed64_; }
@@ -1548,7 +1472,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedSfixed32DataConverter repeatedSfixed32DataConverter = new RepeatedSfixed32DataConverter();
-    private readonly EventRepeatedField<int> repeatedSfixed32_ = new EventRepeatedField<int>(repeatedSfixed32DataConverter);
+    private readonly EventRepeatedField<int> repeatedSfixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> RepeatedSfixed32 {
       get { return repeatedSfixed32_; }
@@ -1567,7 +1491,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedSfixed64DataConverter repeatedSfixed64DataConverter = new RepeatedSfixed64DataConverter();
-    private readonly EventRepeatedField<long> repeatedSfixed64_ = new EventRepeatedField<long>(repeatedSfixed64DataConverter);
+    private readonly EventRepeatedField<long> repeatedSfixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> RepeatedSfixed64 {
       get { return repeatedSfixed64_; }
@@ -1586,7 +1510,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFloatDataConverter repeatedFloatDataConverter = new RepeatedFloatDataConverter();
-    private readonly EventRepeatedField<float> repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter);
+    private readonly EventRepeatedField<float> repeatedFloat_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<float> RepeatedFloat {
       get { return repeatedFloat_; }
@@ -1605,7 +1529,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedDoubleDataConverter repeatedDoubleDataConverter = new RepeatedDoubleDataConverter();
-    private readonly EventRepeatedField<double> repeatedDouble_ = new EventRepeatedField<double>(repeatedDoubleDataConverter);
+    private readonly EventRepeatedField<double> repeatedDouble_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<double> RepeatedDouble {
       get { return repeatedDouble_; }
@@ -1624,7 +1548,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedBoolDataConverter repeatedBoolDataConverter = new RepeatedBoolDataConverter();
-    private readonly EventRepeatedField<bool> repeatedBool_ = new EventRepeatedField<bool>(repeatedBoolDataConverter);
+    private readonly EventRepeatedField<bool> repeatedBool_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<bool> RepeatedBool {
       get { return repeatedBool_; }
@@ -1643,7 +1567,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedStringDataConverter repeatedStringDataConverter = new RepeatedStringDataConverter();
-    private readonly EventRepeatedField<string> repeatedString_ = new EventRepeatedField<string>(repeatedStringDataConverter);
+    private readonly EventRepeatedField<string> repeatedString_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<string> RepeatedString {
       get { return repeatedString_; }
@@ -1662,7 +1586,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedBytesDataConverter repeatedBytesDataConverter = new RepeatedBytesDataConverter();
-    private readonly EventRepeatedField<pb::ByteString> repeatedBytes_ = new EventRepeatedField<pb::ByteString>(repeatedBytesDataConverter);
+    private readonly EventRepeatedField<pb::ByteString> repeatedBytes_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<pb::ByteString> RepeatedBytes {
       get { return repeatedBytes_; }
@@ -1682,7 +1606,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedNestedMessageDataConverter repeatedNestedMessageDataConverter = new RepeatedNestedMessageDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage> repeatedNestedMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage>(repeatedNestedMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage> repeatedNestedMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage> RepeatedNestedMessage {
       get { return repeatedNestedMessage_; }
@@ -1702,7 +1626,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedForeignMessageDataConverter repeatedForeignMessageDataConverter = new RepeatedForeignMessageDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> repeatedForeignMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedForeignMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> repeatedForeignMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> RepeatedForeignMessage {
       get { return repeatedForeignMessage_; }
@@ -1722,7 +1646,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedImportMessageDataConverter repeatedImportMessageDataConverter = new RepeatedImportMessageDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage> repeatedImportMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage>(repeatedImportMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage> repeatedImportMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessage> RepeatedImportMessage {
       get { return repeatedImportMessage_; }
@@ -1742,7 +1666,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedImportNoEventsDataConverter repeatedImportNoEventsDataConverter = new RepeatedImportNoEventsDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents> repeatedImportNoEvents_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents>(repeatedImportNoEventsDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents> repeatedImportNoEvents_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ImportMessageNoEvents> RepeatedImportNoEvents {
       get { return repeatedImportNoEvents_; }
@@ -1762,7 +1686,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedTestAllTypesMessageDataConverter repeatedTestAllTypesMessageDataConverter = new RepeatedTestAllTypesMessageDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes> repeatedTestAllTypesMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes>(repeatedTestAllTypesMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes> repeatedTestAllTypesMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes> RepeatedTestAllTypesMessage {
       get { return repeatedTestAllTypesMessage_; }
@@ -1782,7 +1706,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedTestAllTypesNoEventsMessageDataConverter repeatedTestAllTypesNoEventsMessageDataConverter = new RepeatedTestAllTypesNoEventsMessageDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> repeatedTestAllTypesNoEventsMessage_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(repeatedTestAllTypesNoEventsMessageDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> repeatedTestAllTypesNoEventsMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> RepeatedTestAllTypesNoEventsMessage {
       get { return repeatedTestAllTypesNoEventsMessage_; }
@@ -1801,7 +1725,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedNestedEnumDataConverter repeatedNestedEnumDataConverter = new RepeatedNestedEnumDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum> repeatedNestedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum>(repeatedNestedEnumDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum> repeatedNestedEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedEnum> RepeatedNestedEnum {
       get { return repeatedNestedEnum_; }
@@ -1820,7 +1744,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedForeignEnumDataConverter repeatedForeignEnumDataConverter = new RepeatedForeignEnumDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> repeatedForeignEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedForeignEnumDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> repeatedForeignEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> RepeatedForeignEnum {
       get { return repeatedForeignEnum_; }
@@ -1839,7 +1763,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedImportEnumDataConverter repeatedImportEnumDataConverter = new RepeatedImportEnumDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum> repeatedImportEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum>(repeatedImportEnumDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum> repeatedImportEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ImportEnum> RepeatedImportEnum {
       get { return repeatedImportEnum_; }
@@ -2007,7 +1931,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, int> mapInt32Int32MapConverter = new MapInt32Int32MapConverter();
-    private readonly EventMapField<int, int> mapInt32Int32_ = new EventMapField<int, int>(mapInt32Int32MapConverter);
+    private readonly EventMapField<int, int> mapInt32Int32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, int> MapInt32Int32 {
       get { return mapInt32Int32_; }
@@ -2041,7 +1965,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<long, long> mapInt64Int64MapConverter = new MapInt64Int64MapConverter();
-    private readonly EventMapField<long, long> mapInt64Int64_ = new EventMapField<long, long>(mapInt64Int64MapConverter);
+    private readonly EventMapField<long, long> mapInt64Int64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<long, long> MapInt64Int64 {
       get { return mapInt64Int64_; }
@@ -2075,7 +1999,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<uint, uint> mapUint32Uint32MapConverter = new MapUint32Uint32MapConverter();
-    private readonly EventMapField<uint, uint> mapUint32Uint32_ = new EventMapField<uint, uint>(mapUint32Uint32MapConverter);
+    private readonly EventMapField<uint, uint> mapUint32Uint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<uint, uint> MapUint32Uint32 {
       get { return mapUint32Uint32_; }
@@ -2109,7 +2033,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<ulong, ulong> mapUint64Uint64MapConverter = new MapUint64Uint64MapConverter();
-    private readonly EventMapField<ulong, ulong> mapUint64Uint64_ = new EventMapField<ulong, ulong>(mapUint64Uint64MapConverter);
+    private readonly EventMapField<ulong, ulong> mapUint64Uint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<ulong, ulong> MapUint64Uint64 {
       get { return mapUint64Uint64_; }
@@ -2143,7 +2067,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, int> mapSint32Sint32MapConverter = new MapSint32Sint32MapConverter();
-    private readonly EventMapField<int, int> mapSint32Sint32_ = new EventMapField<int, int>(mapSint32Sint32MapConverter);
+    private readonly EventMapField<int, int> mapSint32Sint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, int> MapSint32Sint32 {
       get { return mapSint32Sint32_; }
@@ -2177,7 +2101,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<long, long> mapSint64Sint64MapConverter = new MapSint64Sint64MapConverter();
-    private readonly EventMapField<long, long> mapSint64Sint64_ = new EventMapField<long, long>(mapSint64Sint64MapConverter);
+    private readonly EventMapField<long, long> mapSint64Sint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<long, long> MapSint64Sint64 {
       get { return mapSint64Sint64_; }
@@ -2211,7 +2135,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<uint, uint> mapFixed32Fixed32MapConverter = new MapFixed32Fixed32MapConverter();
-    private readonly EventMapField<uint, uint> mapFixed32Fixed32_ = new EventMapField<uint, uint>(mapFixed32Fixed32MapConverter);
+    private readonly EventMapField<uint, uint> mapFixed32Fixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<uint, uint> MapFixed32Fixed32 {
       get { return mapFixed32Fixed32_; }
@@ -2245,7 +2169,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<ulong, ulong> mapFixed64Fixed64MapConverter = new MapFixed64Fixed64MapConverter();
-    private readonly EventMapField<ulong, ulong> mapFixed64Fixed64_ = new EventMapField<ulong, ulong>(mapFixed64Fixed64MapConverter);
+    private readonly EventMapField<ulong, ulong> mapFixed64Fixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<ulong, ulong> MapFixed64Fixed64 {
       get { return mapFixed64Fixed64_; }
@@ -2279,7 +2203,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, int> mapSfixed32Sfixed32MapConverter = new MapSfixed32Sfixed32MapConverter();
-    private readonly EventMapField<int, int> mapSfixed32Sfixed32_ = new EventMapField<int, int>(mapSfixed32Sfixed32MapConverter);
+    private readonly EventMapField<int, int> mapSfixed32Sfixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, int> MapSfixed32Sfixed32 {
       get { return mapSfixed32Sfixed32_; }
@@ -2313,7 +2237,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<long, long> mapSfixed64Sfixed64MapConverter = new MapSfixed64Sfixed64MapConverter();
-    private readonly EventMapField<long, long> mapSfixed64Sfixed64_ = new EventMapField<long, long>(mapSfixed64Sfixed64MapConverter);
+    private readonly EventMapField<long, long> mapSfixed64Sfixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<long, long> MapSfixed64Sfixed64 {
       get { return mapSfixed64Sfixed64_; }
@@ -2347,7 +2271,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, float> mapInt32FloatMapConverter = new MapInt32FloatMapConverter();
-    private readonly EventMapField<int, float> mapInt32Float_ = new EventMapField<int, float>(mapInt32FloatMapConverter);
+    private readonly EventMapField<int, float> mapInt32Float_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, float> MapInt32Float {
       get { return mapInt32Float_; }
@@ -2381,7 +2305,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, double> mapInt32DoubleMapConverter = new MapInt32DoubleMapConverter();
-    private readonly EventMapField<int, double> mapInt32Double_ = new EventMapField<int, double>(mapInt32DoubleMapConverter);
+    private readonly EventMapField<int, double> mapInt32Double_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, double> MapInt32Double {
       get { return mapInt32Double_; }
@@ -2415,7 +2339,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<bool, bool> mapBoolBoolMapConverter = new MapBoolBoolMapConverter();
-    private readonly EventMapField<bool, bool> mapBoolBool_ = new EventMapField<bool, bool>(mapBoolBoolMapConverter);
+    private readonly EventMapField<bool, bool> mapBoolBool_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<bool, bool> MapBoolBool {
       get { return mapBoolBool_; }
@@ -2449,7 +2373,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<string, string> mapStringStringMapConverter = new MapStringStringMapConverter();
-    private readonly EventMapField<string, string> mapStringString_ = new EventMapField<string, string>(mapStringStringMapConverter);
+    private readonly EventMapField<string, string> mapStringString_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<string, string> MapStringString {
       get { return mapStringString_; }
@@ -2483,7 +2407,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, pb::ByteString> mapInt32BytesMapConverter = new MapInt32BytesMapConverter();
-    private readonly EventMapField<int, pb::ByteString> mapInt32Bytes_ = new EventMapField<int, pb::ByteString>(mapInt32BytesMapConverter);
+    private readonly EventMapField<int, pb::ByteString> mapInt32Bytes_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, pb::ByteString> MapInt32Bytes {
       get { return mapInt32Bytes_; }
@@ -2517,7 +2441,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.MapEnum> mapInt32EnumMapConverter = new MapInt32EnumMapConverter();
-    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum> mapInt32Enum_ = new EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum>(mapInt32EnumMapConverter);
+    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum> mapInt32Enum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Google.Protobuf.TestProtos.MapEnum> MapInt32Enum {
       get { return mapInt32Enum_; }
@@ -2552,7 +2476,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessage> mapInt32ForeignMessageMapConverter = new MapInt32ForeignMessageMapConverter();
-    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage> mapInt32ForeignMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage>(mapInt32ForeignMessageMapConverter, true);
+    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage> mapInt32ForeignMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessage> MapInt32ForeignMessage {
       get { return mapInt32ForeignMessage_; }
@@ -2587,7 +2511,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> mapInt32ForeignNoEventsMessageMapConverter = new MapInt32ForeignNoEventsMessageMapConverter();
-    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> mapInt32ForeignNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents>(mapInt32ForeignNoEventsMessageMapConverter, true);
+    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> mapInt32ForeignNoEventsMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Google.Protobuf.TestProtos.ForeignMessageNoEvents> MapInt32ForeignNoEventsMessage {
       get { return mapInt32ForeignNoEventsMessage_; }
@@ -2622,7 +2546,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypes> mapInt32TestAllTypesMessageMapConverter = new MapInt32TestAllTypesMessageMapConverter();
-    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes> mapInt32TestAllTypesMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes>(mapInt32TestAllTypesMessageMapConverter, true);
+    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes> mapInt32TestAllTypesMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypes> MapInt32TestAllTypesMessage {
       get { return mapInt32TestAllTypesMessage_; }
@@ -2657,7 +2581,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static readonly EventMapConverter<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> mapInt32TestAllTypesNoEventsMessageMapConverter = new MapInt32TestAllTypesNoEventsMessageMapConverter();
-    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> mapInt32TestAllTypesNoEventsMessage_ = new EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents>(mapInt32TestAllTypesNoEventsMessageMapConverter, true);
+    private readonly EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> mapInt32TestAllTypesNoEventsMessage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, global::Google.Protobuf.TestProtos.TestAllTypesNoEvents> MapInt32TestAllTypesNoEventsMessage {
       get { return mapInt32TestAllTypesNoEventsMessage_; }
@@ -3857,9 +3781,6 @@ namespace Google.Protobuf.TestProtos {
 
         protected override NestedMessage Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, int field) {
-          base.SetParent(parent, field);
-        }
         /// <summary>Field number for the "bb" field.</summary>
         public const int BbFieldNumber = 1;
         private int bb_;
@@ -4419,17 +4340,22 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public NestedTestAllTypes() {
       OnConstruction();
-      repeatedChild_.SetContext(Context, 3);
+    repeatedChild_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes>(repeatedChildDataConverter, Context, 3, true);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public NestedTestAllTypes(NestedTestAllTypes other) : this() {
-      child_ = other.child_ != null ? other.Child.Clone() : null;
-      payload_ = other.payload_ != null ? other.Payload.Clone() : null;
-      repeatedChild_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes>(repeatedChildDataConverter, other.RepeatedChild.Clone(), true);
-      repeatedChild_.SetContext(Context, 3);
+      if(other.child_ != null) {
+        child_ = other.Child.Clone();
+        child_.SetParent(Context, 1);
+      }
+      if(other.payload_ != null) {
+        payload_ = other.Payload.Clone();
+        payload_.SetParent(Context, 2);
+      }
+      repeatedChild_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes>(repeatedChildDataConverter, Context, 3, other.RepeatedChild.Clone(), true);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4441,10 +4367,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override NestedTestAllTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      repeatedChild_.SetContext(Context, 3);
-    }
     /// <summary>Field number for the "child" field.</summary>
     public const int ChildFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.NestedTestAllTypes child_;
@@ -4495,7 +4417,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedChildDataConverter repeatedChildDataConverter = new RepeatedChildDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes> repeatedChild_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes>(repeatedChildDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes> repeatedChild_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.NestedTestAllTypes> RepeatedChild {
       get { return repeatedChild_; }
@@ -4707,9 +4629,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestDeprecatedFields Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "deprecated_int32" field.</summary>
     public const int DeprecatedInt32FieldNumber = 1;
     private int deprecatedInt32_;
@@ -4870,9 +4789,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override ForeignMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "c" field.</summary>
     public const int CFieldNumber = 1;
     private int c_;
@@ -5027,9 +4943,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestReservedFields Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TestReservedFields);
@@ -5140,7 +5053,10 @@ namespace Google.Protobuf.TestProtos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestForeignNested(TestForeignNested other) : this() {
-      foreignNested_ = other.foreignNested_ != null ? other.ForeignNested.Clone() : null;
+      if(other.foreignNested_ != null) {
+        foreignNested_ = other.ForeignNested.Clone();
+        foreignNested_.SetParent(Context, 1);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5152,9 +5068,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestForeignNested Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "foreign_nested" field.</summary>
     public const int ForeignNestedFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestAllTypes.Types.NestedMessage foreignNested_;
@@ -5333,9 +5246,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestReallyLargeTagNumber Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private int a_;
@@ -5519,7 +5429,10 @@ namespace Google.Protobuf.TestProtos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestRecursiveMessage(TestRecursiveMessage other) : this() {
-      a_ = other.a_ != null ? other.A.Clone() : null;
+      if(other.a_ != null) {
+        a_ = other.A.Clone();
+        a_.SetParent(Context, 1);
+      }
       i_ = other.i_;
     }
 
@@ -5532,9 +5445,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestRecursiveMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestRecursiveMessage a_;
@@ -5736,7 +5646,10 @@ namespace Google.Protobuf.TestProtos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestMutualRecursionA(TestMutualRecursionA other) : this() {
-      bb_ = other.bb_ != null ? other.Bb.Clone() : null;
+      if(other.bb_ != null) {
+        bb_ = other.Bb.Clone();
+        bb_.SetParent(Context, 1);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5748,9 +5661,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestMutualRecursionA Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "bb" field.</summary>
     public const int BbFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestMutualRecursionB bb_;
@@ -5913,7 +5823,10 @@ namespace Google.Protobuf.TestProtos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestMutualRecursionB(TestMutualRecursionB other) : this() {
-      a_ = other.a_ != null ? other.A.Clone() : null;
+      if(other.a_ != null) {
+        a_ = other.A.Clone();
+        a_.SetParent(Context, 1);
+      }
       optionalInt32_ = other.optionalInt32_;
     }
 
@@ -5926,9 +5839,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestMutualRecursionB Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestMutualRecursionA a_;
@@ -6139,9 +6049,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestEnumAllowAlias Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "value" field.</summary>
     public const int ValueFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestEnumWithDupValue value_ = 0;
@@ -6283,10 +6190,10 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestCamelCaseFieldNames() {
       OnConstruction();
-      repeatedPrimitiveField_.SetContext(Context, 7);
-      repeatedStringField_.SetContext(Context, 8);
-      repeatedEnumField_.SetContext(Context, 9);
-      repeatedMessageField_.SetContext(Context, 10);
+    repeatedPrimitiveField_ = new EventRepeatedField<int>(repeatedPrimitiveFieldDataConverter, Context, 7);
+    repeatedStringField_ = new EventRepeatedField<string>(repeatedStringFieldDataConverter, Context, 8);
+    repeatedEnumField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedEnumFieldDataConverter, Context, 9);
+    repeatedMessageField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedMessageFieldDataConverter, Context, 10, true);
     }
 
     partial void OnConstruction();
@@ -6296,15 +6203,14 @@ namespace Google.Protobuf.TestProtos {
       primitiveField_ = other.primitiveField_;
       stringField_ = other.stringField_;
       enumField_ = other.enumField_;
-      messageField_ = other.messageField_ != null ? other.MessageField.Clone() : null;
-      repeatedPrimitiveField_ = new EventRepeatedField<int>(repeatedPrimitiveFieldDataConverter, other.RepeatedPrimitiveField.Clone());
-      repeatedPrimitiveField_.SetContext(Context, 7);
-      repeatedStringField_ = new EventRepeatedField<string>(repeatedStringFieldDataConverter, other.RepeatedStringField.Clone());
-      repeatedStringField_.SetContext(Context, 8);
-      repeatedEnumField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedEnumFieldDataConverter, other.RepeatedEnumField.Clone());
-      repeatedEnumField_.SetContext(Context, 9);
-      repeatedMessageField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedMessageFieldDataConverter, other.RepeatedMessageField.Clone(), true);
-      repeatedMessageField_.SetContext(Context, 10);
+      if(other.messageField_ != null) {
+        messageField_ = other.MessageField.Clone();
+        messageField_.SetParent(Context, 4);
+      }
+      repeatedPrimitiveField_ = new EventRepeatedField<int>(repeatedPrimitiveFieldDataConverter, Context, 7, other.RepeatedPrimitiveField.Clone());
+      repeatedStringField_ = new EventRepeatedField<string>(repeatedStringFieldDataConverter, Context, 8, other.RepeatedStringField.Clone());
+      repeatedEnumField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedEnumFieldDataConverter, Context, 9, other.RepeatedEnumField.Clone());
+      repeatedMessageField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedMessageFieldDataConverter, Context, 10, other.RepeatedMessageField.Clone(), true);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6316,13 +6222,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestCamelCaseFieldNames Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      repeatedPrimitiveField_.SetContext(Context, 7);
-      repeatedStringField_.SetContext(Context, 8);
-      repeatedEnumField_.SetContext(Context, 9);
-      repeatedMessageField_.SetContext(Context, 10);
-    }
     /// <summary>Field number for the "PrimitiveField" field.</summary>
     public const int PrimitiveFieldFieldNumber = 1;
     private int primitiveField_;
@@ -6402,7 +6301,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedPrimitiveFieldDataConverter repeatedPrimitiveFieldDataConverter = new RepeatedPrimitiveFieldDataConverter();
-    private readonly EventRepeatedField<int> repeatedPrimitiveField_ = new EventRepeatedField<int>(repeatedPrimitiveFieldDataConverter);
+    private readonly EventRepeatedField<int> repeatedPrimitiveField_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> RepeatedPrimitiveField {
       get { return repeatedPrimitiveField_; }
@@ -6421,7 +6320,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedStringFieldDataConverter repeatedStringFieldDataConverter = new RepeatedStringFieldDataConverter();
-    private readonly EventRepeatedField<string> repeatedStringField_ = new EventRepeatedField<string>(repeatedStringFieldDataConverter);
+    private readonly EventRepeatedField<string> repeatedStringField_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<string> RepeatedStringField {
       get { return repeatedStringField_; }
@@ -6440,7 +6339,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedEnumFieldDataConverter repeatedEnumFieldDataConverter = new RepeatedEnumFieldDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> repeatedEnumField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(repeatedEnumFieldDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> repeatedEnumField_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> RepeatedEnumField {
       get { return repeatedEnumField_; }
@@ -6460,7 +6359,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedMessageFieldDataConverter repeatedMessageFieldDataConverter = new RepeatedMessageFieldDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> repeatedMessageField_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage>(repeatedMessageFieldDataConverter, true);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> repeatedMessageField_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignMessage> RepeatedMessageField {
       get { return repeatedMessageField_; }
@@ -6731,7 +6630,10 @@ namespace Google.Protobuf.TestProtos {
       myString_ = other.myString_;
       myInt_ = other.myInt_;
       myFloat_ = other.myFloat_;
-      singleNestedMessage_ = other.singleNestedMessage_ != null ? other.SingleNestedMessage.Clone() : null;
+      if(other.singleNestedMessage_ != null) {
+        singleNestedMessage_ = other.SingleNestedMessage.Clone();
+        singleNestedMessage_.SetParent(Context, 200);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6743,9 +6645,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestFieldOrderings Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "my_string" field.</summary>
     public const int MyStringFieldNumber = 11;
     private string myString_ = "";
@@ -6981,9 +6880,6 @@ namespace Google.Protobuf.TestProtos {
 
         protected override NestedMessage Message { get{ return this; } }
 
-        public override void SetParent(EventContext parent, int field) {
-          base.SetParent(parent, field);
-        }
         /// <summary>Field number for the "oo" field.</summary>
         public const int OoFieldNumber = 2;
         private long oo_;
@@ -7235,9 +7131,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override SparseEnumMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "sparse_enum" field.</summary>
     public const int SparseEnumFieldNumber = 1;
     private global::Google.Protobuf.TestProtos.TestSparseEnum sparseEnum_ = 0;
@@ -7396,9 +7289,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override OneString Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private string data_ = "";
@@ -7536,15 +7426,14 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MoreString() {
       OnConstruction();
-      data_.SetContext(Context, 1);
+    data_ = new EventRepeatedField<string>(dataDataConverter, Context, 1);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MoreString(MoreString other) : this() {
-      data_ = new EventRepeatedField<string>(dataDataConverter, other.Data.Clone());
-      data_.SetContext(Context, 1);
+      data_ = new EventRepeatedField<string>(dataDataConverter, Context, 1, other.Data.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7556,10 +7445,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override MoreString Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      data_.SetContext(Context, 1);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private static readonly pb::FieldCodec<string> _repeated_data_codec
@@ -7573,7 +7458,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static DataDataConverter dataDataConverter = new DataDataConverter();
-    private readonly EventRepeatedField<string> data_ = new EventRepeatedField<string>(dataDataConverter);
+    private readonly EventRepeatedField<string> data_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<string> Data {
       get { return data_; }
@@ -7711,9 +7596,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override OneBytes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private pb::ByteString data_ = pb::ByteString.Empty;
@@ -7869,9 +7751,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override MoreBytes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private pb::ByteString data_ = pb::ByteString.Empty;
@@ -8030,9 +7909,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Int32Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private int data_;
@@ -8188,9 +8064,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Uint32Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private uint data_;
@@ -8346,9 +8219,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Int64Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private long data_;
@@ -8504,9 +8374,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override Uint64Message Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private ulong data_;
@@ -8662,9 +8529,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BoolMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "data" field.</summary>
     public const int DataFieldNumber = 1;
     private bool data_;
@@ -8834,9 +8698,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestOneof Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "foo_int" field.</summary>
     public const int FooIntFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9097,54 +8958,40 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestPackedTypes() {
       OnConstruction();
-      packedInt32_.SetContext(Context, 90);
-      packedInt64_.SetContext(Context, 91);
-      packedUint32_.SetContext(Context, 92);
-      packedUint64_.SetContext(Context, 93);
-      packedSint32_.SetContext(Context, 94);
-      packedSint64_.SetContext(Context, 95);
-      packedFixed32_.SetContext(Context, 96);
-      packedFixed64_.SetContext(Context, 97);
-      packedSfixed32_.SetContext(Context, 98);
-      packedSfixed64_.SetContext(Context, 99);
-      packedFloat_.SetContext(Context, 100);
-      packedDouble_.SetContext(Context, 101);
-      packedBool_.SetContext(Context, 102);
-      packedEnum_.SetContext(Context, 103);
+    packedInt32_ = new EventRepeatedField<int>(packedInt32DataConverter, Context, 90);
+    packedInt64_ = new EventRepeatedField<long>(packedInt64DataConverter, Context, 91);
+    packedUint32_ = new EventRepeatedField<uint>(packedUint32DataConverter, Context, 92);
+    packedUint64_ = new EventRepeatedField<ulong>(packedUint64DataConverter, Context, 93);
+    packedSint32_ = new EventRepeatedField<int>(packedSint32DataConverter, Context, 94);
+    packedSint64_ = new EventRepeatedField<long>(packedSint64DataConverter, Context, 95);
+    packedFixed32_ = new EventRepeatedField<uint>(packedFixed32DataConverter, Context, 96);
+    packedFixed64_ = new EventRepeatedField<ulong>(packedFixed64DataConverter, Context, 97);
+    packedSfixed32_ = new EventRepeatedField<int>(packedSfixed32DataConverter, Context, 98);
+    packedSfixed64_ = new EventRepeatedField<long>(packedSfixed64DataConverter, Context, 99);
+    packedFloat_ = new EventRepeatedField<float>(packedFloatDataConverter, Context, 100);
+    packedDouble_ = new EventRepeatedField<double>(packedDoubleDataConverter, Context, 101);
+    packedBool_ = new EventRepeatedField<bool>(packedBoolDataConverter, Context, 102);
+    packedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(packedEnumDataConverter, Context, 103);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestPackedTypes(TestPackedTypes other) : this() {
-      packedInt32_ = new EventRepeatedField<int>(packedInt32DataConverter, other.PackedInt32.Clone());
-      packedInt32_.SetContext(Context, 90);
-      packedInt64_ = new EventRepeatedField<long>(packedInt64DataConverter, other.PackedInt64.Clone());
-      packedInt64_.SetContext(Context, 91);
-      packedUint32_ = new EventRepeatedField<uint>(packedUint32DataConverter, other.PackedUint32.Clone());
-      packedUint32_.SetContext(Context, 92);
-      packedUint64_ = new EventRepeatedField<ulong>(packedUint64DataConverter, other.PackedUint64.Clone());
-      packedUint64_.SetContext(Context, 93);
-      packedSint32_ = new EventRepeatedField<int>(packedSint32DataConverter, other.PackedSint32.Clone());
-      packedSint32_.SetContext(Context, 94);
-      packedSint64_ = new EventRepeatedField<long>(packedSint64DataConverter, other.PackedSint64.Clone());
-      packedSint64_.SetContext(Context, 95);
-      packedFixed32_ = new EventRepeatedField<uint>(packedFixed32DataConverter, other.PackedFixed32.Clone());
-      packedFixed32_.SetContext(Context, 96);
-      packedFixed64_ = new EventRepeatedField<ulong>(packedFixed64DataConverter, other.PackedFixed64.Clone());
-      packedFixed64_.SetContext(Context, 97);
-      packedSfixed32_ = new EventRepeatedField<int>(packedSfixed32DataConverter, other.PackedSfixed32.Clone());
-      packedSfixed32_.SetContext(Context, 98);
-      packedSfixed64_ = new EventRepeatedField<long>(packedSfixed64DataConverter, other.PackedSfixed64.Clone());
-      packedSfixed64_.SetContext(Context, 99);
-      packedFloat_ = new EventRepeatedField<float>(packedFloatDataConverter, other.PackedFloat.Clone());
-      packedFloat_.SetContext(Context, 100);
-      packedDouble_ = new EventRepeatedField<double>(packedDoubleDataConverter, other.PackedDouble.Clone());
-      packedDouble_.SetContext(Context, 101);
-      packedBool_ = new EventRepeatedField<bool>(packedBoolDataConverter, other.PackedBool.Clone());
-      packedBool_.SetContext(Context, 102);
-      packedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(packedEnumDataConverter, other.PackedEnum.Clone());
-      packedEnum_.SetContext(Context, 103);
+      packedInt32_ = new EventRepeatedField<int>(packedInt32DataConverter, Context, 90, other.PackedInt32.Clone());
+      packedInt64_ = new EventRepeatedField<long>(packedInt64DataConverter, Context, 91, other.PackedInt64.Clone());
+      packedUint32_ = new EventRepeatedField<uint>(packedUint32DataConverter, Context, 92, other.PackedUint32.Clone());
+      packedUint64_ = new EventRepeatedField<ulong>(packedUint64DataConverter, Context, 93, other.PackedUint64.Clone());
+      packedSint32_ = new EventRepeatedField<int>(packedSint32DataConverter, Context, 94, other.PackedSint32.Clone());
+      packedSint64_ = new EventRepeatedField<long>(packedSint64DataConverter, Context, 95, other.PackedSint64.Clone());
+      packedFixed32_ = new EventRepeatedField<uint>(packedFixed32DataConverter, Context, 96, other.PackedFixed32.Clone());
+      packedFixed64_ = new EventRepeatedField<ulong>(packedFixed64DataConverter, Context, 97, other.PackedFixed64.Clone());
+      packedSfixed32_ = new EventRepeatedField<int>(packedSfixed32DataConverter, Context, 98, other.PackedSfixed32.Clone());
+      packedSfixed64_ = new EventRepeatedField<long>(packedSfixed64DataConverter, Context, 99, other.PackedSfixed64.Clone());
+      packedFloat_ = new EventRepeatedField<float>(packedFloatDataConverter, Context, 100, other.PackedFloat.Clone());
+      packedDouble_ = new EventRepeatedField<double>(packedDoubleDataConverter, Context, 101, other.PackedDouble.Clone());
+      packedBool_ = new EventRepeatedField<bool>(packedBoolDataConverter, Context, 102, other.PackedBool.Clone());
+      packedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(packedEnumDataConverter, Context, 103, other.PackedEnum.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9156,23 +9003,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestPackedTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      packedInt32_.SetContext(Context, 90);
-      packedInt64_.SetContext(Context, 91);
-      packedUint32_.SetContext(Context, 92);
-      packedUint64_.SetContext(Context, 93);
-      packedSint32_.SetContext(Context, 94);
-      packedSint64_.SetContext(Context, 95);
-      packedFixed32_.SetContext(Context, 96);
-      packedFixed64_.SetContext(Context, 97);
-      packedSfixed32_.SetContext(Context, 98);
-      packedSfixed64_.SetContext(Context, 99);
-      packedFloat_.SetContext(Context, 100);
-      packedDouble_.SetContext(Context, 101);
-      packedBool_.SetContext(Context, 102);
-      packedEnum_.SetContext(Context, 103);
-    }
     /// <summary>Field number for the "packed_int32" field.</summary>
     public const int PackedInt32FieldNumber = 90;
     private static readonly pb::FieldCodec<int> _repeated_packedInt32_codec
@@ -9186,7 +9016,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedInt32DataConverter packedInt32DataConverter = new PackedInt32DataConverter();
-    private readonly EventRepeatedField<int> packedInt32_ = new EventRepeatedField<int>(packedInt32DataConverter);
+    private readonly EventRepeatedField<int> packedInt32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> PackedInt32 {
       get { return packedInt32_; }
@@ -9205,7 +9035,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedInt64DataConverter packedInt64DataConverter = new PackedInt64DataConverter();
-    private readonly EventRepeatedField<long> packedInt64_ = new EventRepeatedField<long>(packedInt64DataConverter);
+    private readonly EventRepeatedField<long> packedInt64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> PackedInt64 {
       get { return packedInt64_; }
@@ -9224,7 +9054,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedUint32DataConverter packedUint32DataConverter = new PackedUint32DataConverter();
-    private readonly EventRepeatedField<uint> packedUint32_ = new EventRepeatedField<uint>(packedUint32DataConverter);
+    private readonly EventRepeatedField<uint> packedUint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> PackedUint32 {
       get { return packedUint32_; }
@@ -9243,7 +9073,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedUint64DataConverter packedUint64DataConverter = new PackedUint64DataConverter();
-    private readonly EventRepeatedField<ulong> packedUint64_ = new EventRepeatedField<ulong>(packedUint64DataConverter);
+    private readonly EventRepeatedField<ulong> packedUint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> PackedUint64 {
       get { return packedUint64_; }
@@ -9262,7 +9092,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedSint32DataConverter packedSint32DataConverter = new PackedSint32DataConverter();
-    private readonly EventRepeatedField<int> packedSint32_ = new EventRepeatedField<int>(packedSint32DataConverter);
+    private readonly EventRepeatedField<int> packedSint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> PackedSint32 {
       get { return packedSint32_; }
@@ -9281,7 +9111,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedSint64DataConverter packedSint64DataConverter = new PackedSint64DataConverter();
-    private readonly EventRepeatedField<long> packedSint64_ = new EventRepeatedField<long>(packedSint64DataConverter);
+    private readonly EventRepeatedField<long> packedSint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> PackedSint64 {
       get { return packedSint64_; }
@@ -9300,7 +9130,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedFixed32DataConverter packedFixed32DataConverter = new PackedFixed32DataConverter();
-    private readonly EventRepeatedField<uint> packedFixed32_ = new EventRepeatedField<uint>(packedFixed32DataConverter);
+    private readonly EventRepeatedField<uint> packedFixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> PackedFixed32 {
       get { return packedFixed32_; }
@@ -9319,7 +9149,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedFixed64DataConverter packedFixed64DataConverter = new PackedFixed64DataConverter();
-    private readonly EventRepeatedField<ulong> packedFixed64_ = new EventRepeatedField<ulong>(packedFixed64DataConverter);
+    private readonly EventRepeatedField<ulong> packedFixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> PackedFixed64 {
       get { return packedFixed64_; }
@@ -9338,7 +9168,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedSfixed32DataConverter packedSfixed32DataConverter = new PackedSfixed32DataConverter();
-    private readonly EventRepeatedField<int> packedSfixed32_ = new EventRepeatedField<int>(packedSfixed32DataConverter);
+    private readonly EventRepeatedField<int> packedSfixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> PackedSfixed32 {
       get { return packedSfixed32_; }
@@ -9357,7 +9187,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedSfixed64DataConverter packedSfixed64DataConverter = new PackedSfixed64DataConverter();
-    private readonly EventRepeatedField<long> packedSfixed64_ = new EventRepeatedField<long>(packedSfixed64DataConverter);
+    private readonly EventRepeatedField<long> packedSfixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> PackedSfixed64 {
       get { return packedSfixed64_; }
@@ -9376,7 +9206,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedFloatDataConverter packedFloatDataConverter = new PackedFloatDataConverter();
-    private readonly EventRepeatedField<float> packedFloat_ = new EventRepeatedField<float>(packedFloatDataConverter);
+    private readonly EventRepeatedField<float> packedFloat_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<float> PackedFloat {
       get { return packedFloat_; }
@@ -9395,7 +9225,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedDoubleDataConverter packedDoubleDataConverter = new PackedDoubleDataConverter();
-    private readonly EventRepeatedField<double> packedDouble_ = new EventRepeatedField<double>(packedDoubleDataConverter);
+    private readonly EventRepeatedField<double> packedDouble_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<double> PackedDouble {
       get { return packedDouble_; }
@@ -9414,7 +9244,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedBoolDataConverter packedBoolDataConverter = new PackedBoolDataConverter();
-    private readonly EventRepeatedField<bool> packedBool_ = new EventRepeatedField<bool>(packedBoolDataConverter);
+    private readonly EventRepeatedField<bool> packedBool_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<bool> PackedBool {
       get { return packedBool_; }
@@ -9433,7 +9263,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static PackedEnumDataConverter packedEnumDataConverter = new PackedEnumDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> packedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(packedEnumDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> packedEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> PackedEnum {
       get { return packedEnum_; }
@@ -9740,54 +9570,40 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestUnpackedTypes() {
       OnConstruction();
-      unpackedInt32_.SetContext(Context, 90);
-      unpackedInt64_.SetContext(Context, 91);
-      unpackedUint32_.SetContext(Context, 92);
-      unpackedUint64_.SetContext(Context, 93);
-      unpackedSint32_.SetContext(Context, 94);
-      unpackedSint64_.SetContext(Context, 95);
-      unpackedFixed32_.SetContext(Context, 96);
-      unpackedFixed64_.SetContext(Context, 97);
-      unpackedSfixed32_.SetContext(Context, 98);
-      unpackedSfixed64_.SetContext(Context, 99);
-      unpackedFloat_.SetContext(Context, 100);
-      unpackedDouble_.SetContext(Context, 101);
-      unpackedBool_.SetContext(Context, 102);
-      unpackedEnum_.SetContext(Context, 103);
+    unpackedInt32_ = new EventRepeatedField<int>(unpackedInt32DataConverter, Context, 90);
+    unpackedInt64_ = new EventRepeatedField<long>(unpackedInt64DataConverter, Context, 91);
+    unpackedUint32_ = new EventRepeatedField<uint>(unpackedUint32DataConverter, Context, 92);
+    unpackedUint64_ = new EventRepeatedField<ulong>(unpackedUint64DataConverter, Context, 93);
+    unpackedSint32_ = new EventRepeatedField<int>(unpackedSint32DataConverter, Context, 94);
+    unpackedSint64_ = new EventRepeatedField<long>(unpackedSint64DataConverter, Context, 95);
+    unpackedFixed32_ = new EventRepeatedField<uint>(unpackedFixed32DataConverter, Context, 96);
+    unpackedFixed64_ = new EventRepeatedField<ulong>(unpackedFixed64DataConverter, Context, 97);
+    unpackedSfixed32_ = new EventRepeatedField<int>(unpackedSfixed32DataConverter, Context, 98);
+    unpackedSfixed64_ = new EventRepeatedField<long>(unpackedSfixed64DataConverter, Context, 99);
+    unpackedFloat_ = new EventRepeatedField<float>(unpackedFloatDataConverter, Context, 100);
+    unpackedDouble_ = new EventRepeatedField<double>(unpackedDoubleDataConverter, Context, 101);
+    unpackedBool_ = new EventRepeatedField<bool>(unpackedBoolDataConverter, Context, 102);
+    unpackedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(unpackedEnumDataConverter, Context, 103);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestUnpackedTypes(TestUnpackedTypes other) : this() {
-      unpackedInt32_ = new EventRepeatedField<int>(unpackedInt32DataConverter, other.UnpackedInt32.Clone());
-      unpackedInt32_.SetContext(Context, 90);
-      unpackedInt64_ = new EventRepeatedField<long>(unpackedInt64DataConverter, other.UnpackedInt64.Clone());
-      unpackedInt64_.SetContext(Context, 91);
-      unpackedUint32_ = new EventRepeatedField<uint>(unpackedUint32DataConverter, other.UnpackedUint32.Clone());
-      unpackedUint32_.SetContext(Context, 92);
-      unpackedUint64_ = new EventRepeatedField<ulong>(unpackedUint64DataConverter, other.UnpackedUint64.Clone());
-      unpackedUint64_.SetContext(Context, 93);
-      unpackedSint32_ = new EventRepeatedField<int>(unpackedSint32DataConverter, other.UnpackedSint32.Clone());
-      unpackedSint32_.SetContext(Context, 94);
-      unpackedSint64_ = new EventRepeatedField<long>(unpackedSint64DataConverter, other.UnpackedSint64.Clone());
-      unpackedSint64_.SetContext(Context, 95);
-      unpackedFixed32_ = new EventRepeatedField<uint>(unpackedFixed32DataConverter, other.UnpackedFixed32.Clone());
-      unpackedFixed32_.SetContext(Context, 96);
-      unpackedFixed64_ = new EventRepeatedField<ulong>(unpackedFixed64DataConverter, other.UnpackedFixed64.Clone());
-      unpackedFixed64_.SetContext(Context, 97);
-      unpackedSfixed32_ = new EventRepeatedField<int>(unpackedSfixed32DataConverter, other.UnpackedSfixed32.Clone());
-      unpackedSfixed32_.SetContext(Context, 98);
-      unpackedSfixed64_ = new EventRepeatedField<long>(unpackedSfixed64DataConverter, other.UnpackedSfixed64.Clone());
-      unpackedSfixed64_.SetContext(Context, 99);
-      unpackedFloat_ = new EventRepeatedField<float>(unpackedFloatDataConverter, other.UnpackedFloat.Clone());
-      unpackedFloat_.SetContext(Context, 100);
-      unpackedDouble_ = new EventRepeatedField<double>(unpackedDoubleDataConverter, other.UnpackedDouble.Clone());
-      unpackedDouble_.SetContext(Context, 101);
-      unpackedBool_ = new EventRepeatedField<bool>(unpackedBoolDataConverter, other.UnpackedBool.Clone());
-      unpackedBool_.SetContext(Context, 102);
-      unpackedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(unpackedEnumDataConverter, other.UnpackedEnum.Clone());
-      unpackedEnum_.SetContext(Context, 103);
+      unpackedInt32_ = new EventRepeatedField<int>(unpackedInt32DataConverter, Context, 90, other.UnpackedInt32.Clone());
+      unpackedInt64_ = new EventRepeatedField<long>(unpackedInt64DataConverter, Context, 91, other.UnpackedInt64.Clone());
+      unpackedUint32_ = new EventRepeatedField<uint>(unpackedUint32DataConverter, Context, 92, other.UnpackedUint32.Clone());
+      unpackedUint64_ = new EventRepeatedField<ulong>(unpackedUint64DataConverter, Context, 93, other.UnpackedUint64.Clone());
+      unpackedSint32_ = new EventRepeatedField<int>(unpackedSint32DataConverter, Context, 94, other.UnpackedSint32.Clone());
+      unpackedSint64_ = new EventRepeatedField<long>(unpackedSint64DataConverter, Context, 95, other.UnpackedSint64.Clone());
+      unpackedFixed32_ = new EventRepeatedField<uint>(unpackedFixed32DataConverter, Context, 96, other.UnpackedFixed32.Clone());
+      unpackedFixed64_ = new EventRepeatedField<ulong>(unpackedFixed64DataConverter, Context, 97, other.UnpackedFixed64.Clone());
+      unpackedSfixed32_ = new EventRepeatedField<int>(unpackedSfixed32DataConverter, Context, 98, other.UnpackedSfixed32.Clone());
+      unpackedSfixed64_ = new EventRepeatedField<long>(unpackedSfixed64DataConverter, Context, 99, other.UnpackedSfixed64.Clone());
+      unpackedFloat_ = new EventRepeatedField<float>(unpackedFloatDataConverter, Context, 100, other.UnpackedFloat.Clone());
+      unpackedDouble_ = new EventRepeatedField<double>(unpackedDoubleDataConverter, Context, 101, other.UnpackedDouble.Clone());
+      unpackedBool_ = new EventRepeatedField<bool>(unpackedBoolDataConverter, Context, 102, other.UnpackedBool.Clone());
+      unpackedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(unpackedEnumDataConverter, Context, 103, other.UnpackedEnum.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9799,23 +9615,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestUnpackedTypes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      unpackedInt32_.SetContext(Context, 90);
-      unpackedInt64_.SetContext(Context, 91);
-      unpackedUint32_.SetContext(Context, 92);
-      unpackedUint64_.SetContext(Context, 93);
-      unpackedSint32_.SetContext(Context, 94);
-      unpackedSint64_.SetContext(Context, 95);
-      unpackedFixed32_.SetContext(Context, 96);
-      unpackedFixed64_.SetContext(Context, 97);
-      unpackedSfixed32_.SetContext(Context, 98);
-      unpackedSfixed64_.SetContext(Context, 99);
-      unpackedFloat_.SetContext(Context, 100);
-      unpackedDouble_.SetContext(Context, 101);
-      unpackedBool_.SetContext(Context, 102);
-      unpackedEnum_.SetContext(Context, 103);
-    }
     /// <summary>Field number for the "unpacked_int32" field.</summary>
     public const int UnpackedInt32FieldNumber = 90;
     private static readonly pb::FieldCodec<int> _repeated_unpackedInt32_codec
@@ -9829,7 +9628,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedInt32DataConverter unpackedInt32DataConverter = new UnpackedInt32DataConverter();
-    private readonly EventRepeatedField<int> unpackedInt32_ = new EventRepeatedField<int>(unpackedInt32DataConverter);
+    private readonly EventRepeatedField<int> unpackedInt32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> UnpackedInt32 {
       get { return unpackedInt32_; }
@@ -9848,7 +9647,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedInt64DataConverter unpackedInt64DataConverter = new UnpackedInt64DataConverter();
-    private readonly EventRepeatedField<long> unpackedInt64_ = new EventRepeatedField<long>(unpackedInt64DataConverter);
+    private readonly EventRepeatedField<long> unpackedInt64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> UnpackedInt64 {
       get { return unpackedInt64_; }
@@ -9867,7 +9666,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedUint32DataConverter unpackedUint32DataConverter = new UnpackedUint32DataConverter();
-    private readonly EventRepeatedField<uint> unpackedUint32_ = new EventRepeatedField<uint>(unpackedUint32DataConverter);
+    private readonly EventRepeatedField<uint> unpackedUint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> UnpackedUint32 {
       get { return unpackedUint32_; }
@@ -9886,7 +9685,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedUint64DataConverter unpackedUint64DataConverter = new UnpackedUint64DataConverter();
-    private readonly EventRepeatedField<ulong> unpackedUint64_ = new EventRepeatedField<ulong>(unpackedUint64DataConverter);
+    private readonly EventRepeatedField<ulong> unpackedUint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> UnpackedUint64 {
       get { return unpackedUint64_; }
@@ -9905,7 +9704,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedSint32DataConverter unpackedSint32DataConverter = new UnpackedSint32DataConverter();
-    private readonly EventRepeatedField<int> unpackedSint32_ = new EventRepeatedField<int>(unpackedSint32DataConverter);
+    private readonly EventRepeatedField<int> unpackedSint32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> UnpackedSint32 {
       get { return unpackedSint32_; }
@@ -9924,7 +9723,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedSint64DataConverter unpackedSint64DataConverter = new UnpackedSint64DataConverter();
-    private readonly EventRepeatedField<long> unpackedSint64_ = new EventRepeatedField<long>(unpackedSint64DataConverter);
+    private readonly EventRepeatedField<long> unpackedSint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> UnpackedSint64 {
       get { return unpackedSint64_; }
@@ -9943,7 +9742,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedFixed32DataConverter unpackedFixed32DataConverter = new UnpackedFixed32DataConverter();
-    private readonly EventRepeatedField<uint> unpackedFixed32_ = new EventRepeatedField<uint>(unpackedFixed32DataConverter);
+    private readonly EventRepeatedField<uint> unpackedFixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<uint> UnpackedFixed32 {
       get { return unpackedFixed32_; }
@@ -9962,7 +9761,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedFixed64DataConverter unpackedFixed64DataConverter = new UnpackedFixed64DataConverter();
-    private readonly EventRepeatedField<ulong> unpackedFixed64_ = new EventRepeatedField<ulong>(unpackedFixed64DataConverter);
+    private readonly EventRepeatedField<ulong> unpackedFixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> UnpackedFixed64 {
       get { return unpackedFixed64_; }
@@ -9981,7 +9780,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedSfixed32DataConverter unpackedSfixed32DataConverter = new UnpackedSfixed32DataConverter();
-    private readonly EventRepeatedField<int> unpackedSfixed32_ = new EventRepeatedField<int>(unpackedSfixed32DataConverter);
+    private readonly EventRepeatedField<int> unpackedSfixed32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> UnpackedSfixed32 {
       get { return unpackedSfixed32_; }
@@ -10000,7 +9799,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedSfixed64DataConverter unpackedSfixed64DataConverter = new UnpackedSfixed64DataConverter();
-    private readonly EventRepeatedField<long> unpackedSfixed64_ = new EventRepeatedField<long>(unpackedSfixed64DataConverter);
+    private readonly EventRepeatedField<long> unpackedSfixed64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> UnpackedSfixed64 {
       get { return unpackedSfixed64_; }
@@ -10019,7 +9818,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedFloatDataConverter unpackedFloatDataConverter = new UnpackedFloatDataConverter();
-    private readonly EventRepeatedField<float> unpackedFloat_ = new EventRepeatedField<float>(unpackedFloatDataConverter);
+    private readonly EventRepeatedField<float> unpackedFloat_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<float> UnpackedFloat {
       get { return unpackedFloat_; }
@@ -10038,7 +9837,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedDoubleDataConverter unpackedDoubleDataConverter = new UnpackedDoubleDataConverter();
-    private readonly EventRepeatedField<double> unpackedDouble_ = new EventRepeatedField<double>(unpackedDoubleDataConverter);
+    private readonly EventRepeatedField<double> unpackedDouble_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<double> UnpackedDouble {
       get { return unpackedDouble_; }
@@ -10057,7 +9856,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedBoolDataConverter unpackedBoolDataConverter = new UnpackedBoolDataConverter();
-    private readonly EventRepeatedField<bool> unpackedBool_ = new EventRepeatedField<bool>(unpackedBoolDataConverter);
+    private readonly EventRepeatedField<bool> unpackedBool_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<bool> UnpackedBool {
       get { return unpackedBool_; }
@@ -10076,7 +9875,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static UnpackedEnumDataConverter unpackedEnumDataConverter = new UnpackedEnumDataConverter();
-    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> unpackedEnum_ = new EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum>(unpackedEnumDataConverter);
+    private readonly EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> unpackedEnum_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<global::Google.Protobuf.TestProtos.ForeignEnum> UnpackedEnum {
       get { return unpackedEnum_; }
@@ -10379,30 +10178,24 @@ namespace Google.Protobuf.TestProtos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestRepeatedScalarDifferentTagSizes() {
       OnConstruction();
-      repeatedFixed32_.SetContext(Context, 12);
-      repeatedInt32_.SetContext(Context, 13);
-      repeatedFixed64_.SetContext(Context, 2046);
-      repeatedInt64_.SetContext(Context, 2047);
-      repeatedFloat_.SetContext(Context, 262142);
-      repeatedUint64_.SetContext(Context, 262143);
+    repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, Context, 12);
+    repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, Context, 13);
+    repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, Context, 2046);
+    repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, Context, 2047);
+    repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, Context, 262142);
+    repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, Context, 262143);
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TestRepeatedScalarDifferentTagSizes(TestRepeatedScalarDifferentTagSizes other) : this() {
-      repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, other.RepeatedFixed32.Clone());
-      repeatedFixed32_.SetContext(Context, 12);
-      repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, other.RepeatedInt32.Clone());
-      repeatedInt32_.SetContext(Context, 13);
-      repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, other.RepeatedFixed64.Clone());
-      repeatedFixed64_.SetContext(Context, 2046);
-      repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, other.RepeatedInt64.Clone());
-      repeatedInt64_.SetContext(Context, 2047);
-      repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, other.RepeatedFloat.Clone());
-      repeatedFloat_.SetContext(Context, 262142);
-      repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, other.RepeatedUint64.Clone());
-      repeatedUint64_.SetContext(Context, 262143);
+      repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter, Context, 12, other.RepeatedFixed32.Clone());
+      repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter, Context, 13, other.RepeatedInt32.Clone());
+      repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter, Context, 2046, other.RepeatedFixed64.Clone());
+      repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter, Context, 2047, other.RepeatedInt64.Clone());
+      repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter, Context, 262142, other.RepeatedFloat.Clone());
+      repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter, Context, 262143, other.RepeatedUint64.Clone());
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10414,15 +10207,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestRepeatedScalarDifferentTagSizes Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      repeatedFixed32_.SetContext(Context, 12);
-      repeatedInt32_.SetContext(Context, 13);
-      repeatedFixed64_.SetContext(Context, 2046);
-      repeatedInt64_.SetContext(Context, 2047);
-      repeatedFloat_.SetContext(Context, 262142);
-      repeatedUint64_.SetContext(Context, 262143);
-    }
     /// <summary>Field number for the "repeated_fixed32" field.</summary>
     public const int RepeatedFixed32FieldNumber = 12;
     private static readonly pb::FieldCodec<uint> _repeated_repeatedFixed32_codec
@@ -10436,7 +10220,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFixed32DataConverter repeatedFixed32DataConverter = new RepeatedFixed32DataConverter();
-    private readonly EventRepeatedField<uint> repeatedFixed32_ = new EventRepeatedField<uint>(repeatedFixed32DataConverter);
+    private readonly EventRepeatedField<uint> repeatedFixed32_;
     /// <summary>
     /// Parsing repeated fixed size values used to fail. This message needs to be
     /// used in order to get a tag of the right size; all of the repeated fields
@@ -10460,7 +10244,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedInt32DataConverter repeatedInt32DataConverter = new RepeatedInt32DataConverter();
-    private readonly EventRepeatedField<int> repeatedInt32_ = new EventRepeatedField<int>(repeatedInt32DataConverter);
+    private readonly EventRepeatedField<int> repeatedInt32_;
     /// <summary>
     /// Check for a varint type, just for good measure.
     /// </summary>
@@ -10482,7 +10266,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFixed64DataConverter repeatedFixed64DataConverter = new RepeatedFixed64DataConverter();
-    private readonly EventRepeatedField<ulong> repeatedFixed64_ = new EventRepeatedField<ulong>(repeatedFixed64DataConverter);
+    private readonly EventRepeatedField<ulong> repeatedFixed64_;
     /// <summary>
     /// These have two-byte tags.
     /// </summary>
@@ -10504,7 +10288,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedInt64DataConverter repeatedInt64DataConverter = new RepeatedInt64DataConverter();
-    private readonly EventRepeatedField<long> repeatedInt64_ = new EventRepeatedField<long>(repeatedInt64DataConverter);
+    private readonly EventRepeatedField<long> repeatedInt64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<long> RepeatedInt64 {
       get { return repeatedInt64_; }
@@ -10523,7 +10307,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedFloatDataConverter repeatedFloatDataConverter = new RepeatedFloatDataConverter();
-    private readonly EventRepeatedField<float> repeatedFloat_ = new EventRepeatedField<float>(repeatedFloatDataConverter);
+    private readonly EventRepeatedField<float> repeatedFloat_;
     /// <summary>
     /// Three byte tags.
     /// </summary>
@@ -10545,7 +10329,7 @@ namespace Google.Protobuf.TestProtos {
       }
     }
     private static RepeatedUint64DataConverter repeatedUint64DataConverter = new RepeatedUint64DataConverter();
-    private readonly EventRepeatedField<ulong> repeatedUint64_ = new EventRepeatedField<ulong>(repeatedUint64DataConverter);
+    private readonly EventRepeatedField<ulong> repeatedUint64_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<ulong> RepeatedUint64 {
       get { return repeatedUint64_; }
@@ -10754,9 +10538,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestCommentInjectionMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "a" field.</summary>
     public const int AFieldNumber = 1;
     private string a_ = "";
@@ -10917,9 +10698,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooRequest Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FooRequest);
@@ -11038,9 +10816,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooResponse Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FooResponse);
@@ -11159,9 +10934,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooClientMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FooClientMessage);
@@ -11280,9 +11052,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override FooServerMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as FooServerMessage);
@@ -11401,9 +11170,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BarRequest Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as BarRequest);
@@ -11522,9 +11288,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override BarResponse Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as BarResponse);
@@ -11643,9 +11406,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override TestEmptyMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as TestEmptyMessage);

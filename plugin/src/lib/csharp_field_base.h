@@ -56,6 +56,7 @@ class FieldGeneratorBase : public SourceGeneratorBase {
   virtual void GenerateCodecCode(io::Printer* printer);
 
   /// The following code is Copyright 2018, Zynga
+  virtual void GenerateConstructor(io::Printer* printer, bool isEventSourced);
   virtual void GenerateMembers(io::Printer* printer, bool isEventSource) = 0;
   virtual void GenerateEventSource(io::Printer* printer) = 0;
   virtual void GenerateEventAdd(io::Printer* printer,  bool isMap = false) = 0;

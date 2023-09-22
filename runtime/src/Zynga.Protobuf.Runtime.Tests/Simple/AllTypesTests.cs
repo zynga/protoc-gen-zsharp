@@ -534,5 +534,19 @@ namespace Zynga.Protobuf.Runtime.Tests.Simple {
 
 			Assert.Equal(allTypes, target);
 		}
+
+		[Fact]
+		public void ClonesShouldMaintainParentChildContext() {
+			var root = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[3] = DeeplyNested();
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+			root.AllTypes.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage.Add(DeeplyNested());
+
+			var allTypesClone = root.AllTypes.Clone();
+			allTypesClone.AllTypes.AllTypes.MapInt32TestAllTypesMessage[1].AllTypes.AllTypes.AllTypes.RepeatedTestAllTypesMessage[0].SingleFloat = 10;
+			var targetEvents = allTypesClone.GenerateEvents();
+			Assert.Equal(1, targetEvents.Events.Count);
+		}
 	}
 }

@@ -139,9 +139,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override NestedMessage1 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "int_a" field.</summary>
     public const int IntAFieldNumber = 1;
     private int intA_;
@@ -298,9 +295,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override NestedMessage2 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "int_a" field.</summary>
     public const int IntAFieldNumber = 1;
     private int intA_;
@@ -474,8 +468,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpgradeMessage1() {
       OnConstruction();
-      listA_.SetContext(Context, 5);
-      mapA_.SetContext(Context, 6);
+    listA_ = new EventRepeatedField<int>(listADataConverter, Context, 5);
+    mapA_ = new EventMapField<int, string>(mapAMapConverter, Context, 6);
     }
 
     partial void OnConstruction();
@@ -485,11 +479,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       longA_ = other.longA_;
       strA_ = other.strA_;
       enumA_ = other.enumA_;
-      nestedA_ = other.nestedA_ != null ? other.NestedA.Clone() : null;
-      listA_ = new EventRepeatedField<int>(listADataConverter, other.ListA.Clone());
-      listA_.SetContext(Context, 5);
-      mapA_ = new EventMapField<int, string>(mapAMapConverter, other.mapA_.Clone());
-      mapA_.SetContext(Context, 6);
+      if(other.nestedA_ != null) {
+        nestedA_ = other.NestedA.Clone();
+        nestedA_.SetParent(Context, 4);
+      }
+      listA_ = new EventRepeatedField<int>(listADataConverter, Context, 5, other.ListA.Clone());
+      mapA_ = new EventMapField<int, string>(mapAMapConverter, Context, 6, other.mapA_.Clone());
       switch (other.OneofACase) {
         case OneofAOneofCase.FloatA:
           FloatA = other.FloatA;
@@ -507,11 +502,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage1 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      listA_.SetContext(Context, 5);
-      mapA_.SetContext(Context, 6);
-    }
     /// <summary>Field number for the "long_a" field.</summary>
     public const int LongAFieldNumber = 1;
     private long longA_;
@@ -591,7 +581,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static ListADataConverter listADataConverter = new ListADataConverter();
-    private readonly EventRepeatedField<int> listA_ = new EventRepeatedField<int>(listADataConverter);
+    private readonly EventRepeatedField<int> listA_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> ListA {
       get { return listA_; }
@@ -625,7 +615,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> mapAMapConverter = new MapAMapConverter();
-    private readonly EventMapField<int, string> mapA_ = new EventMapField<int, string>(mapAMapConverter);
+    private readonly EventMapField<int, string> mapA_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> MapA {
       get { return mapA_; }
@@ -919,8 +909,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpgradeMessage2() {
       OnConstruction();
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
+    listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5);
+    mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6);
     }
 
     partial void OnConstruction();
@@ -930,11 +920,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       longB_ = other.longB_;
       strB_ = other.strB_;
       enumB_ = other.enumB_;
-      nestedB_ = other.nestedB_ != null ? other.NestedB.Clone() : null;
-      listB_ = new EventRepeatedField<int>(listBDataConverter, other.ListB.Clone());
-      listB_.SetContext(Context, 5);
-      mapB_ = new EventMapField<int, string>(mapBMapConverter, other.mapB_.Clone());
-      mapB_.SetContext(Context, 6);
+      if(other.nestedB_ != null) {
+        nestedB_ = other.NestedB.Clone();
+        nestedB_.SetParent(Context, 4);
+      }
+      listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5, other.ListB.Clone());
+      mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6, other.mapB_.Clone());
       switch (other.OneofBCase) {
         case OneofBOneofCase.FloatB:
           FloatB = other.FloatB;
@@ -952,11 +943,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage2 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
-    }
     /// <summary>Field number for the "long_b" field.</summary>
     public const int LongBFieldNumber = 1;
     private long longB_;
@@ -1036,7 +1022,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static ListBDataConverter listBDataConverter = new ListBDataConverter();
-    private readonly EventRepeatedField<int> listB_ = new EventRepeatedField<int>(listBDataConverter);
+    private readonly EventRepeatedField<int> listB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> ListB {
       get { return listB_; }
@@ -1070,7 +1056,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();
-    private readonly EventMapField<int, string> mapB_ = new EventMapField<int, string>(mapBMapConverter);
+    private readonly EventMapField<int, string> mapB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> MapB {
       get { return mapB_; }
@@ -1364,8 +1350,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpgradeMessage3() {
       OnConstruction();
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
+    listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5);
+    mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6);
     }
 
     partial void OnConstruction();
@@ -1375,11 +1361,12 @@ namespace Com.Zynga.Runtime.Protobuf {
       longB_ = other.longB_;
       strB_ = other.strB_;
       enumB_ = other.enumB_;
-      nestedB_ = other.nestedB_ != null ? other.NestedB.Clone() : null;
-      listB_ = new EventRepeatedField<int>(listBDataConverter, other.ListB.Clone());
-      listB_.SetContext(Context, 5);
-      mapB_ = new EventMapField<int, string>(mapBMapConverter, other.mapB_.Clone());
-      mapB_.SetContext(Context, 6);
+      if(other.nestedB_ != null) {
+        nestedB_ = other.NestedB.Clone();
+        nestedB_.SetParent(Context, 4);
+      }
+      listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5, other.ListB.Clone());
+      mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6, other.mapB_.Clone());
       longC_ = other.longC_;
       switch (other.OneofBCase) {
         case OneofBOneofCase.FloatB:
@@ -1401,11 +1388,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage3 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
-    }
     /// <summary>Field number for the "long_b" field.</summary>
     public const int LongBFieldNumber = 1;
     private long longB_;
@@ -1485,7 +1467,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static ListBDataConverter listBDataConverter = new ListBDataConverter();
-    private readonly EventRepeatedField<int> listB_ = new EventRepeatedField<int>(listBDataConverter);
+    private readonly EventRepeatedField<int> listB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> ListB {
       get { return listB_; }
@@ -1519,7 +1501,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();
-    private readonly EventMapField<int, string> mapB_ = new EventMapField<int, string>(mapBMapConverter);
+    private readonly EventMapField<int, string> mapB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> MapB {
       get { return mapB_; }
@@ -1888,8 +1870,8 @@ namespace Com.Zynga.Runtime.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpgradeMessage4() {
       OnConstruction();
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
+    listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5);
+    mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6);
     }
 
     partial void OnConstruction();
@@ -1898,11 +1880,12 @@ namespace Com.Zynga.Runtime.Protobuf {
     public UpgradeMessage4(UpgradeMessage4 other) : this() {
       longB_ = other.longB_;
       enumB_ = other.enumB_;
-      nestedB_ = other.nestedB_ != null ? other.NestedB.Clone() : null;
-      listB_ = new EventRepeatedField<int>(listBDataConverter, other.ListB.Clone());
-      listB_.SetContext(Context, 5);
-      mapB_ = new EventMapField<int, string>(mapBMapConverter, other.mapB_.Clone());
-      mapB_.SetContext(Context, 6);
+      if(other.nestedB_ != null) {
+        nestedB_ = other.NestedB.Clone();
+        nestedB_.SetParent(Context, 4);
+      }
+      listB_ = new EventRepeatedField<int>(listBDataConverter, Context, 5, other.ListB.Clone());
+      mapB_ = new EventMapField<int, string>(mapBMapConverter, Context, 6, other.mapB_.Clone());
       longC_ = other.longC_;
       switch (other.OneofBCase) {
         case OneofBOneofCase.FloatC:
@@ -1921,11 +1904,6 @@ namespace Com.Zynga.Runtime.Protobuf {
 
     protected override UpgradeMessage4 Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-      listB_.SetContext(Context, 5);
-      mapB_.SetContext(Context, 6);
-    }
     /// <summary>Field number for the "long_b" field.</summary>
     public const int LongBFieldNumber = 1;
     private long longB_;
@@ -1989,7 +1967,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static ListBDataConverter listBDataConverter = new ListBDataConverter();
-    private readonly EventRepeatedField<int> listB_ = new EventRepeatedField<int>(listBDataConverter);
+    private readonly EventRepeatedField<int> listB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventRepeatedField<int> ListB {
       get { return listB_; }
@@ -2023,7 +2001,7 @@ namespace Com.Zynga.Runtime.Protobuf {
       }
     }
     private static readonly EventMapConverter<int, string> mapBMapConverter = new MapBMapConverter();
-    private readonly EventMapField<int, string> mapB_ = new EventMapField<int, string>(mapBMapConverter);
+    private readonly EventMapField<int, string> mapB_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventMapField<int, string> MapB {
       get { return mapB_; }

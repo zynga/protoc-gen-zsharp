@@ -80,9 +80,6 @@ namespace Google.Protobuf.TestProtos {
 
     protected override PublicImportMessage Message { get{ return this; } }
 
-    public override void SetParent(EventContext parent, int field) {
-      base.SetParent(parent, field);
-    }
     /// <summary>Field number for the "e" field.</summary>
     public const int EFieldNumber = 1;
     private int e_;
